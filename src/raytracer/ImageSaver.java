@@ -1,6 +1,3 @@
-/**
- * 
- */
 package raytracer;
 
 import java.awt.Graphics2D;
@@ -28,9 +25,7 @@ import javafx.stage.Stage;
  * generates a black image pixel by pixel with a diagonal red line. The window
  * size should be editable by the user.
  * 
- * 
- * @author Charline Waldrich, Robert Ullmann, Julian Dobrot
- *
+ * @author Charline Waldrich
  */
 public class ImageSaver extends Application {
 
@@ -100,8 +95,8 @@ public class ImageSaver extends Application {
 	/**
 	 * The getColor method is called in order to decide which color to give the pixel at
 	 * the given point (x,y).
-	 * @param 	x: x coordinate of the picture
-	 * @param 	y: y coordinate of the picture
+	 * @param 	x: x coordinate of the pixel which is drawn in this moment
+	 * @param 	y: y coordinate of the pixel which is drawn in this moment
 	 * @return 	Color RED for each pixel where x and y are the same in order to draw a 
 	 * 			red diagonal 
 	 * @return 	Color BLACK for every other 

@@ -3,9 +3,9 @@ package matVecLib;
 import java.util.Vector;
 
 /**
- * This Main class is for firs testing of the matVecLib.
- * It includes the testcases from the task
- * Created by Juliand on 14.10.15.
+ * This Main class is for testing of the matVecLib.
+ * It includes the test cases from the task.
+ * Created by Julian on 14.10.15.
  */
 
 public class Main {

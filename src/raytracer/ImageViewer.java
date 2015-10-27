@@ -36,7 +36,7 @@ public class ImageViewer extends Application {
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images","*.png"));
 		final File file = fileChooser.showOpenDialog(primaryStage);
 
-		// Check if File chosen
+		// Check if File is chosen
 		if (file == null)
 			return;
 		

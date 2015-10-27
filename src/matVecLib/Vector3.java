@@ -10,19 +10,19 @@ import java.util.Vector;
 public class Vector3 {
 
     /**
-     * The x component of the Vector.
+     * The x coordinate of the Vector.
      */
 
     public final double x;
 
     /**
-     * The y component of the Vector.
+     * The y coordinate of the Vector.
      */
 
     public final double y;
 
     /**
-     * The z component of the Vector.
+     * The z coordinate of the Vector.
      */
 
     public final double z;
@@ -35,9 +35,9 @@ public class Vector3 {
 
     /**
      * This constructor creates a new Vector and calculates its length.
-     * @param x
-     * @param y
-     * @param z
+     * @param x: x coordinate
+     * @param y: y coordinate
+     * @param z: z coordinate
      */
 
     public Vector3(final double x,final double y, final double z){
