@@ -49,6 +49,14 @@ local.properties
 # PDT-specific
 .buildpath
 
+# intellij
+.idea/workspace.xml
+.idea/tasks.xml
+out/
++.class
+
+
+
 # sbteclipse plugin
 .target
 
