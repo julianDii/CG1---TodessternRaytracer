@@ -1,8 +1,10 @@
-\documentclass[a4paper,10pt]{scrreprt}
+\documentclass[a4paper,10pt]{ltxdoc}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
 
+\usepackage{array}
+\usepackage{amsmath}
 
 \title{Bericht Todesstern U1}
 \author{Charline Waldrich, Robert Ullmann, Julian Dobrot}
@@ -12,8 +14,10 @@
 
 \maketitle
 \tableofcontents
+\pagebreak
 
 \section{Aufgabenstelung}
+
 \subsection{ImageViewer}
 Der ImageViewer ist ein Programm mit dem eine Bilddatei von der Festplatte ausgewählt werden kann und dieses in der GUI angezeigt wird. 
 \subsection{ImageSaver}
@@ -23,8 +27,33 @@ Das Bild ist Schwarz und beinhaltet einen diagonalen roten Strich. Über eine Me
 Die Matritzen- und Vektorenbibliothek beinhaltet die folgenden vier Klassen 
 
 \section{Lösungsstrategien}
+\subsection{ImageViewer}
+Der ImageViewer öffnet beim starten einen Dialog um eine Bilddatei im PNG oder JPG- Format auszuwählen. Das ausgewählte Bild wird in einem Fenster, passend zur Größe, angezeigt.
+\subsection{ImageSaver}
+
+\subsection{Matrizen- und Vectorenbibliothek}
+
 \section{Implementierungen}
+\subsection{ImageViewer}
+Der ImageViewer besteht aus zwei Methoden. Die erste Methode ist die Java-FX \textbf{start}-Methode, welche das Layout beinhaltet. Dieses besteht aus einer BorderPane und darin enthalten eine ImageView, welche das Bild anzeigt. \\
+Die zweite Methode ist die \textbf{openFileDialog}-Methode. Diese Methode dient der Auswahl des Bildes und gibt das ausgewählte File zurück an die start-Methode.
+\subsection{ImageSaver}
+
+\subsection{Matrizen- und Vectorenbibliothek}
+
 \section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
+Bei der Implementierung des ImageViewers kam es zu keinen besondern Problemen oder Schwierigikeiten.
 \section{Zeitbedarf}
+\begin{center}
+\begin{tabular}{cr}
+ImageViewer	  \	&80 min	\\
+ImageSaver 	\	&120 min	\\
+Bibliotheken \	&120 min	\\
+Bericht  \		&180 min	 \\
+	\hline
+	&500 min
+\end{tabular}
+\end{center}
+
 
 \end{document}
