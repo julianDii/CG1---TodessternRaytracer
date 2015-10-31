@@ -45,7 +45,7 @@ public class ImageSaver extends Application {
 		primaryStage.setScene(new Scene(root));
 		primaryStage.setTitle("Image Saver");
 		primaryStage.setWidth(640);
-		primaryStage.setHeight(530);
+		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 		
 		root.widthProperty().addListener(e -> {

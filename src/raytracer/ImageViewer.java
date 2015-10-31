@@ -5,10 +5,7 @@ package raytracer;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import javafx.application.*;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,36 +23,39 @@ import javafx.stage.Stage;
  *
  */
 public class ImageViewer extends Application {
-
+	
+	/**
+	 * Start method for FX-Window with BorderPane and ImageView, 
+	 * to show the choosen Image in a ImageView. 
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		final ImageView imageView;
-
-		primaryStage.setTitle("ImageViewer");
-
-		final FileChooser fileChooser = new FileChooser();
-		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images","*.png"));
-		final File file = fileChooser.showOpenDialog(primaryStage);
-
-		// Check if File is chosen
-		if (file == null)
-			return;
-		
-		// Optional mit URI, dann ohne FileInputStream()
-		// final File file =
-		// fileChooser.showOpenDialog(primaryStage).toURI().toString();
-		final Image image = new Image(new FileInputStream(file));
-		// imageView = createImageView(file);
-		imageView = new ImageView(image);
 		final BorderPane borderPane = new BorderPane();
+		final Image image = new Image(new FileInputStream(openFileDialog(primaryStage)));
+
+		primaryStage.setTitle("ImageViewer");				
+		imageView = new ImageView(image);		
 		borderPane.setCenter(imageView);
 		Scene scene = new Scene(borderPane, Color.BLACK);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+	}
+	
+	/**
+	 * The openFileDialog method open a Window to choose a File as PNG 
+	 * @param 	primaryStage to show the FileChooser
+	 * @return 	the choosen File 
+	 */
+	private File openFileDialog(Stage primaryStage) {
+		final FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images","*.png"));
+		final File file = fileChooser.showOpenDialog(primaryStage);
 
+		return file;
 	}
 
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	
 }
