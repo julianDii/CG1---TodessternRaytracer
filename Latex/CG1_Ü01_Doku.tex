@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{ltxdoc}
+\documentclass[14pt]{extarticle}
 
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
@@ -28,7 +28,6 @@ Die Matritzen- und Vektorenbibliothek beinhaltet die folgenden fünf Klassen mit
 zur berechnung mit Matrix- und Vectorobjekten durchführen zu können:
 
 \begin{itemize}
-
 \item Eine Main, um die Testfälle aus der Aufgabenstellung durchzuführen.
 \item Point3
 \item Mat3x3
@@ -52,20 +51,16 @@ Die zweite Methode ist die \textbf{openFileDialog}-Methode. Diese Methode dient 
 \subsection{ImageSaver}
 
 \subsection{Matrizen- und Vectorenbibliothek}
-
 \textbf{Point3:} Ein Punkt im dreidimensionalem Raum mit seinen x,y,z Werten. Die Klasse stellt Methoden bereit um einen Punkt mit anderen Objekten aus der Bibliothek zu subtrahieren und zu addieren.
-
-\textbf{Mat3x3:} Im Konstruktor dieser Klasse sollen die neun Elemente einer 3x3 Matrix übergeben werden und die Determinante dieser Matrix wird bei der initialisierung berechnet. Die Klasse enthält verschiedene Methoden um Operationen mit der übergebenen Matrix durchzuführen und diese zu verändern. 
-
-\textbf{Normal3:} Eine Normale auf einer Oberfläche. Die x,y,z Werte der Normalen werden bei ihrer Inizialisierung als unveränderliche Attribute übergeben. Desweiteren enthält die Klasse Methoden für Operationen zur Berechnung von multiplikationen mit double Werten, die addition mit anderen Normal3 Objekten und dem Kreuzprodukt mit Vektoren.
-
-\textbf{Vector3:} Dise Klasse stellt einen dreidimensionalen Vector dar und ermöglicht mit ihren Methoden verschiedene Operationen.
+\\\textbf{Mat3x3:} Im Konstruktor dieser Klasse sollen die neun Elemente einer 3x3 Matrix übergeben werden und die Determinante dieser Matrix wird bei der initialisierung berechnet. Die Klasse enthält verschiedene Methoden um Operationen mit der übergebenen Matrix durchzuführen und diese zu verändern. 
+\\\textbf{Normal3:} Eine Normale auf einer Oberfläche. Die x,y,z Werte der Normalen werden bei ihrer Inizialisierung als unveränderliche Attribute übergeben. Desweiteren enthält die Klasse Methoden für Operationen zur Berechnung von multiplikationen mit double Werten, die addition mit anderen Normal3 Objekten und dem Kreuzprodukt mit Vektoren.
+\\\textbf{Vector3:} Dise Klasse stellt einen dreidimensionalen Vector dar und ermöglicht mit ihren Methoden verschiedene Operationen.
 
 
 \section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
 \subsection{ImageViewer}
 Bei der Implementierung des ImageViewers kam es zu keinen besondern Problemen oder Schwierigikeiten.
-\subsection{ImageSAver}
+\subsection{ImageSaver}
 \subsection{Matrizen- und Vectorenbibliothek}
 Für die reflectedOn Methode wurde die Formel 
 \begin{math} R=2(N*L)N-L \end{math}
@@ -79,9 +74,12 @@ ImageSaver 	\	&120 min	\\
 Bibliotheken \	&180 min	\\
 Bericht  \		&180 min	 \\
 	\hline
-	&500 min
+	&560 min
 \end{tabular}
 \end{center}
+
+\section{Quellen}
+https://asalga.wordpress.com/2012/09/23/understanding-vector-reflection-visually/
 
 
 \end{document}
