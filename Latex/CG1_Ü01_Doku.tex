@@ -24,7 +24,18 @@ Der ImageViewer ist ein Programm mit dem eine Bilddatei von der Festplatte ausge
 Der ImageSaver ist ein Programm walches ein Bild erzeugt, dass so groß ist wie das Fenster.
 Das Bild ist Schwarz und beinhaltet einen diagonalen roten Strich. Über eine Menüzeile kann das Bild in den Formaten PNG und JPG gespeichert werden.
 \subsection{Matrizen- und Vectorenbibliothek}
-Die Matritzen- und Vektorenbibliothek beinhaltet die folgenden vier Klassen 
+Die Matritzen- und Vektorenbibliothek beinhaltet die folgenden fünf Klassen mit ihren Methoden um Operationen 
+zur berechnung mit Matrix- und Vectorobjekten durchführen zu können:
+
+\begin{itemize}
+
+\item Eine Main, um die Testfälle aus der Aufgabenstellung durchzuführen.
+\item Point3
+\item Mat3x3
+\item Vector3 
+\item Normal3
+\end{itemize}
+
 
 \section{Lösungsstrategien}
 \subsection{ImageViewer}
@@ -32,6 +43,7 @@ Der ImageViewer öffnet beim starten einen Dialog um eine Bilddatei im PNG oder 
 \subsection{ImageSaver}
 
 \subsection{Matrizen- und Vectorenbibliothek}
+Die Klassen wurden nach den Klassendiagrammen angelegt und erfüllen die im Aufgabentext beschriebenen mathematischen Operationen. Die im vorherigen Semester erlernten mathematischen Fähigkeiten  wurden angewendet um die Problemstellungen zu realisieren und programmtechnisch umzusetzen. Zur Lösung der reflectedOn methode wurde die Mathematik recherchiert und anschließend programmtechnisch umgesetzt.
 
 \section{Implementierungen}
 \subsection{ImageViewer}
@@ -41,14 +53,30 @@ Die zweite Methode ist die \textbf{openFileDialog}-Methode. Diese Methode dient 
 
 \subsection{Matrizen- und Vectorenbibliothek}
 
+\textbf{Point3:} Ein Punkt im dreidimensionalem Raum mit seinen x,y,z Werten. Die Klasse stellt Methoden bereit um einen Punkt mit anderen Objekten aus der Bibliothek zu subtrahieren und zu addieren.
+
+\textbf{Mat3x3:} Im Konstruktor dieser Klasse sollen die neun Elemente einer 3x3 Matrix übergeben werden und die Determinante dieser Matrix wird bei der initialisierung berechnet. Die Klasse enthält verschiedene Methoden um Operationen mit der übergebenen Matrix durchzuführen und diese zu verändern. 
+
+\textbf{Normal3:} Eine Normale auf einer Oberfläche. Die x,y,z Werte der Normalen werden bei ihrer Inizialisierung als unveränderliche Attribute übergeben. Desweiteren enthält die Klasse Methoden für Operationen zur Berechnung von multiplikationen mit double Werten, die addition mit anderen Normal3 Objekten und dem Kreuzprodukt mit Vektoren.
+
+\textbf{Vector3:} Dise Klasse stellt einen dreidimensionalen Vector dar und ermöglicht mit ihren Methoden verschiedene Operationen.
+
+
 \section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
+\subsection{ImageViewer}
 Bei der Implementierung des ImageViewers kam es zu keinen besondern Problemen oder Schwierigikeiten.
+\subsection{ImageSAver}
+\subsection{Matrizen- und Vectorenbibliothek}
+Für die reflectedOn Methode wurde die Formel 
+\begin{math} R=2(N*L)N-L \end{math}
+angewendet.  Wobei R der reflektierte Vektor ist, N die Normale an der reflektiert wird und L ein normalisierter Vektor der in Richtung der Lichtquelle zeigt, dies ist das über den parameter der Methode übergebene Normal3 Objekt. Die schwierigkeit in der umsetzung der Mathematik in den Programmcode bestand darin, dass die Formel umgestellt werden musste. So wird in der Methode erst die übergebene Normale mit -1 multipliziert, was den letzten Teil der Formel representiert. 
+
 \section{Zeitbedarf}
 \begin{center}
 \begin{tabular}{cr}
 ImageViewer	  \	&80 min	\\
 ImageSaver 	\	&120 min	\\
-Bibliotheken \	&120 min	\\
+Bibliotheken \	&180 min	\\
 Bericht  \		&180 min	 \\
 	\hline
 	&500 min

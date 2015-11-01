@@ -67,7 +67,7 @@ public class Mat3x3 {
     public double determinant;
 
     /**
-     * This Constructor creates a new Matrix with the given parameters and sets the value ot the determinant.
+     * This Constructor creates a new Matrix with the given parameters and sets the value of the determinant.
      *
      * @param m11
      * @param m12
@@ -171,9 +171,10 @@ public class Mat3x3 {
     }
 
     /**
-     * ThisMethod changes the first column of the 3*3Matrix.
+     * ThisMethod changes the first column of the 3*3Matrix, by creating a new Matrix with the given Vector3
+     * object from the parameter.
      * @param v
-     * @return the changed 3*3 Matrix.
+     * @return the new changed 3*3 Matrix.
      */
 
     public Mat3x3 changeCol1(Vector3 v){
@@ -189,9 +190,10 @@ public class Mat3x3 {
     }
 
     /**
-     * ThisMethod changes the second column of the 3*3Matrix.
+     * ThisMethod changes the second column of the 3*3Matrix, by creating a new Matrix with the given Vector3
+     * object from the parameter.
      * @param v
-     * @return the changed 3*3 Matrix.
+     * @return the new changed 3*3 Matrix.
      */
 
 
@@ -207,9 +209,10 @@ public class Mat3x3 {
     }
 
     /**
-     * ThisMethod changes the third column of the 3*3Matrix.
+     * ThisMethod changes the third column of the 3*3Matrix, by creating a new Matrix with the given Vector3
+     * object from the parameter.
      * @param v
-     * @return the changed 3*3 Matrix.
+     * @return the new changed 3*3 Matrix.
      */
 
 

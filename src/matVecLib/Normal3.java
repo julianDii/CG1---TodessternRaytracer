@@ -61,7 +61,7 @@ public class Normal3 {
 
     public double dot(Vector3 v){
 
-        if (v == null) throw new IllegalArgumentException("v must be not null." );
+        if (v == null) throw new IllegalArgumentException("'v' have to be not null." );
 
         return x * v.x + y * v.y + z + v.z;
     }
