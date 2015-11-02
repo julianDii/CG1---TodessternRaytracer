@@ -21,25 +21,27 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
- * The Image Saver Class opens a window thanks to the JavaFX application and
- * generates a black image pixel by pixel with a diagonal red line. The window
- * size should be editable by the user.
+ * The Image Saver Class opens a window thanks to the implemented JavaFX application and
+ * generates pixel by pixel a black image with a diagonal red line. The window
+ * size is editable by the user.
  * 
  * @author Charline Waldrich
  */
 public class ImageSaver extends Application {
 
 	/**
-	 * Drawing Surface
+	 * Drawing Surface:
 	 */
 	private VBox root = new VBox();
 	private ImageView imageview;
 	private WritableImage writableimage;
 
 	/**
-	 * Window property at initial point. Title added as well as initial size is set. 
+	 * The start method initializes the window property at initial point. The title is added 
+	 * and its initial size is set. 
 	 * We need to add a listener to the VBox in oder to use the lamda expressions to call the 
-	 * drawPicture method each time the height and width property of the VBox changes.
+	 * drawPicture method each time the height and width property of the window (and therefore 
+	 * the VBox root) changes.
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setScene(new Scene(root));
@@ -59,31 +61,30 @@ public class ImageSaver extends Application {
 	}
 
 	/**
-	 * Draws a picture pixel by pixel using a writablePicture which is stored in a imageview. 
+	 * The drawPicture method draws a picture pixel by pixel using a writableImage 
+	 * which is stored in the imageview. 
 	 * 
 	 * @param 	primaryStage is needed to get the width and height property for the 
 	 * 			image to be drawn
 	 *
 	 * In order to be able to draw a completely new picture each time the method is called,
-	 * we need to remove the earlier added imageview from the VBox. 
+	 * we first need to remove the earlier added imageview from the VBox. 
 	 * The width and height property cannot be bound directly because neither the writableimage
 	 * nor the imageview provides a property binding method. 
 	 */
-	public void drawPicture(Stage primaryStage) {
+	private void drawPicture(Stage primaryStage) {
 		
 		root.getChildren().remove(imageview);
 		
-		int height = (int) primaryStage.getHeight() - 50;
-		int width = (int) primaryStage.getWidth();
+		final int height = (int) primaryStage.getHeight() - 50;
+		final int width = (int) primaryStage.getWidth();
+		final PixelWriter writer = writableimage.getPixelWriter();
 
 		this.imageview = new ImageView();
-		this.writableimage = new WritableImage(width, height);
-		
-		PixelWriter writer = writableimage.getPixelWriter();
+		this.writableimage = new WritableImage(width, height);		
 
 		for (int y = 0; y < height; ++y) {
 			for (int x = 0; x < width; ++x) {
-
 				writer.setColor(x, y, getColor(x, y));
 			}
 		}
@@ -95,22 +96,23 @@ public class ImageSaver extends Application {
 	/**
 	 * The getColor method is called in order to decide which color to give the pixel at
 	 * the given point (x,y).
-	 * @param 	x: x coordinate of the pixel which is drawn in this moment
-	 * @param 	y: y coordinate of the pixel which is drawn in this moment
+	 * @param 	x > 0 coordinate of the pixel which is drawn in this moment
+	 * @param 	y > 0 coordinate of the pixel which is drawn in this moment
 	 * @return 	Color RED for each pixel where x and y are the same in order to draw a 
 	 * 			red diagonal 
 	 * @return 	Color BLACK for every other 
 	 */
-	public Color getColor(int x, int y) {
+	private Color getColor(int x, int y) throws IllegalArgumentException{
+		if (x < 0 || y < 0) throw new IllegalArgumentException();
 		if (x == y) { return Color.RED; }
 		return Color.BLACK;
 	}
 
 	/**
-	 * Initializes the menubar with the MenuItem Save and Draw.
+	 * Initializes the menubar.
 	 * @param Stage needs to be given in oder to call the saveFile method in the lamda expression
 	 */
-	public void initializeMenu(Stage primaryStage) {
+	private void initializeMenu(Stage primaryStage) {
 
 		final MenuBar menubar = new MenuBar();
 		final Menu fileMenu = new Menu("File");
@@ -128,7 +130,8 @@ public class ImageSaver extends Application {
 	 * drawn picture as jpg or png.
 	 * Before being able to save it, we need to transform the writableimage into a bufferedimage.
 	 */
-	public void saveFile(Stage primaryStage) {
+	private void saveFile(Stage primaryStage) {
+		
 		final FileChooser fileChooser = new FileChooser();
 		final ExtensionFilter png = new ExtensionFilter("PNG File", "*.png");
 		final ExtensionFilter jpg = new ExtensionFilter("JPG File", "*.jpg");

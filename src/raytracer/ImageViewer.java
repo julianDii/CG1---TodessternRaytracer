@@ -26,7 +26,7 @@ public class ImageViewer extends Application {
 	
 	/**
 	 * Start method for FX-Window with BorderPane and ImageView, 
-	 * to show the choosen Image in a ImageView. 
+	 * to show the chosen Image in a ImageView. 
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		final ImageView imageView;
@@ -44,7 +44,7 @@ public class ImageViewer extends Application {
 	/**
 	 * The openFileDialog method open a Window to choose a File as PNG 
 	 * @param 	primaryStage to show the FileChooser
-	 * @return 	the choosen File 
+	 * @return 	the chosen File 
 	 */
 	private File openFileDialog(Stage primaryStage) {
 		final FileChooser fileChooser = new FileChooser();
