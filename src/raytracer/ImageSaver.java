@@ -46,6 +46,7 @@ public class ImageSaver extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setScene(new Scene(root));
 		primaryStage.setTitle("Image Saver");
+		primaryStage.setMinHeight(51);
 		primaryStage.setWidth(640);
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
@@ -78,15 +79,20 @@ public class ImageSaver extends Application {
 		
 		final int height = (int) primaryStage.getHeight() - 50;
 		final int width = (int) primaryStage.getWidth();
-		final PixelWriter writer = writableimage.getPixelWriter();
 
 		this.imageview = new ImageView();
 		this.writableimage = new WritableImage(width, height);		
 
-		for (int y = 0; y < height; ++y) {
-			for (int x = 0; x < width; ++x) {
-				writer.setColor(x, y, getColor(x, y));
-			}
+		final PixelWriter writer = writableimage.getPixelWriter();
+		
+		try {
+			for (int y = 0; y < height; ++y) {
+				for (int x = 0; x < width; ++x) {
+					writer.setColor(x, y, getColor(x, y));
+				}
+			}			
+		} catch (IllegalArgumentException e){
+			System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
 		}
 
 		imageview.setImage(writableimage);
@@ -106,6 +112,7 @@ public class ImageSaver extends Application {
 		if (x < 0 || y < 0) throw new IllegalArgumentException();
 		if (x == y) { return Color.RED; }
 		return Color.BLACK;
+		
 	}
 
 	/**
