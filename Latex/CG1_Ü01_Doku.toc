@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-\contentsline {section}{\numberline {1}Aufgabenstelung}{2}
-\contentsline {subsection}{\numberline {1.1}ImageViewer}{2}
-\contentsline {subsection}{\numberline {1.2}ImageSaver}{2}
-\contentsline {subsection}{\numberline {1.3}Matrizen- und Vectorenbibliothek}{2}
-\contentsline {section}{\numberline {2}L\IeC {\"o}sungsstrategien}{2}
-\contentsline {subsection}{\numberline {2.1}ImageViewer}{2}
-\contentsline {subsection}{\numberline {2.2}ImageSaver}{2}
-\contentsline {subsection}{\numberline {2.3}Matrizen- und Vectorenbibliothek}{3}
-\contentsline {section}{\numberline {3}Implementierungen}{3}
-\contentsline {subsection}{\numberline {3.1}ImageViewer}{3}
-\contentsline {subsection}{\numberline {3.2}ImageSaver}{3}
-\contentsline {subsection}{\numberline {3.3}Matrizen- und Vectorenbibliothek}{3}
-\contentsline {section}{\numberline {4}Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}{4}
-\contentsline {subsection}{\numberline {4.1}ImageViewer}{4}
-\contentsline {subsection}{\numberline {4.2}ImageSaver}{4}
-\contentsline {subsection}{\numberline {4.3}Matrizen- und Vectorenbibliothek}{4}
-\contentsline {section}{\numberline {5}Zeitbedarf}{4}
-=======
 \contentsline {section}{\numberline {1}Aufgabenstelung}{3}
 \contentsline {subsection}{\numberline {1.1}ImageViewer}{3}
 \contentsline {subsection}{\numberline {1.2}ImageSaver}{3}
@@ -24,15 +5,14 @@
 \contentsline {section}{\numberline {2}L\IeC {\"o}sungsstrategien}{4}
 \contentsline {subsection}{\numberline {2.1}ImageViewer}{4}
 \contentsline {subsection}{\numberline {2.2}ImageSaver}{4}
-\contentsline {subsection}{\numberline {2.3}Matrizen- und Vectorenbibliothek}{4}
-\contentsline {section}{\numberline {3}Implementierungen}{4}
-\contentsline {subsection}{\numberline {3.1}ImageViewer}{4}
+\contentsline {subsection}{\numberline {2.3}Matrizen- und Vektorenbibliothek}{4}
+\contentsline {section}{\numberline {3}Implementierungen}{5}
+\contentsline {subsection}{\numberline {3.1}ImageViewer}{5}
 \contentsline {subsection}{\numberline {3.2}ImageSaver}{5}
-\contentsline {subsection}{\numberline {3.3}Matrizen- und Vectorenbibliothek}{5}
-\contentsline {section}{\numberline {4}Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}{5}
-\contentsline {subsection}{\numberline {4.1}ImageViewer}{5}
+\contentsline {subsection}{\numberline {3.3}Matrizen- und Vektorenbibliothek}{6}
+\contentsline {section}{\numberline {4}Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}{6}
+\contentsline {subsection}{\numberline {4.1}ImageViewer}{6}
 \contentsline {subsection}{\numberline {4.2}ImageSaver}{6}
-\contentsline {subsection}{\numberline {4.3}Matrizen- und Vectorenbibliothek}{6}
-\contentsline {section}{\numberline {5}Zeitbedarf}{6}
-\contentsline {section}{\numberline {6}Quellen}{6}
->>>>>>> f4d711427bf0694e8ad7428b5055469156b99344
+\contentsline {subsection}{\numberline {4.3}Matrizen- und Vektorenbibliothek}{7}
+\contentsline {section}{\numberline {5}Zeitbedarf}{7}
+\contentsline {section}{\numberline {6}Quellen}{8}

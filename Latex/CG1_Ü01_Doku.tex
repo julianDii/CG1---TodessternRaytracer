@@ -1,11 +1,8 @@
 \documentclass[14pt]{extarticle}
-
 \usepackage[utf8]{inputenc}
 \usepackage{ngerman}
-
 \usepackage{array}
 \usepackage{amsmath}
-
 \title{Bericht Todesstern U1}
 \author{Charline Waldrich, Robert Ullmann, Julian Dobrot}
 \date{30. Oktober 2015}
@@ -52,7 +49,7 @@ Die Klassen wurden nach den Klassendiagrammen angelegt und erfüllen die im Aufg
 Der ImageViewer besteht aus zwei Methoden. Die erste Methode ist die Java-FX \textbf{start}-Methode, welche das Layout beinhaltet. Dieses besteht aus einer BorderPane und darin enthalten eine ImageView, welche das Bild anzeigt. \\
 Die zweite Methode ist die \textbf{openFileDialog}-Methode. Diese Methode dient der Auswahl des Bildes und gibt das ausgewählte File zurück an die start-Methode.
 \subsection{ImageSaver}
-Die ImageSaver Klasse besteht aus zwei öffentlichen Methoden, "start" und "main". 
+Die ImageSaver Klasse besteht aus zwei öffentlichen Methoden, start und main. 
 Hinzu kommen vier private Methoden. Die initializeMenu Methode zum Einrichten der Menüleiste, welche in der Startmethode aufgerufen wird, zwei Methoden zum Erstellen des Bildes und eine weitere zum Abspeichern dessen. 
 \newline
 Die drawPicture Methode wird in der Start Methode aufgerufen sobald sich die Höhe oder Breite des Fensters ändert. Diese wiederum ruft in einer verschachtelten for-Schleife die getColor Methode auf, welche für jeden Bildpixel mit den übergebenen Koordinaten x und y, die Farbgebung bestimmt. 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.6)  2 NOV 2015 11:25
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  1 NOV 2015 20:49
->>>>>>> f4d711427bf0694e8ad7428b5055469156b99344
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.6)  2 NOV 2015 13:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -326,18 +322,18 @@ LaTeX Info: Redefining \] on input line 2666.
 (./CG1_Ü01_Doku.aux)
 \openout1 = `CG1_Ü01_Doku.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
  (./CG1_Ü01_Doku.toc [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
@@ -345,72 +341,53 @@ LaTeX Font Info:    ... okay on input line 13.
 \openout3 = `CG1_Ü01_Doku.toc'.
 
  [2]
-Overfull \hbox (13.50282pt too wide) in paragraph at lines 27--29
+Overfull \hbox (13.50282pt too wide) in paragraph at lines 24--26
 \OT1/cmr/m/n/14.4 Klas-sen mit ih-ren Me-tho-den um Ope-ra-tio-nen zur be-rech-
 nung mit Matrix-
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 28.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
  [3]
 Overfull \hbox (2.49966pt too wide) in paragraph at lines 45--46
 \OT1/cmr/m/n/14.4 Die Klas-sen wur-den nach den Klas-sen-dia-gram-men an-ge-leg
 t und erf[]ullen
  []
 
-[4]
-Overfull \hbox (1.39679pt too wide) in paragraph at lines 60--60
+[4] [5]
+Overfull \hbox (1.39679pt too wide) in paragraph at lines 68--68
 []\OT1/cmr/bx/n/20.74 Besondere Pro-ble-me oder Schwie-rig-kei-
  []
 
-[5]
-Overfull \hbox (31.76915pt too wide) in paragraph at lines 82--83
+[6]
+Overfull \hbox (31.76915pt too wide) in paragraph at lines 94--95
 \OT1/cmr/m/n/14.4 https://asalga.wordpress.com/2012/09/23/understanding-vector-
 reflection-
  []
 
-[6] (./CG1_Ü01_Doku.aux) ) 
+[7] [8] (./CG1_Ü01_Doku.aux) ) 
 Here is how much of TeX's memory you used:
-<<<<<<< HEAD
- 1635 strings out of 493089
- 19090 string characters out of 6134842
- 83427 words of memory out of 5000000
- 5139 multiletter control sequences out of 15000+600000
- 9023 words of font info for 33 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 30i,6n,21p,509b,168s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb>
-Output written on CG1_Ü01_Doku.pdf (4 pages, 99589 bytes).
-=======
  1308 strings out of 493089
- 16527 string characters out of 6134841
- 73071 words of memory out of 5000000
+ 16527 string characters out of 6134842
+ 74071 words of memory out of 5000000
  4825 multiletter control sequences out of 15000+600000
  8798 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,6n,20p,509b,174s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb>
-Output written on CG1_Ü01_Doku.pdf (6 pages, 71197 bytes).
->>>>>>> f4d711427bf0694e8ad7428b5055469156b99344
+ 27i,6n,20p,510b,174s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb>
+Output written on CG1_Ü01_Doku.pdf (8 pages, 75083 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 51 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
