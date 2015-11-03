@@ -1,4 +1,4 @@
-package matVecLib;
+package raytracer.matVecLib;
 
 /**
  * The Class Normal3 is a normale on a ground.

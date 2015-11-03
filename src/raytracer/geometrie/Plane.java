@@ -1,7 +1,11 @@
-package raytracer;
+package raytracer.geometrie;
 
 import matVecLib.Normal3;
 import matVecLib.Point3;
+import raytracer.Color;
+import raytracer.Ray;
+import raytracer.geometrie.Geometry;
+import raytracer.geometrie.Hit;
 
 /**
  * Created by Juliand on 03.11.15.

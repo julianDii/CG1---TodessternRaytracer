@@ -1,6 +1,4 @@
-package matVecLib;
-
-import java.util.Vector;
+package raytracer.matVecLib;
 
 /**
  * This Class creates a new V3 Vector

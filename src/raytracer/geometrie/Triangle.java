@@ -1,6 +1,8 @@
-package raytracer;
+package raytracer.geometrie;
 
 import matVecLib.Point3;
+import raytracer.Color;
+import raytracer.Ray;
 
 /**
  * Created by Juliand on 03.11.15.

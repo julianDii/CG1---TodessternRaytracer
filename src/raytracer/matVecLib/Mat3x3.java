@@ -1,4 +1,4 @@
-package matVecLib;
+package raytracer.matVecLib;
 
 /**
  * This class represents a 3x3 matrix.

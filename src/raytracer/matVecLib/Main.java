@@ -1,9 +1,7 @@
-package matVecLib;
-
-import java.util.Vector;
+package raytracer.matVecLib;
 
 /**
- * This Main class is for testing of the matVecLib.
+ * This Main class is for testing of the raytracer.matVecLib.
  * It includes the test cases from the task.
  * Created by Julian on 14.10.15.
  */

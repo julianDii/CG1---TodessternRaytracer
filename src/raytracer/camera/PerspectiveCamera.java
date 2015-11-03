@@ -1,7 +1,9 @@
-package raytracer;
+package raytracer.camera;
 
-import matVecLib.Point3;
-import matVecLib.Vector3;
+
+import raytracer.Ray;
+import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 
 /**
  * Created by Juliand on 03.11.15.
@@ -10,7 +12,7 @@ public class PerspectiveCamera extends Camera {
 
     final double angle;
 
-    public PerspectiveCamera(Point3 e, Vector3 g, Vector3 t, double angle) {
+    public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
         super(e, g, t);
         this.angle=angle;
     }

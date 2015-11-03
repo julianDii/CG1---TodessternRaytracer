@@ -1,4 +1,4 @@
-package matVecLib;
+package raytracer.matVecLib;
 
 /**
  * The Class Point3 creates a new Point3

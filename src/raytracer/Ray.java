@@ -1,7 +1,8 @@
 package raytracer;
 
-import matVecLib.Point3;
-import matVecLib.Vector3;
+
+import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 
 /**
  * Created by Charline Waldrich, 3.11.2015
@@ -31,8 +32,7 @@ public class Ray {
      * @param p is the Point of which we want to know the distance to our position vector of the ray
      * @returns a double which is the distance of the given point p and o from each other 
      */
-    public double tOf(Point3 p){ 
-    	return (p.sub(o)).magnitude;
+    public double tOf(Point3 p){return (p.sub(o)).magnitude;
     }
 
 }
