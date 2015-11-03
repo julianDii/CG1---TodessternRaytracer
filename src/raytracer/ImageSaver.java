@@ -32,7 +32,7 @@ public class ImageSaver extends Application {
 	/**
 	 * Drawing Surface:
 	 */
-	private VBox root = new VBox();
+	final private VBox root = new VBox();
 	private ImageView imageview;
 	private WritableImage writableimage;
 
