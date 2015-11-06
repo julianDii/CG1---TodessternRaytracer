@@ -1,11 +1,12 @@
 package raytracer.geometrie;
 
-import matVecLib.Point3;
+import raytracer.matVecLib.Point3;
 import raytracer.Color;
 import raytracer.Ray;
 
 /**
- * Created by Juliand on 03.11.15.
+ * Created by Julian on 03.11.15.
+ * Developer Robert Ullmann
  */
 public class Triangle extends Geometry {
 

@@ -6,7 +6,8 @@ import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
 /**
- * Created by Juliand on 03.11.15.
+ * Created by Julian on 03.11.15.
+ * Developer Julian Dobrot
  */
 public class PerspectiveCamera extends Camera {
 

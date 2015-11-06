@@ -1,6 +1,6 @@
 package raytracer.geometrie;
 
-import matVecLib.Point3;
+import raytracer.matVecLib.Point3;
 import raytracer.Color;
 import raytracer.Ray;
 import raytracer.geometrie.Geometry;
@@ -8,6 +8,7 @@ import raytracer.geometrie.Hit;
 
 /**
  * Created by Juliand on 03.11.15.
+ * Developer Julian Dobrot
  */
 public class AxisAlignedBox extends Geometry {
 

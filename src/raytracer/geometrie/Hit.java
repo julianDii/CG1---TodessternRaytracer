@@ -5,6 +5,7 @@ import raytracer.geometrie.Geometry;
 
 /**
  * Created by Juliand on 03.11.15.
+ * Developer Charline Waldrich
  */
 public class Hit {
 

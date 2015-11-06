@@ -7,7 +7,7 @@ import raytracer.matVecLib.Vector3;
 
 /**
  * This Class creates a new camera
- * Created by Juliand on 03.11.15.
+ * Created by Julian & Charline on 03.11.15. 
  */
 public abstract class Camera {
 

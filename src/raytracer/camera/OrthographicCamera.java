@@ -7,6 +7,7 @@ import raytracer.matVecLib.Vector3;
 
 /**
  * Created by Juliand on 03.11.15.
+ * Developer Robert Ullmann
  */
 public class OrthographicCamera extends Camera {
 
