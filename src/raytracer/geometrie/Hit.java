@@ -4,14 +4,24 @@ import raytracer.Ray;
 import raytracer.geometrie.Geometry;
 
 /**
- * Created by Juliand on 03.11.15. Developer Charline Waldrich
+ * An Hit object is created if the given ray (from the camera perspective) hits the chosen
+ * object in our world. 
+ * Created by Juliand on 03.11.15. 
+ * Developer Charline Waldrich
  */
 public class Hit {
 
 	final double t;
 	final Ray ray;
 	final Geometry geo;
-
+	
+	/**
+	 * Initializes a new hit object.
+	 * @param t: 	is the factor with which the direction vector of ray needs to be multiplied and 
+	 * 				added in order the give the length
+	 * @param ray	holds the ray (with its origin point and the direction vector)
+	 * @param geo	holds the chosen geometry (with which we search the rays intersection)
+	 */
 	public Hit(final double t, final Ray ray, final Geometry geo) {
 
 		this.t = t;
