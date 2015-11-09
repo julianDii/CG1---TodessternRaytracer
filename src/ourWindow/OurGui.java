@@ -26,9 +26,10 @@ import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
 /**
- * The Image Saver Class opens a window thanks to the implemented JavaFX
- * application and generates pixel by pixel a black image with a diagonal red
- * line. The window size is editable by the user.
+ * OurGui Class opens a window thanks to the implemented JavaFX
+ * application and gives the user the oportunity to 
+ * create his own world containing objects such as world, camera and geometry.
+ * The window size is editable by the user.
  * 
  * @author Charline Waldrich
  */
@@ -45,10 +46,7 @@ public class OurGui extends Application {
 
 	/**
 	 * The start method initializes the window property at initial point. The
-	 * title is added and its initial size is set. We need to add a listener to
-	 * the VBox in oder to use the lamda expressions to call the drawPicture
-	 * method each time the height and width property of the window (and
-	 * therefore the VBox root) changes.
+	 * title is added and its initial size is set.
 	 */
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setScene(new Scene(root));
