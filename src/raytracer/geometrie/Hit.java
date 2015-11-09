@@ -11,9 +11,9 @@ import raytracer.geometrie.Geometry;
  */
 public class Hit {
 
-	final double t;
-	final Ray ray;
-	final Geometry geo;
+	public final double t;
+	public final Ray ray;
+	public final Geometry geo;
 	
 	/**
 	 * Initializes a new hit object.

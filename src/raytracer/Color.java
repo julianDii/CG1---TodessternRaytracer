@@ -6,9 +6,9 @@ package raytracer;
  */
 public class Color {
 
-    final double r;
-    final double g;
-    final double b;
+    public final double r;
+    public final double g;
+    public final double b;
 
     public Color(final double r,final double g, final double b){
         this.r=r;

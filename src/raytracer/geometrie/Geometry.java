@@ -8,7 +8,7 @@ import raytracer.Ray;
  */
 public abstract class Geometry {
 
-    final Color color;
+    public final Color color;
 
     public Geometry(final Color color){
         this.color=color;
