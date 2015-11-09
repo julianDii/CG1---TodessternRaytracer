@@ -51,6 +51,11 @@ public abstract class Camera {
      */
     
     public Camera(final Point3 e, final Vector3 g, final Vector3 t){
+
+        if(e==null)throw new IllegalArgumentException("e have to be not null");
+        if(g==null)throw new IllegalArgumentException("g have to be not null");
+        if(t==null)throw new IllegalArgumentException("t have to be not null");
+
         this.e=e;
         this.g=g;
         this.t=t;
@@ -72,5 +77,42 @@ public abstract class Camera {
      */
     public abstract Ray rayFor(final int width,final int height,final int x,final int y);
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Camera camera = (Camera) o;
+
+        if (!e.equals(camera.e)) return false;
+        if (!g.equals(camera.g)) return false;
+        if (!t.equals(camera.t)) return false;
+        if (!u.equals(camera.u)) return false;
+        if (!v.equals(camera.v)) return false;
+        return !(w != null ? !w.equals(camera.w) : camera.w != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = e.hashCode();
+        result = 31 * result + g.hashCode();
+        result = 31 * result + t.hashCode();
+        result = 31 * result + u.hashCode();
+        result = 31 * result + v.hashCode();
+        result = 31 * result + (w != null ? w.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Camera{" +
+                "e=" + e +
+                ", g=" + g +
+                ", t=" + t +
+                ", u=" + u +
+                ", v=" + v +
+                ", w=" + w +
+                '}';
+    }
 }
