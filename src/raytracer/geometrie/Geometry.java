@@ -13,5 +13,7 @@ public abstract class Geometry {
     public Geometry(final Color color){
         this.color=color;
     }
+    
     public abstract Hit hit(final Ray r);
+
 }
