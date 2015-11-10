@@ -44,7 +44,7 @@ public class OurGui extends Application {
 	public final static World welt = new World(new raytracer.Color(0, 0, 0));
 	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
-
+	
 	/**
 	 * Drawing Surface:
 	 */
@@ -64,8 +64,8 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-		welt.list.add(plane);
-		drawPicture(primaryStage);
+	//	welt.list.add(plane);
+	//	drawPicture(primaryStage);
 
 		primaryStage.show();
 	}

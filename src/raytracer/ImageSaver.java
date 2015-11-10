@@ -18,6 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import raytracer.camera.Camera;
+import raytracer.camera.PerspectiveCamera;
+import raytracer.geometrie.Plane;
+import raytracer.matVecLib.Normal3;
+import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +35,13 @@ import javafx.stage.Stage;
  */
 public class ImageSaver extends Application {
 
+	/**
+	 * For testing we initialize the needed object in our world. 
+	 */
+	public final static World welt = new World(new raytracer.Color(0, 0, 0));
+	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
+	
 	/**
 	 * Drawing Surface:
 	 */
@@ -51,12 +64,8 @@ public class ImageSaver extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 		
-		root.widthProperty().addListener(e -> {
-			drawPicture(primaryStage);
-		});
-		root.heightProperty().addListener(e ->{
-			drawPicture(primaryStage);
-		});
+		welt.list.add(plane);
+		drawPicture(primaryStage);
 
 		primaryStage.show();
 	}
@@ -88,7 +97,7 @@ public class ImageSaver extends Application {
 		try {
 			for (int y = 0; y < height; ++y) {
 				for (int x = 0; x < width; ++x) {
-					writer.setColor(x, y, getColor(x, y));
+					writer.setColor(x, y, getColor(width, height, x, y));
 				}
 			}			
 		} catch (IllegalArgumentException e){
@@ -100,19 +109,18 @@ public class ImageSaver extends Application {
 	}
 
 	/**
-	 * The getColor method is called in order to decide which color to give the pixel at
-	 * the given point (x,y).
-	 * @param 	x > 0 coordinate of the pixel which is drawn in this moment
-	 * @param 	y > 0 coordinate of the pixel which is drawn in this moment
-	 * @return 	Color RED for each pixel where x and y are the same in order to draw a 
-	 * 			red diagonal 
-	 * @return 	Color BLACK for every other 
+	 * The getColor method is called in order to decide which color to give the
+	 * pixel at the given point (x,y).
+	 * 
+	 * @param x > 0 && y > 0 coordinate of the pixel which is drawn in this moment
+	 * @param width > 0 && height > null, both represent the size of the window -
+	 * @return Color object either gets the color from the geometry, which was hit 
+	 * or the background color of the world.
 	 */
-	private Color getColor(int x, int y) throws IllegalArgumentException{
-		if (x < 0 || y < 0) throw new IllegalArgumentException();
-		if (x == y) { return Color.RED; }
-		return Color.BLACK;
-		
+	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
+		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
+		raytracer.Color hitFarbe = welt.hit(camera.rayFor(width, height, x, height-1-y));
+		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}
 
 	/**
