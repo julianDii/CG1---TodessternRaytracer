@@ -21,7 +21,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import raytracer.World;
 import raytracer.camera.Camera;
+import raytracer.camera.OrthographicCamera;
 import raytracer.camera.PerspectiveCamera;
+import raytracer.geometrie.Plane;
+import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -36,10 +39,15 @@ import raytracer.matVecLib.Vector3;
 public class OurGui extends Application {
 
 	/**
-	 * Drawing Surface:
+	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0, 0, 0));
-	public final Camera camera = new PerspectiveCamera(new Point3(1,1,1), new Vector3(2,2,2), new Vector3(3,3,3), 0);
+	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
+
+	/**
+	 * Drawing Surface:
+	 */
 	private final VBox root = new VBox();
 	private ImageView imageview;
 	private WritableImage writableimage;
@@ -56,12 +64,8 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-		// root.widthProperty().addListener(e -> {
-		// drawPicture(primaryStage);
-		// });
-		// root.heightProperty().addListener(e ->{
-		// drawPicture(primaryStage);
-		// });
+		welt.list.add(plane);
+		drawPicture(primaryStage);
 
 		primaryStage.show();
 	}
@@ -116,7 +120,7 @@ public class OurGui extends Application {
 	 * or the background color of the world.
 	 */
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-		if (y > height || x > width) throw new IllegalArgumentException();
+		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
 		raytracer.Color hitFarbe = welt.hit(camera.rayFor(width, height, x, y));
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}

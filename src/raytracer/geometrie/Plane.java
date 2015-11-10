@@ -42,12 +42,15 @@ public class Plane extends Geometry {
     	if (r == null) throw new IllegalArgumentException("The Ray of the Camera is missing!");
     	
     	final double denominator = r.d.dot(n);
-    	
+
     	if (denominator != 0){
     		final double t = n.dot(a.sub(r.o))/denominator;
-    		if ( t > 0) return new Hit(t,r,this);
+    		if ( t < 0) {
+    			return null;
+    		}
+    		return new Hit(t,r,this);
     	}
-        return null;
+    	return null;
     }
 
 	@Override
