@@ -20,7 +20,7 @@ public class World {
 	/**
 	 * List contains all geometric objects chosen by the user.
 	 */
-	public final List<Geometry> list = new ArrayList<Geometry>();
+	public final List<Geometry> list = new ArrayList<>();
 	
 	public World (Color color){
 		this.backgroundcolor = color;

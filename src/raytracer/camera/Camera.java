@@ -60,11 +60,9 @@ public abstract class Camera {
         this.g=g;
         this.t=t;
         
-        double gAbs = g.magnitude;
-        this.w = g.mul((gAbs)*(1/gAbs)).mul(-1);
-        double txwAbs = t.x(w).magnitude;
-        this.u = (t.x(w)).mul(1/txwAbs);
-        this.v = w.x(u);
+        this.w = this.g.normalized().mul(-1.0);
+        this.u = this.t.x(this.w).normalized();
+        this.v = this.w.x(this.u).mul(1.0);
     }
 
     /**

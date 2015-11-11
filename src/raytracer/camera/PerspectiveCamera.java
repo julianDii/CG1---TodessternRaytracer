@@ -16,7 +16,7 @@ public class PerspectiveCamera extends Camera {
 	 * The angle component of the Perspective Camera.
 	 */
 
-    final double angle;
+     final double angle;
 
 	/**
 	 * This contructor creates a new Perspective Camera.
@@ -39,17 +39,14 @@ public class PerspectiveCamera extends Camera {
 	@Override
     public Ray rayFor(int width, int height, int x, int y) {
 
-		// The origin of the returned Ray is o = e
-		// The direction (d) is r/|r|
-		// r = -w * (h/2 / tan * alpha) + ( x - (w-1/2))*u + (y-(h-1/2))*v
 
-		final Vector3 ux;
-		final Vector3 vx;
+		final Vector3 uXx;
+		final Vector3 vXy;
 		final Vector3 r;
 
-		ux=u.mul(x-((width-1)/2));
-		vx=v.mul(y-((height-1)/2));
-		r=w.mul(-1).mul((height/2)/Math.tan(angle/2)).add(ux).add(vx);
+		uXx=u.mul(x-((width-1)/2));
+		vXy=v.mul(y-((height-1)/2));
+		r=w.mul(-1).mul((height/2)/Math.tan(angle)).add(uXx).add(vXy);
 
 		return new Ray(e,r.normalized());
     }

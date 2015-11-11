@@ -26,7 +26,7 @@ public class Vector3 {
     public final double z;
 
     /**
-     * The length of he Vector
+     * The length of the Vector
      */
 
     public final double magnitude;
