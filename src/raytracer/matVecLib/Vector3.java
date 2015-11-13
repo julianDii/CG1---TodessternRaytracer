@@ -101,7 +101,7 @@ public class Vector3 {
 
         if (v == null) throw new IllegalArgumentException("v must be not null.");
 
-        return x * v.x * y * v.y + z * v.z ;
+        return x * v.x + y * v.y + z * v.z ;
     }
 
     /**

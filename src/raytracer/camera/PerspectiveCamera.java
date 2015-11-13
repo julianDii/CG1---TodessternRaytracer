@@ -46,7 +46,7 @@ public class PerspectiveCamera extends Camera {
 
 		uXx=u.mul(x-((width-1)/2));
 		vXy=v.mul(y-((height-1)/2));
-		r=w.mul(-1).mul((height/2)/Math.tan(angle)).add(uXx).add(vXy);
+		r=w.mul(-1).mul((height/2)/Math.tan(angle/2)).add(uXx).add(vXy);
 
 		return new Ray(e,r.normalized());
     }
