@@ -51,11 +51,13 @@ public class Sphere extends Geometry {
         final double t2;
         final double d;
 
+        b=r.d.dot((r.o.sub(c)).mul(2));
         a=r.d.dot(r.d);
-        b=r.d.dot(r.o.sub(c).mul(2));
+        //b=r.d.dot(r.o.sub(c).mul(2));
         cNor=r.o.sub(c).dot(r.o.sub(c))-(this.r*this.r);
 
-        d = (b*b)-(4*a*cNor);
+        d = (b * b) - (4 * a * cNor);
+
 
         if(d>0) {
 
