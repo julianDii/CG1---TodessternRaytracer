@@ -45,11 +45,11 @@ public class OurGui extends Application {
 	 */
 	public final static World welt = new World(new raytracer.Color(0, 0, 0));
 
-	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+	//public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	//public final Camera orthoCam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
-	//public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
+	public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
 	//public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	public final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
 	public final Sphere sphere = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
@@ -75,7 +75,7 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-		welt.list.add(sphere);
+		welt.list.add(box);
 		drawPicture(primaryStage);
 
 		primaryStage.show();
