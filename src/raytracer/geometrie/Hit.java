@@ -18,7 +18,7 @@ public class Hit {
 	/**
 	 * Initializes a new hit object.
 	 * @param t: 	is the factor with which the direction vector of ray needs to be multiplied and 
-	 * 				added in order the give the length
+	 * 				then added to the starting point of the ray in order to 'hit' the object
 	 * @param ray	holds the ray (with its origin point and the direction vector)
 	 * @param geo	holds the chosen geometry (with which we search the rays intersection)
 	 */

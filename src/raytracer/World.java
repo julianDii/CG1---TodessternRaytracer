@@ -27,7 +27,7 @@ public class World {
 	}
 	
 	/**
-	 * The method hit tests where and when ray hits the object. 
+	 * The method hit tests if ray hits the in "list" saved object. 
 	 * @param r: ray which we want to check
 	 * @return Color object, background color if ray has no hit on the object. if it does, it 
 	 * returns the color of the hit object
@@ -36,7 +36,7 @@ public class World {
 		Hit hit0 = null;
 		for (Geometry g: list){
 			Hit hit1 = g.hit(r);
-			if (hit0 == null|| (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
+			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
 		if (hit0 == null) return backgroundcolor;
 		return hit0.geo.color;

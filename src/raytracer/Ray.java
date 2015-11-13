@@ -24,11 +24,10 @@ public class Ray {
 	}
 
 	/**
-	 * This method returns a point with its coordinates after following the
-	 * direction vector of the ray until we reach the given length.
+	 * This method returns a point with its coordinates after the
+	 * direction vector was multiplied with it, and added to the starting point of the ray.
 	 * 
-	 * @param t: is the given double value of the length we want the direction
-	 *           vector to have
+	 * @param t: is the given double value we need in order to get to the point
 	 * @returns the point and its new coordinates
 	 */
 	public Point3 at(double t) {
@@ -36,17 +35,16 @@ public class Ray {
 	}
 
 	/**
-	 * This method is used to get the double value of the distance of two
-	 * points.
+	 * This method is used to get the double value which is needed in order to
+	 * get from the starting point of the ray in its given direction to get the Point.
 	 * 
-	 * @param p:	is the point of which we want to know the distance to our
-	 *            	position vector of the ray
-	 * @returns a 	double which is the distance of the given point p and o (starting
-	 * 				point of the ray) from each other.
+	 * @param p:	is given point
+	 * @returns  	a double which is the factor one needs to multiply the direction vector and 
+	 * 				add to the starting point of the ray, in order to get to the given Point p 
 	 */
 	public double tOf(Point3 p) {
 		if (p == null)
-			throw new IllegalArgumentException("The startinpoint of the ray should not be undefined.");
+			throw new IllegalArgumentException("The Point for which you search the Faktor t should not be undefined.");
 		return (p.sub(o)).magnitude / d.magnitude;
 	}
 
