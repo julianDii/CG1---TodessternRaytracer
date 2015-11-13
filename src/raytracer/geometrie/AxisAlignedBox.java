@@ -92,10 +92,11 @@ public class AxisAlignedBox extends Geometry {
 
         if(h != null) {
 
-            Point3 inOut=h.ray.at(h.t);
+            final double fix = 0.00001;
+            final Point3 inOut=h.ray.at(h.t);
 
-            if(inOut.x >= lbf.x && inOut.y >= lbf.y && inOut.z >= lbf.z &&
-                    inOut.x<=run.x && inOut.y <= run.y && inOut.z <= run.z){
+            if(inOut.x >= lbf.x+fix && inOut.y+fix >= lbf.y && inOut.z >= lbf.z+fix &&
+                    inOut.x<=run.x+fix && inOut.y <= run.y+fix && inOut.z <= run.z+fix){
                 return h;
             }
 
