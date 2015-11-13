@@ -31,7 +31,6 @@ public class Sphere extends Geometry {
         super(color);
 
         if(c==null)throw new IllegalArgumentException("c has to be not null");
-        if(color==null)throw new IllegalArgumentException("color has to be not null");
 
         this.c=c;
         this.r=r;
@@ -39,6 +38,44 @@ public class Sphere extends Geometry {
 
     @Override
     public Hit hit(Ray r) {
+
+        // a = d * d
+        // b = d * [2(o-c)]
+        // c = (o - c) * (o - c) - r^2
+
+        // first we have to check if we have 0,1 or 2 results
+        final double a;
+        final double b;
+        final double cNor;
+        final double t1;
+        final double t2;
+        final double d;
+
+        a=r.d.dot(r.d);
+        b=r.d.dot(r.o.sub(c).mul(2));
+        cNor=r.o.sub(c).dot(r.o.sub(c))-(this.r*this.r);
+
+        d = (b*b)-(4*a*cNor);
+
+        if(d>0) {
+
+            t1 = (-b + Math.sqrt(d)) / (2 * a);
+            t2 = (-b - Math.sqrt(d)) / (2 * a);
+
+            if (t1 >= 0 & t2 >= 0) {
+               return new Hit(Math.min(t1, t2), r, this);
+            }else if (t1>=0){
+                return new Hit(t1,r,this);
+            }else if(t2>=0) {
+                return new Hit(t2, r, this);
+            }
+        }else if (d==0){
+            final double t3;
+            t3=-b/(2*a);
+            if (t3>=0){
+                return new Hit(t3,r,this);
+            }
+        }
         return null;
     }
 

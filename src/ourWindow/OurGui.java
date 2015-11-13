@@ -25,6 +25,7 @@ import raytracer.camera.OrthographicCamera;
 import raytracer.camera.PerspectiveCamera;
 import raytracer.geometrie.AxisAlignedBox;
 import raytracer.geometrie.Plane;
+import raytracer.geometrie.Sphere;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
@@ -46,11 +47,13 @@ public class OurGui extends Application {
 
 	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
-	
+	//public final Camera orthoCam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
 	//public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
 	//public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	public final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
+	public final Sphere sphere = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
+
 
 	/**
 	 * Drawing Surface:
@@ -72,7 +75,7 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-		welt.list.add(box);
+		welt.list.add(sphere);
 		drawPicture(primaryStage);
 
 		primaryStage.show();
@@ -135,7 +138,7 @@ public class OurGui extends Application {
 
 	/**
 	 * Initializes the menubar.
-	 * @param Stage needs to be given in oder to call the saveFile method in the lamda expression
+	 * @param primaryStage needs to be given in oder to call the saveFile method in the lamda expression
 	 */
 	private void initializeMenu(Stage primaryStage) {
 

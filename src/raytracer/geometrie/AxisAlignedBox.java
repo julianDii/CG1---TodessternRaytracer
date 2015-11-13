@@ -7,6 +7,7 @@ import raytracer.Ray;
 import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,8 +75,10 @@ public class AxisAlignedBox extends Geometry {
 
             if(visible > 0) {
                 final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
-                //TODO if the hit is equal to null or t is bigger then the t of the hit then hit is a new hit
-                hit = new Hit(t,r,this);
+                if(hit==null||t> hit.t){
+                    hit = new Hit(t,r,this);
+                }
+
 
             }
         }
@@ -89,9 +92,13 @@ public class AxisAlignedBox extends Geometry {
 
         if(h != null) {
 
-            //TODO here is the check of the hit(hit  in the Box coordinates or null)
+            Point3 inOut=h.ray.at(h.t);
 
-            return h;
+            if(inOut.x >= lbf.x && inOut.y >= lbf.y && inOut.z >= lbf.z &&
+                    inOut.x<=run.x && inOut.y <= run.y && inOut.z <= run.z){
+                return h;
+            }
+
         }
 
         return null;
