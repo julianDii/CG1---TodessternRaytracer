@@ -43,15 +43,15 @@ public class OurGui extends Application {
 	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0, 0, 0));
-<<<<<<< HEAD
+
 	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	
-=======
-	public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
+
+	//public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
 	//public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	public final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
->>>>>>> Camera class error corrected,started AxisAllignedBox not finished yet
+
 	/**
 	 * Drawing Surface:
 	 */
@@ -71,13 +71,9 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-<<<<<<< HEAD
-	//	welt.list.add(plane);
-	//	drawPicture(primaryStage);
-=======
+
 		welt.list.add(box);
 		drawPicture(primaryStage);
->>>>>>> Camera class error corrected,started AxisAllignedBox not finished yet
 
 		primaryStage.show();
 	}
