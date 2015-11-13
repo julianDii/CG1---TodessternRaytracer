@@ -126,6 +126,11 @@ Außerdem wird in unserer Color Klasse der RGB-Wert berechnet, welcher für das 
 \label{Ebene}
 \end{center}
 \end{figure}
+
+\subsection{Sphere}
+Die Klasse Sphere representiert die Geometrie einer Kugel
+\subsection{AxisAlignedBox}
+Diese Klasse ermöglicht es Box Objekte zu erzeugen
 \section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
 \subsection{Tests}
 In der ImageSaver Klasse musste die ,,getColor''-Methode angepasst werden. Diese benutzt unsere persönliche Color Klasse und berechnet für jeden einzelnen Pixel dank der ,,hit'' Methode der Welt, ob das erzeugte Objekt von dem Strahl der erzeugten Klasse getroffen wird. Da in der Bildverarbeitung der Ursprung des Koordinatensystems oben links und in der Mathematik unten links liegt, musste bei der Berechnung aufgepasst werden, dass der ,,rayFor'' Methode welche von der ,,camera'' aufgerufen wird. nicht die oben liegende Y-Koordinate übergeben wird, sondern dem quasi spiegelverkehrtem Pixel unten. 
