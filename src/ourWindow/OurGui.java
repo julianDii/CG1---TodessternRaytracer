@@ -103,6 +103,7 @@ public class OurGui extends Application {
 //		welt.list.add(box0);
 //		welt.list.add(triangl0);
 
+
 		drawPicture(primaryStage);
 
 		primaryStage.show();
@@ -158,7 +159,9 @@ public class OurGui extends Application {
 	 * or the background color of the world.
 	 */
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
+
+		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Hï¿½he und Breite nicht.");
+		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der HÃ¶he und Breite nicht.");
 		raytracer.Color hitFarbe = welt.hit(abb5Cam.rayFor(width, height, x, height - 1 - y));
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}

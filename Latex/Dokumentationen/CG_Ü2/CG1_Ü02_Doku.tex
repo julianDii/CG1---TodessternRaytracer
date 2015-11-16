@@ -35,6 +35,7 @@ Die Klasse Farben soll Farben im RGB-Farbraum representieren. Dabei sollen die e
 \subsection{Geometrien}
 Alle Geometrien erben von einer abstrakten Basisklasse. Diese hat nur ein Attribut nämlich die Farbe. 
 \subsubsection{Hit}
+Die Klasse Hit wird instanziert, wenn ein Strahl eine Geometrie in der Welt Schneidet.
 \subsubsection{Plane}
 Die Klasse Plane soll eine Implementierung einer Ebenel darstellen. 
 \subsubsection{Sphere}
@@ -48,22 +49,44 @@ In der Welt sollen die darzustellenden Objekte in einer Scene dargestellt werden
 \subsection{Raytracer}
 Hier soll über jeden pixel des Bildes iteriert werden. Werden Schnittpunkte mit Geometrien gefunden, erhält der Pixel dessen Farbe.
 
-
 \section{Lösungsstrategien}
 Allgemein wurden als erster Lösungsschritt alle aus der Aufgabenstllung hervorgehenden Klassendiagramme komplett in das Projekt integriert.
 
 \subsection{Strahl}
+Der Strahl (Ray) kann mit der Methode ,,at'' den Punkt berechnen, welchen er trifft wenn er die als Parameter übergebenen Länge ,,t'' (als double Wert), den Richtungsvektor ''entlang geht''. Hierfür wird die eine einfache Rechnung angewandt. 
+In der Methode ,,tOf'' wird diese Rechnung umgedreht. Ein gesuchter Punkt wird als Parameter übergeben und berechnet dann den Faktor ,,t'' (als double Wert) welcher mit dem Richtungsvektor multipliziert werden müsste um zu gesuchtem Punkt zu gelangen. \\
+
 \subsection{Kameras}
 \subsubsection{Camera}
+<<<<<<< HEAD
 Die Kamera führt die Transformation der Position, Richtung und Rotation durch.
 \subsubsection{OrthographicCamera}
 Bei der Orhographischen Kamera müssen alle erzeugten Strahlen parallel sein und in die gleiche Richtung zeigen.
+=======
+In der abstrakten Klasse Camera wurde mit den aus der Vorlesung vermittelten Formeln die  Kameratransformation vorgenommen.
+
+\subsubsection{OrthographicCamera}
+In der orthographischen Kamera wurden die folgenden Formeln umgesetzt:\\\\
+\begin{math}\vec{d}=-\vec{w}\end{math}\\\\
+\begin{math}\vec{o}=\vec{e}+a*s\frac{px-\frac{w-1}{2}}{w-1}\vec{u}+s\frac{py-\frac{h-1}{2}}{h-1}\vec{v}\end{math}
+
+>>>>>>> Bericht fertiggestellt
 \subsubsection{PespectiveCamera}  
+In der perspektivischen Kamera wurden die folgenden Formel umgesetzt:\\\\
+\begin{math}\vec{o}=\vec{e}\end{math}\\\\
+\begin{math}\vec{r}=-\vec{w}*\frac{\frac{h}{2}}{\tan\alpha}+(px-\frac{w-1}{2})\vec{u}+(py-\frac{h-1}{2})\vec{v}\end{math}\\\\
+\begin{math}\vec{d}=\frac{\vec{r}}{|\vec{r}|}\end{math}\\\\
+
+Der Winkel in \begin{math}\vec{r}\end{math} wurde halbiert, um die aus der aufgabenstellung gewünschten Bilder zu erhalten.
+
 \subsection{Farben}
 Die Klasse der Farbe, repräsentiert eine Farbe, welche ein neues Objekt vom Typ Color erzeugen kann.
 \subsection{Geometrien}
 \subsubsection{Hit}
+Die Klasse Hit konnte rein aus der UML darstellung übernommen werden. sie implementiert keine Methoden. 
 \subsubsection{Plane}
+Um die hit Methode in dieser Klasse zu implementieren wurde die implizite ebenen Formel aus der Vorlesung angewendet.\\
+\begin{math}\Rightarrow t= \frac{(\vec{a}-\vec{o})\bullet \vec{n}}{\vec{d}\bullet \vec{n}}\end{math}\\\\
 \subsubsection{Sphere}
 Als Lösungsansatz für diese Geometrie dienten die aus der Vorlesung erarbeite Formel zur berechnung der Schnittpunkte verwendet.
 \\\\\begin{math} t=\frac{-b\pm \sqrt[2]{b^2-4ac}}{2a}\end{math}\\\\
@@ -79,18 +102,25 @@ Diese Überlegungen wurden dementsprechend programmtechnisch umgesetzt, um eine 
  
 
 \subsubsection{Triangle}
+<<<<<<< HEAD
 Die Triangle besteht aus 3 Punkten, welche die Baryzentrischen Koordinaten bilden. Um den Schnittpunkt zu berechnen, ist es notwenig mit Hilfe der 3x3 Matrix ein lineares Gleichungssystem zu erstellen und es mit der Cramerschen Regel, unter Verwendung der Determinanten aus der 3x3 Matrix zu lösen.
+=======
+Für die lösung dieser Geometrie wurden die Formeln aus der Vorlesung angewendet.
+>>>>>>> Bericht fertiggestellt
 \subsubsection{AxisAlignedBox}
+Die hit Methode wurde wie folgt überschrieben.Die jeweils drei Ebenen die die linke nahe Ecke und die rechte entfernte Ecke aufspannen wurden in Form von Planes instanziiert und mit ihren ensprechenen Normalenparametern versehen. Diese sechs Ebenen wurden in eine Liste gespeichert die dann in einer Schleife durchlaufen wird. Es wird im folgenden mit den Formeln aus dem unterricht getestet ob Strahlen die Box treffen oder nicht
 
 \subsection{Welt}
 \subsection{Raytracer}
-
 \section{Implementierungen}
 
 \subsection{Strahl}
 Die ,,Ray'' Klasse initialisiert einen Strahl mit gegebenem Ausgangspunkt und Richtungsvektor. Sie implementiert zwei Methoden namens ,,at'' und ,,tOf''. Außerdem wurden die von der Oberklasse Object geerbten Methoden hashCode und eqals so überschrieben, dass sie zum Testen nützlich sind.\\
 Der Strahl (Ray) kann mit der Methode ,,at'' den Punkt berechnen, welchen er trifft wenn er die als Parameter übergebenen Länge ,,t'' (als double Wert), den Richtungsvektor ''entlang geht''. Hierfür wird die eine einfache Rechnung angewandt. 
+<<<<<<< HEAD
 %$$ Punt P = Ausgangspunkt O + Länge t \times Richtungsvektor d $$
+=======
+>>>>>>> Bericht fertiggestellt
 In der Methode ,,tOf'' wird diese Rechnung umgedreht. Ein gesuchter Punkt wird als Parameter übergeben und berechnet dann den Faktor ,,t'' (als double Wert) welcher mit dem Richtungsvektor multipliziert werden müsste um zu gesuchtem Punkt zu gelangen. \\
 \subsection{Kameras}
 \subsubsection{Camera}
@@ -119,8 +149,6 @@ Ist der berechnete double-Wert größer 0 wird ein Hit Objekt mit dem berechnete
 Außerdem wird in unserer Color Klasse der RGB-Wert berechnet, welcher für das färben des writableImage Objektes nicht brauchbar ist. Da der pixelWriter nur Color Objet aus dem javaFX Paket erkennt, müssen die einzeln berechneten Werte an ein neues Color Objekt dessen übergeben werden.
 \begin{figure}[ht]
 \begin{center}
-\includegraphics[width=5cm, height=8cm]{TestCase1.png}
-\caption{Ebene aus Perspektivischer Kamera}
 \label{Ebene}
 \end{center}
 \end{figure}
@@ -139,57 +167,79 @@ In der for-Schleife wird für jedes Objekt in der Liste ein weiteres Hit Objekt 
 \section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
 
 \subsection{Strahl}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsection{Kameras}
 \subsubsection{Camera}
-Ein Fehler in der Camera klasse führte zueiner überarbeitung der Cameratransformation, da Koordinaten falsch berechnetwurden, kam es bem Rendering der Box zu foldendem Ergebniss.\\
-\includegraphics{BoxFail}
-
+Ein Fehler in der Camera klasse führte zu einer überarbeitung der Kameratransformation, da Koordinaten falsch berechnet wurden, kam es bem Rendering der Box zu foldendem Ergebniss.\\
+\includegraphics{images/BoxFail}
 \subsubsection{OrthographicCamera}
+<<<<<<< HEAD
 Problem bei der Implementierung ist die späte Feststellung, ob die Kamera richtig Implementiert wurde, da ein Debuggen nur bedingt möglich ist, da sehr viele Straheln (Ray) erzeugt werden.
+=======
+Keine besonderen Probleme oder Schwierigkeiten.
+>>>>>>> Bericht fertiggestellt
 \subsubsection{PespectiveCamera}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsection{Farben}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsection{Geometrien}
 \subsubsection{Hit}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsubsection{Plane}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsubsection{Sphere}
 Ein Fehler in einer der Methoden der Klasse Vector3 führte zu einer längeren Fehlersuche. Durch einen Operatorschreibfehler kam es zu einer Fehlerhaften berechnung wie im folgendem Bild zu sehen ist:\\\\
-\includegraphics{KugelFail}
+\includegraphics{images/KugelFail}
 \subsubsection{Triangle}
 Große Probleme bei der Implementierung der Klasse Triangle, gab es beim Verständnis der Formel und der richtigen Implementierung in Java-Code. Auch mögliche Fehler in der Vektor-Bibliothek führten zu nicht gleich offensichtlichen Problemen. 
 \subsubsection{AxisAlignedBox}
-
+Das Testen ob ein Hit wirklich auf der Würfelfläche liegt oder nicht bereitete einige schwierigkeiten, konnte aber mit etwas Recherche gelöst werden. Außerdem führte ein fehler in der abstrakten Camera Klasse zu falschen berechnungen der Winkel und Seitenlängen.
 \subsection{Welt}
+Keine besonderen Probleme oder Schwierigkeiten.
 \subsection{Raytracer}
 
 In der ImageSaver Klasse musste die ,,getColor''-Methode angepasst werden. Diese benutzt unsere persönliche Color Klasse und berechnet für jeden einzelnen Pixel dank der ,,hit'' Methode der Welt, ob das erzeugte Objekt von dem Strahl der erzeugten Klasse getroffen wird. Da in der Bildverarbeitung der Ursprung des Koordinatensystems oben links und in der Mathematik unten links liegt, musste bei der Berechnung aufgepasst werden, dass der ,,rayFor'' Methode welche von der ,,camera'' aufgerufen wird. nicht die oben liegende Y-Koordinate übergeben wird, sondern dem quasi spiegelverkehrtem Pixel unten. 
 
--> hier kannst du rein schreiben was bei der Camera Klasse das Problem war und wie es schön das ganze Projekt kaputt gemacht hat ;) 
-
-
-
 \section{Zeitbedarf}
 \begin{center}
 \begin{tabular}{cr}
-Strahl	  \	&80 min	\\
-Kameras 	\	&240 min	\\
-Farben \	&240 min	\\
-Geometrien \	&240 min	\\
-Welt \	&240 min	\\
+Strahl	  \	&60 min	\\
+Kameras 	\	&120 min	\\
+Farben \	&60 min	\\
+Geometrien \	&720 min	\\
+Welt \	&60 min	\\
 Raytracer \	&240 min	\\
-
 Bericht  \		&180 min	 \\
 	\hline
-	&740 min
+	&1440 min
 \end{tabular}
 \end{center}
 
 \subsection{Tests}
+\subsubsection{Abbildung 5}
+Eine Ebene aus perspektivischer Sicht.\\
+\includegraphics[width=15cm,height=10cm]{images/Abb5}\\
+
+\subsubsection{Abbildung 6}
+Eine Kugel aus perspektivischer Sicht.\\
+\includegraphics[width=15cm,height=10cm]{images/Abb6}\\
+
+\subsubsection{Abbildung 7}
+Eine Box aus perspektivischer Sicht.\\
+\includegraphics[width=15cm,height=10cm]{images/Abb7}\\
+
+%\subsubsection{Abbildung 8}
+%\includegraphics[width=5cm, height=8cm]{/images/Abb8.png}
+%\caption{Dreieck aus orthographischer Kamera}
+\subsubsection{Abbildung 9}
+Zwei Kugeln perspektivisch.\\
+\includegraphics[width=15cm,height=10cm]{images/Abb9}\\
+
+\subsubsection{Abbildung 10}
+Zwei Kugeln orthographisch.\\
+\includegraphics[width=15cm,height=10cm]{images/Abb10}\\
+
 
 \section{Quellen}
-https://asalga.wordpress.com/2012/09/23/understanding-vector-reflection-visually/
-
-
-
-
 
 \end{document}

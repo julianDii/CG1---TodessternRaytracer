@@ -2,19 +2,20 @@
 \contentsline {subsection}{\numberline {1.1}Strahl}{4}
 \contentsline {subsection}{\numberline {1.2}Kameras}{4}
 \contentsline {subsubsection}{\numberline {1.2.1}Camera}{4}
-\contentsline {subsubsection}{\numberline {1.2.2}OrthographicCamera}{4}
+\contentsline {subsubsection}{\numberline {1.2.2}OrthographicCamera}{5}
 \contentsline {subsubsection}{\numberline {1.2.3}PespectiveCamera}{5}
 \contentsline {subsection}{\numberline {1.3}Farben}{5}
 \contentsline {subsection}{\numberline {1.4}Geometrien}{5}
 \contentsline {subsubsection}{\numberline {1.4.1}Hit}{5}
 \contentsline {subsubsection}{\numberline {1.4.2}Plane}{5}
-\contentsline {subsubsection}{\numberline {1.4.3}Sphere}{5}
-\contentsline {subsubsection}{\numberline {1.4.4}Triangle}{5}
-\contentsline {subsubsection}{\numberline {1.4.5}AxisAlignedBox}{5}
+\contentsline {subsubsection}{\numberline {1.4.3}Sphere}{6}
+\contentsline {subsubsection}{\numberline {1.4.4}Triangle}{6}
+\contentsline {subsubsection}{\numberline {1.4.5}AxisAlignedBox}{6}
 \contentsline {subsection}{\numberline {1.5}Welt}{6}
 \contentsline {subsection}{\numberline {1.6}Raytracer}{6}
 \contentsline {section}{\numberline {2}L\IeC {\"o}sungsstrategien}{6}
 \contentsline {subsection}{\numberline {2.1}Strahl}{6}
+<<<<<<< HEAD
 \contentsline {subsection}{\numberline {2.2}Kameras}{6}
 \contentsline {subsubsection}{\numberline {2.2.1}Camera}{6}
 \contentsline {subsubsection}{\numberline {2.2.2}OrthographicCamera}{6}
@@ -42,18 +43,52 @@
 \contentsline {subsubsection}{\numberline {3.4.4}Triangle}{10}
 \contentsline {subsubsection}{\numberline {3.4.5}AxisAlignedBox}{10}
 \contentsline {subsubsection}{\numberline {3.4.6}Plane}{10}
+=======
+\contentsline {subsection}{\numberline {2.2}Kameras}{7}
+\contentsline {subsubsection}{\numberline {2.2.1}Camera}{7}
+\contentsline {subsubsection}{\numberline {2.2.2}OrthographicCamera}{7}
+\contentsline {subsubsection}{\numberline {2.2.3}PespectiveCamera}{7}
+\contentsline {subsection}{\numberline {2.3}Farben}{8}
+\contentsline {subsection}{\numberline {2.4}Geometrien}{8}
+\contentsline {subsubsection}{\numberline {2.4.1}Hit}{8}
+\contentsline {subsubsection}{\numberline {2.4.2}Plane}{8}
+\contentsline {subsubsection}{\numberline {2.4.3}Sphere}{8}
+\contentsline {subsubsection}{\numberline {2.4.4}Triangle}{9}
+\contentsline {subsubsection}{\numberline {2.4.5}AxisAlignedBox}{9}
+\contentsline {subsection}{\numberline {2.5}Welt}{10}
+\contentsline {subsection}{\numberline {2.6}Raytracer}{10}
+\contentsline {section}{\numberline {3}Implementierungen}{10}
+\contentsline {subsection}{\numberline {3.1}Strahl}{10}
+\contentsline {subsection}{\numberline {3.2}Kameras}{11}
+\contentsline {subsubsection}{\numberline {3.2.1}Camera}{11}
+\contentsline {subsubsection}{\numberline {3.2.2}OrthographicCamera}{11}
+\contentsline {subsubsection}{\numberline {3.2.3}PespectiveCamera}{11}
+\contentsline {subsection}{\numberline {3.3}Farben}{11}
+\contentsline {subsection}{\numberline {3.4}Geometrien}{11}
+\contentsline {subsubsection}{\numberline {3.4.1}Hit}{11}
+\contentsline {subsubsection}{\numberline {3.4.2}Plane}{11}
+\contentsline {subsubsection}{\numberline {3.4.3}Sphere}{11}
+\contentsline {subsubsection}{\numberline {3.4.4}Triangle}{11}
+\contentsline {subsubsection}{\numberline {3.4.5}AxisAlignedBox}{11}
+\contentsline {subsubsection}{\numberline {3.4.6}Plane}{11}
+>>>>>>> Bericht fertiggestellt
 \contentsline {subsection}{\numberline {3.5}Welt}{12}
 \contentsline {subsection}{\numberline {3.6}Raytracer}{13}
 \contentsline {section}{\numberline {4}Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}{13}
 \contentsline {subsection}{\numberline {4.1}Strahl}{13}
 \contentsline {subsection}{\numberline {4.2}Kameras}{13}
 \contentsline {subsubsection}{\numberline {4.2.1}Camera}{13}
+<<<<<<< HEAD
 \contentsline {subsubsection}{\numberline {4.2.2}OrthographicCamera}{13}
+=======
+\contentsline {subsubsection}{\numberline {4.2.2}OrthographicCamera}{14}
+>>>>>>> Bericht fertiggestellt
 \contentsline {subsubsection}{\numberline {4.2.3}PespectiveCamera}{14}
 \contentsline {subsection}{\numberline {4.3}Farben}{14}
 \contentsline {subsection}{\numberline {4.4}Geometrien}{14}
 \contentsline {subsubsection}{\numberline {4.4.1}Hit}{14}
 \contentsline {subsubsection}{\numberline {4.4.2}Plane}{14}
+<<<<<<< HEAD
 \contentsline {subsubsection}{\numberline {4.4.3}Sphere}{14}
 \contentsline {subsubsection}{\numberline {4.4.4}Triangle}{15}
 \contentsline {subsubsection}{\numberline {4.4.5}AxisAlignedBox}{15}
@@ -62,3 +97,18 @@
 \contentsline {section}{\numberline {5}Zeitbedarf}{16}
 \contentsline {subsection}{\numberline {5.1}Tests}{16}
 \contentsline {section}{\numberline {6}Quellen}{16}
+=======
+\contentsline {subsubsection}{\numberline {4.4.3}Sphere}{15}
+\contentsline {subsubsection}{\numberline {4.4.4}Triangle}{15}
+\contentsline {subsubsection}{\numberline {4.4.5}AxisAlignedBox}{15}
+\contentsline {subsection}{\numberline {4.5}Welt}{16}
+\contentsline {subsection}{\numberline {4.6}Raytracer}{16}
+\contentsline {section}{\numberline {5}Zeitbedarf}{16}
+\contentsline {subsection}{\numberline {5.1}Tests}{17}
+\contentsline {subsubsection}{\numberline {5.1.1}Abbildung 5}{17}
+\contentsline {subsubsection}{\numberline {5.1.2}Abbildung 6}{18}
+\contentsline {subsubsection}{\numberline {5.1.3}Abbildung 7}{19}
+\contentsline {subsubsection}{\numberline {5.1.4}Abbildung 9}{20}
+\contentsline {subsubsection}{\numberline {5.1.5}Abbildung 10}{21}
+\contentsline {section}{\numberline {6}Quellen}{21}
+>>>>>>> Bericht fertiggestellt
