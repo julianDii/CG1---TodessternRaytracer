@@ -4,9 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
@@ -48,15 +46,32 @@ public class OurGui extends Application {
 	 */
 	public final static World welt = new World(new raytracer.Color(0, 0, 0));
 
-	//public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+	// Aufgabe Abb.5
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
-	//public final Camera orthoCam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
+	public final Camera abb5Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 
-	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
-	//public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
-	public final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
-	public final Sphere sphere = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
-	public final Triangle triangle = new Triangle(new Point3(-0.5,0.5,-3), new Point3(0.5,0.5,-3), new Point3(0.5,-0.5,-3), new raytracer.Color(1, 0, 1));
+	// Aufgabe Abb.6
+	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
+	public final Camera abb6Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+
+
+	// Aufgabe Abb.7
+	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
+	public final Camera abb7Cam = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
+
+	// Aufgabe Abb.8
+	public final Triangle triangl0 = new Triangle(new Point3(-0.5,0.5,-3),new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3),new raytracer.Color(1,0,1));
+	public final Camera abb8Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+
+	// Aufgabe Abb.9
+	public final Sphere sphere1 = new Sphere(new Point3(-1,0,-3),0.5,new raytracer.Color(1,0,0));
+	public final Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5,new raytracer.Color(1,0,0));
+	public final Camera abb9Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+
+	// Aufgabe Abb.10
+	public final Sphere sphere3 = new Sphere(new Point3(-1,0,-3),0.5,new raytracer.Color(1,0,0));
+	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5,new raytracer.Color(1,0,0));
+	public final Camera abb10Cam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
 
 	/**
@@ -79,7 +94,15 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-		welt.list.add(triangle);
+		welt.list.add(plane);
+//		welt.list.add(sphere0);
+//		welt.list.add(sphere1);
+//		welt.list.add(sphere2);
+//		welt.list.add(sphere3);
+//		welt.list.add(sphere4);
+//		welt.list.add(box0);
+//		welt.list.add(triangl0);
+
 		drawPicture(primaryStage);
 
 		primaryStage.show();
@@ -135,8 +158,8 @@ public class OurGui extends Application {
 	 * or the background color of the world.
 	 */
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der HÃ¶he und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(camera.rayFor(width, height, x, height-1-y));
+		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
+		raytracer.Color hitFarbe = welt.hit(abb5Cam.rayFor(width, height, x, height - 1 - y));
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}
 
