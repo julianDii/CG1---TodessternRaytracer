@@ -55,11 +55,12 @@ Allgemein wurden als erster Lösungsschritt alle aus der Aufgabenstllung hervorg
 \subsection{Strahl}
 \subsection{Kameras}
 \subsubsection{Camera}
-
+Die Kamera führt die Transformation der Position, Richtung und Rotation durch.
 \subsubsection{OrthographicCamera}
+Bei der Orhographischen Kamera müssen alle erzeugten Strahlen parallel sein und in die gleiche Richtung zeigen.
 \subsubsection{PespectiveCamera}  
 \subsection{Farben}
-
+Die Klasse der Farbe, repräsentiert eine Farbe, welche ein neues Objekt vom Typ Color erzeugen kann.
 \subsection{Geometrien}
 \subsubsection{Hit}
 \subsubsection{Plane}
@@ -78,6 +79,7 @@ Diese Überlegungen wurden dementsprechend programmtechnisch umgesetzt, um eine 
  
 
 \subsubsection{Triangle}
+Die Triangle besteht aus 3 Punkten, welche die Baryzentrischen Koordinaten bilden. Um den Schnittpunkt zu berechnen, ist es notwenig mit Hilfe der 3x3 Matrix ein lineares Gleichungssystem zu erstellen und es mit der Cramerschen Regel, unter Verwendung der Determinanten aus der 3x3 Matrix zu lösen.
 \subsubsection{AxisAlignedBox}
 
 \subsection{Welt}
@@ -88,13 +90,15 @@ Diese Überlegungen wurden dementsprechend programmtechnisch umgesetzt, um eine 
 \subsection{Strahl}
 Die ,,Ray'' Klasse initialisiert einen Strahl mit gegebenem Ausgangspunkt und Richtungsvektor. Sie implementiert zwei Methoden namens ,,at'' und ,,tOf''. Außerdem wurden die von der Oberklasse Object geerbten Methoden hashCode und eqals so überschrieben, dass sie zum Testen nützlich sind.\\
 Der Strahl (Ray) kann mit der Methode ,,at'' den Punkt berechnen, welchen er trifft wenn er die als Parameter übergebenen Länge ,,t'' (als double Wert), den Richtungsvektor ''entlang geht''. Hierfür wird die eine einfache Rechnung angewandt. 
-$$ Punt P = Ausgangspunkt O + Länge t \times Richtungsvektor d $$
+%$$ Punt P = Ausgangspunkt O + Länge t \times Richtungsvektor d $$
 In der Methode ,,tOf'' wird diese Rechnung umgedreht. Ein gesuchter Punkt wird als Parameter übergeben und berechnet dann den Faktor ,,t'' (als double Wert) welcher mit dem Richtungsvektor multipliziert werden müsste um zu gesuchtem Punkt zu gelangen. \\
 \subsection{Kameras}
 \subsubsection{Camera}
 \subsubsection{OrthographicCamera}
+Die Klasse OrthographicCamera  bekommt 2 Vektoren und einen Punkt übergeben, zusätzllch noch den Öffnungswinkel. In der öffentlichen Methode rayfor, wird der sichtbare Bereich in Höhe und Breite festgelegt und mit Hilfe der Formel der Orthographischen Kamera der Strahl zurückgegeben, welcher für die Projektion notwendig ist.
 \subsubsection{PespectiveCamera}
 \subsection{Farben}
+Die übergebenen Variablen vom Typ double stehen für die Farben Rot, Gelb , Blau und werden im Konstruktur dem Objekt selbst übergeben.
 \subsection{Geometrien}
 
 \subsubsection{Hit}
@@ -102,6 +106,7 @@ Das Hit Objekt bekommt einen double Wert ,,t'', einen Strahl ,,ray'' und eine ge
 \subsubsection{Plane}
 \subsubsection{Sphere}
 \subsubsection{Triangle}
+Zu Beginn werden die Übergebenen Variablen auf Plausibilität geprüft, danach wird das linierae GLeichungssystem mithilfe einer Matrix aus der Matrix-Vektor-Bibliothek erstellt. Im folgenden wird druch das tauschen der Zeilen einer der Faktoren eliminiert. Am Ende kann mit Hilfe der Cramerschen Regel und den Determinanten der Matrizen $\beta$ , $\gamma$ und $t$ bestimmt werden.
 \subsubsection{AxisAlignedBox}
 \subsubsection{Plane}
 
@@ -140,6 +145,7 @@ Ein Fehler in der Camera klasse führte zueiner überarbeitung der Cameratransfo
 \includegraphics{BoxFail}
 
 \subsubsection{OrthographicCamera}
+Problem bei der Implementierung ist die späte Feststellung, ob die Kamera richtig Implementiert wurde, da ein Debuggen nur bedingt möglich ist, da sehr viele Straheln (Ray) erzeugt werden.
 \subsubsection{PespectiveCamera}
 \subsection{Farben}
 \subsection{Geometrien}
@@ -149,6 +155,7 @@ Ein Fehler in der Camera klasse führte zueiner überarbeitung der Cameratransfo
 Ein Fehler in einer der Methoden der Klasse Vector3 führte zu einer längeren Fehlersuche. Durch einen Operatorschreibfehler kam es zu einer Fehlerhaften berechnung wie im folgendem Bild zu sehen ist:\\\\
 \includegraphics{KugelFail}
 \subsubsection{Triangle}
+Große Probleme bei der Implementierung der Klasse Triangle, gab es beim Verständnis der Formel und der richtigen Implementierung in Java-Code. Auch mögliche Fehler in der Vektor-Bibliothek führten zu nicht gleich offensichtlichen Problemen. 
 \subsubsection{AxisAlignedBox}
 
 \subsection{Welt}
