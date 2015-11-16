@@ -2,6 +2,7 @@ package raytracer.geometrie;
 
 import raytracer.matVecLib.Mat3x3;
 import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 import raytracer.Color;
 import raytracer.Ray;
 
@@ -28,12 +29,17 @@ public class Triangle extends Geometry {
 	
 	/**
 	 * T constructor creates a new Triangle
-	 * @param a the first Point
-	 * @param b the second Point
-	 * @param c the third Point
+	 * @param a the first Corner-Point, cannot be null.
+	 * @param b the second Corner-Point, cannot be null.
+	 * @param c the third Corner-Point, cannot be null.
 	 */
     public Triangle(final Point3 a, final Point3 b, final Point3 c, final Color color) {
-        super(color);
+    	super(color);
+    	
+    	if (a == null || b == null || c == null ) {
+            throw new IllegalArgumentException("Cannot be null!");
+    	}
+    	
         this.a=a;
         this.b=b;
         this.c=c;
@@ -42,20 +48,33 @@ public class Triangle extends Geometry {
     
     @Override
     public Hit hit(Ray r) {
+    	
+        if (r == null) {
+            throw new IllegalArgumentException("Cannot be null!");
+        }
+        
     	// Variablen für cramersche Regel
 		double beta = 0;
 		double gamma = 0;
 		double t = 0;
-		
-		//TODO Lösung des GLeichungssystems determinanten
+
 		
     	// lineares Gleichungssystem als Matrix
-		Mat3x3 A = new Mat3x3(
+		final Mat3x3 A = new Mat3x3(
 				a.x-b.x, a.x-c.x, r.d.x,
 				a.y-b.y, a.y-c.y, r.d.y,
 				a.z-b.z, a.z-c.z, r.d.z);
 		
-		if(gamma>=0 && gamma<=1 && beta>=0 && beta<=1){
+		final Vector3 sv = new  Vector3(a.x-r.o.x, a.y-r.o.y, a.z-r.o.z);		
+		final Mat3x3 A1 = A.changeCol1(sv);
+		final Mat3x3 A2 = A.changeCol2(sv);
+		final Mat3x3 A3 = A.changeCol3(sv);
+		
+		beta=A1.determinant/A.determinant;
+		gamma=A2.determinant/A.determinant;
+		t=A3.determinant/A.determinant;
+		
+		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
 			return new Hit(t, r, this);
 		}
 		return null;

@@ -24,9 +24,9 @@ public class Color {
 	
 	/**
 	 * The constructor creates a new Color object
-	 * @param r value of red
-	 * @param g value of green
-	 * @param b value of blue
+	 * @param r value of red between 0 to 1
+	 * @param g value of green between 0 to 1
+	 * @param b value of blue between 0 to 1
 	 */
     public Color(final double r,final double g,final double b){
     	

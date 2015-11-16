@@ -4,7 +4,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
@@ -26,6 +28,7 @@ import raytracer.camera.PerspectiveCamera;
 import raytracer.geometrie.AxisAlignedBox;
 import raytracer.geometrie.Plane;
 import raytracer.geometrie.Sphere;
+import raytracer.geometrie.Triangle;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
@@ -49,10 +52,11 @@ public class OurGui extends Application {
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	//public final Camera orthoCam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
-	public final Camera camera = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
+	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	//public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
 	public final AxisAlignedBox box = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
 	public final Sphere sphere = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
+	public final Triangle triangle = new Triangle(new Point3(-0.5,0.5,-3), new Point3(0.5,0.5,-3), new Point3(0.5,-0.5,-3), new raytracer.Color(1, 0, 1));
 
 
 	/**
@@ -75,7 +79,7 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-		welt.list.add(box);
+		welt.list.add(triangle);
 		drawPicture(primaryStage);
 
 		primaryStage.show();

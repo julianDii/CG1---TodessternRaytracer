@@ -94,11 +94,11 @@ public class Mat3x3 {
         this.m32=m32;
         this.m33=m33;
         this.determinant=m11 * m22 * m33
-                + m21 * m32 * m13
-                + m31 * m12 * m23
-                - m13 * m22 * m31
-                - m23 * m32 * m11
-                - m33 * m12 * m21;
+                + m12 * m23 * m31
+                + m13 * m21 * m32
+                - m11 * m23 * m32
+                - m12 * m21 * m33
+                - m13 * m22 * m31;
 
 
     }
@@ -183,9 +183,9 @@ public class Mat3x3 {
 
         return new Mat3x3(
 
-                v.x, m21, m31,
-                v.y, m22, m32,
-                v.z, m23, m33
+                v.x, m12, m13,
+                v.y, m22, m23,
+                v.z, m32, m33
         );
     }
 
@@ -202,9 +202,9 @@ public class Mat3x3 {
         if (v == null) throw new IllegalArgumentException("v must be not null." );
 
         return new Mat3x3(
-                m11, v.x, m31,
-                m12, v.y, m32,
-                m13, v.z, m33
+                m11, v.x, m13,
+                m21, v.y, m23,
+                m31, v.z, m33
         );
     }
 
@@ -221,9 +221,9 @@ public class Mat3x3 {
         if (v == null) throw new IllegalArgumentException("v must be not null." );
 
         return new Mat3x3(
-                m11, m21, v.x,
-                m12, m22, v.y,
-                m13, m33, v.z
+                m11, m12, v.x,
+                m21, m22, v.y,
+                m31, m32, v.z
         );
     }
 
