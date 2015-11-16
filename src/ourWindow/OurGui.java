@@ -94,14 +94,14 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-		welt.list.add(plane);
+//		welt.list.add(plane);
 //		welt.list.add(sphere0);
 //		welt.list.add(sphere1);
 //		welt.list.add(sphere2);
 //		welt.list.add(sphere3);
 //		welt.list.add(sphere4);
 //		welt.list.add(box0);
-//		welt.list.add(triangl0);
+		welt.list.add(triangl0);
 
 
 		drawPicture(primaryStage);
@@ -162,7 +162,7 @@ public class OurGui extends Application {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der H�he und Breite nicht.");
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(abb5Cam.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(abb8Cam.rayFor(width, height, x, height - 1 - y));
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}
 

@@ -58,11 +58,9 @@ In der Methode ,,tOf'' wird diese Rechnung umgedreht. Ein gesuchter Punkt wird a
 
 \subsection{Kameras}
 \subsubsection{Camera}
-<<<<<<< HEAD
 Die Kamera führt die Transformation der Position, Richtung und Rotation durch.
 \subsubsection{OrthographicCamera}
 Bei der Orhographischen Kamera müssen alle erzeugten Strahlen parallel sein und in die gleiche Richtung zeigen.
-=======
 In der abstrakten Klasse Camera wurde mit den aus der Vorlesung vermittelten Formeln die  Kameratransformation vorgenommen.
 
 \subsubsection{OrthographicCamera}
@@ -70,7 +68,6 @@ In der orthographischen Kamera wurden die folgenden Formeln umgesetzt:\\\\
 \begin{math}\vec{d}=-\vec{w}\end{math}\\\\
 \begin{math}\vec{o}=\vec{e}+a*s\frac{px-\frac{w-1}{2}}{w-1}\vec{u}+s\frac{py-\frac{h-1}{2}}{h-1}\vec{v}\end{math}
 
->>>>>>> Bericht fertiggestellt
 \subsubsection{PespectiveCamera}  
 In der perspektivischen Kamera wurden die folgenden Formel umgesetzt:\\\\
 \begin{math}\vec{o}=\vec{e}\end{math}\\\\
@@ -102,42 +99,41 @@ Diese Überlegungen wurden dementsprechend programmtechnisch umgesetzt, um eine 
  
 
 \subsubsection{Triangle}
-<<<<<<< HEAD
 Die Triangle besteht aus 3 Punkten, welche die Baryzentrischen Koordinaten bilden. Um den Schnittpunkt zu berechnen, ist es notwenig mit Hilfe der 3x3 Matrix ein lineares Gleichungssystem zu erstellen und es mit der Cramerschen Regel, unter Verwendung der Determinanten aus der 3x3 Matrix zu lösen.
-=======
 Für die lösung dieser Geometrie wurden die Formeln aus der Vorlesung angewendet.
->>>>>>> Bericht fertiggestellt
 \subsubsection{AxisAlignedBox}
 Die hit Methode wurde wie folgt überschrieben.Die jeweils drei Ebenen die die linke nahe Ecke und die rechte entfernte Ecke aufspannen wurden in Form von Planes instanziiert und mit ihren ensprechenen Normalenparametern versehen. Diese sechs Ebenen wurden in eine Liste gespeichert die dann in einer Schleife durchlaufen wird. Es wird im folgenden mit den Formeln aus dem unterricht getestet ob Strahlen die Box treffen oder nicht
 
 \subsection{Welt}
+
 \subsection{Raytracer}
 \section{Implementierungen}
 
 \subsection{Strahl}
 Die ,,Ray'' Klasse initialisiert einen Strahl mit gegebenem Ausgangspunkt und Richtungsvektor. Sie implementiert zwei Methoden namens ,,at'' und ,,tOf''. Außerdem wurden die von der Oberklasse Object geerbten Methoden hashCode und eqals so überschrieben, dass sie zum Testen nützlich sind.\\
 Der Strahl (Ray) kann mit der Methode ,,at'' den Punkt berechnen, welchen er trifft wenn er die als Parameter übergebenen Länge ,,t'' (als double Wert), den Richtungsvektor ''entlang geht''. Hierfür wird die eine einfache Rechnung angewandt. 
-<<<<<<< HEAD
-%$$ Punt P = Ausgangspunkt O + Länge t \times Richtungsvektor d $$
-=======
->>>>>>> Bericht fertiggestellt
 In der Methode ,,tOf'' wird diese Rechnung umgedreht. Ein gesuchter Punkt wird als Parameter übergeben und berechnet dann den Faktor ,,t'' (als double Wert) welcher mit dem Richtungsvektor multipliziert werden müsste um zu gesuchtem Punkt zu gelangen. \\
 \subsection{Kameras}
 \subsubsection{Camera}
+Die abstrakte Camera klasse berechnet die Kameratransformation.
 \subsubsection{OrthographicCamera}
 Die Klasse OrthographicCamera  bekommt 2 Vektoren und einen Punkt übergeben, zusätzllch noch den Öffnungswinkel. In der öffentlichen Methode rayfor, wird der sichtbare Bereich in Höhe und Breite festgelegt und mit Hilfe der Formel der Orthographischen Kamera der Strahl zurückgegeben, welcher für die Projektion notwendig ist.
 \subsubsection{PespectiveCamera}
+Die Klasse PerspectiveCmera bekommt einen Punkt, zwei Vektoren und einen Öffnungswinkel übergeben.  
 \subsection{Farben}
 Die übergebenen Variablen vom Typ double stehen für die Farben Rot, Gelb , Blau und werden im Konstruktur dem Objekt selbst übergeben.
 \subsection{Geometrien}
-
 \subsubsection{Hit}
 Das Hit Objekt bekommt einen double Wert ,,t'', einen Strahl ,,ray'' und eine geometrische Figur übergeben und zugewiesen. Außerdem werden in der Klasse die von der Oberklasse Object vererbten Methoden ,,toString'', ,,hashCode'' und ,,equals'' überschrieben.
 \subsubsection{Plane}
+Die Klasse Plane implementiert die Geometrie der Ebene. Sie hat die Öffentlichen Attribute a und n, wobei a ein Punkt ist der garantiert auf der Ebene liegt und n eine Normale. Die Klasse hat die öffentliche Methode hit die Schnittpunkte mit Strahlen berechnet.
 \subsubsection{Sphere}
+Die Klasse Sphere implementiert die Geometrie einer Kugel. Sie bekommt im Konstruktor einen Punkt und einen Radius übergeben. In der Methode Hit werden Schnittpunkte von Strahlen mit der Geometrie berechnet.
 \subsubsection{Triangle}
 Zu Beginn werden die Übergebenen Variablen auf Plausibilität geprüft, danach wird das linierae GLeichungssystem mithilfe einer Matrix aus der Matrix-Vektor-Bibliothek erstellt. Im folgenden wird druch das tauschen der Zeilen einer der Faktoren eliminiert. Am Ende kann mit Hilfe der Cramerschen Regel und den Determinanten der Matrizen $\beta$ , $\gamma$ und $t$ bestimmt werden.
 \subsubsection{AxisAlignedBox}
+Die Klasse AxisAlignedBox hat zwei öffentliche attribute lbf und run, die zum einen die linke nahe Ecke und zum anderen die rechte entfernte Ecke bestimmen. Im Konstruktor werden diese beiden Punkte übergeben als auch eine Farbe. die Klasse implementiert die Methode Hit die Schnittpunkte mit Strahlen berechnet und die Methode compareDis die überprüft ob hits wirklich auf der Box liegen.
+
 \subsubsection{Plane}
 
 Die Klasse Plane beschreibt eine Ebene. Diese wird genau definiert durch die übergebenen Parameter; einen auf der Ebene liegenden Punkt, einem Normalen-Vektor welcher die Ausrichtung (bzw. Neigung) der Ebene definiert, und einem Color Objekt welche die Farbe der Ebene hält. \\
@@ -173,11 +169,8 @@ Keine besonderen Probleme oder Schwierigkeiten.
 Ein Fehler in der Camera klasse führte zu einer überarbeitung der Kameratransformation, da Koordinaten falsch berechnet wurden, kam es bem Rendering der Box zu foldendem Ergebniss.\\
 \includegraphics{images/BoxFail}
 \subsubsection{OrthographicCamera}
-<<<<<<< HEAD
 Problem bei der Implementierung ist die späte Feststellung, ob die Kamera richtig Implementiert wurde, da ein Debuggen nur bedingt möglich ist, da sehr viele Straheln (Ray) erzeugt werden.
-=======
 Keine besonderen Probleme oder Schwierigkeiten.
->>>>>>> Bericht fertiggestellt
 \subsubsection{PespectiveCamera}
 Keine besonderen Probleme oder Schwierigkeiten.
 \subsection{Farben}
@@ -228,9 +221,9 @@ Eine Kugel aus perspektivischer Sicht.\\
 Eine Box aus perspektivischer Sicht.\\
 \includegraphics[width=15cm,height=10cm]{images/Abb7}\\
 
-%\subsubsection{Abbildung 8}
-%\includegraphics[width=5cm, height=8cm]{/images/Abb8.png}
-%\caption{Dreieck aus orthographischer Kamera}
+\subsubsection{Abbildung 8}
+\includegraphics[width=15cm, height=10cm]{images/Abb8}\\
+
 \subsubsection{Abbildung 9}
 Zwei Kugeln perspektivisch.\\
 \includegraphics[width=15cm,height=10cm]{images/Abb9}\\
