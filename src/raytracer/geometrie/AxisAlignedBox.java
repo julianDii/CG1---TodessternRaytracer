@@ -29,7 +29,7 @@ public class AxisAlignedBox extends Geometry {
     final Point3 run;
 
     /**
-     * This contructor builds a new AxisAlignedBox.
+     * This constructor builds a new AxisAlignedBox.
      * @param lbf
      * @param run
      * @param color
@@ -45,7 +45,11 @@ public class AxisAlignedBox extends Geometry {
         this.run=run;
     }
 
-    @Override
+    /**
+     * This method calculates the intersections of the ray with the AxisAlignedBox.
+     * @param r
+     * @return if the ray hits the box this method returns a new hit, else the return is null.
+     */
     public Hit hit(Ray r) {
 
         if(r==null)throw new IllegalArgumentException("m has to be not null");
@@ -86,7 +90,11 @@ public class AxisAlignedBox extends Geometry {
         return compareDis(hit);
     }
 
-
+    /**
+     * This method compares if the hits really on the box .
+     * @param h
+     * @return return is a hit when the point is really in the box otherwise the return is null.
+     */
     private Hit compareDis(final Hit h) {
 
 

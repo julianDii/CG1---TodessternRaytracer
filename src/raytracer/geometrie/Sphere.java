@@ -36,7 +36,11 @@ public class Sphere extends Geometry {
         this.r=r;
     }
 
-    @Override
+    /**
+     * This method calculates the intersections of the ray with the sphere.
+     * @param r
+     * @return the nearest positive t.
+     */
     public Hit hit(Ray r) {
 
         // a = d * d

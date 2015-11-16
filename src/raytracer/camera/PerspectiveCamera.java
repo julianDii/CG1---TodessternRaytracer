@@ -19,7 +19,7 @@ public class PerspectiveCamera extends Camera {
      final double angle;
 
 	/**
-	 * This contructor creates a new Perspective Camera.
+	 * This constructor creates a new Perspective Camera.
 	 * @param e position of camera (eye position)
 	 * @param g gaze direction
 	 * @param t Up-Vector
@@ -29,14 +29,21 @@ public class PerspectiveCamera extends Camera {
     public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
         super(e, g, t);
 
-		if(e==null)throw new IllegalArgumentException("e have to be not null");
-		if(g==null)throw new IllegalArgumentException("g have to be not null");
-		if(t==null)throw new IllegalArgumentException("m have to be not null");
+		if(e==null)throw new IllegalArgumentException("e has to be not null");
+		if(g==null)throw new IllegalArgumentException("g has to be not null");
+		if(t==null)throw new IllegalArgumentException("m has to be not null");
 
 		this.angle=angle;
     }
 
-	@Override
+	/**
+	 * This method calculates the the ray for the the given parameters.
+	 * @param width The width of the screen.
+	 * @param height The height of the screen.
+	 * @param x The x-coordinate of the pixel.
+	 * @param y The y-coordinate of the pixel
+	 * @return The new Ray for a special pixel.
+	 */
     public Ray rayFor(int width, int height, int x, int y) {
 
 
