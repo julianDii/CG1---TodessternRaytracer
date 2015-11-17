@@ -54,7 +54,6 @@ public class OurGui extends Application {
 	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5,new raytracer.Color(1,0,0));
 	public final Camera abb6Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 
-
 	// Aufgabe Abb.7
 	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new raytracer.Color(0,0,1));
 	public final Camera abb7Cam = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
