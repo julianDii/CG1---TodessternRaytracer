@@ -25,6 +25,8 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import javafx.stage.Stage;
+import material.Material;
+import material.SingleColorMaterial;
 
 /**
  * The Image Saver Class opens a window thanks to the implemented JavaFX application and
@@ -38,9 +40,11 @@ public class ImageSaver extends Application {
 	/**
 	 * For testing we initialize the needed object in our world. 
 	 */
-	public final static World welt = new World(new raytracer.Color(0, 0, 0));
+	public final static World welt = new World(new raytracer.Color(0, 0, 0), new raytracer.Color(0, 0, 0));
 	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
-	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new raytracer.Color (0,1,0));
+	public final Material material = new SingleColorMaterial(new raytracer.Color(0.5, 0.5, 0.5));
+	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material);
+	
 	
 	/**
 	 * Drawing Surface:
@@ -118,9 +122,10 @@ public class ImageSaver extends Application {
 	 * or the background color of the world.
 	 */
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(camera.rayFor(width, height, x, height-1-y));
-		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
+//		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
+//		raytracer.Color hitFarbe = welt.hit(camera.rayFor(width, height, x, height-1-y));
+//		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
+		return null; 
 	}
 
 	/**

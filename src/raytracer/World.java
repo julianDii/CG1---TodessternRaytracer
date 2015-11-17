@@ -3,6 +3,7 @@ package raytracer;
 import java.util.ArrayList;
 import java.util.List;
 
+import licht.Light;
 import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
 
@@ -17,13 +18,20 @@ public class World {
 	 * Color background color which is chosen by the user when initializing his world
 	 */
 	private final Color backgroundcolor;
+	private final Color ambient;
 	/**
 	 * List contains all geometric objects chosen by the user.
 	 */
 	public final List<Geometry> list = new ArrayList<>();
 	
-	public World (Color color){
+	/**
+	 * List contains all object of light sources chosen by the user.
+	 */
+	public final List<Light> lightList = new ArrayList<>();
+	
+	public World (Color color, Color ambient){
 		this.backgroundcolor = color;
+		this.ambient = ambient;
 	}
 	
 	/**
@@ -39,7 +47,7 @@ public class World {
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
 		if (hit0 == null) return backgroundcolor;
-		return hit0.geo.color;
+		return hit0.geo.material.colorFor(hit0, this);
 	}
 	
 }

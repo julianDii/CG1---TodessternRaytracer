@@ -29,8 +29,9 @@ public class SpotLight extends Light {
 		
 	}
 	
-	public Vector3 directionFrom(Point3 point){
-		return null;
+	public Vector3 directionFrom(Point3 point) {
+		Vector3 l = position.sub(point);
+		return l;
 	}
 
 }

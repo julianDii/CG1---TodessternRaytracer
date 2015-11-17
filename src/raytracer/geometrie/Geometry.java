@@ -1,5 +1,6 @@
 package raytracer.geometrie;
 
+import material.Material;
 import raytracer.Color;
 import raytracer.Ray;
 
@@ -8,10 +9,10 @@ import raytracer.Ray;
  */
 public abstract class Geometry {
 
-    public final Color color;
+    public final Material material;
 
-    public Geometry(final Color color){
-        this.color=color;
+    public Geometry(final Material material){
+        this.material = material;
     }
     
     public abstract Hit hit(final Ray r);

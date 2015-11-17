@@ -1,6 +1,7 @@
 package raytracer.geometrie;
 
 import raytracer.matVecLib.Point3;
+import material.Material;
 import raytracer.Color;
 import raytracer.Ray;
 
@@ -27,8 +28,8 @@ public class Sphere extends Geometry {
      * @param r The radius of the Sphere.
      * @param color The color of the Sphere.
      */
-    public Sphere(final Point3 c, final double r, final Color color) {
-        super(color);
+    public Sphere(final Point3 c, final double r, final Material material) {
+        super(material);
 
         if(c==null)throw new IllegalArgumentException("c has to be not null");
 

@@ -3,6 +3,7 @@ package raytracer.geometrie;
 import raytracer.matVecLib.Mat3x3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
+import material.Material;
 import raytracer.Color;
 import raytracer.Ray;
 
@@ -33,8 +34,8 @@ public class Triangle extends Geometry {
 	 * @param b the second Corner-Point, cannot be null.
 	 * @param c the third Corner-Point, cannot be null.
 	 */
-    public Triangle(final Point3 a, final Point3 b, final Point3 c, final Color color) {
-    	super(color);
+    public Triangle(final Point3 a, final Point3 b, final Point3 c, final Material material) {
+    	super(material);
     	
     	if (a == null || b == null || c == null ) {
             throw new IllegalArgumentException("Cannot be null!");
@@ -53,7 +54,7 @@ public class Triangle extends Geometry {
             throw new IllegalArgumentException("Cannot be null!");
         }
         
-    	// Variablen für cramersche Regel
+    	// Variablen fï¿½r cramersche Regel
 		double beta = 0;
 		double gamma = 0;
 		double t = 0;

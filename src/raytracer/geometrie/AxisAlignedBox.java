@@ -2,7 +2,6 @@ package raytracer.geometrie;
 
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
-import raytracer.Color;
 import raytracer.Ray;
 import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
@@ -10,6 +9,8 @@ import raytracer.geometrie.Hit;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import material.Material;
 
 /**
  * This class represents a AxisAlignedBox.
@@ -32,11 +33,11 @@ public class AxisAlignedBox extends Geometry {
      * This constructor builds a new AxisAlignedBox.
      * @param lbf
      * @param run
-     * @param color
+     * @param material
      */
 
-    public AxisAlignedBox(final Point3 lbf, final Point3 run,final Color color) {
-        super(color);
+    public AxisAlignedBox(final Point3 lbf, final Point3 run,final Material material) {
+        super(material);
 
         if(lbf==null)throw new IllegalArgumentException("lbf has to be not null");
         if(run==null)throw new IllegalArgumentException("run has to be not null");
@@ -56,12 +57,12 @@ public class AxisAlignedBox extends Geometry {
 
         List<Plane> planes = new ArrayList<>();
 
-        Plane leftSide = new Plane(lbf,new Normal3(-1, 0, 0),color);
-        Plane backSide = new Plane(lbf,new Normal3(0, 0, -1),color);
-        Plane bottomSide = new Plane(lbf,new Normal3(0, -1, 0),color);
-        Plane rightSide = new Plane(run,new Normal3(1, 0, 0),color);
-        Plane topSide = new Plane(run,new Normal3(0, 1, 0),color);
-        Plane frontSide = new Plane(run,new Normal3(0, 0, 1),color);
+        Plane leftSide = new Plane(lbf,new Normal3(-1, 0, 0),material);
+        Plane backSide = new Plane(lbf,new Normal3(0, 0, -1),material);
+        Plane bottomSide = new Plane(lbf,new Normal3(0, -1, 0),material);
+        Plane rightSide = new Plane(run,new Normal3(1, 0, 0),material);
+        Plane topSide = new Plane(run,new Normal3(0, 1, 0),material);
+        Plane frontSide = new Plane(run,new Normal3(0, 0, 1),material);
 
         planes.add(leftSide);
         planes.add(backSide);

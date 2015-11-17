@@ -1,7 +1,9 @@
 package material;
 
+import licht.Light;
 import raytracer.Color;
 import raytracer.World;
+import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
 
 /**

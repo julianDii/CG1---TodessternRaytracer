@@ -2,6 +2,7 @@ package raytracer.geometrie;
 
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
+import material.Material;
 import raytracer.Color;
 import raytracer.Ray;
 import raytracer.geometrie.Geometry;
@@ -22,8 +23,8 @@ public class Plane extends Geometry {
 	 * @param n: normal of the plane. Cannot be null.
 	 * @param color of the plane. Cannot be null.
 	 */
-	public Plane(final Point3 a, final Normal3 n, final Color color) {
-		super(color);
+	public Plane(final Point3 a, final Normal3 n, final Material material) {
+		super(material);
 		this.a = a;
 		this.n = n;
 		
