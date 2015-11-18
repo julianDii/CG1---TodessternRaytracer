@@ -1,12 +1,9 @@
 package raytracer.geometrie;
 
+import material.Material;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
-import material.Material;
-import raytracer.Color;
 import raytracer.Ray;
-import raytracer.geometrie.Geometry;
-import raytracer.geometrie.Hit;
 
 /**
  * Created by Julian on 03.11.15. 
@@ -49,7 +46,7 @@ public class Plane extends Geometry {
     		if ( t < 0) {
     			return null;
     		}
-    		return new Hit(t,r,this);
+    		return new Hit(t,r,this,n);
     	}
     	return null;
     }

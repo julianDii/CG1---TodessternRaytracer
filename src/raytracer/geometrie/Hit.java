@@ -2,6 +2,7 @@ package raytracer.geometrie;
 
 import raytracer.Ray;
 import raytracer.geometrie.Geometry;
+import raytracer.matVecLib.Normal3;
 
 /**
  * An Hit object is created if the given ray (from the camera perspective) hits the chosen
@@ -11,9 +12,28 @@ import raytracer.geometrie.Geometry;
  */
 public class Hit {
 
+	/**
+	 * the t component of the hit.
+	 */
+
 	public final double t;
+
+	/**
+	 * The ray component of the hit.
+	 */
+
 	public final Ray ray;
+
+	/**
+	 * The Geometrie component of the hit.
+	 */
+
 	public final Geometry geo;
+
+	/**
+	 * The normal of the intesection point.
+	 */
+	public final Normal3 nor;
 	
 	/**
 	 * Initializes a new hit object.
@@ -22,11 +42,13 @@ public class Hit {
 	 * @param ray	holds the ray (with its origin point and the direction vector)
 	 * @param geo	holds the chosen geometry (with which we search the rays intersection)
 	 */
-	public Hit(final double t, final Ray ray, final Geometry geo) {
+	public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 nor) {
 
 		this.t = t;
 		this.ray = ray;
 		this.geo = geo;
+		this.nor = nor;
+
 
 		if (ray == null) {
 			throw new IllegalArgumentException("The Ray should not be null.");
@@ -34,6 +56,10 @@ public class Hit {
 		if (geo == null) {
 			throw new IllegalArgumentException("Choose the Geometry you want to see.");
 		}
+		if (nor == null) {
+			throw new IllegalArgumentException("Choose the Geometry you want to see.");
+		}
+
 	}
 
 	@Override

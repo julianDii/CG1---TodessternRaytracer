@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+
 import material.Material;
 import material.SingleColorMaterial;
 import javafx.stage.Stage;
@@ -47,7 +48,7 @@ public class OurGui extends Application {
 	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0, 0, 0), new raytracer.Color(0, 0, 0));
-	public final Material material = new SingleColorMaterial(new raytracer.Color(0.5, 0.5, 0.5));
+	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 	
 	// Aufgabe Abb.5
 	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material);
@@ -75,6 +76,15 @@ public class OurGui extends Application {
 	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5, material);
 	public final Camera abb10Cam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
+	// Uebung 3 Beleuchtung
+	// Abbildung 3 Beispielszene
+
+	public final Camera abb3Cam = new PerspectiveCamera(new Point3(4,4,4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+	public final Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(1,0,0)));
+	public final Triangle triangl1 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new SingleColorMaterial(new raytracer.Color(1,1,0)));
+	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
+	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
+
 
 	/**
 	 * Drawing Surface:
@@ -96,14 +106,14 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 
-//		welt.list.add(plane);
-//		welt.list.add(sphere0);
-//		welt.list.add(sphere1);
-//		welt.list.add(sphere2);
+		welt.list.add(plane1);
+		welt.list.add(triangl1);
+		welt.list.add(sphere5);
+		welt.list.add(box1);
 //		welt.list.add(sphere3);
 //		welt.list.add(sphere4);
 //		welt.list.add(box0);
-		welt.list.add(triangl0);
+//		welt.list.add(triangl0);
 
 
 		drawPicture(primaryStage);
@@ -164,7 +174,7 @@ public class OurGui extends Application {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der H�he und Breite nicht.");
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(abb8Cam.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(abb3Cam.rayFor(width, height, x, height - 1 - y));
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}
 

@@ -1,16 +1,12 @@
 package raytracer.geometrie;
 
+import material.Material;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.Ray;
-import raytracer.geometrie.Geometry;
-import raytracer.geometrie.Hit;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import material.Material;
 
 /**
  * This class represents a AxisAlignedBox.
@@ -75,13 +71,12 @@ public class AxisAlignedBox extends Geometry {
         Hit hit = null;
 
         for(final Plane plane : planes){
-
             final double visible = r.o.sub(plane.a).dot(plane.n);
 
             if(visible > 0) {
                 final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
                 if(hit==null||t> hit.t){
-                    hit = new Hit(t,r,this);
+                    hit = new Hit(t,r,this,plane.n);
                 }
 
 

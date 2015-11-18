@@ -1,7 +1,6 @@
 package raytracer.geometrie;
 
 import material.Material;
-import raytracer.Color;
 import raytracer.Ray;
 
 /**

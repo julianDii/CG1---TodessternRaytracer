@@ -1,10 +1,10 @@
 package raytracer.geometrie;
 
+import material.Material;
 import raytracer.matVecLib.Mat3x3;
+import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
-import material.Material;
-import raytracer.Color;
 import raytracer.Ray;
 
 /**
@@ -49,6 +49,10 @@ public class Triangle extends Geometry {
     
     @Override
     public Hit hit(Ray r) {
+
+		final Normal3 an = b.sub(a).asNormal();
+		final Normal3 bn = c.sub(b).asNormal();
+		final Normal3 cn = a.sub(c).asNormal();
     	
         if (r == null) {
             throw new IllegalArgumentException("Cannot be null!");
@@ -76,7 +80,7 @@ public class Triangle extends Geometry {
 		t=A3.determinant/A.determinant;
 		
 		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
-			return new Hit(t, r, this);
+			return new Hit(t, r, this,an.mul(t).add(bn.mul(beta)).add(cn.mul(gamma)));
 		}
 		return null;
     }

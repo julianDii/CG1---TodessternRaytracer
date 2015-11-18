@@ -18,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import material.Material;
 import raytracer.camera.Camera;
 import raytracer.camera.PerspectiveCamera;
 import raytracer.geometrie.Plane;
@@ -25,7 +26,6 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import javafx.stage.Stage;
-import material.Material;
 import material.SingleColorMaterial;
 
 /**

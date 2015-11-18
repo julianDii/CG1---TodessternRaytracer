@@ -13,13 +13,22 @@ import raytracer.matVecLib.Vector3;
 
 public class PointLight extends Light {
 
+
+	/**
+	 * The position of the point light
+	 */
 	final Point3 position;
 
 	public PointLight(Color color, Point3 position) {
 		super(color);
 		this.position = position;
 	}
-	
+
+	@Override
+	public boolean illuminates(Point3 point) {
+		return false;
+	}
+
 	public Vector3 directionFrom(Point3 point) {
 		Vector3 l = position.sub(point);
 		return l;

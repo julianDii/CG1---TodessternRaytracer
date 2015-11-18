@@ -1,8 +1,8 @@
 package raytracer.geometrie;
 
-import raytracer.matVecLib.Point3;
 import material.Material;
-import raytracer.Color;
+import raytracer.matVecLib.Normal3;
+import raytracer.matVecLib.Point3;
 import raytracer.Ray;
 
 /**
@@ -39,8 +39,8 @@ public class Sphere extends Geometry {
 
     /**
      * This method calculates the intersections of the ray with the sphere.
-     * @param r
-     * @return the nearest positive t.
+     * @param r The Ray.
+     * @return The hit if there is an intersection with the Sphere. Null if not.
      */
     public Hit hit(Ray r) {
 
@@ -55,12 +55,12 @@ public class Sphere extends Geometry {
         final double t1;
         final double t2;
         final double d;
+        final Point3 p;
 
         b=r.d.dot((r.o.sub(c)).mul(2));
         a=r.d.dot(r.d);
         cNor=r.o.sub(c).dot(r.o.sub(c))-(this.r*this.r);
         d = (b * b) - (4 * a * cNor);
-
 
         if(d>0) {
 
@@ -68,17 +68,21 @@ public class Sphere extends Geometry {
             t2 = (-b - Math.sqrt(d)) / (2 * a);
 
             if (t1 >= 0 & t2 >= 0) {
-               return new Hit(Math.min(t1, t2), r, this);
+                p=r.at(Math.min(t1, t2));
+               return new Hit(Math.min(t1, t2), r, this,c.sub(p).asNormal() );
             }else if (t1>=0){
-                return new Hit(t1,r,this);
+                return new Hit(t1,r,this,c.sub(r.at(t1)).asNormal());
             }else if(t2>=0) {
-                return new Hit(t2, r, this);
+
+                return new Hit(t2, r, this,c.sub(r.at(t2)).asNormal());
             }
         }else if (d==0){
             final double t3;
             t3=-b/(2*a);
             if (t3>=0){
-                return new Hit(t3,r,this);
+                System.out.println(r.d.asNormal());
+                return new Hit(t3,r,this,c.sub(r.at(t3)).asNormal());
+
             }
         }
         return null;
