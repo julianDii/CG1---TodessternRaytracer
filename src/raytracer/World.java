@@ -48,6 +48,7 @@ public class World {
 		}
 		if (hit0 == null) return backgroundcolor;
 		return hit0.geo.material.colorFor(hit0, this);
+
 	}
 	
 }

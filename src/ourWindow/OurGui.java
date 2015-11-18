@@ -19,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+import licht.PointLight;
+import material.LambertMaterial;
 import material.Material;
 import material.SingleColorMaterial;
 import javafx.stage.Stage;
@@ -85,6 +87,15 @@ public class OurGui extends Application {
 	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
 	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
 
+	// Uebung 3 Beleuchtung
+	// Abbildung 4 Beispielszene
+
+	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4));
+	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
+	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
+	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
+	public final AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
+
 
 	/**
 	 * Drawing Surface:
@@ -105,15 +116,12 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
+		welt.lightList.add(pointLight);
+		welt.list.add(plane2);
+		welt.list.add(triangl2);
+		welt.list.add(sphere6);
+		welt.list.add(box2);
 
-		welt.list.add(plane1);
-		welt.list.add(triangl1);
-		welt.list.add(sphere5);
-		welt.list.add(box1);
-//		welt.list.add(sphere3);
-//		welt.list.add(sphere4);
-//		welt.list.add(box0);
-//		welt.list.add(triangl0);
 
 
 		drawPicture(primaryStage);
