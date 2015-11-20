@@ -69,7 +69,7 @@ public class Sphere extends Geometry {
 
             if (t1 >= 0 & t2 >= 0) {
                 p=r.at(Math.min(t1, t2));
-               return new Hit(Math.min(t1, t2), r, this,c.sub(p).asNormal() );
+               return new Hit(Math.min(t1, t2), r, this,p.sub(c).asNormal() );
             }else if (t1>=0){
                 return new Hit(t1,r,this,c.sub(r.at(t1)).asNormal());
             }else if(t2>=0) {
@@ -80,7 +80,6 @@ public class Sphere extends Geometry {
             final double t3;
             t3=-b/(2*a);
             if (t3>=0){
-                System.out.println(r.d.asNormal());
                 return new Hit(t3,r,this,c.sub(r.at(t3)).asNormal());
 
             }

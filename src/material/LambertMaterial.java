@@ -1,4 +1,6 @@
 package material;
+import licht.Light;
+import licht.PointLight;
 import raytracer.Color;
 import raytracer.World;
 
@@ -39,22 +41,33 @@ public class LambertMaterial extends Material {
 	
 	public Color colorFor (Hit hit, World world){
 
-		//l = Vektor zur lichtquelle---ray origin
+		// cr = Farbe der Oberfläche
+		// cl = Farbe der Lichtquelle
+		//l = Vektor zur lichtquelle
 		//n = Normale der Oberfläche
-		// = cr*clmax(0,n*l)
-		final Point3 lightOrigin= hit.ray.o;
-		final Point3 crossPoint = hit.ray.at(hit.t);
-		final Vector3 l = crossPoint.sub(lightOrigin);
-		System.out.println(l);
 
-		final Normal3 normal = hit.nor;
-		final double p = hit.t;
+		Color c2 = new Color(0,0,0);
+		Color cl=world.ambient;
+		Normal3 normal = hit.nor;
 
-		if (hit!= null){
-			return new Color(1,1,1);
+		for (Light li:world.lightList){
+			if(li.illuminates(hit.ray.at(hit.t))) {
+
+				Vector3 l = li.directionFrom(hit.ray.at(hit.t));
+				c2 = color.mul(cl).mul(Math.max(0, normal.dot(l.normalized())));
+
+			}
+
+			Color c = new Color(0,0,0);
+			c=color.mul(cl).add(c2);
+			System.out.println(c);
+
+
+			return c;
+
 		}
 
 
-		return null;
+		return world.backgroundcolor;
 	}
 }

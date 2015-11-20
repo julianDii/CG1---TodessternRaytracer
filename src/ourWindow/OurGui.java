@@ -49,7 +49,7 @@ public class OurGui extends Application {
 	/**
 	 * For testing we initialize the needed object in our world. 
 	 */
-	public final static World welt = new World(new raytracer.Color(0, 0, 0), new raytracer.Color(0, 0, 0));
+	public final static World welt = new World(new raytracer.Color(0, 0, 0));
 	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 	
 	// Aufgabe Abb.5
@@ -159,6 +159,8 @@ public class OurGui extends Application {
 			for (int y = 0; y < height; ++y) {
 				for (int x = 0; x < width; ++x) {
 					writer.setColor(x, y, getColor(width, height, x, y));
+
+
 				}
 			}
 		} catch (IllegalArgumentException e) {
@@ -183,6 +185,15 @@ public class OurGui extends Application {
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der H�he und Breite nicht.");
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
 		raytracer.Color hitFarbe = welt.hit(abb3Cam.rayFor(width, height, x, height - 1 - y));
+
+		if (hitFarbe.r<0){hitFarbe.r=0;}
+		if (hitFarbe.r>1){hitFarbe.r=1;}
+		if (hitFarbe.g<0){hitFarbe.g=0;}
+		if (hitFarbe.g>1){hitFarbe.g=1;}
+		if (hitFarbe.b<0){hitFarbe.b=0;}
+		if (hitFarbe.b>1){hitFarbe.b=1;}
+
+
 		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
 	}
 
