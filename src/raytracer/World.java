@@ -32,10 +32,7 @@ public class World {
 	public World (Color color){
 		this.backgroundcolor = color;
 		this.ambient =new Color(0.2,0.2,0.2);
-
 	}
-
-	
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
 	 * @param r: ray which we want to check
@@ -50,7 +47,6 @@ public class World {
 		}
 		if (hit0 == null) return backgroundcolor;
 		return hit0.geo.material.colorFor(hit0, this);
-
 	}
 	
 }

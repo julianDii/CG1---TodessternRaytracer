@@ -49,48 +49,48 @@ public class OurGui extends Application {
 	/**
 	 * For testing we initialize the needed object in our world. 
 	 */
-	public final static World welt = new World(new raytracer.Color(0, 0, 0));
-	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
-	
-	// Aufgabe Abb.5
-	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material);
-	public final Camera abb5Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
-
-	// Aufgabe Abb.6
-	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5, material);
-	public final Camera abb6Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
-
-	// Aufgabe Abb.7
-	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), material);
-	public final Camera abb7Cam = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
-
-	// Aufgabe Abb.8
-	public final Triangle triangl0 = new Triangle(new Point3(-0.5,0.5,-3),new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), material);
-	public final Camera abb8Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
-
-	// Aufgabe Abb.9
-	public final Sphere sphere1 = new Sphere(new Point3(-1,0,-3),0.5, material);
-	public final Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, material);
-	public final Camera abb9Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
-
-	// Aufgabe Abb.10
-	public final Sphere sphere3 = new Sphere(new Point3(-1,0,-3),0.5, material);
-	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5, material);
-	public final Camera abb10Cam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
+	public final static World welt = new World(new raytracer.Color(0,0,0));
+//	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
+//
+//	// Aufgabe Abb.5
+//	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material);
+//	public final Camera abb5Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+//
+//	// Aufgabe Abb.6
+//	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5, material);
+//	public final Camera abb6Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+//
+//	// Aufgabe Abb.7
+//	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), material);
+//	public final Camera abb7Cam = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
+//
+//	// Aufgabe Abb.8
+//	public final Triangle triangl0 = new Triangle(new Point3(-0.5,0.5,-3),new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), material);
+//	public final Camera abb8Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+//
+//	// Aufgabe Abb.9
+//	public final Sphere sphere1 = new Sphere(new Point3(-1,0,-3),0.5, material);
+//	public final Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, material);
+//	public final Camera abb9Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
+//
+//	// Aufgabe Abb.10
+//	public final Sphere sphere3 = new Sphere(new Point3(-1,0,-3),0.5, material);
+//	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5, material);
+//	public final Camera abb10Cam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
 	// Uebung 3 Beleuchtung
 	// Abbildung 3 Beispielszene
 
 	public final Camera abb3Cam = new PerspectiveCamera(new Point3(4,4,4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
-	public final Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(1,0,0)));
-	public final Triangle triangl1 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new SingleColorMaterial(new raytracer.Color(1,1,0)));
-	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
-	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
+//	public final Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(1,0,0)));
+//	public final Triangle triangl1 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new SingleColorMaterial(new raytracer.Color(1,1,0)));
+//	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
+//	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
 
 	// Uebung 3 Beleuchtung
 	// Abbildung 4 Beispielszene
 
-	public final PointLight pointLight = new PointLight(new raytracer.Color(0.3,0.3,0.3),new Point3(4,4,4));
+	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4));
 	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
 	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
 	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));

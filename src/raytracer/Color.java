@@ -41,8 +41,11 @@ public class Color {
 	 * @return Result as Color
 	 */
     public Color add(final Color c){
-    	return new Color(this.r+c.r, this.g+c.g, this.b + c.b);
+
+		if (c == null) throw new IllegalArgumentException("c must be not null." );
+		return new Color(this.r+c.r, this.g+c.g, this.b+c.b);
     }
+
     
 	/**
 	 * subtract a Color from this Color 
@@ -50,7 +53,9 @@ public class Color {
 	 * @return Result as Color
 	 */
     public Color sub(final Color c){
-    	return new Color(this.r-c.r, this.g-c.g, this.b-c.b);
+
+		if (c == null) throw new IllegalArgumentException("c must be not null." );
+		return new Color(this.r-c.r, this.g-c.g, this.b-c.b);
     }
     
 	/**
@@ -59,7 +64,9 @@ public class Color {
 	 * @return Result as Color
 	 */
     public Color mul(final Color c){
-    	return new Color(this.r*c.r, this.g*c.g, this.b*c.b);
+
+		if (c == null) throw new IllegalArgumentException("c must be not null." );
+		return new Color(this.r*c.r, this.g*c.g, this.b*c.b);
     }
     
 	/**
@@ -67,9 +74,7 @@ public class Color {
 	 * @param multiplies v with this Color
 	 * @return Result as Color
 	 */
-    public Color mul(final double v){
-    	return new Color(this.r*v, this.g*v, this.b*v);	
-    }
+    public Color mul(final double v){return new Color(this.r*v, this.g*v, this.b*v);}
 	
     @Override
 	public String toString() {

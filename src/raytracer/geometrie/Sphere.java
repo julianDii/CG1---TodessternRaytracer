@@ -44,11 +44,6 @@ public class Sphere extends Geometry {
      */
     public Hit hit(Ray r) {
 
-        // a = d * d
-        // b = d * [2(o-c)]
-        // c = (o - c) * (o - c) - r^2
-
-        // first we have to check if we have 0,1 or 2 results
         final double a;
         final double b;
         final double cNor;

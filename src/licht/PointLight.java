@@ -27,7 +27,6 @@ public class PointLight extends Light {
 
 	@Override
 	public boolean illuminates(Point3 point) {
-
 		return true;
 	}
 
