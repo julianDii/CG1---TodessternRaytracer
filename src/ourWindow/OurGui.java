@@ -90,7 +90,7 @@ public class OurGui extends Application {
 	// Uebung 3 Beleuchtung
 	// Abbildung 4 Beispielszene
 
-	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4));
+	public final PointLight pointLight = new PointLight(new raytracer.Color(0.3,0.3,0.3),new Point3(4,4,4));
 	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
 	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
 	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));

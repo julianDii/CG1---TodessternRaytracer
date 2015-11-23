@@ -42,32 +42,31 @@ public class LambertMaterial extends Material {
 	public Color colorFor (Hit hit, World world){
 
 		// cr = Farbe der Oberfläche
-		// cl = Farbe der Lichtquelle
+		
 		//l = Vektor zur lichtquelle
 		//n = Normale der Oberfläche
 
 		Color c2 = new Color(0,0,0);
-		Color cl=world.ambient;
+		Color ambient =world.ambient;
 		Normal3 normal = hit.nor;
 
 		for (Light li:world.lightList){
 			if(li.illuminates(hit.ray.at(hit.t))) {
 
-				Vector3 l = li.directionFrom(hit.ray.at(hit.t));
-				c2 = color.mul(cl).mul(Math.max(0, normal.dot(l.normalized())));
+				Vector3 l = li.directionFrom(hit.ray.at(hit.t)).normalized();
+				c2 = c2.add(color.mul(li.color).mul(Math.max(0, normal.dot(l))));
 
 			}
 
-			Color c = new Color(0,0,0);
-			c=color.mul(cl).add(c2);
-			System.out.println(c);
 
-
-			return c;
 
 		}
 
+		Color c = new Color(0,0,0);
+		c=color.mul(0).add(c2);
+		//System.out.println(c);
 
-		return world.backgroundcolor;
+
+		return c;
 	}
 }

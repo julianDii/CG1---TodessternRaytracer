@@ -26,7 +26,7 @@ public class Sphere extends Geometry {
      * This constructor builds a new Sphere.
      * @param c The center point of the Sphere.
      * @param r The radius of the Sphere.
-     * @param color The color of the Sphere.
+     * @param material The color of the Sphere.
      */
     public Sphere(final Point3 c, final double r, final Material material) {
         super(material);
@@ -69,18 +69,18 @@ public class Sphere extends Geometry {
 
             if (t1 >= 0 & t2 >= 0) {
                 p=r.at(Math.min(t1, t2));
-               return new Hit(Math.min(t1, t2), r, this,p.sub(c).asNormal() );
+               return new Hit(Math.min(t1, t2), r, this,p.sub(c).normalized().asNormal() );
             }else if (t1>=0){
-                return new Hit(t1,r,this,c.sub(r.at(t1)).asNormal());
+                return new Hit(t1,r,this, r.at(t1).sub(c).normalized().asNormal());
             }else if(t2>=0) {
 
-                return new Hit(t2, r, this,c.sub(r.at(t2)).asNormal());
+                return new Hit(t2, r, this,r.at(t2).sub(c).normalized().asNormal());
             }
         }else if (d==0){
             final double t3;
             t3=-b/(2*a);
             if (t3>=0){
-                return new Hit(t3,r,this,c.sub(r.at(t3)).asNormal());
+                return new Hit(t3,r,this,r.at(t3).sub(c).normalized().asNormal());
 
             }
         }

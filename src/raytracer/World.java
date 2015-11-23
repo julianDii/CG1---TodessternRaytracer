@@ -31,7 +31,7 @@ public class World {
 	
 	public World (Color color){
 		this.backgroundcolor = color;
-		this.ambient =new Color(0.3,0.3,0.3);
+		this.ambient =new Color(0.2,0.2,0.2);
 
 	}
 

@@ -13,7 +13,7 @@ public abstract class Light {
 	/**
 	 * The color of the light.
 	 */
-	final Color color;
+	final public Color color;
 
 	/**
 	 * This constructor defines a light and it's color.
