@@ -22,6 +22,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import licht.PointLight;
 import material.LambertMaterial;
 import material.Material;
+import material.PhongMaterial;
 import material.SingleColorMaterial;
 import javafx.stage.Stage;
 import raytracer.World;
@@ -96,6 +97,12 @@ public class OurGui extends Application {
 	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
 	public final AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
 
+	//Abbildung 5
+
+	public final Plane plane3 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new PhongMaterial(new raytracer.Color(1,0,0),new raytracer.Color(1,1,1),64));
+	public final Triangle triangl3 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new PhongMaterial(new raytracer.Color(1,1,0),new raytracer.Color(1,1,1),64));
+	public final Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5, new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(1,1,1),64));
+	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5),new PhongMaterial(new raytracer.Color(0,0,1),new raytracer.Color(1,1,1),64) );
 
 	/**
 	 * Drawing Surface:
@@ -117,10 +124,10 @@ public class OurGui extends Application {
 		initializeMenu(primaryStage);
 
 		welt.lightList.add(pointLight);
-		welt.list.add(plane2);
-		welt.list.add(triangl2);
-		welt.list.add(sphere6);
-		welt.list.add(box2);
+		welt.list.add(plane3);
+		welt.list.add(triangl3);
+		welt.list.add(sphere7);
+		welt.list.add(box3);
 
 
 
