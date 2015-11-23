@@ -8,6 +8,7 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Vector3;
 
 /**
+ * This class represents a Phong Light.
  * Developer Robert Ullmann
  * @author Charlie
  *
@@ -15,23 +16,45 @@ import raytracer.matVecLib.Vector3;
 
 public class PhongMaterial extends Material {
 
-	final Color diffuse; 
-	final Color specular; 
-	final int exponent; 
-	
+	/**
+	 * The diffuse color component of the light.
+	 */
+	final Color diffuse;
+	/**
+	 * The specular color component of the light
+	 */
+	final Color specular;
+	/**
+	 * The exponent component of the light.
+	 */
+	final int exponent;
+
+	/**
+	 * This constructor builds a new PhongMaterial with it's components.
+	 * @param diffuse
+	 * @param specular
+	 * @param exponent
+	 */
+
 	public PhongMaterial(Color diffuse, Color specular, int exponent){
 		this.diffuse = diffuse; 
 		this.exponent = exponent;
 		this.specular = specular; 
 		
 	}
-	
+
+	/**
+	 * This method calculates the color of an hit object.
+	 * @param hit
+	 * @param world
+	 * @return The color the hit.
+	 */
 	public Color colorFor(Hit hit, World world){
 
-		// e = vector zum Betrachter
-		// r = reflectierter Vecrtor l
-		Vector3 e = new Vector3(0,0,0);
+		// e = vector to the observer
+		// r = reflected Vector l
 
+		Vector3 e = new Vector3(0,0,0);
 		Vector3 lref = new Vector3(0,0,0);
 
 		Color c2 = new Color(0,0,0);
@@ -46,7 +69,6 @@ public class PhongMaterial extends Material {
 				c2 = diffuse.mul(li.color).mul(Math.max(0, normal.dot(l)));
 				c3 = specular.mul(li.color).mul(Math.pow(Math.max(0,e.dot(lref)),exponent));
 				c2 = c2.add(c3);
-
 			}
 		}
 		return diffuse.mul(0).add(c2);
