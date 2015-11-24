@@ -1,6 +1,7 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.Ray;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -25,12 +26,23 @@ public class SpotLight extends Light {
 	}
 	
 	public boolean illuminates(Point3 point){
-		return false;
+
+
+		final double w = Math.acos(direction.normalized().dot(directionFrom(point).mul(-1)));
+
+		if(w<=halfAngle)
+		{
+			System.out.println("true");
+			return true;}
+		else {
+			System.out.println("false");
+			return false;
+		}
 		
 	}
 	
 	public Vector3 directionFrom(Point3 point) {
-		Vector3 l = position.sub(point);
+		Vector3 l = position.sub(point).normalized();
 		return l;
 	}
 

@@ -19,7 +19,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+import licht.DirectionalLight;
 import licht.PointLight;
+import licht.SpotLight;
 import material.LambertMaterial;
 import material.Material;
 import material.PhongMaterial;
@@ -104,6 +106,14 @@ public class OurGui extends Application {
 	public final Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5, new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(1,1,1),64));
 	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5),new PhongMaterial(new raytracer.Color(0,0,1),new raytracer.Color(1,1,1),64) );
 
+
+	//Abbildung 6
+
+	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
+
+    //Abbildung 7
+
+	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/14);
 	/**
 	 * Drawing Surface:
 	 */
@@ -123,7 +133,7 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-		welt.lightList.add(pointLight);
+		welt.lightList.add(spotLight);
 		welt.list.add(plane3);
 		welt.list.add(triangl3);
 		welt.list.add(sphere7);
