@@ -14,6 +14,9 @@ import raytracer.matVecLib.Vector3;
 
 public class DirectionalLight extends Light {
 
+	/**
+	 * The direction Vector of the light.
+	 */
 	final Vector3 direction;
 	
 	public DirectionalLight(Color color, Vector3 direction) {
@@ -22,12 +25,18 @@ public class DirectionalLight extends Light {
 	}
 
 	public boolean illuminates(Point3 point){
-		return false;
+		return true;
 		
 	}
+
+	/**
+	 *
+	 * @param point The illuminated point.
+	 * @return
+	 */
 	
 	public Vector3 directionFrom(Point3 point){
-		return null;
+		return direction.mul(-1).normalized();
 		
 	}
 }
