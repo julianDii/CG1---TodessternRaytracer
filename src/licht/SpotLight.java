@@ -6,7 +6,7 @@ import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
 /**
- * Developer Robert Ullmann
+ * Developer Robert Ullmann,julian
  * @author Charlie
  *
  */

@@ -71,7 +71,7 @@ public class PhongMaterial extends Material {
 				c2 = c2.add(c3);
 			}
 		}
-		return diffuse.mul(0).add(c2);
+		return diffuse.mul(ambient).add(c2);
 	}
 
 }

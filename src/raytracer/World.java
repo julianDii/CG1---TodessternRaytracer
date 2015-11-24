@@ -31,7 +31,7 @@ public class World {
 	
 	public World (Color color){
 		this.backgroundcolor = color;
-		this.ambient =new Color(0.2,0.2,0.2);
+		this.ambient =new Color(0.25,0.25,0.25);
 	}
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
