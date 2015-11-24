@@ -21,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 import licht.DirectionalLight;
 import licht.PointLight;
+import licht.SpotLight;
 import material.LambertMaterial;
 import material.Material;
 import material.PhongMaterial;
@@ -109,6 +110,10 @@ public class OurGui extends Application {
 	//Abbildung 6
 
 	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
+
+    //Abbildung 7
+
+	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/14);
 	/**
 	 * Drawing Surface:
 	 */
@@ -128,7 +133,7 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-		welt.lightList.add(dirLight);
+		welt.lightList.add(spotLight);
 		welt.list.add(plane3);
 		welt.list.add(triangl3);
 		welt.list.add(sphere7);
