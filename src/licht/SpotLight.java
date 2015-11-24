@@ -31,11 +31,9 @@ public class SpotLight extends Light {
 		final double w = Math.acos(direction.normalized().dot(directionFrom(point).mul(-1)));
 
 		if(w<=halfAngle)
-		{
-			System.out.println("true");
-			return true;}
+
+			return true;
 		else {
-			System.out.println("false");
 			return false;
 		}
 		
