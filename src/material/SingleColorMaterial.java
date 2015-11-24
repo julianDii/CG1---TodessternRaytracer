@@ -5,7 +5,7 @@ import raytracer.World;
 import raytracer.geometrie.Hit;
 
 /**
- * This Class represents a material with a given color.
+ * This class represents a material with a given color.
  * Developer Julian Dobrot
  * @author Charlie
  *

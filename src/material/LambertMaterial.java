@@ -11,7 +11,7 @@ import raytracer.matVecLib.Vector3;
 /**
  * This class represents a diffuse reflecting material.
  * Developer Charline Waldrich
- * @author Charlie,Julian
+ * @author Charlie, Julian
  * @return
  */
 
@@ -32,7 +32,7 @@ public class LambertMaterial extends Material {
 	}
 
 	/**
-	 * This method calculates the color for an hit object.
+	 * This method calculates the color for a hit object.
 	 * @param hit
 	 * @param world
 	 * @return The color for a hit object

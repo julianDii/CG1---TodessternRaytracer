@@ -5,8 +5,8 @@ import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
 /**
- * This class represents a light which illuminates the scene from a point in all directions.
- * Developer Charline Waldrich
+ * This class represents a light which illuminates the scene from a point in all
+ * directions. Developer Charline Waldrich
  * 
  * @author Charlie
  *
@@ -14,9 +14,8 @@ import raytracer.matVecLib.Vector3;
 
 public class PointLight extends Light {
 
-
 	/**
-	 * The position of the point light
+	 * The position of the point light.
 	 */
 	final Point3 position;
 
@@ -30,7 +29,10 @@ public class PointLight extends Light {
 		return true;
 	}
 
-
+	/**
+	 * The Method returns the Vector l which points from the parameter Point3 "point" to 
+	 * the source of the light (Point3 position). 
+	 */
 	public Vector3 directionFrom(Point3 point) {
 		Vector3 l = position.sub(point).normalized();
 		return l;
