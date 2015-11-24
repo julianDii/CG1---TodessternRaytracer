@@ -199,7 +199,6 @@ public class OurGui extends Application {
 	 */
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
 
-		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der H�he und Breite nicht.");
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
 		raytracer.Color hitFarbe = welt.hit(abb3Cam.rayFor(width, height, x, height - 1 - y));
 
