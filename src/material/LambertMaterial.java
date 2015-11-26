@@ -49,6 +49,6 @@ public class LambertMaterial extends Material {
 				c2 = c2.add(color.mul(li.color).mul(Math.max(0, normal.dot(l))));
 			}
 		}
-		return color.mul(0).add(c2);
+		return color.mul(ambient).add(c2);
 	}
 }

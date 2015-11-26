@@ -50,9 +50,9 @@ public class Triangle extends Geometry {
     @Override
     public Hit hit(Ray r) {
 
-		final Normal3 an = b.sub(a).asNormal();
-		final Normal3 bn = c.sub(b).asNormal();
-		final Normal3 cn = a.sub(c).asNormal();
+		final Vector3 v = b.sub(a);
+		final Vector3 w = c.sub(a);
+
     	
         if (r == null) {
             throw new IllegalArgumentException("Cannot be null!");
@@ -80,7 +80,7 @@ public class Triangle extends Geometry {
 		t=A3.determinant/A.determinant;
 		
 		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
-			return new Hit(t, r, this,an.mul(t).add(bn.mul(beta)).add(cn.mul(gamma)));
+			return new Hit(t, r, this,v.x(w).asNormal());
 		}
 		return null;
     }
