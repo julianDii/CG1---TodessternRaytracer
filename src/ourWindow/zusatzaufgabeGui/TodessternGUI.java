@@ -1,10 +1,5 @@
 package ourWindow.zusatzaufgabeGui;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
@@ -21,24 +16,31 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import raytracer.World;
 import raytracer.camera.Camera;
-import raytracer.camera.PerspectiveCamera;
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
- * OurGui Class opens a window thanks to the implemented JavaFX
+ * The TodessternGUI Class opens a window thanks to the implemented JavaFX
  * application and gives the user the oportunity to
  * create his own world containing objects such as world, camera and geometry.
  * The window size is editable by the user.
  *
- * @author Charline Waldrich
+ * @author Charline Waldrich,Julian dobrot
  */
+
 public class TodessternGUI extends Application {
 
     /**
-     * For testing we initialize the needed object in our world.
+     * THe World component.
      */
-    public final static World welt = new World(new raytracer.Color(0,0,0));
+    public static World welt;
+    /**
+     * The camera component.
+     */
+    public static Camera cam;
 
     /**
      * Drawing Surface:
@@ -46,12 +48,14 @@ public class TodessternGUI extends Application {
     private final VBox root = new VBox();
     private ImageView imageview;
     private WritableImage writableimage;
-    public final Camera cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
+
+
 
     /**
      * The start method initializes the window property at initial point. The
      * title is added and its initial size is set.
      */
+
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Welcome");
@@ -59,8 +63,6 @@ public class TodessternGUI extends Application {
         primaryStage.setWidth(640);
         primaryStage.setHeight(480);
         initializeMenu(primaryStage);
-
-        drawPicture(primaryStage);
 
         primaryStage.show();
     }
@@ -79,7 +81,7 @@ public class TodessternGUI extends Application {
      * cannot be bound directly because neither the writableimage nor
      * the imageview provides a property binding method.
      */
-    private void drawPicture(Stage primaryStage) {
+    public void drawPicture(Stage primaryStage) {
 
         root.getChildren().remove(imageview);
 
@@ -95,8 +97,6 @@ public class TodessternGUI extends Application {
             for (int y = 0; y < height; ++y) {
                 for (int x = 0; x < width; ++x) {
                     writer.setColor(x, y, getColor(width, height, x, y));
-
-
                 }
             }
         } catch (IllegalArgumentException e) {
@@ -128,7 +128,6 @@ public class TodessternGUI extends Application {
         if (hitFarbe.b<0){hitFarbe.b=0;}
         if (hitFarbe.b>1){hitFarbe.b=1;}
 
-
         return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
     }
 
@@ -140,29 +139,53 @@ public class TodessternGUI extends Application {
 
         final MenuBar menubar = new MenuBar();
         final Menu fileMenu = new Menu("File");
-        final Menu addTo = new Menu("Add to window");
-        final MenuItem world = new MenuItem("New world");
-        final MenuItem camera = new MenuItem("New camera");
-        final MenuItem plane = new MenuItem("New plane");
-        final MenuItem sphere = new MenuItem("New sphere");
-        final MenuItem triangle = new MenuItem("New triangle");
-        final MenuItem box = new MenuItem("New axis aligned box");
+        final Menu geometries = new Menu("Geometries");
+        final Menu camera = new Menu("Camera");
+        final Menu render = new Menu("Render");
+        final Menu light = new Menu("Light");
+        final Menu worldMenu = new Menu("World");
+
+
+        final MenuItem world = new MenuItem("New");
+
+        final MenuItem cameraMenu = new MenuItem("Select Camera");
+
+
+        final MenuItem plane = new MenuItem("Plane");
+        final MenuItem sphere = new MenuItem("Sphere");
+        final MenuItem triangle = new MenuItem("Triangle");
+        final MenuItem box = new MenuItem("Box");
+
         final MenuItem save = new MenuItem("Save");
 
-        addTo.getItems().addAll(world, camera, plane, sphere, triangle, box);
-        fileMenu.getItems().add(save);
-        menubar.getMenus().addAll(fileMenu, addTo);
+        final MenuItem renBut = new MenuItem("GO");
 
-        world.setOnAction(e -> new WorldWindow());
+        final MenuItem pointLight = new MenuItem("Point Light");
+        final MenuItem spotLight = new MenuItem("Spot Light");
+        final MenuItem directionalLight = new MenuItem("directional Light");
+
+        menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light);
+
+        fileMenu.getItems().add(save);
+        worldMenu.getItems().add(world);
+        geometries.getItems().addAll(plane,sphere,triangle,box);
+        camera.getItems().addAll(cameraMenu);
+        light.getItems().addAll(pointLight,spotLight,directionalLight);
+        render.getItems().add(renBut);
+
+
+        world.setOnAction(e -> new WorldWindow(primaryStage));
         camera.setOnAction(e -> new CameraWindow());
-        plane.setOnAction(e -> new PlaneWindow());
+        plane.setOnAction(e -> new PlaneWindow(primaryStage));
         sphere.setOnAction(e-> new SphereWindow());
         triangle.setOnAction(e -> new TriangleWindow());
         box.setOnAction(e -> new BoxWindow());
 
+        renBut.setOnAction(e->drawPicture(primaryStage));
         save.setOnAction(e -> saveFile(primaryStage));
 
-        root.getChildren().add(menubar);
+
+        root.getChildren().addAll(menubar);
     }
 
     /**

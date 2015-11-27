@@ -176,8 +176,6 @@ public class OurGui extends Application {
 			for (int y = 0; y < height; ++y) {
 				for (int x = 0; x < width; ++x) {
 					writer.setColor(x, y, getColor(width, height, x, y));
-
-
 				}
 			}
 		} catch (IllegalArgumentException e) {
