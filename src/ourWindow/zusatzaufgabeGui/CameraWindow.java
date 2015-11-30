@@ -27,16 +27,16 @@ public class CameraWindow extends Stage {
     private ToggleGroup tog;
     private final RadioButton togOrto = new RadioButton("Orthographic");
     private final RadioButton togPer = new RadioButton("Perspective");
-    private final TextField punktx = new TextField("0");
-    private final TextField punkty = new TextField("0");
-    private final TextField punktz = new TextField("0");
-    private final TextField directionx = new TextField("0");
-    private final TextField directiony = new TextField("0");
-    private final TextField directionz = new TextField("-1");
-    private final TextField rotationx = new TextField("0");
-    private final TextField rotationy = new TextField("1");
-    private final TextField rotationz = new TextField("0");
-    private final TextField scaling = new TextField("4");
+    private final NumberField punktx = new NumberField("0");
+    private final NumberField punkty = new NumberField("0");
+    private final NumberField punktz = new NumberField("0");
+    private final NumberField directionx = new NumberField("0");
+    private final NumberField directiony = new NumberField("0");
+    private final NumberField directionz = new NumberField("-1");
+    private final NumberField rotationx = new NumberField("0");
+    private final NumberField rotationy = new NumberField("1");
+    private final NumberField rotationz = new NumberField("0");
+    private final NumberField scaling = new NumberField("4");
     private final GridPane root = new GridPane();
     private final BorderPane border = new BorderPane();
 
@@ -59,18 +59,6 @@ public class CameraWindow extends Stage {
      * This method creates the layout of the camera window.
      */
     private void initRoot() {
-
-        // Maximal size of the fields
-        punktx.setMaxSize(50, 10);
-        punkty.setMaxSize(50, 10);
-        punktz.setMaxSize(50, 10);
-        directionx.setMaxSize(50, 10);
-        directiony.setMaxSize(50, 10);
-        directionz.setMaxSize(50, 10);
-        rotationx.setMaxSize(50, 10);
-        rotationy.setMaxSize(50, 10);
-        rotationz.setMaxSize(50, 10);
-        scaling.setMaxSize(50,10);
 
         //----------------------------
         border.setCenter(root);
@@ -199,15 +187,11 @@ public class CameraWindow extends Stage {
      */
     private Camera createCamera(Toggle selectedToggle) {
 
-        Point3 point = new Point3(Double.valueOf(punktx.getText()), Double.valueOf(punkty.getText()),
-                Double.valueOf(punktz.getText()));
-        Vector3 direction = new Vector3(Double.valueOf(directionx.getText()), Double.valueOf(directiony.getText()),
-                Double.valueOf(directionz.getText()));
-        Vector3 rotation = new Vector3(Double.valueOf(rotationx.getText()), Double.valueOf(rotationy.getText()),
-                Double.valueOf(rotationz.getText()));
+        Point3 point = new Point3(punktx.getNumber(), punkty.getNumber(), punktz.getNumber());
+        Vector3 direction = new Vector3(directionx.getNumber(), directiony.getNumber(), directionz.getNumber());
+        Vector3 rotation = new Vector3(rotationx.getNumber(), rotationy.getNumber(), rotationz.getNumber());
 
-        Double sca = new Double(scaling.getText());
-
+        Double sca = new Double(scaling.getNumber());
 
         if (selectedToggle == togOrto) {
 
