@@ -45,7 +45,7 @@ import raytracer.matVecLib.Vector3;
  * create his own world containing objects such as world, camera and geometry.
  * The window size is editable by the user.
  * 
- * @author Charline Waldrich
+ * @author Charlißne Waldrich
  */
 public class OurGui extends Application {
 
