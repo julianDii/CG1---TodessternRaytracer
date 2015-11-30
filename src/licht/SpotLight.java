@@ -24,7 +24,7 @@ public class SpotLight extends Light {
 	final Vector3 direction;
 
 	/**
-	 * The value of hte angle.
+	 * The value of the angle.
 	 */
 	final double halfAngle;
 

@@ -113,7 +113,7 @@ public class OurGui extends Application {
 
     //Abbildung 7
 
-	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/14);
+	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
 	/**
 	 * Drawing Surface:
 	 */
