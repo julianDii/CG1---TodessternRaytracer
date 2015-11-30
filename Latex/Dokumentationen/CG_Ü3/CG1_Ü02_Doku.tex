@@ -18,57 +18,44 @@
 \section{Aufgabenstellung}
 Implementierung von Beleuchtung im todesstern Raytracer.
 \subsection{Änderungen an bestehenden Klassen}
+Die Klasse World wurde um den Typ Color für das Ambiente Licht erweitert. Alle Objekte und Lichtquellen werden weiterhin in einer Liste an die Welt übergeben.
 \subsubsection{Änderungen am Hit-Objekt}
+Das Hit-Objekt besitzt nun die Normale vom Typ Normal3 mit den Namen ``nor''.
 \subsubsection{Änderungen an der Geometrie-Klasse und am Dreieck}
-\subsubsection{Änderungen an der World-Klasse}
-\subsubsection{Demo-Szene}
+Die Klasse Geometry bekommt nun das Material übergeben, welches in der Materialklasse die Methode colorFor aufruft. 
 
 \subsection{Licht}
-\subsubsection{Light}
+Die Klasse Licht, erzeugt die Farbe und die Beleuchtung. Dabei wird der Vektor berechnet, welcher zwischen Licht und Objekt entsteht.
 \subsubsection{PointLight}
+PointLight erwartet die Position und die Farbe der Lichtquelle und berechnet den Vektor zwischen Licht und Objekt. Dabei wird die Scene beleuchtet, die gleichmäßig in alle Richtungen strahlt.
 \subsubsection{DirectionalLight}
+Die Direktionale Lichtquelle ist ähnlich der Punktlichtquelle, nur wird dabei die Scene überall gleichmäßig beleuchtet.
 \subsubsection{SpotLight}
+Die Spotlichquelle strahlt aus einem übergebenen Punkt in eine übergebene Richtung innerhalb eines festgelegten Winkels.
 
 \subsection{Material}
+Die Klasse Material ist die Basisklasse aller Materialien-
 \subsubsection{SingleColorMaterial}
+Das SingleColorMaterial, beachtet keine Lichtquellen und gibt einfach nur die Farbe des Objektes zurück.
 \subsubsection{LambertMaterial}
+Das LambertMaterial ist ein reflektierendes Material ohne Glanzpunkt und die Reflektion ist die Farbe des ambienten Lichtes.
 \subsubsection{PhongMaterial}
-
-
-\section{Lösungsstrategien}
-Allgemein wurden als erster Lösungsschritt alle aus der Aufgabenstllung hervorgehenden Klassendiagramme komplett in das Projekt integriert.
-
-
+Das Phong-Material ist ein reflektierendes Material mit Glanzpunkt und die Reflektion ist die übergebene Farbe zusätzlich zu der übergebenen Farbe der Reflektion.
 \section{Implementierungen}
-
-
-
-
-\section{Besondere Probleme oder Schwierigkeiten bei der Bearbeitung}
-
-
 
 \section{Zeitbedarf}
 \begin{center}
 \begin{tabular}{cr}
-Strahl	  \	&60 min	\\
-Kameras 	\	&120 min	\\
-Farben \	&60 min	\\
-Geometrien \	&720 min	\\
+Änderungen an bestehenden Klassen \	&60 min	\\
+Licht	  \	&240 min	\\
+Material 	\	&180 min	\\
 Welt \	&60 min	\\
-Raytracer \	&240 min	\\
+Demo \	&240 min	\\
 Bericht  \		&180 min	 \\
 	\hline
-	&1440 min
+	&960 min
 \end{tabular}
 \end{center}
-
-\subsection{Tests}
-\subsubsection{Abbildung 3}
-Demo Szene mit einfarbigen Material.\\
-\includegraphics[width=15cm,height=10cm]{images/Abbildung3}\\
-
-
 
 \section{Quellen}
 

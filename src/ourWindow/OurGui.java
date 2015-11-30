@@ -114,6 +114,29 @@ public class OurGui extends Application {
     //Abbildung 7
 
 	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
+	
+	//Akzeptanzkriterien II - eigene Szene
+	// Lights
+	public final PointLight pointLight91 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,4));
+	public final PointLight pointLight92 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,0));
+	public final DirectionalLight dirLight9 = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
+	public final SpotLight spotLight9 = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/2);
+		
+	// Objekte
+	public final Plane plane9 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
+	public final Triangle triangle9 = new Triangle(new Point3(2,0,-1),new Point3(1,1,-1),new Point3(3,2,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
+	public final Sphere sphere91 = new Sphere(new Point3(1,1,1), 0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
+	public final AxisAlignedBox box9 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
+	public final Sphere sphere92 = new Sphere(new Point3(0,0,0),2, new LambertMaterial(new raytracer.Color(1,1,1)));
+	
+	
+	// CAM
+	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,4,4),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
+	
+	
+	
+	
+	
 	/**
 	 * Drawing Surface:
 	 */
@@ -133,12 +156,16 @@ public class OurGui extends Application {
 		primaryStage.setHeight(480);
 		initializeMenu(primaryStage);
 
-		welt.lightList.add(spotLight);
-		welt.list.add(plane3);
-		welt.list.add(triangl3);
-		welt.list.add(sphere7);
-		welt.list.add(box3);
-
+		//welt.lightList.add(pointLight91);
+		//welt.lightList.add(pointLight92);
+		//welt.lightList.add(dirLight9);
+		welt.lightList.add(spotLight9);
+		
+		welt.list.add(plane9);
+		welt.list.add(triangle9);
+		welt.list.add(sphere91);
+		welt.list.add(box9);
+		welt.list.add(sphere92);
 
 
 		drawPicture(primaryStage);
@@ -198,7 +225,7 @@ public class OurGui extends Application {
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(abb3Cam.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(cam9.rayFor(width, height, x, height - 1 - y));
 
 		if (hitFarbe.r<0){hitFarbe.r=0;}
 		if (hitFarbe.r>1){hitFarbe.r=1;}
