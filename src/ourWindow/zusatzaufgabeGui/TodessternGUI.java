@@ -173,6 +173,9 @@ public class TodessternGUI extends Application {
         light.getItems().addAll(pointLight,spotLight,directionalLight);
         render.getItems().add(renBut);
 
+        pointLight.setOnAction(e->new PointLightWindow());
+        spotLight.setOnAction(e->new SpotLightWindow());
+        directionalLight.setOnAction(e->new DirectionalLightWindow());
 
         world.setOnAction(e -> new WorldWindow(primaryStage));
         camera.setOnAction(e -> new CameraWindow());
