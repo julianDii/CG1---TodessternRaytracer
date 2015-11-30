@@ -42,15 +42,15 @@ public class BoxWindow extends Stage {
 
     private final Label lbf = new Label("lbf");
 
-    private final NumberField lbfx = new NumberField("-0.5");
-    private final NumberField lbfy = new NumberField("0");
-    private final NumberField lbfz = new NumberField("-0.5");
+    private final NumberField lbfx = new NumberField("-1.5");
+    private final NumberField lbfy = new NumberField("0.5");
+    private final NumberField lbfz = new NumberField("0.5");
 
     private final Label run = new Label("run");
 
-    private final NumberField runx = new NumberField("0.5");
-    private final NumberField runy = new NumberField("1");
-    private final NumberField runz = new NumberField("0.5");
+    private final NumberField runx = new NumberField("-0.5");
+    private final NumberField runy = new NumberField("1.5");
+    private final NumberField runz = new NumberField("1.5");
 
 
     //---------------------- SINGLE ----------------------//
@@ -60,14 +60,13 @@ public class BoxWindow extends Stage {
     private final NumberField singleCg = new NumberField("0");
     private final NumberField singleCb = new NumberField("1");
 
-
     //------------------- PHONG --------------------------//
 
     private final Label diffCol = new Label("Diffuse");
 
-    private final NumberField diffuser = new NumberField("1");
+    private final NumberField diffuser = new NumberField("0");
     private final NumberField diffuseg = new NumberField("0");
-    private final NumberField diffuseb = new NumberField("0");
+    private final NumberField diffuseb = new NumberField("1");
 
     private final Label specCol  = new Label("Specular");
 

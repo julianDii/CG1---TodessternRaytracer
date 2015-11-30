@@ -12,6 +12,7 @@ import material.LambertMaterial;
 import material.PhongMaterial;
 import material.SingleColorMaterial;
 import raytracer.Color;
+import raytracer.geometrie.Sphere;
 import raytracer.matVecLib.Point3;
 
 /**
@@ -36,14 +37,13 @@ public class SphereWindow extends Stage {
 
     private final ToggleGroup tog = new ToggleGroup();
 
-
     //------------------------------ SPHERE --------------------------------//
 
     private final Label centerPoint = new Label("Center");
 
-    private final NumberField punktx = new NumberField("0");
-    private final NumberField punkty = new NumberField("0");
-    private final NumberField punktz = new NumberField("-3");
+    private final NumberField punktx = new NumberField("1");
+    private final NumberField punkty = new NumberField("1");
+    private final NumberField punktz = new NumberField("1");
 
     private final Label radius = new Label("Radius");
 
@@ -62,8 +62,8 @@ public class SphereWindow extends Stage {
 
     private final Label diffCol = new Label("Diffuse");
 
-    private final NumberField diffuser = new NumberField("1");
-    private final NumberField diffuseg = new NumberField("0");
+    private final NumberField diffuser = new NumberField("0");
+    private final NumberField diffuseg = new NumberField("1");
     private final NumberField diffuseb = new NumberField("0");
 
     private final Label specCol  = new Label("Specular");

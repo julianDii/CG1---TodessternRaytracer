@@ -16,6 +16,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import raytracer.World;
 import raytracer.camera.Camera;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -37,6 +38,7 @@ public class TodessternGUI extends Application {
      * THe World component.
      */
     public static World welt;
+
     /**
      * The camera component.
      */
@@ -49,8 +51,6 @@ public class TodessternGUI extends Application {
     private ImageView imageview;
     private WritableImage writableimage;
 
-
-
     /**
      * The start method initializes the window property at initial point. The
      * title is added and its initial size is set.
@@ -58,13 +58,14 @@ public class TodessternGUI extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("Welcome");
+        primaryStage.setTitle("TodessternRaytracer");
         primaryStage.setMinHeight(51);
         primaryStage.setWidth(640);
         primaryStage.setHeight(480);
         initializeMenu(primaryStage);
 
         primaryStage.show();
+
     }
 
     /**

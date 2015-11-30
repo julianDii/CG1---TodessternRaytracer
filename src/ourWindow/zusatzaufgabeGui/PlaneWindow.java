@@ -36,10 +36,11 @@ public class PlaneWindow extends Stage{
     private final HBox togBox = new HBox();
 
     //------------------- PLANE ---------------------------//
+
     private final Label position = new Label("Position");
 
     private final NumberField punktx = new NumberField("0");
-    private final NumberField punkty = new NumberField("-1");
+    private final NumberField punkty = new NumberField("0");
     private final NumberField punktz = new NumberField("0");
 
     private final Label normal = new Label("Normal");

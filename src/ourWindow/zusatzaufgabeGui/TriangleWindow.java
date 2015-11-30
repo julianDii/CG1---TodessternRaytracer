@@ -43,21 +43,21 @@ public class TriangleWindow extends Stage {
 
     private final Label firstCorner = new Label("firstCorner");
 
-    private final NumberField firstx = new NumberField("-0.5");
-    private final NumberField firsty = new NumberField("0.5");
-    private final NumberField firstz = new NumberField("-3");
+    private final NumberField firstx = new NumberField("0");
+    private final NumberField firsty = new NumberField("0");
+    private final NumberField firstz = new NumberField("-1");
 
     private final Label secondCorner = new Label("run");
 
-    private final NumberField secondx = new NumberField("0.5");
-    private final NumberField secondy = new NumberField("0.5");
-    private final NumberField secondz = new NumberField("-3");
+    private final NumberField secondx = new NumberField("1");
+    private final NumberField secondy = new NumberField("0");
+    private final NumberField secondz = new NumberField("-1");
 
     private final Label thirdCorner = new Label("thirdCorner");
 
-    private final NumberField thirdx = new NumberField("0.5");
-    private final NumberField thirdy = new NumberField("-0.5");
-    private final NumberField thirdz = new NumberField("-3");
+    private final NumberField thirdx = new NumberField("1");
+    private final NumberField thirdy = new NumberField("1");
+    private final NumberField thirdz = new NumberField("-1");
 
 
     //---------------------- SINGLE ----------------------//
@@ -73,7 +73,7 @@ public class TriangleWindow extends Stage {
     private final Label diffCol = new Label("Diffuse");
 
     private final NumberField diffuser = new NumberField("1");
-    private final NumberField diffuseg = new NumberField("0");
+    private final NumberField diffuseg = new NumberField("1");
     private final NumberField diffuseb = new NumberField("0");
 
     private final Label specCol  = new Label("Specular");

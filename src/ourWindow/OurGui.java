@@ -113,7 +113,8 @@ public class OurGui extends Application {
 
     //Abbildung 7
 
-	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
+	//public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
+	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/14);
 	
 	//Akzeptanzkriterien II - eigene Szene
 	// Lights
@@ -132,10 +133,6 @@ public class OurGui extends Application {
 	
 	// CAM
 	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,4,4),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
-	
-	
-	
-	
 	
 	/**
 	 * Drawing Surface:
