@@ -232,13 +232,6 @@ public class OurGui extends Application {
 		fileMenu.getItems().add(save);
 		menubar.getMenus().addAll(fileMenu, addTo);
 		
-		world.setOnAction(e -> new GetWorldWindow());
-		camera.setOnAction(e -> new GetCameraWindow());
-		plane.setOnAction(e -> new GetPlaneWindow());
-		sphere.setOnAction(e-> new GetSphereWindow());
-		triangle.setOnAction(e -> new GetTriangleWindow());
-		box.setOnAction(e -> new GetBoxWindow());
-		
 		save.setOnAction(e -> saveFile(primaryStage));
 
 		root.getChildren().add(menubar);

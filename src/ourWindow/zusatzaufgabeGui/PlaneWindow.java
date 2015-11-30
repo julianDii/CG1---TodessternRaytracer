@@ -38,27 +38,27 @@ public class PlaneWindow extends Stage{
     //------------------- PLANE ---------------------------//
     private final Label position = new Label("Position");
 
-    private final TextField punktx = new TextField("0");
-    private final TextField punkty = new TextField("-1");
-    private final TextField punktz = new TextField("0");
+    private final NumberField punktx = new NumberField("0");
+    private final NumberField punkty = new NumberField("-1");
+    private final NumberField punktz = new NumberField("0");
 
     private final Label normal = new Label("Normal");
 
-    private final TextField normalx = new TextField("0");
-    private final TextField normaly = new TextField("1");
-    private final TextField normalz = new TextField("0");
+    private final NumberField normalx = new NumberField("0");
+    private final NumberField normaly = new NumberField("1");
+    private final NumberField normalz = new NumberField("0");
 
     private final Label color = new Label("Color");
 
-    private final TextField colorr = new TextField("1");
-    private final TextField colorg = new TextField("1");
-    private final TextField colorb = new TextField("1");
+    private final NumberField colorr = new NumberField("1");
+    private final NumberField colorg = new NumberField("1");
+    private final NumberField colorb = new NumberField("1");
     //------------------- SINGLE -------------------------//
     private  final Label single = new Label("Color");
 
-    private final TextField singleCr = new TextField("0");
-    private final TextField singleCg = new TextField("0");
-    private final TextField singleCb = new TextField("1");
+    private final NumberField singleCr = new NumberField("0");
+    private final NumberField singleCg = new NumberField("0");
+    private final NumberField singleCb = new NumberField("1");
 
 
 
@@ -67,26 +67,26 @@ public class PlaneWindow extends Stage{
 
     private final Label diffCol = new Label("Diffuse");
 
-    private final TextField diffuser = new TextField("1");
-    private final TextField diffuseg = new TextField("0");
-    private final TextField diffuseb = new TextField("0");
+    private final NumberField diffuser = new NumberField("1");
+    private final NumberField diffuseg = new NumberField("0");
+    private final NumberField diffuseb = new NumberField("0");
 
     private final Label specCol  = new Label("Specular");
 
-    private final TextField specularr = new TextField("1");
-    private final TextField specularg = new TextField("1");
-    private final TextField specularb = new TextField("1");
+    private final NumberField specularr = new NumberField("1");
+    private final NumberField specularg = new NumberField("1");
+    private final NumberField specularb = new NumberField("1");
 
     private final Label exp = new Label("Exponennt");
 
-    private final TextField exponennt = new TextField("64");
+    private final NumberField exponennt = new NumberField("64");
 
     //------------------- LAMBERT ---------------------------//
     private final Label lamCol = new Label("Lambert");
 
-    private final TextField lamr = new TextField("1");
-    private final TextField lamg = new TextField("0");
-    private final TextField lamb = new TextField("0");
+    private final NumberField lamr = new NumberField("1");
+    private final NumberField lamg = new NumberField("0");
+    private final NumberField lamb = new NumberField("0");
 
     /**
      *This contructor builds a new plane window
@@ -131,33 +131,6 @@ public class PlaneWindow extends Stage{
 
         grid.setVgap(5);
         grid.setHgap(5);
-
-        // Maximal size of the fields
-        punktx.setMaxSize(50, 10);
-        punkty.setMaxSize(50, 10);
-        punktz.setMaxSize(50, 10);
-        normalx.setMaxSize(50, 10);
-        normaly.setMaxSize(50, 10);
-        normalz.setMaxSize(50, 10);
-        colorr.setMaxSize(50, 10);
-        colorg.setMaxSize(50, 10);
-        colorb.setMaxSize(50, 10);
-        exponennt.setMaxSize(50,10);
-
-        diffuser.setMaxSize(50, 10);
-        diffuseg.setMaxSize(50, 10);
-        diffuseb.setMaxSize(50, 10);
-        specularr.setMaxSize(50, 10);
-        specularg.setMaxSize(50, 10);
-        specularb.setMaxSize(50, 10);
-
-        lamr.setMaxSize(50, 10);
-        lamg.setMaxSize(50, 10);
-        lamb.setMaxSize(50, 10);
-
-        singleCr.setMaxSize(50, 10);
-        singleCg.setMaxSize(50, 10);
-        singleCb.setMaxSize(50, 10);
 
         //--------------------- EVENTS ------------------------------//
         add.setOnAction(e->addPlane());
@@ -279,37 +252,27 @@ public class PlaneWindow extends Stage{
 
     private Plane createPlane(Toggle selectedToggle) {
 
-        Point3 point = new Point3(Double.valueOf(punktx.getText()), Double.valueOf(punkty.getText()),
-                Double.valueOf(punktz.getText()));
-        Normal3 normal = new Normal3(Double.valueOf(normalx.getText()), Double.valueOf(normaly.getText()),
-                Double.valueOf(normalz.getText()));
-        Color color = new Color(Double.valueOf(colorr.getText()),Double.valueOf(colorg.getText()),
-                Double.valueOf(colorb.getText()));
+        Point3 point = new Point3(punktx.getNumber(), punkty.getNumber(), punktz.getNumber());
+        Normal3 normal = new Normal3(normalx.getNumber(), normaly.getNumber(), normalz.getNumber());
+        Color color = new Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
 
         //Single
-        Color singleCol =new Color(Double.valueOf(singleCr.getText()),Double.valueOf(singleCg.getText()),
-                Double.valueOf(singleCb.getText()));
-
+        Color singleCol =new Color(singleCr.getNumber(),singleCg.getNumber(), singleCb.getNumber());
         SingleColorMaterial sinCol = new SingleColorMaterial(singleCol);
 
 
         //Phong
 
-        Color diffCol = new Color(Double.valueOf(diffuser.getText()),Double.valueOf(diffuseg.getText()),
-                Double.valueOf(diffuseb.getText()));
+        Color diffCol = new Color(diffuser.getNumber(),diffuseg.getNumber(), diffuseb.getNumber());
+        Color specCol = new Color(specularr.getNumber(),specularg.getNumber(), specularb.getNumber());
 
-        Color specCol = new Color(Double.valueOf(specularr.getText()),Double.valueOf(specularg.getText()),
-                Double.valueOf(specularb.getText()));
-
-        Integer exp = new Integer(exponennt.getText());
+        Integer exp = new Integer((int) exponennt.getNumber());
 
         PhongMaterial phongMat = new PhongMaterial(diffCol,specCol,exp);
 
         //Lambert
 
-        Color lamColor = new Color(Double.valueOf(lamr.getText()),Double.valueOf(lamg.getText()),
-                Double.valueOf(lamb.getText()));
-
+        Color lamColor = new Color(lamr.getNumber(),lamg.getNumber(), lamb.getNumber());
 
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
