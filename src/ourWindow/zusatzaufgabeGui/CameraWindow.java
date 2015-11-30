@@ -27,11 +27,11 @@ public class CameraWindow extends Stage {
     private ToggleGroup tog;
     private final RadioButton togOrto = new RadioButton("Orthographic");
     private final RadioButton togPer = new RadioButton("Perspective");
-    private final NumberField punktx = new NumberField("0");
-    private final NumberField punkty = new NumberField("0");
-    private final NumberField punktz = new NumberField("0");
-    private final NumberField directionx = new NumberField("0");
-    private final NumberField directiony = new NumberField("0");
+    private final NumberField punktx = new NumberField("4");
+    private final NumberField punkty = new NumberField("4");
+    private final NumberField punktz = new NumberField("4");
+    private final NumberField directionx = new NumberField("-1");
+    private final NumberField directiony = new NumberField("-1");
     private final NumberField directionz = new NumberField("-1");
     private final NumberField rotationx = new NumberField("0");
     private final NumberField rotationy = new NumberField("1");
