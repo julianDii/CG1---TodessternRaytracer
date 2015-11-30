@@ -43,55 +43,55 @@ public class TriangleWindow extends Stage {
 
     private final Label firstCorner = new Label("firstCorner");
 
-    private final TextField firstx = new TextField("-0.5");
-    private final TextField firsty = new TextField("0.5");
-    private final TextField firstz = new TextField("-3");
+    private final NumberField firstx = new NumberField("-0.5");
+    private final NumberField firsty = new NumberField("0.5");
+    private final NumberField firstz = new NumberField("-3");
 
     private final Label secondCorner = new Label("run");
 
-    private final TextField secondx = new TextField("0.5");
-    private final TextField secondy = new TextField("0.5");
-    private final TextField secondz = new TextField("-3");
+    private final NumberField secondx = new NumberField("0.5");
+    private final NumberField secondy = new NumberField("0.5");
+    private final NumberField secondz = new NumberField("-3");
 
     private final Label thirdCorner = new Label("thirdCorner");
 
-    private final TextField thirdx = new TextField("0.5");
-    private final TextField thirdy = new TextField("-0.5");
-    private final TextField thirdz = new TextField("-3");
+    private final NumberField thirdx = new NumberField("0.5");
+    private final NumberField thirdy = new NumberField("-0.5");
+    private final NumberField thirdz = new NumberField("-3");
 
 
     //---------------------- SINGLE ----------------------//
     private  final Label single = new Label("Color");
 
-    private final TextField singleCr = new TextField("0");
-    private final TextField singleCg = new TextField("0");
-    private final TextField singleCb = new TextField("1");
+    private final NumberField singleCr = new NumberField("0");
+    private final NumberField singleCg = new NumberField("0");
+    private final NumberField singleCb = new NumberField("1");
 
 
     //------------------- PHONG --------------------------//
 
     private final Label diffCol = new Label("Diffuse");
 
-    private final TextField diffuser = new TextField("1");
-    private final TextField diffuseg = new TextField("0");
-    private final TextField diffuseb = new TextField("0");
+    private final NumberField diffuser = new NumberField("1");
+    private final NumberField diffuseg = new NumberField("0");
+    private final NumberField diffuseb = new NumberField("0");
 
     private final Label specCol  = new Label("Specular");
 
-    private final TextField specularr = new TextField("1");
-    private final TextField specularg = new TextField("1");
-    private final TextField specularb = new TextField("1");
+    private final NumberField specularr = new NumberField("1");
+    private final NumberField specularg = new NumberField("1");
+    private final NumberField specularb = new NumberField("1");
 
     private final Label exp = new Label("Exponennt");
 
-    private final TextField exponennt = new TextField("64");
+    private final NumberField exponennt = new NumberField("64");
 
     //------------------- LAMBERT ---------------------------//
     private final Label lamCol = new Label("Lambert");
 
-    private final TextField lamr = new TextField("1");
-    private final TextField lamg = new TextField("0");
-    private final TextField lamb = new TextField("0");
+    private final NumberField lamr = new NumberField("1");
+    private final NumberField lamg = new NumberField("0");
+    private final NumberField lamb = new NumberField("0");
 
     public TriangleWindow(){
 
@@ -130,36 +130,6 @@ public class TriangleWindow extends Stage {
 
         grid.setVgap(5);
         grid.setHgap(5);
-
-        // Maximal size of the fields
-        firstx.setMaxSize(50, 10);
-        firsty.setMaxSize(50, 10);
-        firstz.setMaxSize(50, 10);
-
-        secondx.setMaxSize(50, 10);
-        secondy.setMaxSize(50, 10);
-        secondz.setMaxSize(50, 10);
-
-        thirdx.setMaxSize(50, 10);
-        thirdy.setMaxSize(50, 10);
-        thirdz.setMaxSize(50, 10);
-
-        exponennt.setMaxSize(50,10);
-
-        diffuser.setMaxSize(50, 10);
-        diffuseg.setMaxSize(50, 10);
-        diffuseb.setMaxSize(50, 10);
-        specularr.setMaxSize(50, 10);
-        specularg.setMaxSize(50, 10);
-        specularb.setMaxSize(50, 10);
-
-        lamr.setMaxSize(50, 10);
-        lamg.setMaxSize(50, 10);
-        lamb.setMaxSize(50, 10);
-
-        singleCr.setMaxSize(50, 10);
-        singleCg.setMaxSize(50, 10);
-        singleCb.setMaxSize(50, 10);
 
         //--------------------- EVENTS ------------------------------//
         add.setOnAction(e->addTri());
@@ -289,39 +259,23 @@ public class TriangleWindow extends Stage {
 
     private void addTriangle(Toggle selectedToggle) {
 
-        Point3 fPoint = new Point3(Double.valueOf(firstx.getText()), Double.valueOf(firsty.getText()),
-                Double.valueOf(firstz.getText()));
-
-        Point3 sPoint = new Point3(Double.valueOf(secondx.getText()), Double.valueOf(secondy.getText()),
-                Double.valueOf(secondz.getText()));
-
-        Point3 tPoint = new Point3(Double.valueOf(thirdx.getText()), Double.valueOf(thirdy.getText()),
-                Double.valueOf(thirdz.getText()));
+        Point3 fPoint = new Point3(firstx.getNumber(), firsty.getNumber(), firstz.getNumber());
+        Point3 sPoint = new Point3(secondx.getNumber(), secondy.getNumber(), secondz.getNumber());
+        Point3 tPoint = new Point3(thirdx.getNumber(), thirdy.getNumber(), thirdz.getNumber());
 
         //Single
-        Color singleCol = new Color(Double.valueOf(singleCr.getText()), Double.valueOf(singleCg.getText()),
-                Double.valueOf(singleCb.getText()));
-
+        Color singleCol = new Color(singleCr.getNumber(), singleCg.getNumber(), singleCb.getNumber());
         SingleColorMaterial sinCol = new SingleColorMaterial(singleCol);
 
         //Phong
-
-        Color diffCol = new Color(Double.valueOf(diffuser.getText()), Double.valueOf(diffuseg.getText()),
-                Double.valueOf(diffuseb.getText()));
-
-        Color specCol = new Color(Double.valueOf(specularr.getText()), Double.valueOf(specularg.getText()),
-                Double.valueOf(specularb.getText()));
-
-        Integer exp = new Integer(exponennt.getText());
+        Color diffCol = new Color(diffuser.getNumber(), diffuseg.getNumber(), diffuseb.getNumber());
+        Color specCol = new Color(specularr.getNumber(), specularg.getNumber(), specularb.getNumber());
+        Integer exp = new Integer((int)exponennt.getNumber());
 
         PhongMaterial phongMat = new PhongMaterial(diffCol, specCol, exp);
 
         //Lambert
-
-        Color lamColor = new Color(Double.valueOf(lamr.getText()), Double.valueOf(lamg.getText()),
-                Double.valueOf(lamb.getText()));
-
-
+        Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(), lamb.getNumber());
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
         if (selectedToggle == togSingle) {

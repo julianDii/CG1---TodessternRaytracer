@@ -26,9 +26,9 @@ public class WorldWindow extends Stage {
     //---------------- WORLDCOLOR ------------------------//
     private final Label color = new Label("Color");
 
-    private final TextField colorr = new TextField("0");
-    private final TextField colorg = new TextField("0");
-    private final TextField colorb = new TextField("0");
+    private final NumberField colorr = new NumberField("0");
+    private final NumberField colorg = new NumberField("0");
+    private final NumberField colorb = new NumberField("0");
 
     /**
      * This constructor builds a new world window.
@@ -73,10 +73,6 @@ public class WorldWindow extends Stage {
         grid.setVgap(5);
         grid.setHgap(5);
 
-        colorr.setMaxSize(50, 10);
-        colorg.setMaxSize(50, 10);
-        colorb.setMaxSize(50, 10);
-
     }
 
     /**
@@ -94,8 +90,7 @@ public class WorldWindow extends Stage {
 
     private void createWorld() {
 
-        World newWold = new World(new raytracer.Color(Double.valueOf(colorr.getText()),Double.valueOf(colorg.getText()),
-                Double.valueOf(colorb.getText())));
+        World newWold = new World(new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber()));
 
         TodessternGUI.welt=newWold;
     }

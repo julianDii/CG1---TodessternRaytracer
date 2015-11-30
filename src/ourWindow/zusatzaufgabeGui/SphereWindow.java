@@ -18,8 +18,6 @@ import raytracer.matVecLib.Point3;
  * Created by Juliand on 25.11.15.
  */
 
-
-
 public class SphereWindow extends Stage {
 
     public final BorderPane border = new BorderPane();
@@ -29,8 +27,6 @@ public class SphereWindow extends Stage {
     private final GridPane grid = new GridPane();
     private final HBox btnBox = new HBox();
     private final HBox togBox = new HBox();
-
-
 
     private final Label material = new Label("Material: ");
 
