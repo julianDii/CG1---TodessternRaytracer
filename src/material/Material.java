@@ -18,4 +18,6 @@ public abstract class Material {
      * @return The implementations of this method are returning the color for an hit object.
      */
     public abstract Color colorFor(final Hit hit, final World world);
+
+
 }

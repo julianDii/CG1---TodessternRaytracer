@@ -51,4 +51,27 @@ public class LambertMaterial extends Material {
 		}
 		return color.mul(ambient).add(c2);
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		LambertMaterial that = (LambertMaterial) o;
+
+		return color.equals(that.color);
+
+	}
+
+	@Override
+	public int hashCode() {
+		return color.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "LambertMaterial{" +
+				"color=" + color +
+				'}';
+	}
 }

@@ -38,4 +38,29 @@ public class PointLight extends Light {
 		return l;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+
+		PointLight that = (PointLight) o;
+
+		return position.equals(that.position);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + position.hashCode();
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "PointLight{" +
+				"position=" + position +
+				'}';
+	}
 }

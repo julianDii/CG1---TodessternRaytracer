@@ -74,4 +74,33 @@ public class PhongMaterial extends Material {
 		return diffuse.mul(ambient).add(c2);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		PhongMaterial that = (PhongMaterial) o;
+
+		if (exponent != that.exponent) return false;
+		if (!diffuse.equals(that.diffuse)) return false;
+		return specular.equals(that.specular);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = diffuse.hashCode();
+		result = 31 * result + specular.hashCode();
+		result = 31 * result + exponent;
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "PhongMaterial{" +
+				"diffuse=" + diffuse +
+				", specular=" + specular +
+				", exponent=" + exponent +
+				'}';
+	}
 }
