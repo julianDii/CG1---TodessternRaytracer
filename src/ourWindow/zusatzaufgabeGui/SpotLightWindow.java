@@ -121,7 +121,7 @@ public class SpotLightWindow extends Stage {
 
         Point3 pos = new Point3(positionx.getNumber(), positiony.getNumber(),positionz.getNumber());
 
-        Vector3 dir = new Vector3(directionx.getNumber(), directiony.getNumber(),positionz.getNumber());
+        Vector3 dir = new Vector3(directionx.getNumber(), directiony.getNumber(),directionz.getNumber());
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
