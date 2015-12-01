@@ -1,6 +1,7 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.World;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -18,9 +19,16 @@ public class DirectionalLight extends Light {
 	 * The direction Vector of the light.
 	 */
 	final Vector3 direction;
+
+	/**
+	 * This constructor defines a new Directional light.
+	 * @param color
+	 * @param direction
+	 * @param castShadows
+	 */
 	
-	public DirectionalLight(Color color, Vector3 direction) {
-		super(color);
+	public DirectionalLight(Color color, Vector3 direction, boolean castShadows) {
+		super(color,castShadows);
 		this.direction = direction;
 	}
 
@@ -30,7 +38,7 @@ public class DirectionalLight extends Light {
 	 * @return true as lon we implement no shadows
 	 */
 
-	public boolean illuminates(Point3 point){
+	public boolean illuminates(Point3 point, World world){
 		return true;
 		
 	}

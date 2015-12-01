@@ -2,6 +2,7 @@ package licht;
 
 import raytracer.Color;
 import raytracer.Ray;
+import raytracer.World;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -33,10 +34,11 @@ public class SpotLight extends Light {
 	 * @param color
 	 * @param position
 	 * @param direction
+	 * @param castShadows
 	 * @param halfAngle
 	 */
-	public SpotLight(Color color, Point3 position, Vector3 direction, double halfAngle) {
-		super(color);
+	public SpotLight(Color color, Point3 position,boolean castShadows, Vector3 direction, double halfAngle) {
+		super(color,castShadows);
 		this.direction = direction; 
 		this.halfAngle = halfAngle; 
 		this.position = position; 
@@ -49,7 +51,7 @@ public class SpotLight extends Light {
 	 * @return true if yes, false if not.
 	 */
 	
-	public boolean illuminates(Point3 point){
+	public boolean illuminates(Point3 point, World world){
 
 
 		final double w = Math.acos(direction.normalized().dot(directionFrom(point).mul(-1)));

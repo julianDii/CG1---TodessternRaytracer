@@ -25,8 +25,6 @@ public class PointLightWindow extends Stage{
     private final HBox btnBox = new HBox();
 
 
-
-
     //------------------------------ PointLight --------------------------------//
 
     private final Label position = new Label("Position");

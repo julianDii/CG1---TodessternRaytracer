@@ -1,6 +1,7 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.World;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -19,13 +20,14 @@ public class PointLight extends Light {
 	 */
 	final Point3 position;
 
-	public PointLight(Color color, Point3 position) {
-		super(color);
+	public PointLight(Color color, Point3 position, boolean castShadows) {
+		super(color,castShadows);
+
 		this.position = position;
 	}
 
 	@Override
-	public boolean illuminates(Point3 point) {
+	public boolean illuminates(Point3 point, World world) {
 		return true;
 	}
 

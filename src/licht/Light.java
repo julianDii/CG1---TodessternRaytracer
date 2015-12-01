@@ -1,6 +1,7 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.World;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -16,15 +17,23 @@ public abstract class Light {
 	final public Color color;
 
 	/**
-	 * This constructor defines a light and it's color.
-	 * @param color
+	 * Defines if shadows are casted or not.
 	 */
 
-	public Light (Color color){
+	final public boolean castShadows;
+
+	/**
+	 * This constructor defines a light and it's color.
+	 * @param color
+	 * @param castShadows
+	 */
+
+	public Light (Color color,boolean castShadows){
 
 		if(color==null)throw new IllegalArgumentException("color has to be not null");
 
 		this.color = color;
+		this.castShadows=castShadows;
 	}
 
 	/**
@@ -33,7 +42,7 @@ public abstract class Light {
 	 * @return true if the point is illuminated or false if not.
 	 */
 
-	public abstract boolean illuminates (Point3 point);
+	public abstract boolean illuminates (Point3 point, World world);
 
 	/**
 	 * This method calculates the Vector from the illuminated point to the light.
