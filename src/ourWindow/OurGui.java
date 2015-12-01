@@ -52,7 +52,7 @@ public class OurGui extends Application {
 	/**
 	 * For testing we initialize the needed object in our world. 
 	 */
-	public final static World welt = new World(new raytracer.Color(0,0,0));
+	public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0,0,0));
 //	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 //
 //	// Aufgabe Abb.5
@@ -93,7 +93,7 @@ public class OurGui extends Application {
 	// Uebung 3 Beleuchtung
 	// Abbildung 4 Beispielszene
 
-	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4));
+	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false);
 	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
 	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
 	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
@@ -109,20 +109,20 @@ public class OurGui extends Application {
 
 	//Abbildung 6
 
-	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
+	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized(),false );
 
     //Abbildung 7
 
 	//public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
-	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/14);
+	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false,new Vector3(-1,-1,-1),Math.PI/14);
 	
 	
 	//Akzeptanzkriterien II - eigene Szene
 	// Lights
-	public final PointLight pointLight91 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,4));
-	public final PointLight pointLight92 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,0));
+	public final PointLight pointLight91 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,4),false);
+	public final PointLight pointLight92 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,0),false);
 	//public final DirectionalLight dirLight9 = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
-	public final SpotLight spotLight9 = new SpotLight(new raytracer.Color(1,1,1),new Point3(-3,1,-3),new Vector3(2,1,2),Math.PI/2);
+	public final SpotLight spotLight9 = new SpotLight(new raytracer.Color(1,1,1),new Point3(-3,1,-3),false,new Vector3(2,1,2),Math.PI/2);
 		
 	// Objekte
 	public final Plane plane9 = new Plane(new Point3(0,0,0), new Normal3(1,1,1), new LambertMaterial(new raytracer.Color(1,0,0)));

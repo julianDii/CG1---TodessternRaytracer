@@ -1,6 +1,7 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.Ray;
 import raytracer.World;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
@@ -26,8 +27,17 @@ public class PointLight extends Light {
 		this.position = position;
 	}
 
-	@Override
+
 	public boolean illuminates(Point3 point, World world) {
+
+		if(castShadows==true){
+			
+			Vector3 l = position.sub(point).normalized();
+
+		}
+
+
+
 		return true;
 	}
 

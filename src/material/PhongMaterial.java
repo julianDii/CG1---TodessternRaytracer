@@ -62,7 +62,7 @@ public class PhongMaterial extends Material {
 		Color ambient =world.ambient;
 		Normal3 normal = hit.nor;
 		for (Light li:world.lightList){
-			if(li.illuminates(hit.ray.at(hit.t))) {
+			if(li.illuminates(hit.ray.at(hit.t),world)) {
 				e= hit.ray.o.sub(hit.ray.at(hit.t)).normalized();
 				Vector3 l = li.directionFrom(hit.ray.at(hit.t)).normalized();
 				lref=l.reflectedOn(normal).normalized();

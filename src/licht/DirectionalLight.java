@@ -39,7 +39,10 @@ public class DirectionalLight extends Light {
 	 */
 
 	public boolean illuminates(Point3 point, World world){
-		return true;
+		if(castShadows==true){
+			return true;
+		}
+		return false;
 		
 	}
 

@@ -127,7 +127,7 @@ public class SpotLightWindow extends Stage {
 
         Double ha = new Double(hAngle.getNumber());
 
-        SpotLight spot = new SpotLight(color,pos,dir,Math.PI/ha);
+        SpotLight spot = new SpotLight(color,pos,false,dir,Math.PI/ha);
 
         TodessternGUI.welt.lightList.add(spot);
 

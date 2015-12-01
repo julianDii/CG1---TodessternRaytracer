@@ -18,7 +18,7 @@ public class World {
 	 * Color background color which is chosen by the user when initializing his world
 	 */
 	public final Color backgroundcolor;
-	public  final Color ambient;
+	public final Color ambient;
 	/**
 	 * List contains all geometric objects chosen by the user.
 	 */
@@ -29,9 +29,9 @@ public class World {
 	 */
 	public final List<Light> lightList = new ArrayList<>();
 	
-	public World (Color color){
+	public World (Color color,Color ambi){
 		this.backgroundcolor = color;
-		this.ambient =new Color(0.25,0.25,0.25);
+		this.ambient =ambi;
 	}
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 

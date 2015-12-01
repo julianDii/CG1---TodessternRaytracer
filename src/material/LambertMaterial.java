@@ -44,7 +44,7 @@ public class LambertMaterial extends Material {
 		Color ambient =world.ambient;
 		Normal3 normal = hit.nor;
 		for (Light li:world.lightList){
-			if(li.illuminates(hit.ray.at(hit.t))) {
+			if(li.illuminates(hit.ray.at(hit.t),world)) {
 				Vector3 l = li.directionFrom(hit.ray.at(hit.t)).normalized();
 				c2 = c2.add(color.mul(li.color).mul(Math.max(0, normal.dot(l))));
 			}

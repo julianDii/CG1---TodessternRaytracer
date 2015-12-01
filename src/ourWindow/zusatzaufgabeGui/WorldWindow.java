@@ -8,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import raytracer.Color;
 import raytracer.World;
 
 /**
@@ -29,6 +30,12 @@ public class WorldWindow extends Stage {
     private final NumberField colorr = new NumberField("0");
     private final NumberField colorg = new NumberField("0");
     private final NumberField colorb = new NumberField("0");
+
+    private final Label ambiColor = new Label("AmbientColor");
+
+    private final NumberField ambir = new NumberField("0");
+    private final NumberField ambig = new NumberField("0");
+    private final NumberField ambib = new NumberField("0");
 
     /**
      * This constructor builds a new world window.
@@ -63,6 +70,12 @@ public class WorldWindow extends Stage {
         grid.add(colorg,2,3);
         grid.add(colorb,3,3);
 
+        grid.add(ambiColor,0,4);
+
+        grid.add(ambir,1,4);
+        grid.add(ambig,2,4);
+        grid.add(ambib,3,4);
+
         add.setOnAction(e->addWorld());
         can.setOnAction(e->this.close());
 
@@ -90,7 +103,11 @@ public class WorldWindow extends Stage {
 
     private void createWorld() {
 
-        World newWold = new World(new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber()));
+        Color worldcol = new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
+        Color worldAmbient = new raytracer.Color(ambir.getNumber(),ambig.getNumber(), ambib.getNumber());
+
+
+         World newWold = new World(worldcol,worldAmbient);
 
         TodessternGUI.welt=newWold;
     }
