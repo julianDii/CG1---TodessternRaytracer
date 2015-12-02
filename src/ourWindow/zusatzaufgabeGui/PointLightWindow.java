@@ -102,7 +102,7 @@ public class PointLightWindow extends Stage{
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
-        PointLight pointL = new PointLight(color,position,false);
+        PointLight pointL = new PointLight(color,position,true);
 
         TodessternGUI.welt.lightList.add(pointL);
 

@@ -17,7 +17,7 @@ public abstract class Material {
      * @param world
      * @return The implementations of this method are returning the color for an hit object.
      */
-    public abstract Color colorFor(final Hit hit, final World world);
+    public abstract Color colorFor(final Hit hit, final World world,final Tracer tracer);
 
 
 }

@@ -78,8 +78,6 @@ public class AxisAlignedBox extends Geometry {
                 if(hit==null||t> hit.t){
                     hit = new Hit(t,r,this,plane.n);
                 }
-
-
             }
         }
 

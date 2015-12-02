@@ -1,7 +1,9 @@
 package licht;
 
 import raytracer.Color;
+import raytracer.Ray;
 import raytracer.World;
+import raytracer.geometrie.Geometry;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -26,7 +28,7 @@ public class DirectionalLight extends Light {
 	 * @param direction
 	 * @param castShadows
 	 */
-	
+
 	public DirectionalLight(Color color, Vector3 direction, boolean castShadows) {
 		super(color,castShadows);
 		this.direction = direction;
@@ -39,12 +41,18 @@ public class DirectionalLight extends Light {
 	 */
 
 	public boolean illuminates(Point3 point, World world){
+
+		Vector3 l = direction.mul(-1).normalized();
+
 		if(castShadows==true){
-			return true;
+			for(Geometry g: world.list)
+				if(g.hit(new Ray(point,l))==null){
+					return true;
+			}
+			return false;
+		}return false;
+
 		}
-		return false;
-		
-	}
 
 	/**
 	 * This method calculates the direction of the directional light.

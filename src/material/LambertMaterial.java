@@ -38,7 +38,7 @@ public class LambertMaterial extends Material {
 	 * @return The color for a hit object
 	 */
 	
-	public Color colorFor (Hit hit, World world){
+	public Color colorFor (Hit hit, World world, Tracer tracer){
 
 		Color c2 = new Color(0,0,0);
 		Color ambient =world.ambient;

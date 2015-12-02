@@ -41,9 +41,9 @@ public class SphereWindow extends Stage {
 
     private final Label centerPoint = new Label("Center");
 
-    private final NumberField punktx = new NumberField("1");
-    private final NumberField punkty = new NumberField("1");
-    private final NumberField punktz = new NumberField("1");
+    private final NumberField punktx = new NumberField("0");
+    private final NumberField punkty = new NumberField("0");
+    private final NumberField punktz = new NumberField("-1");
 
     private final Label radius = new Label("Radius");
 

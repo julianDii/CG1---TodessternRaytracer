@@ -3,6 +3,8 @@ package licht;
 import raytracer.Color;
 import raytracer.Ray;
 import raytracer.World;
+import raytracer.geometrie.Geometry;
+import raytracer.geometrie.Hit;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -30,15 +32,28 @@ public class PointLight extends Light {
 
 	public boolean illuminates(Point3 point, World world) {
 
-		if(castShadows==true){
-			
-			Vector3 l = position.sub(point).normalized();
+		// pr = Punkt auf der Oberfläche point
+		// pl = Position der Lichtquelle position
+		// l = Vektor in Richtung der Lichtquelle
+		// t1 = Distanz vom Punkt zur Lichtquelle
+		// tk = Distanz vom Punkt zum Objekt
 
-		}
+
+		//t1 = |pl-pr|/|l|
 
 
+		Ray r = new Ray(point, directionFrom(point).mul(-1));
 
-		return true;
+		Vector3 l = directionFrom(point);
+
+
+		double t1 = position.sub(point).magnitude / l.magnitude;
+
+		if(castShadows==true) {
+			//TODO
+			return true;
+
+		}return false;
 	}
 
 	/**

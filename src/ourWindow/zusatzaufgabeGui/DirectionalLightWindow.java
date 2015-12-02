@@ -104,7 +104,7 @@ public class DirectionalLightWindow extends Stage {
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
-        DirectionalLight dirL = new DirectionalLight(color,dir,false);
+        DirectionalLight dirL = new DirectionalLight(color,dir,true);
 
         TodessternGUI.welt.lightList.add(dirL);
 

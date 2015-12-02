@@ -32,7 +32,7 @@ public class SingleColorMaterial extends Material {
 	 * @return the given color.
 	 */
 
-	public Color colorFor (Hit hit, World world){
+	public Color colorFor (Hit hit, World world, Tracer tracer){
 		return this.color;
 	}
 

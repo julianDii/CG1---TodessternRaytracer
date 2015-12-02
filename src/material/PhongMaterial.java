@@ -49,7 +49,7 @@ public class PhongMaterial extends Material {
 	 * @param world
 	 * @return The color the hit.
 	 */
-	public Color colorFor(Hit hit, World world){
+	public Color colorFor(Hit hit, World world, Tracer tracer){
 
 		// e = vector to the observer
 		// r = reflected Vector l
