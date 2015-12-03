@@ -4,6 +4,7 @@ import raytracer.Color;
 import raytracer.Ray;
 import raytracer.World;
 import raytracer.geometrie.Geometry;
+import raytracer.geometrie.Hit;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 
@@ -40,19 +41,32 @@ public class DirectionalLight extends Light {
 	 * @return true as lon we implement no shadows
 	 */
 
-	public boolean illuminates(Point3 point, World world){
+	public boolean illuminates(Point3 point, World world) {
+
+		Ray r = new Ray(point, directionFrom(point));
+		double untereGrenze= 0.00001;
+
 
 		Vector3 l = direction.mul(-1).normalized();
 
-		if(castShadows==true){
-			for(Geometry g: world.list)
-				if(g.hit(new Ray(point,l))==null){
-					return true;
-			}
-			return false;
-		}return false;
+		if (castShadows == true) {
+			for (Geometry g : world.list) {
 
-		}
+				double t2=0;
+				Hit h=g.hit(r);
+
+				if(h!=null){
+					t2=h.t;
+				}
+				if (t2>=untereGrenze && h!=null){
+					return false;
+				}
+
+			}
+			return true;
+
+		}return false;
+	}
 
 	/**
 	 * This method calculates the direction of the directional light.

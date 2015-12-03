@@ -29,18 +29,15 @@ public class PointLight extends Light {
 		this.position = position;
 	}
 
+	/**
+	 * This method checks if a point is illuminated or not (shadow).
+	 * @param point The point that we want to check.
+	 * @param world
+	 * @return true if the point is illuminated or if for shadow.
+	 */
+
 
 	public boolean illuminates(Point3 point, World world) {
-
-		// pr = Punkt auf der Oberfläche point
-		// pl = Position der Lichtquelle position
-		// l = Vektor in Richtung der Lichtquelle
-		// t1 = Distanz vom Punkt zur Lichtquelle
-		// tk = Distanz vom Punkt zum Objekt
-
-
-		//t1 = |pl-pr|/|l|
-
 
 		Ray r = new Ray(point, directionFrom(point));
 
