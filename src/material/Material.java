@@ -10,6 +10,7 @@ import raytracer.geometrie.Hit;
  * Created by Juliand on 17.11.15.
  */
 public abstract class Material {
+
     /**
      * This is the abstract base class for all materials
      * The world is needed for calculating the lights.
@@ -18,6 +19,7 @@ public abstract class Material {
      * @return The implementations of this method are returning the color for an hit object.
      */
     public abstract Color colorFor(final Hit hit, final World world,final Tracer tracer);
+
 
 
 }
