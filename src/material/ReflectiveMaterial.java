@@ -1,8 +1,13 @@
 package material;
 
+import licht.Light;
 import raytracer.Color;
+import raytracer.Ray;
 import raytracer.World;
 import raytracer.geometrie.Hit;
+import raytracer.matVecLib.Normal3;
+import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 
 /**
  * This class represents a reflective material.
@@ -54,6 +59,32 @@ public class ReflectiveMaterial extends Material {
      * @return
      */
     public Color colorFor(Hit hit, World world, Tracer tracer) {
-        return null;
+
+        Normal3 nor = hit.nor;
+        Point3 p= hit.ray.at(hit.t);
+        Color c= world.ambient.mul(diffuse);
+        Vector3 e =hit.ray.d.mul(-1).normalized();
+        Color c2;
+        for(Light li :world.lightList){
+
+            Vector3 l=li.directionFrom(p);
+            Vector3 r=l.reflectedOn(nor);
+            c2 = new Color(0,0,0);
+            if(li.illuminates(p,world)==true){
+                c2 = c2.add(li.color.mul(diffuse.mul(Math.max(0,nor.dot(l))).add(li.color).mul(specular)
+                        .mul(Math.pow(Math.max(0, r.dot(e)), exponent))));
+
+            }
+            c=c.add(c2);
+            Ray r = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
+            c=c + reflection.mul(tracer(r,world));
+        }
+
+
+
+
+        return c;
     }
+
+
 }
