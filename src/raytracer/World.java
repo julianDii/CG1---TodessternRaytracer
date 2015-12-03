@@ -46,7 +46,7 @@ public class World {
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
 		if (hit0 == null) return backgroundcolor;
-		return hit0.geo.material.colorFor(hit0, this);
+		return hit0.geo.material.colorFor(hit0, this,null);
 	}
 	
 }

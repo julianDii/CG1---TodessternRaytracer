@@ -42,15 +42,28 @@ public class PointLight extends Light {
 		//t1 = |pl-pr|/|l|
 
 
-		Ray r = new Ray(point, directionFrom(point).mul(-1));
+		Ray r = new Ray(point, directionFrom(point));
 
 		Vector3 l = directionFrom(point);
 
-
-		double t1 = position.sub(point).magnitude / l.magnitude;
+		double obereGrenze= r.tOf(position);
+		double untereGrenze= 0.00001;
 
 		if(castShadows==true) {
-			//TODO
+
+			for(Geometry g : world.list){
+
+				double t2=0;
+				Hit h=g.hit(r);
+
+				if(h!=null){
+					t2=h.t;
+				}
+
+				if(t2>=untereGrenze && t2<=obereGrenze){
+					return false;
+				}
+			}
 			return true;
 
 		}return false;
@@ -61,7 +74,7 @@ public class PointLight extends Light {
 	 * the source of the light (Point3 position). 
 	 */
 	public Vector3 directionFrom(Point3 point) {
-		Vector3 l = position.sub(point).normalized();
+		Vector3 l = position.sub(point);
 		return l;
 	}
 
