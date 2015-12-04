@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import licht.Light;
+import material.Tracer;
 import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
 
@@ -46,7 +47,9 @@ public class World {
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
 		if (hit0 == null) return backgroundcolor;
-		return hit0.geo.material.colorFor(hit0, this,null);
+		int depth=Tracer.depth;
+
+		return hit0.geo.material.colorFor(hit0, this, new Tracer(r,depth,this));
 	}
 	
 }

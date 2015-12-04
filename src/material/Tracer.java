@@ -3,6 +3,7 @@ package material;
 import raytracer.Color;
 import raytracer.Ray;
 import raytracer.World;
+import raytracer.geometrie.Geometry;
 import raytracer.geometrie.Hit;
 
 /**
@@ -10,7 +11,7 @@ import raytracer.geometrie.Hit;
  */
 public class Tracer {
 
-    public int depth;
+    public static int depth;
     private final World world;
     private final Ray ray;
 
@@ -20,11 +21,18 @@ public class Tracer {
         this.ray = ray;
 
     }
-    public Color reflectedColor(){
-        if(depth<0){
-            return new Color(0,0,1);
+    public Color reflectedColor(Ray r, World world) {
+        Hit h = null;
+        if (depth <= 0) {
+            return world.backgroundcolor;
+        } else {
+            for (Geometry g : world.list) {
+                h = g.hit(r);
+                if (h != null) {
+                    return h.geo.material.colorFor(h, world, new Tracer(r, depth - 1, world));
+                }
+            }
+            return world.backgroundcolor;
         }
-
-        return null;
     }
 }

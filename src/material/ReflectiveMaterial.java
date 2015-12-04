@@ -64,24 +64,24 @@ public class ReflectiveMaterial extends Material {
         Point3 p= hit.ray.at(hit.t);
         Color c= world.ambient.mul(diffuse);
         Vector3 e =hit.ray.d.mul(-1).normalized();
-        Color c2;
+        Color c2=null;
         for(Light li :world.lightList){
 
             Vector3 l=li.directionFrom(p);
             Vector3 r=l.reflectedOn(nor);
             c2 = new Color(0,0,0);
-            if(li.illuminates(p,world)==true){
+            if(li.illuminates(p,world)){
+
                 c2 = c2.add(li.color.mul(diffuse.mul(Math.max(0,nor.dot(l))).add(li.color).mul(specular)
                         .mul(Math.pow(Math.max(0, r.dot(e)), exponent))));
 
+
             }
-            c=c.add(c2);
-            Ray r2 = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
-            c=c.mul(reflection.mul(tracer.reflectedColor()));
+
         }
-
-
-
+        Ray r2 = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
+        c=c.mul(reflection.mul(tracer.reflectedColor(r2,world)));
+        c=c.add(c2);
 
         return c;
     }

@@ -22,10 +22,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import licht.DirectionalLight;
 import licht.PointLight;
 import licht.SpotLight;
-import material.LambertMaterial;
-import material.Material;
-import material.PhongMaterial;
-import material.SingleColorMaterial;
+import material.*;
 import javafx.stage.Stage;
 import raytracer.World;
 import raytracer.camera.Camera;
@@ -104,7 +101,7 @@ public class OurGui extends Application {
 	public final Plane plane3 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new PhongMaterial(new raytracer.Color(1,0,0),new raytracer.Color(1,1,1),64));
 	public final Triangle triangl3 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new PhongMaterial(new raytracer.Color(1,1,0),new raytracer.Color(1,1,1),64));
 	public final Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5, new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(1,1,1),64));
-	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5),new PhongMaterial(new raytracer.Color(0,0,1),new raytracer.Color(1,1,1),64) );
+	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new PhongMaterial(new raytracer.Color(0,0,1), new raytracer.Color(1,1,1),64) );
 
 
 	//Abbildung 6
@@ -141,6 +138,21 @@ public class OurGui extends Application {
 	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
 
 	public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
+
+	//scene Shadow 2
+	public final Plane plane11 = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
+			new ReflectiveMaterial(new raytracer.Color(0.1,0.1,0.1),new raytracer.Color(0,0,0),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final Sphere sphere11 = new Sphere(new Point3(-3,1,0),1, new ReflectiveMaterial(new raytracer.Color(1,0,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final Sphere sphere12 = new Sphere(new Point3(0,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,1,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final Sphere sphere13 = new Sphere(new Point3(3,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,0,1),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final PerspectiveCamera cam11 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
+	public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
+
+
+
 	/**
 	 * Drawing Surface:
 	 */
@@ -198,10 +210,19 @@ public class OurGui extends Application {
 //		welt.list.add(sphere7);
 //		welt.list.add(box3);
 
+		//Schatten scene 1
+//		welt.list.add(plane10);
+//		welt.list.add(box10);
+//		welt.lightList.add(pointLight100);
 
-		welt.list.add(plane10);
-		welt.list.add(box10);
-		welt.lightList.add(pointLight100);
+		//schatten scene 2
+
+		welt.lightList.add(pointLight101);
+		welt.list.add(plane11);
+		welt.list.add(sphere11);
+		welt.list.add(sphere12);
+		welt.list.add(sphere13);
+
 			
 		drawPicture(primaryStage);
 
@@ -260,7 +281,7 @@ public class OurGui extends Application {
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(cam10.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(cam11.rayFor(width, height, x, height - 1 - y));
 
 		if (hitFarbe.r<0){hitFarbe.r=0;}
 		if (hitFarbe.r>1){hitFarbe.r=1;}
