@@ -76,8 +76,8 @@ public class ReflectiveMaterial extends Material {
 
             }
             c=c.add(c2);
-            Ray r = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
-            c=c + reflection.mul(Tracer.reflectiveColor(r, world));
+            Ray r2 = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
+            c=c.mul(reflection.mul(tracer.reflectedColor()));
         }
 
 

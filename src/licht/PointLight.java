@@ -46,24 +46,18 @@ public class PointLight extends Light {
 		double obereGrenze= r.tOf(position);
 		double untereGrenze= 0.00001;
 
-		if(castShadows==true) {
+		if(castShadows==true) for (Geometry g : world.list) {
 
-			for(Geometry g : world.list){
+			double t2 = 0;
+			Hit h = g.hit(r);
 
-				double t2=0;
-				Hit h=g.hit(r);
-
-				if(h!=null){
-					t2=h.t;
-				}
-
-				if(t2>=untereGrenze && t2<=obereGrenze){
-					return false;
-				}
+			if (h != null) {
+				t2 = h.t;
 			}
-			return true;
-
-		}return false;
+			if (t2 >= untereGrenze && t2 <= obereGrenze) {
+				return false;
+			}
+		}return true;
 	}
 
 	/**

@@ -134,7 +134,13 @@ public class OurGui extends Application {
 	
 	// CAM
 	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),Math.PI/4);
-	
+
+	//SCENE SHADOW
+	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,0),true);
+	public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
+	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
+
+	public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 	/**
 	 * Drawing Surface:
 	 */
@@ -185,12 +191,17 @@ public class OurGui extends Application {
 		// Abb 6	
 //		welt.lightList.add(dirLight);
 		// Abb 7 / 8
-		welt.lightList.add(spotLight);
-		
-		welt.list.add(plane3);
-		welt.list.add(triangl3);
-		welt.list.add(sphere7);
-		welt.list.add(box3);
+//		welt.lightList.add(spotLight);
+//
+//		welt.list.add(plane3);
+//		welt.list.add(triangl3);
+//		welt.list.add(sphere7);
+//		welt.list.add(box3);
+
+
+		welt.list.add(plane10);
+		welt.list.add(box10);
+		welt.lightList.add(pointLight100);
 			
 		drawPicture(primaryStage);
 
@@ -249,7 +260,7 @@ public class OurGui extends Application {
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(abb3Cam.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(cam10.rayFor(width, height, x, height - 1 - y));
 
 		if (hitFarbe.r<0){hitFarbe.r=0;}
 		if (hitFarbe.r>1){hitFarbe.r=1;}

@@ -71,7 +71,9 @@ public class AxisAlignedBox extends Geometry {
         Hit hit = null;
 
         for(final Plane plane : planes){
-            final double visible = r.o.sub(plane.a).dot(plane.n);
+
+
+            final double visible = r.o.sub(plane.a).normalized().dot(plane.n);
 
             if(visible > 0) {
                 final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
@@ -94,13 +96,15 @@ public class AxisAlignedBox extends Geometry {
 
         if(h != null) {
 
-            final double fix = 0.00001;
-            final Point3 inOut=h.ray.at(h.t);
 
-            if(inOut.x >= lbf.x+fix && inOut.y+fix >= lbf.y && inOut.z >= lbf.z+fix &&
-                    inOut.x<=run.x+fix && inOut.y <= run.y+fix && inOut.z <= run.z+fix){
+            final Point3 p = h.ray.at(h.t);
+            final double e = 0.00000000001;
+
+            if (    (lbf.x <= p.x+e && p.x <= run.x+e) &&
+                    (lbf.y <= p.y+e && p.y <= run.y+e) &&
+                    (lbf.z <= p.z+e && p.z <= run.z+e)
+                    )
                 return h;
-            }
 
         }
 

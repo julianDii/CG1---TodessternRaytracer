@@ -287,7 +287,9 @@ public class PlaneWindow extends Stage{
         if(selectedToggle == togLambert){
 
             Plane lamPlane = new Plane(point,normal,lamMat);
+            System.out.println(lamPlane);
             TodessternGUI.welt.list.add(lamPlane);
+
 
             return lamPlane;
         }
