@@ -1,5 +1,6 @@
 package material;
 
+import raytracer.Color;
 import raytracer.World;
 
 /**
@@ -14,5 +15,8 @@ public class Tracer {
         this.world = world;
 
     }
-    public Color reflected
+    public Color reflectedColor(){
+
+
+    }
 }
