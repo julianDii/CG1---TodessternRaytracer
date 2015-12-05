@@ -45,6 +45,10 @@ public class ReflectiveMaterial extends Material {
 
     public ReflectiveMaterial(final Color diffuse, final Color specular, final int exponent, final Color reflection ){
 
+        if(diffuse==null)throw new IllegalArgumentException("diffuse can not be null");
+        if(specular==null)throw new IllegalArgumentException("diffuse can not be null");
+        if(reflection==null)throw new IllegalArgumentException("diffuse can not be null");
+
         this.diffuse=diffuse;
         this.specular=specular;
         this.exponent=exponent;
@@ -58,33 +62,34 @@ public class ReflectiveMaterial extends Material {
      * @param tracer
      * @return
      */
-    public Color colorFor(Hit hit, World world, Tracer tracer) {
+    public Color colorFor(final Hit hit, final World world,final Tracer tracer) {
 
-        Normal3 nor = hit.nor;
-        Point3 p= hit.ray.at(hit.t);
-        Color c= world.ambient.mul(diffuse);
-        Vector3 e =hit.ray.d.mul(-1).normalized();
-        Color c2=null;
-        for(Light li :world.lightList){
+        if(hit==null)throw new IllegalArgumentException("Diffuse can not be null");
+        if(world==null)throw new IllegalArgumentException("World can not be null");
+        if(tracer==null)throw new IllegalArgumentException("Tracer can not be null");
 
-            Vector3 l=li.directionFrom(p);
-            Vector3 r=l.reflectedOn(nor);
-            c2 = new Color(0,0,0);
-            if(li.illuminates(p,world)){
+        Color returnColor = diffuse.mul(world.ambient);
+        final Point3 hitPoint = hit.ray.at(hit.t);
+        final double factor = hit.nor.dot(hit.ray.d.mul(-1))*2;
+        final Vector3 e = (hit.ray.d.mul(-1));
 
-                c2 = c2.add(li.color.mul(diffuse.mul(Math.max(0,nor.dot(l))).add(li.color).mul(specular)
-                        .mul(Math.pow(Math.max(0, r.dot(e)), exponent))));
+        for (final Light li : world.lightList){
+
+            if(li.illuminates(hitPoint,world)){
 
 
+                final Vector3 lightVector = li.directionFrom(hitPoint).normalized();
+                final Color lightColor = li.color;
+                final Vector3 reflectedVector = lightVector.reflectedOn(hit.nor);
+                final double max = Math.max(0,hit.nor.dot(lightVector));
+                returnColor = returnColor.add(diffuse.mul(lightColor.mul(max)));
+                returnColor = returnColor.add(specular.mul(lightColor.mul(Math.pow(Math.max(0,reflectedVector.dot(e)),exponent))));
             }
-
         }
-        Ray r2 = new Ray(p,hit.ray.d.normalized().mul(-1).reflectedOn(nor));
-        c=c.mul(reflection.mul(tracer.reflectedColor(r2,world)));
-        c=c.add(c2);
+        final Color reflColor = tracer.reflectedColor(new Ray(hitPoint,hit.ray.d.add(hit.nor.mul(factor)).normalized()));
+        returnColor = (reflection.mul(reflColor.add(returnColor)));
 
-        return c;
+        return returnColor;
     }
-
 
 }

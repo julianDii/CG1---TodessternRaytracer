@@ -32,7 +32,7 @@ public class World {
 	
 	public World (Color color,Color ambi){
 		this.backgroundcolor = color;
-		this.ambient =ambi;
+		this.ambient = new Color(0.25,0.25,0.25);
 	}
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
@@ -47,9 +47,9 @@ public class World {
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
 		if (hit0 == null) return backgroundcolor;
-		int depth=Tracer.depth;
 
-		return hit0.geo.material.colorFor(hit0, this, new Tracer(r,depth,this));
+
+		return hit0.geo.material.colorFor(hit0, this, new Tracer(6,this));
 	}
 	
 }
