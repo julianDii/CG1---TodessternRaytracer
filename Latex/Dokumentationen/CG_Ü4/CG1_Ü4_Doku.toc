@@ -1,0 +1,8 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Aufgabenstellung}{2}
+\contentsline {subsection}{\numberline {1.1}\IeC {\"A}nderungen an bestehenden Klassen}{2}
+\contentsline {subsubsection}{\numberline {1.1.1}Neue Klassen}{2}
+\contentsline {section}{\numberline {2}Implementierungen}{3}
+\contentsline {section}{\numberline {3}Testszenen}{3}
+\contentsline {section}{\numberline {4}Zeitbedarf}{3}
+\contentsline {section}{\numberline {5}Quellen}{4}
