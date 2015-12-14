@@ -191,7 +191,6 @@ public class OurGui extends Application {
 		
 		// Abb 4	
 //		welt.lightList.add(pointLight);
-//		
 //		welt.list.add(plane2);
 //		welt.list.add(triangl2);
 //		welt.list.add(sphere6);
@@ -211,17 +210,17 @@ public class OurGui extends Application {
 //		welt.list.add(box3);
 
 		//Schatten scene 1
-//		welt.list.add(plane10);
-//		welt.list.add(box10);
-//		welt.lightList.add(pointLight100);
+		welt.list.add(plane10);
+		welt.list.add(box10);
+		welt.lightList.add(pointLight100);
 
 		//schatten scene 2
 
-		welt.lightList.add(pointLight101);
-		welt.list.add(plane11);
-		welt.list.add(sphere11);
-		welt.list.add(sphere12);
-		welt.list.add(sphere13);
+//		welt.lightList.add(pointLight101);
+//		welt.list.add(plane11);
+//		welt.list.add(sphere11);
+//		welt.list.add(sphere12);
+// 		welt.list.add(sphere13);
 
 			
 		drawPicture(primaryStage);
