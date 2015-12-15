@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Aufgabenstellung}{2}
+\contentsline {subsection}{\numberline {1.1}UML Diagramm}{2}
+\contentsline {subsubsection}{\numberline {1.1.1}Anpassungen andere Geometrien}{3}
+\contentsline {subsubsection}{\numberline {1.1.2}Probleme und besondere Ereignisse}{4}
+\contentsline {subsection}{\numberline {1.2}L\IeC {\"o}sungsstrategien}{4}
+\contentsline {section}{\numberline {2}Zeitbedarf}{4}
+\contentsline {section}{\numberline {3}Quellen}{4}
