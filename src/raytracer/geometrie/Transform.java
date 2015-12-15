@@ -4,6 +4,7 @@ import raytracer.Ray;
 import raytracer.matVecLib.Mat4x4;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
+import raytracer.matVecLib.Vector3;
 
 /**
  * This class represents a transfprm object.
@@ -24,7 +25,13 @@ public class Transform {
      */
     public Transform(){
 
-        //TODO Transformation mit der Einheitsmatrix
+        m = new Mat4x4(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+        );
+        i = m;
 
     }
 
@@ -35,6 +42,7 @@ public class Transform {
      */
 
     private Transform(final Mat4x4 m,final Mat4x4 i){
+
         if(m==null)throw new IllegalArgumentException("m have to be not null");
         if(i==null)throw new IllegalArgumentException("i have to be not null");
 
@@ -46,11 +54,24 @@ public class Transform {
     /**
      * This method translates a given point.
      * @param p
-     * @return
+     * @return The transformed
      */
     public Transform translate(final Point3 p){
+
         if(p==null)throw new IllegalArgumentException("p have to be not null");
-        return null;
+
+        final Transform trans = new Transform(
+
+                new Mat4x4(1,0,0,p.x,
+                           0,1,0,p.y,
+                           0,0,1,p.z,
+                           0,0,0,1),
+                new Mat4x4(1,0,0,-p.x,
+                           0,1,0,-p.y,
+                           0,0,1,-p.z,
+                           0,0,0,1));
+
+        return new Transform(m.mul(trans.m), i.mul(trans.i));
     }
 
     /**
@@ -60,8 +81,10 @@ public class Transform {
      * @param z
      * @return the transform object.
      */
-    public  Transform scale(final double x,final double y,final double z){
-        return null;
+    public Transform scale(final double x, final double y, final double z){
+
+        Transform t = new Transform().scale(x,y,z);
+        return new Transform(m.mul(t.m),t.i.mul(i));
     }
 
     /**
@@ -70,7 +93,8 @@ public class Transform {
      * @return The transform object.
      */
     public Transform rotX(final double angle){
-        return null;
+        Transform t = new Transform().rotX(angle);
+        return new Transform(m.mul(t.m),t.i.mul(i));
     }
 
     /**
@@ -79,7 +103,8 @@ public class Transform {
      * @return The transform object.
      */
     public Transform rotY(final double angle){
-        return null;
+        Transform t = new Transform().rotY(angle);
+        return new Transform(m.mul(t.m),t.i.mul(i));
     }
 
     /**
@@ -88,7 +113,8 @@ public class Transform {
      * @return The transform object.
      */
     public Transform rotZ(final double angle){
-        return null;
+        Transform t = new Transform().rotZ(angle);
+        return new Transform(m.mul(t.m),t.i.mul(i));
     }
 
     /**
@@ -98,7 +124,7 @@ public class Transform {
      */
     public Ray mul(final Ray r){
         if(r==null)throw new IllegalArgumentException("r have to be not null");
-        return null;
+        return new Ray(i.mul(r.o),i.mul(r.d));
     }
 
     /**
@@ -107,7 +133,7 @@ public class Transform {
      * @return The transformed normal.
      */
     public Normal3 mul(Normal3 n){
-        return null;
+        return i.transposed().mul(new Vector3(n.x,n.y,n.z)).normalized().asNormal();
     }
 
     @Override
