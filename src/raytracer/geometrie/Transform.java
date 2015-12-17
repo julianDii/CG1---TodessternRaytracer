@@ -1,5 +1,4 @@
 package raytracer.geometrie;
-
 import raytracer.Ray;
 import raytracer.matVecLib.Mat4x4;
 import raytracer.matVecLib.Normal3;
@@ -75,36 +74,25 @@ public class Transform {
     }
 
     /**
-     * This method transforms the scale.
-     * @param x
-     * @param y
-     * @param z
-     * @return the transform object.
-     */
-    public Transform scale(final double x, final double y, final double z){
-
-        final Transform t = new Transform(new Mat4x4(
-                x, 0, 0, 0,
-                0, y, 0, 0,
-                0, 0, z, 0,
-                0, 0, 0, 1),
-                new Mat4x4(
-                        1.0 / x, 0, 0, 0,
-                        0, 1.0 / y, 0, 0,
-                        0, 0, 1.0 / z, 0,
-                        0, 0, 0, 1));
-        
-        return new Transform(m.mul(t.m),t.i.mul(i));
-    }
-
-    /**
      * This method rotates the x with a given angle.
      * @param angle
      * @return The transform object.
      */
     public Transform rotX(final double angle){
-        Transform t = new Transform().rotX(angle);
-        return new Transform(m.mul(t.m),t.i.mul(i));
+
+        Transform trans = new Transform(
+                new Mat4x4(
+                        1,0,0,0,
+                        0,Math.cos(angle),-Math.sin(angle),0,
+                        0,Math.sin(angle), Math.cos(angle),0,
+                        0,0,0,1),
+                new Mat4x4(
+                        1,0,0,0,
+                        0,Math.cos(angle),Math.sin(angle),0,
+                        0,-Math.sin(angle),Math.cos(angle),0,
+                        0,0,0,1));
+
+        return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
@@ -113,8 +101,19 @@ public class Transform {
      * @return The transform object.
      */
     public Transform rotY(final double angle){
-        Transform t = new Transform().rotY(angle);
-        return new Transform(m.mul(t.m),t.i.mul(i));
+
+        Transform trans = new Transform(
+                new Mat4x4(
+                        Math.cos(angle),0,Math.sin(angle),0,
+                        0,1,0,0,
+                        -Math.sin(angle),0,Math.cos(angle),0,
+                        0,0,0,1),
+                new Mat4x4(
+                        Math.cos(angle),0,-Math.sin(angle),0,
+                        0,1,0,0,
+                        Math.sin(angle),0,Math.cos(angle),0,
+                        0,0,0,1));
+        return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
@@ -123,9 +122,47 @@ public class Transform {
      * @return The transform object.
      */
     public Transform rotZ(final double angle){
-        Transform t = new Transform().rotZ(angle);
-        return new Transform(m.mul(t.m),t.i.mul(i));
+
+        Transform trans = new Transform(
+                new Mat4x4(
+                        Math.cos(angle),-Math.sin(angle), 0, 0,
+                        Math.sin(angle), Math.cos(angle), 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, 0, 1),
+                new Mat4x4(
+                        Math.cos(angle), Math.sin(angle), 0, 0,
+                        -Math.sin(angle), Math.cos(angle), 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, 0, 1));
+
+        return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
+
+    /**
+     * This method transforms the scale.
+     * @param x
+     * @param y
+     * @param z
+     * @return the transform object.
+     */
+    public Transform scale(final double x, final double y, final double z){
+
+        final Transform trans = new Transform(
+
+                new Mat4x4(
+                        x,0,0,0,
+                        0,y,0,0,
+                        0,0,z,0,
+                        0,0,0,1),
+                new Mat4x4(
+                        1.0/x,0,0,0,
+                        0,1.0/y,0,0,
+                        0,0,1.0/z,0,
+                        0,0,0,1));
+
+        return new Transform(m.mul(trans.m),trans.i.mul(i));
+    }
+
 
     /**
      * This method transforms a given ray.

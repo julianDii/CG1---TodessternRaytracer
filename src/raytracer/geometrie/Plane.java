@@ -20,10 +20,11 @@ public class Plane extends Geometry {
 	 * @param n: normal of the plane. Cannot be null.
 	 * @param color of the plane. Cannot be null.
 	 */
-	public Plane(final Point3 a, final Normal3 n, final Material material) {
+	public Plane(final Material material) {
 		super(material);
-		this.a = a;
-		this.n = n;
+
+		this.a = new Point3 (0,0,0);
+		this.n = new Normal3(0,1,0);
 		
 		if (a == null) throw new IllegalArgumentException("I need a point lying on the plane!");
 		if (n == null) throw new IllegalArgumentException("The normal should not be null.");

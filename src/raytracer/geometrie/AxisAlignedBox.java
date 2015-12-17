@@ -4,6 +4,7 @@ import material.Material;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.Ray;
+import raytracer.matVecLib.Vector3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +33,11 @@ public class AxisAlignedBox extends Geometry {
      * @param material
      */
 
-    public AxisAlignedBox(final Point3 lbf, final Point3 run,final Material material) {
+    public AxisAlignedBox(final Material material) {
         super(material);
 
-        if(lbf==null)throw new IllegalArgumentException("lbf has to be not null");
-        if(run==null)throw new IllegalArgumentException("run has to be not null");
-
-        this.lbf=lbf;
-        this.run=run;
+        this.lbf= new Point3(-0.5,-0.5,-0.5);
+        this.run= new Point3(0.5,0.5,0.5);
     }
 
     /**
@@ -51,26 +49,26 @@ public class AxisAlignedBox extends Geometry {
 
         if(r==null)throw new IllegalArgumentException("m has to be not null");
 
-        List<Plane> planes = new ArrayList<>();
+        List<Geometry> geo = new ArrayList<>();
 
-        Plane leftSide = new Plane(lbf,new Normal3(-1, 0, 0),material);
-        Plane backSide = new Plane(lbf,new Normal3(0, 0, -1),material);
-        Plane bottomSide = new Plane(lbf,new Normal3(0, -1, 0),material);
-        Plane rightSide = new Plane(run,new Normal3(1, 0, 0),material);
-        Plane topSide = new Plane(run,new Normal3(0, 1, 0),material);
-        Plane frontSide = new Plane(run,new Normal3(0, 0, 1),material);
+        final Node leftSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI / 2), geo);
+        final Node backSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI).rotX(-Math.PI / 2), geo);
+        final Node bottomSide = new Node(new Transform().translate(this.lbf).rotX(Math.PI), geo);
+        final Node rightSide = new Node(new Transform().translate(this.run).rotZ(-Math.PI / 2), geo);
+        final Node topSide = new Node(new Transform().translate(this.run), geo);
+        final Node frontSide = new Node(new Transform().translate(this.run).rotZ(Math.PI).rotX(Math.PI / 2), geo);
 
-        planes.add(leftSide);
-        planes.add(backSide);
-        planes.add(bottomSide);
-        planes.add(rightSide);
-        planes.add(topSide);
-        planes.add(frontSide);
+        geo.add(leftSide);
+        geo.add(backSide);
+        geo.add(bottomSide);
+        geo.add(rightSide);
+        geo.add(topSide);
+        geo.add(frontSide);
 
 
         Hit hit = null;
 
-        for(final Plane plane : planes){
+        for(final Geometry g : geo){
 
 
             final double visible = r.o.sub(plane.a).normalized().dot(plane.n);
