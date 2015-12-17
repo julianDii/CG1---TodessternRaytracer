@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -28,10 +29,8 @@ import raytracer.World;
 import raytracer.camera.Camera;
 import raytracer.camera.OrthographicCamera;
 import raytracer.camera.PerspectiveCamera;
-import raytracer.geometrie.AxisAlignedBox;
-import raytracer.geometrie.Plane;
-import raytracer.geometrie.Sphere;
-import raytracer.geometrie.Triangle;
+import raytracer.geometrie.*;
+import raytracer.matVecLib.Mat4x4;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
@@ -50,6 +49,7 @@ public class OurGui extends Application {
 	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0,0,0));
+	public final static Node node = new Node(new Transform().scale(1,0.1,1),new ArrayList<Geometry>());
 //	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 //
 //	// Aufgabe Abb.5
@@ -81,53 +81,53 @@ public class OurGui extends Application {
 	// Uebung 3 Beleuchtung
 	// Abbildung 3 Beispielszene
 
-	public final Camera abb3Cam = new PerspectiveCamera(new Point3(4,4,4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
-	public final Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(1,0,0)));
-	public final Triangle triangl1 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new SingleColorMaterial(new raytracer.Color(1,1,0)));
-	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
-	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
+//	public final Camera abb3Cam = new PerspectiveCamera(new Point3(4,4,4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+//	public final Plane plane1 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(1,0,0)));
+//	public final Triangle triangl1 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new SingleColorMaterial(new raytracer.Color(1,1,0)));
+//	public final Sphere sphere5 = new Sphere(new Point3(1,1,1),0.5, new SingleColorMaterial(new raytracer.Color(0,1,0)));
+//	public final AxisAlignedBox box1 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new SingleColorMaterial(new raytracer.Color(0,0,1)));
+//
+//	// Uebung 3 Beleuchtung
+//	// Abbildung 4 Beispielszene
+//
+//	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false);
+//	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
+//	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
+//	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
+//	public final AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
+//
+//	//Abbildung 5
+//
+//	public final Plane plane3 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new PhongMaterial(new raytracer.Color(1,0,0),new raytracer.Color(1,1,1),64));
+//	public final Triangle triangl3 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new PhongMaterial(new raytracer.Color(1,1,0),new raytracer.Color(1,1,1),64));
+//	public final Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5, new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(1,1,1),64));
+//	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new PhongMaterial(new raytracer.Color(0,0,1), new raytracer.Color(1,1,1),64) );
 
-	// Uebung 3 Beleuchtung
-	// Abbildung 4 Beispielszene
 
-	public final PointLight pointLight = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false);
-	public final Plane plane2 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(1,0,0)));
-	public final Triangle triangl2 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
-	public final Sphere sphere6 = new Sphere(new Point3(1,1,1),0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
-	public final AxisAlignedBox box2 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
-
-	//Abbildung 5
-
-	public final Plane plane3 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new PhongMaterial(new raytracer.Color(1,0,0),new raytracer.Color(1,1,1),64));
-	public final Triangle triangl3 = new Triangle(new Point3(0,0,-1),new Point3(1,0,-1),new Point3(1,1,-1), new PhongMaterial(new raytracer.Color(1,1,0),new raytracer.Color(1,1,1),64));
-	public final Sphere sphere7 = new Sphere(new Point3(1,1,1),0.5, new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(1,1,1),64));
-	public final AxisAlignedBox box3 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new PhongMaterial(new raytracer.Color(0,0,1), new raytracer.Color(1,1,1),64) );
-
-
-	//Abbildung 6
-
-	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized(),false );
-
-    //Abbildung 7
-
-	//public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
-	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false,new Vector3(-1,-1,-1),Math.PI/14);
-	
-	
-	//Akzeptanzkriterien II - eigene Szene
-	// Lights
-	public final PointLight pointLight91 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,4),false);
-	public final PointLight pointLight92 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,0),false);
-	//public final DirectionalLight dirLight9 = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
-	public final SpotLight spotLight9 = new SpotLight(new raytracer.Color(1,1,1),new Point3(-3,1,-3),false,new Vector3(2,1,2),Math.PI/2);
-		
-	// Objekte
-	public final Plane plane9 = new Plane(new Point3(0,0,0), new Normal3(1,1,1), new LambertMaterial(new raytracer.Color(1,0,0)));
-	public final Triangle triangle9 = new Triangle(new Point3(2,0,-1),new Point3(1,1,-1),new Point3(3,2,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
-	public final Sphere sphere91 = new Sphere(new Point3(3,1,2), 0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
-	public final AxisAlignedBox box9 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
-	public final Sphere sphere92 = new Sphere(new Point3(0,0,0),2, new LambertMaterial(new raytracer.Color(1,1,1)));
-	
+//	//Abbildung 6
+//
+//	public final DirectionalLight dirLight = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized(),false );
+//
+//    //Abbildung 7
+//
+//	//public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),new Vector3(-1,-1,-1),Math.PI/4);
+//	public final SpotLight spotLight = new SpotLight(new raytracer.Color(1,1,1),new Point3(4,4,4),false,new Vector3(-1,-1,-1),Math.PI/14);
+//
+//
+//	//Akzeptanzkriterien II - eigene Szene
+//	// Lights
+//	public final PointLight pointLight91 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,4),false);
+//	public final PointLight pointLight92 = new PointLight(new raytracer.Color(1,1,1), new Point3(4,4,0),false);
+//	//public final DirectionalLight dirLight9 = new DirectionalLight(new raytracer.Color(1,1,1),new Vector3(-1,-1,-1).normalized() );
+//	public final SpotLight spotLight9 = new SpotLight(new raytracer.Color(1,1,1),new Point3(-3,1,-3),false,new Vector3(2,1,2),Math.PI/2);
+//
+//	// Objekte
+//	public final Plane plane9 = new Plane(new Point3(0,0,0), new Normal3(1,1,1), new LambertMaterial(new raytracer.Color(1,0,0)));
+//	public final Triangle triangle9 = new Triangle(new Point3(2,0,-1),new Point3(1,1,-1),new Point3(3,2,-1), new LambertMaterial(new raytracer.Color(1,1,0)));
+//	public final Sphere sphere91 = new Sphere(new Point3(3,1,2), 0.5, new LambertMaterial(new raytracer.Color(0,1,0)));
+//	public final AxisAlignedBox box9 = new AxisAlignedBox(new Point3(-1.5,0.5,0.5), new Point3(-0.5,1.5,1.5), new LambertMaterial(new raytracer.Color(0,0,1)));
+//	public final Sphere sphere92 = new Sphere(new Point3(0,0,0),2, new LambertMaterial(new raytracer.Color(1,1,1)));
+//
 	
 	// CAM
 	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),Math.PI/4);
@@ -140,16 +140,22 @@ public class OurGui extends Application {
 	public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
 	//scene Shadow 2
-	public final Plane plane11 = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
-			new ReflectiveMaterial(new raytracer.Color(0.1,0.1,0.1),new raytracer.Color(0,0,0),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final Sphere sphere11 = new Sphere(new Point3(-3,1,0),1, new ReflectiveMaterial(new raytracer.Color(1,0,0),
-			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final Sphere sphere12 = new Sphere(new Point3(0,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,1,0),
-			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final Sphere sphere13 = new Sphere(new Point3(3,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,0,1),
-			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final PerspectiveCamera cam11 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
-	public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
+//	public final Plane plane11 = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
+//			new ReflectiveMaterial(new raytracer.Color(0.1,0.1,0.1),new raytracer.Color(0,0,0),64,new raytracer.Color(0.5,0.5,0.5)));
+//	public final Sphere sphere11 = new Sphere(new Point3(-3,1,0),1, new ReflectiveMaterial(new raytracer.Color(1,0,0),
+//			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+//	public final Sphere sphere12 = new Sphere(new Point3(0,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,1,0),
+//			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+//	public final Sphere sphere13 = new Sphere(new Point3(3,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,0,1),
+//			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final PerspectiveCamera cam11 = new PerspectiveCamera(new Point3(0,0,3),new Vector3(0,0,-1),new Vector3(0,1,0),Math.PI/4);
+//	public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
+
+
+	// Transformationen
+
+	public final Sphere s = new Sphere(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+		new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 
 
@@ -209,20 +215,28 @@ public class OurGui extends Application {
 //		welt.list.add(sphere7);
 //		welt.list.add(box3);
 
-		//Schatten scene 1
-		welt.list.add(plane10);
-		welt.list.add(box10);
-		welt.lightList.add(pointLight100);
+//		//Schatten scene 1
+//		welt.list.add(plane10);
+//		welt.list.add(box10);
+    	welt.lightList.add(pointLight100);
 
 		//schatten scene 2
 
-//		welt.lightList.add(pointLight101);
+	//	welt.lightList.add(pointLight101);
 //		welt.list.add(plane11);
 //		welt.list.add(sphere11);
 //		welt.list.add(sphere12);
 // 		welt.list.add(sphere13);
 
-			
+		//transSpehre
+	//	Node testNode=null;
+	//	testNode.g.add(box10);
+
+		//node.g.add(plane10);
+		node.g.add(s);
+		//node.g.add(box10);
+		welt.list.add(node);
+
 		drawPicture(primaryStage);
 
 		primaryStage.show();

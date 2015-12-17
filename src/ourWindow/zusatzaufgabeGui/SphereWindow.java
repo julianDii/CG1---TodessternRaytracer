@@ -245,18 +245,18 @@ public class SphereWindow extends Stage {
 
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-        if (selectedToggle == togSingle) {
-            raytracer.geometrie.Sphere sinSphere = new raytracer.geometrie.Sphere(center, radi, sinCol);
-            TodessternGUI.welt.list.add(sinSphere);
-        }
-        if (selectedToggle == togLambert) {
-            raytracer.geometrie.Sphere lamSphere = new raytracer.geometrie.Sphere(center, radi, lamMat);
-            TodessternGUI.welt.list.add(lamSphere);
-        }
-        if (selectedToggle == togPhong) {
-            raytracer.geometrie.Sphere phoSphere = new raytracer.geometrie.Sphere(center, radi, phongMat);
-            TodessternGUI.welt.list.add(phoSphere);
-        }
+//        if (selectedToggle == togSingle) {
+//            raytracer.geometrie.Sphere sinSphere = new raytracer.geometrie.Sphere(center, radi, sinCol);
+//            TodessternGUI.welt.list.add(sinSphere);
+//        }
+//        if (selectedToggle == togLambert) {
+//            raytracer.geometrie.Sphere lamSphere = new raytracer.geometrie.Sphere(center, radi, lamMat);
+//            TodessternGUI.welt.list.add(lamSphere);
+//        }
+//        if (selectedToggle == togPhong) {
+//            raytracer.geometrie.Sphere phoSphere = new raytracer.geometrie.Sphere(center, radi, phongMat);
+//            TodessternGUI.welt.list.add(phoSphere);
+//        }
 
     }
 }

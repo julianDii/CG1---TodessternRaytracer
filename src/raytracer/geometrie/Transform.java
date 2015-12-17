@@ -83,7 +83,17 @@ public class Transform {
      */
     public Transform scale(final double x, final double y, final double z){
 
-        Transform t = new Transform().scale(x,y,z);
+        final Transform t = new Transform(new Mat4x4(
+                x, 0, 0, 0,
+                0, y, 0, 0,
+                0, 0, z, 0,
+                0, 0, 0, 1),
+                new Mat4x4(
+                        1.0 / x, 0, 0, 0,
+                        0, 1.0 / y, 0, 0,
+                        0, 0, 1.0 / z, 0,
+                        0, 0, 0, 1));
+        
         return new Transform(m.mul(t.m),t.i.mul(i));
     }
 
