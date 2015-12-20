@@ -277,29 +277,29 @@ public class PlaneWindow extends Stage{
 
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-        if(selectedToggle == togSingle){
-            Plane sinPlane = new Plane(point,normal,sinCol);
-            TodessternGUI.welt.list.add(sinPlane);
-            System.out.println(TodessternGUI.welt.list.size());
-            return sinPlane;
-        }
-
-        if(selectedToggle == togLambert){
-
-            Plane lamPlane = new Plane(point,normal,lamMat);
-            System.out.println(lamPlane);
-            TodessternGUI.welt.list.add(lamPlane);
-
-
-            return lamPlane;
-        }
-        if(selectedToggle == togPhong){
-
-            Plane phongPlane = new Plane(point,normal,phongMat);
-            TodessternGUI.welt.list.add(phongPlane);
-            return phongPlane;
-        }
+//        if(selectedToggle == togSingle){
+//            Plane sinPlane = new Plane(point,normal,sinCol);
+//            TodessternGUI.welt.list.add(sinPlane);
+//            System.out.println(TodessternGUI.welt.list.size());
+//            return sinPlane;
+//        }
+//
+//        if(selectedToggle == togLambert){
+//
+//            Plane lamPlane = new Plane(point,normal,lamMat);
+//            System.out.println(lamPlane);
+//            TodessternGUI.welt.list.add(lamPlane);
+//
+//
+//            return lamPlane;
+//        }
+//        if(selectedToggle == togPhong){
+//
+//            Plane phongPlane = new Plane(point,normal,phongMat);
+////            TodessternGUI.welt.list.add(phongPlane);
+////            return phongPlane;
+//        }
         return null;
-    }
+   }
 
 }

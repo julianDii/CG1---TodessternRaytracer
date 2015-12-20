@@ -49,7 +49,7 @@ public class OurGui extends Application {
 	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0,0,0));
-	public final static Node node = new Node(new Transform().scale(0.4,1,1),new ArrayList<Geometry>());
+	public final static Node node = new Node(new Transform().scale(0.4,1,1).rotZ(6).rotX(5).rotY(5),new ArrayList<Geometry>());
 //	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 //
 //	// Aufgabe Abb.5
@@ -137,7 +137,7 @@ public class OurGui extends Application {
 	//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
 	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
 
-	public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
+	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
 	//scene Shadow 2
 //	public final Plane plane11 = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
@@ -157,6 +157,11 @@ public class OurGui extends Application {
 	public final Sphere s = new Sphere(new ReflectiveMaterial(new raytracer.Color(0,1,0),
 		new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
+    public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+//	public final Triangle t = new Triangle(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+//			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 
 	/**
@@ -233,7 +238,8 @@ public class OurGui extends Application {
 	//	testNode.g.add(box10);
 
 		//node.g.add(plane10);
-		node.g.add(s);
+		//node.g.add(s);
+		node.g.add(b);
 		//node.g.add(box10);
 		welt.list.add(node);
 

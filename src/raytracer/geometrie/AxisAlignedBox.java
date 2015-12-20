@@ -7,7 +7,9 @@ import raytracer.Ray;
 import raytracer.matVecLib.Vector3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class represents a AxisAlignedBox.
@@ -33,11 +35,58 @@ public class AxisAlignedBox extends Geometry {
      * @param material
      */
 
+
+    /**
+     * The left side component of the Box.
+     */
+    private final Node leftSide;
+
+    /**
+     * The back side component of the Box.
+     */
+    private final Node backSide;
+
+    /**
+     * The bottom side component of the Box.
+     */
+    private final Node bottomSide;
+
+    /**
+     * The right side component of the Box.
+     */
+    private final Node rightSide;
+
+    /**
+     * The top side component of the Box.
+     */
+    private final Node topSide;
+
+    /**
+     * The fron side component of the Box.
+     */
+    private final Node frontSide;
+
+
+    /**
+     * This contructor initializes a new box with ist standard values.
+     * @param material
+     */
     public AxisAlignedBox(final Material material) {
         super(material);
 
         this.lbf= new Point3(-0.5,-0.5,-0.5);
         this.run= new Point3(0.5,0.5,0.5);
+        final List<Geometry> geoList = new ArrayList<>();
+        geoList.add(new Plane(material));
+
+        leftSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI / 2), geoList);
+        backSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI).rotX(-Math.PI / 2), geoList);
+        bottomSide = new Node(new Transform().translate(this.lbf).rotX(Math.PI), geoList);
+        rightSide = new Node(new Transform().translate(this.run).rotZ(-Math.PI / 2), geoList);
+        topSide = new Node(new Transform().translate(this.run), geoList);
+        frontSide = new Node(new Transform().translate(this.run).rotZ(Math.PI).rotX(Math.PI / 2), geoList);
+
+
     }
 
     /**
@@ -47,67 +96,93 @@ public class AxisAlignedBox extends Geometry {
      */
     public Hit hit(Ray r) {
 
-        if(r==null)throw new IllegalArgumentException("m has to be not null");
-
-        List<Geometry> geo = new ArrayList<>();
-
-        final Node leftSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI / 2), geo);
-        final Node backSide = new Node(new Transform().translate(this.lbf).rotZ(Math.PI).rotX(-Math.PI / 2), geo);
-        final Node bottomSide = new Node(new Transform().translate(this.lbf).rotX(Math.PI), geo);
-        final Node rightSide = new Node(new Transform().translate(this.run).rotZ(-Math.PI / 2), geo);
-        final Node topSide = new Node(new Transform().translate(this.run), geo);
-        final Node frontSide = new Node(new Transform().translate(this.run).rotZ(Math.PI).rotX(Math.PI / 2), geo);
-
-        geo.add(leftSide);
-        geo.add(backSide);
-        geo.add(bottomSide);
-        geo.add(rightSide);
-        geo.add(topSide);
-        geo.add(frontSide);
+        if (r == null) throw new IllegalArgumentException("m has to be not null");
 
 
-        Hit hit = null;
+        final Hit[] x = new Hit[]{leftSide.hit(r), rightSide.hit(r)};
+        final Hit[] y = new Hit[]{topSide.hit(r), bottomSide.hit(r)};
+        final Hit[] z = new Hit[]{frontSide.hit(r), backSide.hit(r)};
 
-        for(final Geometry g : geo){
+        final Set<Hit> hitBox = new HashSet<>();
 
-
-            final double visible = r.o.sub(plane.a).normalized().dot(plane.n);
-
-            if(visible > 0) {
-                final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
-                if(hit==null||t> hit.t){
-                    hit = new Hit(t,r,this,plane.n);
-                }
+        for (int i = 0; i < 2; i++) {
+            if (x[i]!= null){
+                final Point3 p = r.at(x[i].t);
+                if(p.y >= lbf.y && p.y <= run.y && p.z >= lbf.z && p.z <= run.z) hitBox.add(x[i]);
             }
         }
 
-        return compareDis(hit);
-    }
-
-    /**
-     * This method compares if the hits really on the box .
-     * @param h
-     * @return return is a hit when the point is really in the box otherwise the return is null.
-     */
-    private Hit compareDis(final Hit h) {
-
-
-        if(h != null) {
-
-
-            final Point3 p = h.ray.at(h.t);
-            final double e = 0.00000000001;
-
-            if (    (lbf.x <= p.x+e && p.x <= run.x+e) &&
-                    (lbf.y <= p.y+e && p.y <= run.y+e) &&
-                    (lbf.z <= p.z+e && p.z <= run.z+e)
-                    )
-                return h;
-
+        for (int i = 0; i < 2; i++) {
+            if (y[i]!= null){
+                final Point3 p = r.at(y[i].t);
+                if(p.x >= lbf.x && p.x <= run.x && p.z >= lbf.z && p.z <= run.z) hitBox.add(y[i]);
+            }
         }
 
-        return null;
+        for (int i = 0; i < 2; i++) {
+            if (z[i] != null){
+                final Point3 p = r.at(z[i].t);
+                if(p.x >= lbf.x && p.x <= run.x && p.y >= lbf.y && p.y <= run.y) hitBox.add(z[i]);
+            }
+        }
+
+        double t = Double.MAX_VALUE;
+        double t2 = 0.000001;
+        Hit rHit = null;
+
+        for (Hit h : hitBox) {
+            if (h == null) return null;
+            if (h.t < t && t > 0 && h.t > t2) {
+                t = h.t;
+                rHit = h;
+            }
+        }
+        return rHit;
     }
+
+//        Hit hit = null;
+//
+//        for(final Node n: geoList){
+//
+//
+//            final double visible = r.o.sub(n).normalized().dot(plane.n);
+//
+//            if(visible > 0) {
+//                final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
+//                if(hit==null||t> hit.t){
+//                    hit = new Hit(t,r,this,plane.n);
+//                }
+//            }
+//        }
+//
+//        return compareDis(hit);
+//    }
+//
+//    /**
+//     * This method compares if the hits really on the box .
+//     * @param h
+//     * @return return is a hit when the point is really in the box otherwise the return is null.
+//     */
+//    private Hit compareDis(final Hit h) {
+//
+//
+//        if(h != null) {
+//
+//
+//            final Point3 p = h.ray.at(h.t);
+//            final double e = 0.00000000001;
+//
+//            if (    (lbf.x <= p.x+e && p.x <= run.x+e) &&
+//                    (lbf.y <= p.y+e && p.y <= run.y+e) &&
+//                    (lbf.z <= p.z+e && p.z <= run.z+e)
+//                    )
+//                return h;
+//
+//        }
+
+
+//        return null;
+//    }
 
     @Override
     public boolean equals(Object o) {

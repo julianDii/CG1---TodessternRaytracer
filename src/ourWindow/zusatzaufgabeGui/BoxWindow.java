@@ -249,18 +249,18 @@ public class BoxWindow extends Stage {
         Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(),lamb.getNumber());
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-        if (selectedToggle == togSingle) {
-            AxisAlignedBox sinBox = new AxisAlignedBox(lb, ru, sinCol);
-            TodessternGUI.welt.list.add(sinBox);
-        }
-        if (selectedToggle == togLambert) {
-            AxisAlignedBox lamBox = new AxisAlignedBox(lb, ru, lamMat);
-            TodessternGUI.welt.list.add(lamBox);
-        }
-        if (selectedToggle == togPhong) {
-            AxisAlignedBox phongBox = new AxisAlignedBox(lb, ru, phongMat);
-            TodessternGUI.welt.list.add(phongBox);
-        }
+//        if (selectedToggle == togSingle) {
+//            AxisAlignedBox sinBox = new AxisAlignedBox(lb, ru, sinCol);
+//            TodessternGUI.welt.list.add(sinBox);
+//        }
+//        if (selectedToggle == togLambert) {
+//            AxisAlignedBox lamBox = new AxisAlignedBox(lb, ru, lamMat);
+//            TodessternGUI.welt.list.add(lamBox);
+//        }
+//        if (selectedToggle == togPhong) {
+//            AxisAlignedBox phongBox = new AxisAlignedBox(lb, ru, phongMat);
+//            TodessternGUI.welt.list.add(phongBox);
+//        }
 
     }
 
