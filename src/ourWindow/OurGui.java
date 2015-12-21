@@ -49,7 +49,27 @@ public class OurGui extends Application {
 	 * For testing we initialize the needed object in our world. 
 	 */
 	public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0,0,0));
-	public final static Node node = new Node(new Transform().scale(0.4,1,1).rotZ(6).rotX(5).rotY(5),new ArrayList<Geometry>());
+
+
+	//Schatten 1
+
+	public final static Node abb4Plane = new Node(new Transform(),new ArrayList<Geometry>());
+	public final static Node abb4Box = new Node(new Transform().scale(1,2,1),new ArrayList<Geometry>());
+
+	//Schatten 2
+
+	public final static Node abb3Plane = new Node(new Transform(),new ArrayList<Geometry>());
+	public final static Node abb3sphere1 = new Node(new Transform().translate(new Point3(-3,1,0)),new ArrayList<Geometry>());
+	public final static Node abb3sphere2 = new Node(new Transform().translate(new Point3(0,1,0)),new ArrayList<Geometry>());
+	public final static Node abb3sphere3 = new Node(new Transform().translate(new Point3(3,1,0)),new ArrayList<Geometry>());
+
+
+	//Transformation abb1-22
+	public final static Node abb1 = new Node(new Transform().rotX(0.5).rotZ(-0.6).scale(2, 0.3, 2),new ArrayList<Geometry>());
+
+	public final static Node abb2 = new Node(new Transform().rotX(0.6).rotZ(-0.3).rotY(0.6).scale(6, 0.4, 2).translate(new Point3(0.4,0,0)),new ArrayList<Geometry>());
+
+
 //	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 //
 //	// Aufgabe Abb.5
@@ -140,28 +160,56 @@ public class OurGui extends Application {
 	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
 	//scene Shadow 2
-//	public final Plane plane11 = new Plane(new Point3(0,0,0), new Normal3(0,1,0),
-//			new ReflectiveMaterial(new raytracer.Color(0.1,0.1,0.1),new raytracer.Color(0,0,0),64,new raytracer.Color(0.5,0.5,0.5)));
+
 //	public final Sphere sphere11 = new Sphere(new Point3(-3,1,0),1, new ReflectiveMaterial(new raytracer.Color(1,0,0),
 //			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 //	public final Sphere sphere12 = new Sphere(new Point3(0,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,1,0),
 //			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 //	public final Sphere sphere13 = new Sphere(new Point3(3,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,0,1),
 //			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final PerspectiveCamera cam11 = new PerspectiveCamera(new Point3(0,0,3),new Vector3(0,0,-1),new Vector3(0,1,0),Math.PI/4);
-//	public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
+	public final PerspectiveCamera camTransformation = new PerspectiveCamera(new Point3(0,0,8),new Vector3(0,0,-1),new Vector3(0,1,0),Math.PI/4);
+
 
 
 	// Transformationen
 
-	public final Sphere s = new Sphere(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+	public final Sphere s = new Sphere(new ReflectiveMaterial(new raytracer.Color(1,0,0),
 		new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
-    public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+
+	//Abbildung3 3 Kugeln mit reflektierendem Material
+
+	public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
+
+	public final Sphere sRed = new Sphere(new ReflectiveMaterial(new raytracer.Color(1,0,0),
 			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
-//	public final Triangle t = new Triangle(new ReflectiveMaterial(new raytracer.Color(0,1,0),
-//			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+	public final Sphere sGreen = new Sphere(new ReflectiveMaterial(new raytracer.Color(0,1,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+	public final Sphere sBlue = new Sphere(new ReflectiveMaterial(new raytracer.Color(0,0,1),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+	public final Plane blackPlane = new Plane(new ReflectiveMaterial(new raytracer.Color(0.1,0.1,0.1),
+			new raytracer.Color(0,0,0),64,new raytracer.Color(0.5,0.5,0.5)));
+
+
+	//Abb4 rote Box auf Ebene
+	public final Plane plane1 = new Plane(new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
+
+	public final AxisAlignedBox redBox = new AxisAlignedBox(new LambertMaterial(new raytracer.Color(1,0,0)));
+
+
+
+	//Transformtionen box/sphere
+	public final Plane p = new Plane(new ReflectiveMaterial(new raytracer.Color(1,0,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+	public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(1,1,0),
+			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+
+
 
 
 	/**
@@ -220,28 +268,40 @@ public class OurGui extends Application {
 //		welt.list.add(sphere7);
 //		welt.list.add(box3);
 
-//		//Schatten scene 1
-//		welt.list.add(plane10);
-//		welt.list.add(box10);
-    	welt.lightList.add(pointLight100);
 
-		//schatten scene 2
 
-	//	welt.lightList.add(pointLight101);
-//		welt.list.add(plane11);
-//		welt.list.add(sphere11);
-//		welt.list.add(sphere12);
-// 		welt.list.add(sphere13);
+		//schatten scene 1
+//       //use cam10
+//		welt.lightList.add(pointLight100);
+//		abb4Plane.g.add(plane1);
+//		abb4Box.g.add(redBox);
+//		welt.list.add(abb4Plane);
+//		welt.list.add(abb4Box);
 
-		//transSpehre
-	//	Node testNode=null;
-	//	testNode.g.add(box10);
 
-		//node.g.add(plane10);
-		//node.g.add(s);
-		node.g.add(b);
-		//node.g.add(box10);
-		welt.list.add(node);
+
+		//Schtten scene2
+		 //use cam10
+
+		welt.lightList.add(pointLight101);
+		abb3Plane.g.add(blackPlane);
+		abb3sphere1.g.add(sRed);
+		abb3sphere2.g.add(sGreen);
+		abb3sphere3.g.add(sBlue);
+
+		welt.list.add(abb3Plane);
+		welt.list.add(abb3sphere1);
+		welt.list.add(abb3sphere2);
+		welt.list.add(abb3sphere3);
+
+
+		// Transformation abb.1
+//		node1.g.add(s);
+//		welt.list.add(node1);
+
+//		// Transformation abb.2
+//		abb2.g.add(b);
+//		welt.list.add(abb2);
 
 		drawPicture(primaryStage);
 
@@ -300,7 +360,7 @@ public class OurGui extends Application {
 	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
 
 		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(cam11.rayFor(width, height, x, height - 1 - y));
+		raytracer.Color hitFarbe = welt.hit(cam10.rayFor(width, height, x, height - 1 - y));
 
 		if (hitFarbe.r<0){hitFarbe.r=0;}
 		if (hitFarbe.r>1){hitFarbe.r=1;}
