@@ -162,7 +162,7 @@ public class OurGui extends Application {
 	//SCENE SHADOW
 	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,0),true);
 	//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(3,3,3),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(2,2,2),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
 
 	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -414,8 +414,6 @@ public class OurGui extends Application {
 
 		//divide color with pixels of grid
 		addFarbe=addFarbe.mul(1f/rays.size());
-		System.out.println(addFarbe);
-
 
 		return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 	}

@@ -31,9 +31,10 @@ public class SamplingPattern{
 
         if(x > 1){
            xStep= 1.0/(x-1.0);
-
+            System.out.println("xstep > 1 : "+ xStep);
         }else
             xStep=0.0;
+        System.out.println("xstep < 1 : "+ xStep);
 
         if(y > 1){
             yStep= 1.0/(y-1.0);

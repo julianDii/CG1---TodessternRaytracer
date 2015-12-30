@@ -41,7 +41,7 @@ public class PerspectiveCamera extends Camera {
 		if(samplingPattern==null)throw new IllegalArgumentException("samplingPattern has to be not null");
 
 		this.angle=angle;
-		this.samplingPattern.constant();
+		this.samplingPattern.regularPattern(10,10);
     }
 
 	/**
@@ -67,11 +67,9 @@ public class PerspectiveCamera extends Camera {
 
 			if (p.x >= -0.5 && p.x <= 0.5 && p.y >= -0.5 && p.y <= 0.5) {
 
-
-
 				uXx = u.mul(x - ((width - 1) / 2));
 				vXy = v.mul(y - ((height - 1) / 2));
-				r = w.mul(-1).mul((height / 2) / Math.tan(angle / 2)).add(uXx).add(vXy);
+				r = w.mul(-1).mul((height / 2) / Math.tan(angle / 2)).add(uXx).add(vXy).add(u.mul(p.x)).add(v.mul(p.y));
 				Ray ray = new Ray(e, r.normalized());
 				rayArr.add(ray);
 			}
