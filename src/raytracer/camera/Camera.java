@@ -4,6 +4,9 @@ package raytracer.camera;
 import raytracer.Ray;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
+import sampling.SamplingPattern;
+
+import java.util.Set;
 
 /**
  * This Class creates a new camera
@@ -42,6 +45,11 @@ public abstract class Camera {
     final Vector3 w;
 
     /**
+     * the SamplingPattern component of the camera.
+     */
+    final SamplingPattern samplingPattern;
+
+    /**
      * The constructor needs the 3 vectors of the camera position and generates a new coordinate 
      * system with the origin e and the new axial vectors u, w and v.
      * These three vectors are needed to to generate the rays of the camera.
@@ -50,15 +58,17 @@ public abstract class Camera {
      * @param t Up-Vector
      */
     
-    public Camera(final Point3 e, final Vector3 g, final Vector3 t){
+    public Camera(final Point3 e, final Vector3 g, final Vector3 t, SamplingPattern samplingPattern){
 
         if(e==null)throw new IllegalArgumentException("e have to be not null");
         if(g==null)throw new IllegalArgumentException("g have to be not null");
         if(t==null)throw new IllegalArgumentException("t have to be not null");
+        if(samplingPattern==null)throw new IllegalArgumentException("samplingPattern have to be not null");
 
         this.e=e;
         this.g=g;
         this.t=t;
+        this.samplingPattern=samplingPattern;
         
         this.w = this.g.normalized().mul(-1.0);
         this.u = this.t.x(this.w).normalized();
@@ -73,7 +83,7 @@ public abstract class Camera {
      * @param y The y-coordinate of the pixel
      * @return abstract no return
      */
-    public abstract Ray rayFor(final int width,final int height,final int x,final int y);
+    public abstract Set<Ray> rayFor(final int width,final int height,final int x,final int y);
 
     @Override
     public boolean equals(Object o) {

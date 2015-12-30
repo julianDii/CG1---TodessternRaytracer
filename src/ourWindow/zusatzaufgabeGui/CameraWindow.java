@@ -193,19 +193,19 @@ public class CameraWindow extends Stage {
 
         Double sca = new Double(scaling.getNumber());
 
-        if (selectedToggle == togOrto) {
-
-            OrthographicCamera orthoCam = new OrthographicCamera(point, direction, rotation, sca);
-            TodessternGUI.cam=orthoCam;
-
-            return orthoCam;
-        }
-
-        if (selectedToggle == togPer){
-            PerspectiveCamera perCam = new PerspectiveCamera(point, direction, rotation,Math.PI/sca);
-            TodessternGUI.cam=perCam;
-            return perCam;
-        }
+//        if (selectedToggle == togOrto) {
+//
+//            OrthographicCamera orthoCam = new OrthographicCamera(point, direction, rotation, sca);
+//            TodessternGUI.cam=orthoCam;
+//
+//            return orthoCam;
+//        }
+//
+//        if (selectedToggle == togPer){
+//            PerspectiveCamera perCam = new PerspectiveCamera(point, direction, rotation,Math.PI/sca);
+//            TodessternGUI.cam=perCam;
+//            return perCam;
+//        }
         return null;
     }
 

@@ -2,8 +2,13 @@ package raytracer.camera;
 
 
 import raytracer.Ray;
+import raytracer.matVecLib.Point2;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
+import sampling.SamplingPattern;
+
+import java.util.*;
+import java.util.regex.Matcher;
 
 /**
  * This class represents a Perspective Camera
@@ -23,17 +28,20 @@ public class PerspectiveCamera extends Camera {
 	 * @param e position of camera (eye position)
 	 * @param g gaze direction
 	 * @param t Up-Vector
+	 * @param samplingPattern
 	 * @param angle The angle of the Perspective Camera
 	 */
 
-    public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t, final double angle) {
-        super(e, g, t);
+    public PerspectiveCamera(final Point3 e, final Vector3 g, final Vector3 t,final SamplingPattern samplingPattern, final double angle) {
+        super(e, g, t,samplingPattern);
 
 		if(e==null)throw new IllegalArgumentException("e has to be not null");
 		if(g==null)throw new IllegalArgumentException("g has to be not null");
 		if(t==null)throw new IllegalArgumentException("m has to be not null");
+		if(samplingPattern==null)throw new IllegalArgumentException("samplingPattern has to be not null");
 
 		this.angle=angle;
+		this.samplingPattern.constant();
     }
 
 	/**
@@ -44,19 +52,36 @@ public class PerspectiveCamera extends Camera {
 	 * @param y The y-coordinate of the pixel
 	 * @return The new Ray for a special pixel.
 	 */
-    public Ray rayFor(int width, int height, int x, int y) {
+
+	@Override
+	public Set<Ray> rayFor(int width, int height, int x, int y) {
+
+		Vector3 vXy;
+		Vector3 uXx;
+		Vector3 r;
+		List<Ray> rayArr= new ArrayList<>();
+		Set<Ray>raySet;
 
 
-		final Vector3 uXx;
-		final Vector3 vXy;
-		final Vector3 r;
+		for (Point2 p :samplingPattern.allPoints) {
 
-		uXx=u.mul(x-((width-1)/2));
-		vXy=v.mul(y-((height-1)/2));
-		r=w.mul(-1).mul((height/2)/Math.tan(angle/2)).add(uXx).add(vXy);
+			if (p.x >= -0.5 && p.x <= 0.5 && p.y >= -0.5 && p.y <= 0.5) {
 
-		return new Ray(e,r.normalized());
-    }
+
+
+				uXx = u.mul(x - ((width - 1) / 2));
+				vXy = v.mul(y - ((height - 1) / 2));
+				r = w.mul(-1).mul((height / 2) / Math.tan(angle / 2)).add(uXx).add(vXy);
+				Ray ray = new Ray(e, r.normalized());
+				rayArr.add(ray);
+			}
+		}
+
+		raySet = new HashSet<>(rayArr);
+
+		return raySet;
+
+	}
 
 	@Override
 	public String toString() {
@@ -72,6 +97,8 @@ public class PerspectiveCamera extends Camera {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {

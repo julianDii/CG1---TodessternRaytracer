@@ -131,7 +131,7 @@ public class AxisAlignedBox extends Geometry {
         Hit rHit = null;
 
         for (Hit h : hitBox) {
-            if (h == null) return null;
+            if (h == null)continue;
             if (h.t < t && t > 0 && h.t > t2) {
                 t = h.t;
                 rHit = h;

@@ -118,18 +118,19 @@ public class TodessternGUI extends Application {
      * or the background color of the world.
      */
     private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-
-        if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-        raytracer.Color hitFarbe = welt.hit(cam.rayFor(width, height, x, height - 1 - y));
-
-        if (hitFarbe.r<0){hitFarbe.r=0;}
-        if (hitFarbe.r>1){hitFarbe.r=1;}
-        if (hitFarbe.g<0){hitFarbe.g=0;}
-        if (hitFarbe.g>1){hitFarbe.g=1;}
-        if (hitFarbe.b<0){hitFarbe.b=0;}
-        if (hitFarbe.b>1){hitFarbe.b=1;}
-
-        return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
+//
+//        if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
+//        raytracer.Color hitFarbe = welt.hit(cam.rayFor(width, height, x, height - 1 - y));
+//
+//        if (hitFarbe.r<0){hitFarbe.r=0;}
+//        if (hitFarbe.r>1){hitFarbe.r=1;}
+//        if (hitFarbe.g<0){hitFarbe.g=0;}
+//        if (hitFarbe.g>1){hitFarbe.g=1;}
+//        if (hitFarbe.b<0){hitFarbe.b=0;}
+//        if (hitFarbe.b>1){hitFarbe.b=1;}
+//
+//        return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
+        return null;
     }
 
     /**

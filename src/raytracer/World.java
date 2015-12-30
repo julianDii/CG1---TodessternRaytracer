@@ -37,7 +37,7 @@ public class World {
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
 	 * @param r: ray which we want to check
-	 * @return Color object, background color if ray has no hit on the object. if it does, it 
+	 * @return Color object, background color if ray has no hit on the object. if it does, it
 	 * returns the color of the hit object
 	 */
 	public Color hit (Ray r){

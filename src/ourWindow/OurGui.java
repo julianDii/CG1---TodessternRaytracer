@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -25,6 +26,7 @@ import licht.PointLight;
 import licht.SpotLight;
 import material.*;
 import javafx.stage.Stage;
+import raytracer.Ray;
 import raytracer.World;
 import raytracer.camera.Camera;
 import raytracer.camera.OrthographicCamera;
@@ -34,6 +36,7 @@ import raytracer.matVecLib.Mat4x4;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
+import sampling.SamplingPattern;
 
 /**
  * OurGui Class opens a window thanks to the implemented JavaFX
@@ -41,7 +44,7 @@ import raytracer.matVecLib.Vector3;
  * create his own world containing objects such as world, camera and geometry.
  * The window size is editable by the user.
  * 
- * @author Charlißne Waldrich
+ * @author Charline Waldrich
  */
 public class OurGui extends Application {
 
@@ -69,6 +72,10 @@ public class OurGui extends Application {
 
 	public final static Node abb2 = new Node(new Transform().rotX(0.6).rotZ(-0.3).rotY(0.6).scale(6, 0.4, 2).translate(new Point3(0.4,0,0)),new ArrayList<Geometry>());
 
+
+	//TEST
+	public final static Node test = new Node(new Transform().rotX(3).rotZ(4).scale(4, 3, 0.5),new ArrayList<Geometry>());
+	public final static Node test2 = new Node(new Transform().rotX(5).rotZ(3).scale(2,1,3),new ArrayList<Geometry>());
 
 //	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
 //
@@ -150,12 +157,12 @@ public class OurGui extends Application {
 //
 	
 	// CAM
-	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),Math.PI/4);
+	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
 
 	//SCENE SHADOW
 	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,0),true);
 	//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),Math.PI/4);
+	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(3,3,3),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
 
 	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -167,8 +174,7 @@ public class OurGui extends Application {
 //			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 //	public final Sphere sphere13 = new Sphere(new Point3(3,1,0),1, new ReflectiveMaterial(new raytracer.Color(0,0,1),
 //			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-	public final PerspectiveCamera camTransformation = new PerspectiveCamera(new Point3(0,0,8),new Vector3(0,0,-1),new Vector3(0,1,0),Math.PI/4);
-
+	public final PerspectiveCamera camTransformation = new PerspectiveCamera(new Point3(0,0,8),new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(20),Math.PI/4);
 
 
 	// Transformationen
@@ -202,19 +208,17 @@ public class OurGui extends Application {
 
 
 	//Transformtionen box/sphere
-	public final Plane p = new Plane(new ReflectiveMaterial(new raytracer.Color(1,0,0),
+	public final Plane p = new Plane(new ReflectiveMaterial(new raytracer.Color(1,0,1),
 			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
-	public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(1,1,0),
+	public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(1,0,0),
 			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
-
-
-
 
 
 	/**
 	 * Drawing Surface:
 	 */
+
 	private final VBox root = new VBox();
 	private ImageView imageview;
 	private WritableImage writableimage;
@@ -272,36 +276,46 @@ public class OurGui extends Application {
 
 		//schatten scene 1
 //       //use cam10
-//		welt.lightList.add(pointLight100);
-//		abb4Plane.g.add(plane1);
-//		abb4Box.g.add(redBox);
-//		welt.list.add(abb4Plane);
-//		welt.list.add(abb4Box);
+		welt.lightList.add(pointLight100);
+		abb4Plane.g.add(plane1);
+		abb4Box.g.add(redBox);
+		welt.list.add(abb4Plane);
+		welt.list.add(abb4Box);
 
 
 
 		//Schtten scene2
 		 //use cam10
-
-		welt.lightList.add(pointLight101);
-		abb3Plane.g.add(blackPlane);
-		abb3sphere1.g.add(sRed);
-		abb3sphere2.g.add(sGreen);
-		abb3sphere3.g.add(sBlue);
-
-		welt.list.add(abb3Plane);
-		welt.list.add(abb3sphere1);
-		welt.list.add(abb3sphere2);
-		welt.list.add(abb3sphere3);
-
-
+//
+//		welt.lightList.add(pointLight101);
+//		abb3Plane.g.add(blackPlane);
+//		abb3sphere1.g.add(sRed);
+//		abb3sphere2.g.add(sGreen);
+//		abb3sphere3.g.add(sBlue);
+////
+//		welt.list.add(abb3Plane);
+//		welt.list.add(abb3sphere1);
+//		welt.list.add(abb3sphere2);
+//		welt.list.add(abb3sphere3);
+////
+//
 		// Transformation abb.1
-//		node1.g.add(s);
-//		welt.list.add(node1);
+//		abb1.g.add(s);
+//		welt.list.add(abb1);
 
-//		// Transformation abb.2
+		// Transformation abb.2
 //		abb2.g.add(b);
 //		welt.list.add(abb2);
+
+
+//		//TEST
+//		abb3Plane.g.add(plane1);
+//		test2.g.add(b);
+//		test.g.add(sRed);
+//		welt.list.add(test);
+//		welt.list.add(abb3Plane);
+//
+//		welt.list.add(test2);
 
 		drawPicture(primaryStage);
 
@@ -337,6 +351,7 @@ public class OurGui extends Application {
 		try {
 			for (int y = 0; y < height; ++y) {
 				for (int x = 0; x < width; ++x) {
+
 					writer.setColor(x, y, getColor(width, height, x, y));
 				}
 			}
@@ -357,20 +372,52 @@ public class OurGui extends Application {
 	 * @return Color object either gets the color from the geometry, which was hit 
 	 * or the background color of the world.
 	 */
-	private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-
-		if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-		raytracer.Color hitFarbe = welt.hit(cam10.rayFor(width, height, x, height - 1 - y));
-
-		if (hitFarbe.r<0){hitFarbe.r=0;}
-		if (hitFarbe.r>1){hitFarbe.r=1;}
-		if (hitFarbe.g<0){hitFarbe.g=0;}
-		if (hitFarbe.g>1){hitFarbe.g=1;}
-		if (hitFarbe.b<0){hitFarbe.b=0;}
-		if (hitFarbe.b>1){hitFarbe.b=1;}
 
 
-		return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
+
+	private Color getColor(int width , int height, int x, int y) throws IllegalArgumentException {
+
+		raytracer.Color hitFarbe=new raytracer.Color(0,0,0);
+		raytracer.Color addFarbe = new raytracer.Color(0,0,0);
+
+
+		Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
+
+		for (Ray r : rays) {
+
+			hitFarbe = welt.hit(r);
+
+
+			if(hitFarbe==null)throw new IllegalArgumentException("color has to be not null");
+
+			if (hitFarbe.r < 0) {
+				hitFarbe.r = 0;
+			}
+			if (hitFarbe.r > 1) {
+				hitFarbe.r = 1;
+			}
+			if (hitFarbe.g < 0) {
+				hitFarbe.g = 0;
+			}
+			if (hitFarbe.g > 1) {
+				hitFarbe.g = 1;
+			}
+			if (hitFarbe.b < 0) {
+				hitFarbe.b = 0;
+			}
+			if (hitFarbe.b > 1) {
+				hitFarbe.b = 1;
+			}
+			addFarbe=addFarbe.add(hitFarbe);
+
+		}
+
+		//divide color with pixels of grid
+		addFarbe=addFarbe.mul(1f/rays.size());
+		System.out.println(addFarbe);
+
+
+		return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 	}
 
 	/**
