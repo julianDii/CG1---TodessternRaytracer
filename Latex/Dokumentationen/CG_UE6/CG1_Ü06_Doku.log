@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  21 DEC 2015 15:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  30 DEC 2015 14:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**CG1_Ü05_Doku.tex
-(./CG1_Ü05_Doku.tex
+**CG1_Ü06_Doku.tex
+(./CG1_Ü06_Doku.tex
 LaTeX2e <2015/01/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/extsizes/extarticle.cls
@@ -351,8 +351,8 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen116
 \Gin@req@width=\dimen117
 )
-(./CG1_Ü05_Doku.aux)
-\openout1 = `CG1_Ü05_Doku.aux'.
+(./CG1_Ü06_Doku.aux)
+\openout1 = `CG1_Ü06_Doku.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -431,97 +431,101 @@ e
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./CG1_Ü05_Doku.toc)
+(./CG1_Ü06_Doku.toc)
 \tf@toc=\write3
-\openout3 = `CG1_Ü05_Doku.toc'.
+\openout3 = `CG1_Ü06_Doku.toc'.
 
- <images/ClassDiagram.png, id=8, 582.175pt x 515.9275pt>
-File: images/ClassDiagram.png Graphic file (type png)
 
-<use images/ClassDiagram.png>
-Package pdftex.def Info: images/ClassDiagram.png used on input line 21.
-(pdftex.def)             Requested size: 426.7964pt x 426.80269pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 20--22
+! LaTeX Error: File `images/tr_abb_1' not found.
 
- []
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ...s[width=10cm,height=10cm]{images/tr_abb_1}
+                                                  \\\\\\\\\\
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-[2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 27.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 27.
- [3 <./images/ClassDiagram.png>] [4] <images/tr_abb_1.png, id=24, 642.4pt x 431
-.6125pt>
-File: images/tr_abb_1.png Graphic file (type png)
 
-<use images/tr_abb_1.png>
-Package pdftex.def Info: images/tr_abb_1.png used on input line 47.
-(pdftex.def)             Requested size: 284.5291pt x 284.53583pt.
- <images/tr_abb_2.png, id=25, 642.4pt x 431.6125pt>
-File: images/tr_abb_2.png Graphic file (type png)
+! LaTeX Error: File `images/tr_abb_2' not found.
 
-<use images/tr_abb_2.png>
-Package pdftex.def Info: images/tr_abb_2.png used on input line 49.
-(pdftex.def)             Requested size: 284.5291pt x 284.53583pt.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.34 ...s[width=10cm,height=10cm]{images/tr_abb_2}
+                                                  \\
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--50
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
 
  []
 
-[5 <./images/tr_abb_1.png>] [6 <./images/tr_abb_2.png>] [7]
-(./CG1_Ü05_Doku.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--35
+
+ []
+
+[2] [3] [4] (./CG1_Ü06_Doku.aux) ) 
 Here is how much of TeX's memory you used:
- 2574 strings out of 493089
- 35737 string characters out of 6134841
+ 2556 strings out of 493089
+ 35162 string characters out of 6134841
  98515 words of memory out of 5000000
- 6023 multiletter control sequences out of 15000+600000
+ 5997 multiletter control sequences out of 15000+600000
  8798 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,23p,274b,185s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb>
-Output written on CG1_Ü05_Doku.pdf (7 pages, 115729 bytes).
+ 37i,7n,23p,596b,176s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr17.pfb>
+Output written on CG1_Ü06_Doku.pdf (4 pages, 47145 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 29 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

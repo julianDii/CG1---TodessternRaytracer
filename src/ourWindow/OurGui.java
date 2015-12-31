@@ -74,6 +74,7 @@ public class OurGui extends Application {
 
 
 	//TEST
+	public final static Node sampleSpehre = new Node(new Transform().translate(new Point3(-1,0,0)),new ArrayList<Geometry>());
 	public final static Node test = new Node(new Transform().rotX(3).rotZ(4).scale(4, 3, 0.5),new ArrayList<Geometry>());
 	public final static Node test2 = new Node(new Transform().rotX(5).rotZ(3).scale(2,1,3),new ArrayList<Geometry>());
 
@@ -157,13 +158,13 @@ public class OurGui extends Application {
 //
 	
 	// CAM
-	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
+	PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 
 	//SCENE SHADOW
-	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,0),true);
+	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(2,2,2),true);
 	//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(2,2,2),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
-
+	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(1.8,1.8,1.8),new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+	public final Camera orthoS = new OrthographicCamera(new Point3(1.8,1.8,1.8), new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(20),4);
 	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
 	//scene Shadow 2
@@ -180,7 +181,7 @@ public class OurGui extends Application {
 	// Transformationen
 
 	public final Sphere s = new Sphere(new ReflectiveMaterial(new raytracer.Color(1,0,0),
-		new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+		new raytracer.Color(1,1,1),64,new raytracer.Color(0.8,0.8,0.8)));
 
 
 	//Abbildung3 3 Kugeln mit reflektierendem Material
@@ -201,7 +202,7 @@ public class OurGui extends Application {
 
 
 	//Abb4 rote Box auf Ebene
-	public final Plane plane1 = new Plane(new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
+	public final Plane plane1 = new Plane(new LambertMaterial(new raytracer.Color(0.4,0.4,0.4)));
 
 	public final AxisAlignedBox redBox = new AxisAlignedBox(new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -213,6 +214,11 @@ public class OurGui extends Application {
 
 	public final AxisAlignedBox b = new AxisAlignedBox(new ReflectiveMaterial(new raytracer.Color(1,0,0),
 			new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+	//FUNNY STUFF
+	public final static Node funnySphere1 = new Node(new Transform().translate(new Point3(0,0.8,0.6)).scale(0.3,0.3,0.3),new ArrayList<Geometry>());
+	public final static Node funnySphere2 = new Node(new Transform().translate(new Point3(0.6,0.8,0)).scale(0.3,0.3,0.3),new ArrayList<Geometry>());
+
 
 
 	/**
@@ -279,9 +285,14 @@ public class OurGui extends Application {
 		welt.lightList.add(pointLight100);
 		abb4Plane.g.add(plane1);
 		abb4Box.g.add(redBox);
-		welt.list.add(abb4Plane);
-		welt.list.add(abb4Box);
+		funnySphere1.g.add(sRed);
+		funnySphere2.g.add(sRed);
 
+		welt.list.add(abb4Plane);
+		//welt.list.add(abb4Box);
+		welt.list.add(sGreen);
+		welt.list.add(funnySphere1);
+		welt.list.add(funnySphere2);
 
 
 		//Schtten scene2
@@ -308,14 +319,10 @@ public class OurGui extends Application {
 //		welt.list.add(abb2);
 
 
-//		//TEST
-//		abb3Plane.g.add(plane1);
-//		test2.g.add(b);
-//		test.g.add(sRed);
-//		welt.list.add(test);
-//		welt.list.add(abb3Plane);
-//
-//		welt.list.add(test2);
+//		//TEST sampling
+//		welt.lightList.add(pointLight100);
+//		sampleSpehre.g.add(sRed);
+//		welt.list.add(sampleSpehre);
 
 		drawPicture(primaryStage);
 
@@ -381,7 +388,7 @@ public class OurGui extends Application {
 		raytracer.Color addFarbe = new raytracer.Color(0,0,0);
 
 
-		Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
+		Set<Ray> rays = orthoS.rayFor(width, height, x, height - 1 - y);
 
 		for (Ray r : rays) {
 

@@ -2,12 +2,12 @@ package raytracer.camera;
 
 
 import raytracer.Ray;
+import raytracer.matVecLib.Point2;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import sampling.SamplingPattern;
 
-import java.util.RandomAccess;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The OrthographicCamera class represents a OrthographicCamera.
@@ -35,31 +35,45 @@ public class OrthographicCamera extends Camera {
 		if(samplingPattern==null)throw new IllegalArgumentException("samplingPattern has to be not null");
 
 		this.s=s;
+		this.samplingPattern.regularPattern2();
     }
 
 	@Override
 	public Set<Ray> rayFor(int width, int height, int x, int y) {
 
+
+		List<Ray> rayArr= new ArrayList<>();
+		Set<Ray>raySet= null;
+
+
 		// a is aspect ratio (width/height)
 		double a = ((double)width)/((double)height);
 
-		Set<Ray>raySet=null;
+		double pixelWidth=a*s/width;
+		double pixelHeight=s/height;
 
 
-		// d = -w
-		Vector3 d=this.w.mul(-1);
-		// s*((x-(width-1)/2)/(width-1))*u
-		Vector3 sxwu = this.u.mul(this.s*((x-(width-1)/((double)2))/((double)(width-1))));
-		// s*((y-(height-1)/2)/(height-1))*v
-		Vector3 syhv = this.v.mul(this.s*((y-(height-1)/((double) 2))/((double)(height-1))));
-		//
-		Vector3 xyVector = sxwu.mul(a).add(syhv);
-		//
-		// e + ...
-		Point3 oPoint = e.add(xyVector);
+		for (Point2 p :samplingPattern.allPoints) {
 
-		Ray ray = new Ray(oPoint,d);
-		raySet.add(ray);
+			if (p.x >= -0.5 && p.x <= 0.5 && p.y >= -0.5 && p.y <= 0.5) {
+
+				// d = -w
+				Vector3 d = this.w.mul(-1);
+				// s*((x-(width-1)/2)/(width-1))*u
+				Vector3 sxwu = this.u.mul(this.s * ((x - (width - 1) / ((double) 2)) / ((double) (width - 1)))).add(u.mul(p.x).mul(pixelWidth));
+				// s*((y-(height-1)/2)/(height-1))*v
+				Vector3 syhv = this.v.mul(this.s * ((y - (height - 1) / ((double) 2)) / ((double) (height - 1)))).add(v.mul(p.y).mul(pixelHeight));
+				//
+				Vector3 xyVector = sxwu.mul(a).add(syhv);
+				//
+				// e + ...
+				Point3 oPoint = e.add(xyVector);
+
+				Ray ray = new Ray(oPoint, d);
+				rayArr.add(ray);
+			}
+		}
+		raySet = new HashSet<>(rayArr);
 
 		return raySet;
 	}

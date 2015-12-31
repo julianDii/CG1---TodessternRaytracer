@@ -41,7 +41,7 @@ public class PerspectiveCamera extends Camera {
 		if(samplingPattern==null)throw new IllegalArgumentException("samplingPattern has to be not null");
 
 		this.angle=angle;
-		this.samplingPattern.regularPattern(10,10);
+		this.samplingPattern.regularPattern2();
     }
 
 	/**
