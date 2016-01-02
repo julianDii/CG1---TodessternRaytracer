@@ -44,10 +44,6 @@ public abstract class Geometry {
     public abstract Hit hit(final Ray r);
 
 
-
-
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

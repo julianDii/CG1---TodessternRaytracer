@@ -91,6 +91,7 @@ public class Vector3 {
         );
     }
 
+
     /**
      * Given Vector multiplied by another Vector.
      * @param v
@@ -141,6 +142,11 @@ public class Vector3 {
     public Normal3 asNormal(){
 
         return new Normal3(x,y,z);
+
+    }
+    public Point3 asPoint(){
+
+        return new Point3(x,y,z);
 
     }
 

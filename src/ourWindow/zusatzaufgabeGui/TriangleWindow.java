@@ -278,18 +278,18 @@ public class TriangleWindow extends Stage {
         Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(), lamb.getNumber());
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-        if (selectedToggle == togSingle) {
-            Triangle sinTri = new Triangle(fPoint,sPoint,tPoint, sinCol);
-            TodessternGUI.welt.list.add(sinTri);
-        }
-        if (selectedToggle == togLambert) {
-            Triangle lamTri = new Triangle(fPoint,sPoint,tPoint, lamMat);
-            TodessternGUI.welt.list.add(lamTri);
-        }
-        if (selectedToggle == togPhong) {
-            Triangle phongTri = new Triangle(fPoint,sPoint,tPoint, phongMat);
-            TodessternGUI.welt.list.add(phongTri);
-        }
+//        if (selectedToggle == togSingle) {
+//            Triangle sinTri = new Triangle(fPoint,sPoint,tPoint, sinCol);
+//            TodessternGUI.welt.list.add(sinTri);
+//        }
+//        if (selectedToggle == togLambert) {
+//            Triangle lamTri = new Triangle(fPoint,sPoint,tPoint, lamMat);
+//            TodessternGUI.welt.list.add(lamTri);
+//        }
+//        if (selectedToggle == togPhong) {
+//            Triangle phongTri = new Triangle(fPoint,sPoint,tPoint, phongMat);
+//            TodessternGUI.welt.list.add(phongTri);
+//        }
 
     }
 

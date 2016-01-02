@@ -163,7 +163,7 @@ public class OurGui extends Application {
 	//SCENE SHADOW
 	public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(2,2,2),true);
 	//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(1.8,1.8,1.8),new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+	public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(2,2,2),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 	public final Camera orthoS = new OrthographicCamera(new Point3(1.8,1.8,1.8), new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(20),4);
 	//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -218,6 +218,13 @@ public class OurGui extends Application {
 	//FUNNY STUFF
 	public final static Node funnySphere1 = new Node(new Transform().translate(new Point3(0,0.8,0.6)).scale(0.3,0.3,0.3),new ArrayList<Geometry>());
 	public final static Node funnySphere2 = new Node(new Transform().translate(new Point3(0.6,0.8,0)).scale(0.3,0.3,0.3),new ArrayList<Geometry>());
+
+
+	//Obj Loader
+	public final ShapeFromFile ren = new ShapeFromFile(
+			"/Users/monsterbumser/Uni/Kurse/3.semester/CG/raytracer-todesstern/src/assets/models/cube-v-vt-vn.obj",
+			new ReflectiveMaterial(new raytracer.Color(1,0,0),
+					new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 
 
@@ -283,16 +290,16 @@ public class OurGui extends Application {
 		//schatten scene 1
 //       //use cam10
 		welt.lightList.add(pointLight100);
-		abb4Plane.g.add(plane1);
-		abb4Box.g.add(redBox);
-		funnySphere1.g.add(sRed);
-		funnySphere2.g.add(sRed);
-
-		welt.list.add(abb4Plane);
-		//welt.list.add(abb4Box);
-		welt.list.add(sGreen);
-		welt.list.add(funnySphere1);
-		welt.list.add(funnySphere2);
+//		abb4Plane.g.add(plane1);
+//		abb4Box.g.add(redBox);
+//		funnySphere1.g.add(sRed);
+//		funnySphere2.g.add(sRed);
+//
+//		welt.list.add(abb4Plane);
+//		//welt.list.add(abb4Box);
+//		welt.list.add(sGreen);
+//		welt.list.add(funnySphere1);
+//		welt.list.add(funnySphere2);
 
 
 		//Schtten scene2
@@ -323,6 +330,15 @@ public class OurGui extends Application {
 //		welt.lightList.add(pointLight100);
 //		sampleSpehre.g.add(sRed);
 //		welt.list.add(sampleSpehre);
+
+		//OBJ loader
+
+
+        Node testnode= ren.OBJLoader();
+
+
+		welt.list.add(testnode);
+
 
 		drawPicture(primaryStage);
 
@@ -388,7 +404,7 @@ public class OurGui extends Application {
 		raytracer.Color addFarbe = new raytracer.Color(0,0,0);
 
 
-		Set<Ray> rays = orthoS.rayFor(width, height, x, height - 1 - y);
+		Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
 
 		for (Ray r : rays) {
 
@@ -422,6 +438,7 @@ public class OurGui extends Application {
 		//divide color with pixels of grid
 		addFarbe=addFarbe.mul(1f/rays.size());
 
+		System.out.println(addFarbe);
 		return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 	}
 
