@@ -3,6 +3,7 @@ package material;
 import raytracer.Color;
 import raytracer.World;
 import raytracer.geometrie.Hit;
+import texture.Texture;
 
 /**
  * This class represents a material with a given color.
@@ -11,8 +12,17 @@ import raytracer.geometrie.Hit;
  *
  */
 public class SingleColorMaterial extends Material {
+
+	/**
+	 * The color of the SingleColorMaterial.
+	 */
 	
 	final Color color;
+
+	/**
+	 * The texture of the SingleColorMaterial.
+	 */
+	final Texture texture;
 
 	/**
 	 * This constructor builds a new SingleColormaterial with it's color.
@@ -21,8 +31,18 @@ public class SingleColorMaterial extends Material {
 	public SingleColorMaterial(final Color color){
 
 		if(color==null)throw new IllegalArgumentException("color has to be not null");
-		this.color= color; 
+		this.color= color;
+		this.texture=null;
 		
+	}
+
+	/**
+	 * This contructor creates a new SingleColorMaterial with  texture.
+	 * @param texture The texture of the material
+	 */
+	public SingleColorMaterial(final Texture texture){
+		this.texture=texture;
+		this.color=null;
 	}
 
 	/**
@@ -32,7 +52,16 @@ public class SingleColorMaterial extends Material {
 	 * @return the given color.
 	 */
 
-	public Color colorFor (Hit hit, World world, Tracer tracer){
+	public Color colorFor (final Hit hit,final World world,final Tracer tracer){
+
+		if (hit==null)throw new IllegalArgumentException("hit has to be not null");
+		if (world==null)throw new IllegalArgumentException("world has to be not null");
+		if (tracer==null)throw new IllegalArgumentException("tracer has to be not null");
+
+		if (texture !=null){
+			return this.texture.colorFor(hit.tex2d.u,hit.tex2d.v);
+		}
+
 		return this.color;
 	}
 

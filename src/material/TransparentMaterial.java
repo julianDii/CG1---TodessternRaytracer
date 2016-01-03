@@ -8,19 +8,40 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Vector3;
 
 /**
+ * This class represents a TransparentMaterial.
  * Created by Juliand on 02.01.16.
  */
 public class TransparentMaterial extends Material {
 
+    /**
+     * The value of the refractive index.
+     */
     private double refIndex;
+
+    /**
+     * This constructor creates a new TransparentMaterial.
+     * @param refIndex
+     */
 
     public TransparentMaterial(double refIndex){
 
         this.refIndex=refIndex;
     }
 
+    /**
+     *
+     * @param hit The hit object.
+     * @param world The world object.
+     * @param tracer
+     * @return
+     */
     @Override
     public Color colorFor(final Hit hit,final World world,final Tracer tracer) {
+
+        if (hit==null)throw new IllegalArgumentException("hit has to be not null");
+        if (world==null)throw new IllegalArgumentException("world has to be not null");
+        if (tracer==null)throw new IllegalArgumentException("tracer has to be not null");
+
 
         Normal3 nor = hit.nor;
         Vector3 e = hit.ray.d.mul(-1).reflectedOn(nor);

@@ -6,10 +6,12 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import raytracer.Ray;
+import texture.TextureCoord2D;
 
 /**
- * The Triangle class represents a Triangle.
- * @author Robert Ullmann
+ * The Triangle class represents the geometry Triangle.
+ *
+ * @author Robert Ullmann,Julian Dobrot
  */
 public class Triangle extends Geometry {
 
@@ -28,13 +30,23 @@ public class Triangle extends Geometry {
 	 */
 	public final Point3 c;
 
+	public final Normal3 an;
+	public final Normal3 bn;
+	public final Normal3 cn;
+
+	public final TextureCoord2D at;
+	public final TextureCoord2D bt;
+	public final TextureCoord2D ct;
+
+
 	/**
 	 * T constructor creates a new Triangle
 	 * @param a the first Corner-Point, cannot be null.
 	 * @param b the second Corner-Point, cannot be null.
 	 * @param c the third Corner-Point, cannot be null.
 	 */
-    public Triangle(final Point3 a, final Point3 b, final Point3 c, final Material material) {
+    public Triangle(final Point3 a, final Point3 b, final Point3 c,final Normal3 an,final Normal3 bn, final Normal3 cn,
+					final Material material,final TextureCoord2D at,final TextureCoord2D bt, final TextureCoord2D ct) {
     	super(material);
 
     	if (a == null || b == null || c == null ) {
@@ -44,7 +56,14 @@ public class Triangle extends Geometry {
         this.a=a;
         this.b=b;
         this.c=c;
-    }
+		this.an = an;
+		this.bn = bn;
+		this.cn = cn;
+		this.at = at;
+		this.bt = bt;
+		this.ct = ct;
+
+	}
 
 
     @Override
@@ -62,6 +81,7 @@ public class Triangle extends Geometry {
 		double beta = 0;
 		double gamma = 0;
 		double t = 0;
+		double alpha = 1.0 - beta - gamma;
 
 
     	// lineares Gleichungssystem als Matrix
@@ -80,7 +100,9 @@ public class Triangle extends Geometry {
 		t=A3.determinant/A.determinant;
 
 		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
-			return new Hit(t, r, this,v.x(w).asNormal());
+
+			final TextureCoord2D tc = at.mul(alpha).add(bt).mul(beta).add(ct).mul(gamma);
+			return new Hit(t, r, this,v.x(w).asNormal(),tc);
 		}
 		return null;
     }

@@ -3,6 +3,7 @@ package raytracer.geometrie;
 import raytracer.Ray;
 import raytracer.geometrie.Geometry;
 import raytracer.matVecLib.Normal3;
+import texture.TextureCoord2D;
 
 /**
  * An Hit object is created if the given ray (from the camera perspective) hits the chosen
@@ -34,6 +35,8 @@ public class Hit {
 	 * The normal of the intesection point.
 	 */
 	public final Normal3 nor;
+
+	public final TextureCoord2D tex2d;
 	
 	/**
 	 * Initializes a new hit object.
@@ -42,23 +45,18 @@ public class Hit {
 	 * @param ray	holds the ray (with its origin point and the direction vector)
 	 * @param geo	holds the chosen geometry (with which we search the rays intersection)
 	 */
-	public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 nor) {
+	public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 nor, final TextureCoord2D tex2d) {
+
+		if (ray == null)throw new IllegalArgumentException("The Ray should not be null.");
+		if (geo == null)throw new IllegalArgumentException("geo has to be not null");
+		if (nor == null)throw new IllegalArgumentException("nor should ne not null");
+		if (tex2d == null)throw new IllegalArgumentException("tex2d should be not null");
 
 		this.t = t;
 		this.ray = ray;
 		this.geo = geo;
 		this.nor = nor;
-
-
-		if (ray == null) {
-			throw new IllegalArgumentException("The Ray should not be null.");
-		}
-		if (geo == null) {
-			throw new IllegalArgumentException("Choose the Geometry you want to see.");
-		}
-		if (nor == null) {
-			throw new IllegalArgumentException("Choose the Geometry you want to see.");
-		}
+		this.tex2d = tex2d;
 
 	}
 

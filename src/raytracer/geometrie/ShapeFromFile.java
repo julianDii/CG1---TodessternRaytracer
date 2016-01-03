@@ -1,30 +1,74 @@
 package raytracer.geometrie;
-
 import material.Material;
 import raytracer.Ray;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
+import texture.TextureCoord2D;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.StringTokenizer;
 
 /**
- * This class represents nN OBJ Loader. It loads scenes to render from a file.
- * Created by Juliand on 31.12.15.
+ * This Class represents an OBJLoader.
+ * It's possible to load scenes from an .obj file.
+ * To use this class u have to  1. create a property file in your directory (raytracer-todesstern).
+ * 2. Add this to the property file: BASE_URL_MODEL="/Users/..here you have to enter your specific path to the img
+ * folder.../src/assets/models/"
+ *
  */
-public class ShapeFromFile extends Geometry{
 
+public class ShapeFromFile extends Geometry {
+
+    /**
+     * The empty String hull for the path to the img folder loaded from the properties.
+     */
+    private static String BASE_URL_MODELS = "";
+
+    /**
+     * The properties object to load individual base paths for different users.
+     */
+    private static Properties properties = new Properties();
+
+    /**
+     * describes comments in the file.
+     */
     private final static String COMMENT = "#";
+
+    /**
+     * describes texture coordinate points in the file.
+     */
     private final static String VERTEX_TEXTURE = "vt";
+
+    /**
+     * describes a normal in the file.
+     */
     private final static String VERTEX_NORMAL = "vn";
+
+    /**
+     * describes a vertex in the file.
+     */
     private final static String VERTEX = "v";
+
+    /**
+     * describes an area in the file.
+     */
     private final static String FACE = "f";
 
+    /**
+     * splitter
+     */
     private final static String SPLITTER = " ";
+
+    /**
+     * seperator
+     */
     private final static String SEPERATOR = "/";
+
 
     private ArrayList<Geometry> triangles;
     private ArrayList<Point3> vertexPoints;
@@ -35,7 +79,6 @@ public class ShapeFromFile extends Geometry{
     private ArrayList<Point3> vertexTextureFaces;
 
     private int currentLineNumber;
-    @SuppressWarnings("unused")
     private int currentFaceNumber;
 
     private boolean vtToProcess;
@@ -44,22 +87,27 @@ public class ShapeFromFile extends Geometry{
     /**
      * the name of the file
      */
-    public final String fileName;
+    public final String modelName;
 
     /**
-     * This constructor creates a new ShapeFromFile object.
-     * @param fileName The path to the file.
-     * @param material The image material.
+     * creates a new ShapeFromFile object having a filname and a material as param
+     * @param modelName of the OBJ File
+     * @param material for the image
      */
-    public ShapeFromFile(final String fileName, final Material material) {
+
+    public ShapeFromFile(final String modelName, final Material material) {
         super(material);
-        this.fileName = fileName;
+
+        if (modelName==null)throw new IllegalArgumentException("fileName has to be not null");
+        if (material==null)throw new IllegalArgumentException("material has to be not null");
+
+        this.modelName = modelName;
         this.triangles = new ArrayList<Geometry>();
         this.vertexPoints = new ArrayList<Point3>();
         this.vertexNormalPoints = new ArrayList<Normal3>();
         this.vertexTexturePoints = new ArrayList<Point3>();
         this.vertexFaces = new ArrayList<Point3>();
-
+        this.vertexNormalFaces = new ArrayList<Integer>();
         this.vertexTextureFaces = new ArrayList<Point3>();
         this.currentLineNumber = 0;
         this.currentFaceNumber = 0;
@@ -73,7 +121,10 @@ public class ShapeFromFile extends Geometry{
      */
     public Node OBJLoader() {
         try {
-            File f = new File(fileName);
+            properties.load(new FileInputStream("todesstern.properties"));
+            BASE_URL_MODELS = properties.get("BASE_URL_MODELS").toString();
+            System.out.println(BASE_URL_MODELS);
+            File f = new File(BASE_URL_MODELS + modelName);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
             String line;
 
@@ -118,7 +169,15 @@ public class ShapeFromFile extends Geometry{
                 catch(ArrayIndexOutOfBoundsException msg) {
                     System.err.println("weird indices");
                 }
-                triangles.add(new Triangle(a, b, c,material));
+
+                final Normal3 normal;
+                if (this.vnToProcess) {
+                    normal = vertexNormalPoints.get(vertexNormalFaces.get(i) - 1).mul(-1);
+                } else {
+                    normal = c.sub(a).x(b.sub(a)).normalized().asNormal();
+                }
+                triangles.add(new Triangle(a, b, c, normal, normal, normal,material,new TextureCoord2D(0, 0),new TextureCoord2D(0, 0),new TextureCoord2D(0, 0)));
+
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -190,9 +249,72 @@ public class ShapeFromFile extends Geometry{
     }
 
 
-
     @Override
     public Hit hit(Ray r) {
+
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "ShapeFromFile{" +
+                "triangles=" + triangles +
+                ", vertexPoints=" + vertexPoints +
+                ", vertexNormalPoints=" + vertexNormalPoints +
+                ", vertexTexturePoints=" + vertexTexturePoints +
+                ", vertexFaces=" + vertexFaces +
+                ", vertexNormalFaces=" + vertexNormalFaces +
+                ", vertexTextureFaces=" + vertexTextureFaces +
+                ", currentLineNumber=" + currentLineNumber +
+                ", currentFaceNumber=" + currentFaceNumber +
+                ", vtToProcess=" + vtToProcess +
+                ", vnToProcess=" + vnToProcess +
+                ", fileName='" + modelName + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        ShapeFromFile that = (ShapeFromFile) o;
+
+        if (currentLineNumber != that.currentLineNumber) return false;
+        if (currentFaceNumber != that.currentFaceNumber) return false;
+        if (vtToProcess != that.vtToProcess) return false;
+        if (vnToProcess != that.vnToProcess) return false;
+        if (triangles != null ? !triangles.equals(that.triangles) : that.triangles != null) return false;
+        if (vertexPoints != null ? !vertexPoints.equals(that.vertexPoints) : that.vertexPoints != null) return false;
+        if (vertexNormalPoints != null ? !vertexNormalPoints.equals(that.vertexNormalPoints) : that.vertexNormalPoints != null)
+            return false;
+        if (vertexTexturePoints != null ? !vertexTexturePoints.equals(that.vertexTexturePoints) : that.vertexTexturePoints != null)
+            return false;
+        if (vertexFaces != null ? !vertexFaces.equals(that.vertexFaces) : that.vertexFaces != null) return false;
+        if (vertexNormalFaces != null ? !vertexNormalFaces.equals(that.vertexNormalFaces) : that.vertexNormalFaces != null)
+            return false;
+        if (vertexTextureFaces != null ? !vertexTextureFaces.equals(that.vertexTextureFaces) : that.vertexTextureFaces != null)
+            return false;
+        return !(modelName != null ? !modelName.equals(that.modelName) : that.modelName != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (triangles != null ? triangles.hashCode() : 0);
+        result = 31 * result + (vertexPoints != null ? vertexPoints.hashCode() : 0);
+        result = 31 * result + (vertexNormalPoints != null ? vertexNormalPoints.hashCode() : 0);
+        result = 31 * result + (vertexTexturePoints != null ? vertexTexturePoints.hashCode() : 0);
+        result = 31 * result + (vertexFaces != null ? vertexFaces.hashCode() : 0);
+        result = 31 * result + (vertexNormalFaces != null ? vertexNormalFaces.hashCode() : 0);
+        result = 31 * result + (vertexTextureFaces != null ? vertexTextureFaces.hashCode() : 0);
+        result = 31 * result + currentLineNumber;
+        result = 31 * result + currentFaceNumber;
+        result = 31 * result + (vtToProcess ? 1 : 0);
+        result = 31 * result + (vnToProcess ? 1 : 0);
+        result = 31 * result + (modelName != null ? modelName.hashCode() : 0);
+        return result;
     }
 }

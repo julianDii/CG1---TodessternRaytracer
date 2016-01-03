@@ -53,7 +53,7 @@ public class Node extends Geometry {
         }
 
         if(lhit==null)return null;
-        return new Hit(lhit.t,r,lhit.geo,transT.mul(lhit.nor));
+        return new Hit(lhit.t,r,lhit.geo,transT.mul(lhit.nor),lhit.tex2d);
     }
 
     @Override

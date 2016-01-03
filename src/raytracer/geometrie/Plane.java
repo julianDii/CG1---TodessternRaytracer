@@ -4,6 +4,7 @@ import material.Material;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.Ray;
+import texture.TextureCoord2D;
 
 /**
  * Created by Julian on 03.11.15. 
@@ -47,7 +48,8 @@ public class Plane extends Geometry {
     		if ( t < 0) {
     			return null;
     		}
-    		return new Hit(t,r,this,n);
+			Point3 point = r.at(t);
+    		return new Hit(t,r,this,n,new TextureCoord2D(point.x, -point.z));
     	}
     	return null;
     }

@@ -4,9 +4,10 @@ import material.Material;
 import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.Ray;
+import texture.TextureCoord2D;
 
 /**
- * This class represents a Sphere.
+ * This class represents the geometry Sphere.
  * Created by Julian on 03.11.15.
  * Developer Julian Dobrot
  */
@@ -22,15 +23,27 @@ public class Sphere extends Geometry {
      */
     final double r;
 
+
+    /**
+     * This contructor builds a new Sphere.
+     * @param c The Point where the Sphere is located.
+     * @param r The radius of the Sphere
+     * @param material
+     */
+    public Sphere(final Point3 c, final double r, final Material material) {
+        super(material);
+        this.c = c;
+        this.r = r;
+    }
+
+
     /**
      * This constructor builds a new Sphere.
-     * @param c The center point of the Sphere.
-     * @param r The radius of the Sphere.
-     * @param material The color of the Sphere.
+     * The Spere will be created with a radius of 1 @ the point 0,0,0
+     * @param material The material of the Sphere
      */
     public Sphere(final Material material) {
         super(material);
-
 
         this.c=new Point3(0,0,0);
         this.r=1;
@@ -63,22 +76,33 @@ public class Sphere extends Geometry {
 
             if (t1 >= 0 & t2 >= 0) {
                 p=r.at(Math.min(t1, t2));
-               return new Hit(Math.min(t1, t2), r, this,p.sub(c).normalized().asNormal() );
+               return new Hit(Math.min(t1, t2), r, this,p.sub(c).normalized().asNormal(),texFor(p) );
             }else if (t1>=0){
-                return new Hit(t1,r,this, r.at(t1).sub(c).normalized().asNormal());
+                return new Hit(t1,r,this, r.at(t1).sub(c).normalized().asNormal(),texFor(r.at(t1)));
             }else if(t2>=0) {
 
-                return new Hit(t2, r, this,r.at(t2).sub(c).normalized().asNormal());
+                return new Hit(t2, r, this,r.at(t2).sub(c).normalized().asNormal(),texFor(r.at(t2)));
             }
         }else if (d==0){
             final double t3;
             t3=-b/(2*a);
             if (t3>=0){
-                return new Hit(t3,r,this,r.at(t3).sub(c).normalized().asNormal());
+                return new Hit(t3,r,this,r.at(t3).sub(c).normalized().asNormal(),texFor(r.at(t3)));
 
             }
         }
         return null;
+    }
+
+    public TextureCoord2D texFor(final Point3 point){
+        if (point == null) {
+            throw new IllegalArgumentException("The Point cannot be null!");
+        }
+
+        double teta = Math.acos(point.y);
+        double phi   = Math.atan2(point.x, point.z);
+
+        return  new TextureCoord2D(phi/(Math.PI*2), -teta/Math.PI);
     }
 
     @Override

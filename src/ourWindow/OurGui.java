@@ -224,9 +224,9 @@ public class OurGui extends Application {
 
 
 		//Obj Loader
-	//	public final ShapeFromFile ren = new ShapeFromFile(
-	//			"/Users/monsterbumser/Uni/Kurse/3.semester/CG/raytracer-todesstern/src/assets/models/teddy.obj",
-	//			new TransparentMaterial(1.4));
+		public final ShapeFromFile ren = new ShapeFromFile(
+				"cube-v-blocks-weird-indices.obj",
+				new SingleColorMaterial(new raytracer.Color(1,0,0)));
 
 		//ABBLIDUNG 5 Beleuchtung 2
 
@@ -293,7 +293,7 @@ public class OurGui extends Application {
 
 	    public final Node nboxT = new Node(new Transform().translate(new Point3(0.5,0,3.5)).scale(1,3,1),new ArrayList<>());
 
-	    public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4), new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(0,1,0),24));
+	   // public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4), new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(0,1,0),24));
 
 	/**
 		 * Drawing Surface:
@@ -372,7 +372,7 @@ public class OurGui extends Application {
 			//Schtten scene2
 			 //use cam10
 	//
-	//		welt.lightList.add(pointLight101);
+			welt.lightList.add(pointLight101);
 	//		abb3Plane.g.add(blackPlane);
 	//		abb3sphere1.g.add(sRed);
 	//		abb3sphere2.g.add(sGreen);
@@ -402,48 +402,10 @@ public class OurGui extends Application {
 
 			//OBJ loader
 
-	//
-	//        Node testnode= ren.OBJLoader();
-	//
-	//
-	//		welt.list.add(testnode);
-
-			//ABBILDUNG 5 Beleuchtung2
-			welt.lightList.add(spotLight);
-			welt.lightList.add(pointLight);
-			welt.lightList.add(directionalLight);
-
-			planeNode.g.add(plane);
-			welt.list.add(planeNode);
-
-			n1.g.add(s1);
-			n2.g.add(s2);
-			n3.g.add(s3);
-			n4.g.add(s4);
-			n5.g.add(s5);
-			n6.g.add(s6);
-
-			welt.list.add(n1);
-			welt.list.add(n2);
-			welt.list.add(n3);
-			welt.list.add(n4);
-			welt.list.add(n5);
-			welt.list.add(n6);
-
-			ns1T.g.add(s1T);
-			ns2T.g.add(s2T);
-			ns3T.g.add(s3T);
-
-			welt.list.add(ns1T);
-			welt.list.add(ns2T);
-			welt.list.add(ns3T);
-
-			nboxT.g.add(boxT);
-			//welt.list.add(nboxT);
-
-			welt.list.add(tri);
+	        Node testnode= ren.OBJLoader();
 
 
+			welt.list.add(testnode);
 
 
 
@@ -511,7 +473,7 @@ public class OurGui extends Application {
 			raytracer.Color addFarbe = new raytracer.Color(0,0,0);
 
 
-			Set<Ray> rays = camRef.rayFor(width, height, x, height - 1 - y);
+			Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
 
 			for (Ray r : rays) {
 
