@@ -102,13 +102,13 @@ public class WorldWindow extends Stage {
      */
 
     private void createWorld() {
-
-        Color worldcol = new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
-        Color worldAmbient = new raytracer.Color(ambir.getNumber(),ambig.getNumber(), ambib.getNumber());
-
-
-         World newWold = new World(worldcol,worldAmbient);
-
-        TodessternGUI.welt=newWold;
+//
+//        Color worldcol = new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
+//        Color worldAmbient = new raytracer.Color(ambir.getNumber(),ambig.getNumber(), ambib.getNumber());
+//
+//
+//         World newWold = new World(worldcol,worldAmbient);
+//
+//        TodessternGUI.welt=newWold;
     }
 }

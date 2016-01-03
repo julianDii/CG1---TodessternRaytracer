@@ -29,10 +29,17 @@ public class World {
 	 * List contains all object of light sources chosen by the user.
 	 */
 	public final List<Light> lightList = new ArrayList<>();
-	
-	public World (Color color,Color ambi){
+
+	/**
+	 * The refractive index.
+	 */
+	public final double refractionIndex;
+
+
+	public World (final Color color,final Color ambient,final double refractionIndex){
 		this.backgroundcolor = color;
-		this.ambient = new Color(0.25,0.25,0.25);
+		this.ambient = ambient;
+		this.refractionIndex = refractionIndex;
 	}
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
