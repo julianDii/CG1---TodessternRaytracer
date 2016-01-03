@@ -1,0 +1,28 @@
+OBJ Loader: - bunny                       + (45minuter render time!!!),
+            - teddy                       +,
+            - cube-v                      +,
+            - cube-v-vt                   +,
+            - cube-v-vt-vn                +,
+            - cube-v-vt-vn-comments       +,
+            - cube-v-vn                   +,
+            - cube-v-blocks               - (just one side displayed),
+            - cube-v-blocks-weird-indices - (just one side displayed),
+
+The base file to the directory of the models is now not hardcoded anymore. The
+individual path of every user of todesstern-raytracer is stored in a property
+file (ATM you have to create it) you find a manual in the comments of the class.
+TODO Later on in the GUI mode this will happen when a new user registers to the
+ray tracer. This means when the user wants to add images or models he can pick,
+add and delete them in the GUI per drag & drop. The same is implemented for the
+texture from file.
+
+Started to implement the Test Scene from task BELEUCHTUNG 2 ABBILDUNG 5.
+Yesterday i had still some issues with the reflectiveMaterial, locks not bad but
+the shadows on the spheres locking not directly like in the scene from the task.
+
+Implemented texture,simpleColorTexture,imageTexture from File (not tested yet)..
+have done major changes to all geometries..the mapping is hardwired in the
+geometry classes not nice, but will work for the start.TODO// Later on it's
+better so write this into an mapping structure..
+
+changed some comments and  cleared some code..
