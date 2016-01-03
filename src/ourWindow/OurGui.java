@@ -37,6 +37,7 @@ import raytracer.matVecLib.Normal3;
 import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import sampling.SamplingPattern;
+import texture.ImageTexture;
 
 /**
  * OurGui Class opens a window thanks to the implemented JavaFX
@@ -163,7 +164,7 @@ public class OurGui extends Application {
 		//SCENE SHADOW
 		public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(2,2,2),true);
 		//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(6,6,6),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(6,6,6),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
 		public final Camera orthoS = new OrthographicCamera(new Point3(1.8,1.8,1.8), new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(20),4);
 		//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -293,8 +294,14 @@ public class OurGui extends Application {
 
 	    public final Node nboxT = new Node(new Transform().translate(new Point3(0.5,0,3.5)).scale(1,3,1),new ArrayList<>());
 
-	   // public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4), new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(0,1,0),24));
+	   // public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4),
+	   // new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(0,1,0),24));
 
+	    // IMAGE TEXTURE Test
+		public final Node no = new Node(new Transform().rotX(-0.2).rotZ(0).scale(4, 4, 4),new ArrayList<>());
+		public  Sphere sphereTex = new Sphere(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
+		public Plane plan = new Plane(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
+		public AxisAlignedBox ax = new AxisAlignedBox(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
 	/**
 		 * Drawing Surface:
 		 */
@@ -344,8 +351,8 @@ public class OurGui extends Application {
 	//		welt.lightList.add(pointLight);
 			// Abb 6
 	//		welt.lightList.add(dirLight);
-			// Abb 7 / 8
-	//		welt.lightList.add(spotLight);
+			// Abb 7 /
+			// welt.lightList.add(spotLight);
 	//
 	//		welt.list.add(plane3);
 	//		welt.list.add(triangl3);
@@ -356,7 +363,7 @@ public class OurGui extends Application {
 
 			//schatten scene 1
 	//       //use cam10
-			//welt.lightList.add(pointLight100);
+	//		welt.lightList.add(pointLight100);
 	//		abb4Plane.g.add(plane1);
 	//		abb4Box.g.add(redBox);
 	//		funnySphere1.g.add(sRed);
@@ -372,7 +379,7 @@ public class OurGui extends Application {
 			//Schtten scene2
 			 //use cam10
 	//
-			welt.lightList.add(pointLight101);
+	//		welt.lightList.add(pointLight101);
 	//		abb3Plane.g.add(blackPlane);
 	//		abb3sphere1.g.add(sRed);
 	//		abb3sphere2.g.add(sGreen);
@@ -396,16 +403,48 @@ public class OurGui extends Application {
 
 
 	//		//TEST sampling
-	//		welt.lightList.add(pointLight100);
+	//   	welt.lightList.add(pointLight100);
 	//		sampleSpehre.g.add(sRed);
 	//		welt.list.add(sampleSpehre);
 
 			//OBJ loader
 
-	        Node testnode= ren.OBJLoader();
+//	        Node testnode= ren.OBJLoader();
+//			welt.list.add(testnode);
 
+			//imageTexture
+//		    no.g.add(plan);
+//			welt.list.add(no);
 
-			welt.list.add(testnode);
+			// BELEUCHTUNG 2 ABBILDUNG 5
+
+			welt.lightList.add(spotLight);
+			welt.lightList.add(pointLight);
+			welt.lightList.add(directionalLight);
+
+			planeNode.g.add(plane);
+			welt.list.add(planeNode);
+
+			n1.g.add(s1);
+			n2.g.add(s2);
+			n3.g.add(s3);
+			n4.g.add(s4);
+			n5.g.add(s5);
+			n6.g.add(s6);
+			welt.list.add(n1);
+			welt.list.add(n2);
+			welt.list.add(n3);
+			welt.list.add(n4);
+			welt.list.add(n5);
+			welt.list.add(n6);
+			ns1T.g.add(s1T);
+			ns2T.g.add(s2T);
+			ns3T.g.add(s3T);
+			welt.list.add(ns1T);
+			welt.list.add(ns2T);
+			welt.list.add(ns3T);
+			nboxT.g.add(boxT);
+			welt.list.add(nboxT);
 
 
 
@@ -469,11 +508,11 @@ public class OurGui extends Application {
 
 		private Color getColor(int width , int height, int x, int y) throws IllegalArgumentException {
 
-			raytracer.Color hitFarbe=new raytracer.Color(0,0,0);
+			raytracer.Color hitFarbe;
 			raytracer.Color addFarbe = new raytracer.Color(0,0,0);
 
 
-			Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
+			Set<Ray> rays = camRef.rayFor(width, height, x, height - 1 - y);
 
 			for (Ray r : rays) {
 
@@ -507,7 +546,7 @@ public class OurGui extends Application {
 			//divide color with pixels of grid
 			addFarbe=addFarbe.mul(1f/rays.size());
 
-			System.out.println(addFarbe);
+			//System.out.println(addFarbe);
 			return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 		}
 

@@ -72,10 +72,10 @@ public class ImageTexture extends Texture {
     @Override
     public Color colorFor(double u, double v) {
 
-        final double coo1 = ImageTexture.getRelCoord(u);
-        final double coo2 = ImageTexture.getRelCoord(v);
-        final double x = (this.image.getWidth() - 1) * coo1;
-        final double y = (this.image.getHeight() - 1) - ((image.getHeight() - 1) * coo2);
+         double coo1 = ImageTexture.getRelCoord(u);
+         double coo2 = ImageTexture.getRelCoord(v);
+         double x = (this.image.getWidth() - 1) * coo1;
+         double y = (this.image.getHeight() - 1) - ((image.getHeight() - 1) * coo2);
 
         return ImageTexture.getPositionColor(this.image,(int) Math.round(x), (int) Math.round(y));
     }
@@ -90,8 +90,12 @@ public class ImageTexture extends Texture {
 
     public static Color getPositionColor(final BufferedImage image, final int x, final int y) {
 
+
+
         final java.awt.Color c = new java.awt.Color(image.getRGB(x, y));
-        return new Color(c.getRed(),c.getGreen(),c.getBlue());
+        double e = 0.00001;
+        return new Color((c.getRed()+e)/255,((c.getGreen()+e)/255),((c.getBlue()+e)/255));
+
     }
 
     @Override
