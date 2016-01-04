@@ -64,13 +64,20 @@ public class Triangle extends Geometry {
 		this.ct = ct;
 
 	}
+	public Triangle(final Point3 a, final Point3 b, final Point3 c, final Material material) {
+		this(a, b, c,
+				b.sub(a).x(c.sub(a)).normalized().asNormal(),
+				b.sub(a).x(c.sub(a)).normalized().asNormal(),
+				b.sub(a).x(c.sub(a)).normalized().asNormal(),
+				material,
+				new TextureCoord2D(0, 1), new TextureCoord2D(1, 0), new TextureCoord2D(0, 0));
+
+	}
 
 
     @Override
     public Hit hit(Ray r) {
 
-		final Vector3 v = b.sub(a);
-		final Vector3 w = c.sub(a);
 
 
         if (r == null) {
@@ -100,9 +107,9 @@ public class Triangle extends Geometry {
 		t=A3.determinant/A.determinant;
 
 		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
-
+			final Normal3 nc = an.mul(alpha).add(bn).mul(beta).add(cn).mul(gamma);
 			final TextureCoord2D tc = at.mul(alpha).add(bt).mul(beta).add(ct).mul(gamma);
-			return new Hit(t, r, this,v.x(w).asNormal(),tc);
+			return new Hit(t, r,this,nc ,tc);
 		}
 		return null;
     }

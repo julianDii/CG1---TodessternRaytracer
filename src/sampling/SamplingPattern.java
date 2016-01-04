@@ -144,7 +144,7 @@ public class SamplingPattern{
 
         return allPoints;
     }
-    public Set<Point2> constantSampling() {
+    public Set<Point2> constantSampling () {
 
         int n = (int) Math.sqrt(points);
 

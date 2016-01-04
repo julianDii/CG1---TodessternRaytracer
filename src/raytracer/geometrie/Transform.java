@@ -10,6 +10,7 @@ import raytracer.matVecLib.Vector3;
  * Created by Juliand on 15.12.15.
  */
 public class Transform {
+
     /**
      * The m component of the transform object.
      */
@@ -25,6 +26,7 @@ public class Transform {
     public Transform(){
 
         m = new Mat4x4(
+
                 1, 0, 0, 0,
                 0, 1, 0, 0,
                 0, 0, 1, 0,
@@ -35,95 +37,99 @@ public class Transform {
     }
 
     /**
-     * This contructor gets the given matrix an it's inverse
-     * @param m
-     * @param i
+     * This constructor gets the given matrix an it's inverse
+     * @param m The Mat4x4 m.
+     * @param i The Mat4x4 i.
      */
+    private Transform(final Mat4x4 m, final Mat4x4 i) {
 
-    private Transform(final Mat4x4 m,final Mat4x4 i){
+        if(m==null) throw new IllegalArgumentException("m have to be not null");
+        if(i==null) throw new IllegalArgumentException("i have to be not null");
 
-        if(m==null)throw new IllegalArgumentException("m have to be not null");
-        if(i==null)throw new IllegalArgumentException("i have to be not null");
-
-        this.m=m;
-        this.i=i;
+        this.m = m;
+        this.i = i;
 
     }
 
     /**
      * This method translates a given point.
-     * @param p
-     * @return The transformed
+     * @param p The point for the translation.
+     * @return A new transformed point.
      */
-    public Transform translate(final Point3 p){
+    public Transform translate (final Point3 p) {
 
-        if(p==null)throw new IllegalArgumentException("p have to be not null");
+        if(p==null) throw new IllegalArgumentException("p have to be not null");
 
         final Transform trans = new Transform(
 
-                new Mat4x4(1,0,0,p.x,
-                           0,1,0,p.y,
-                           0,0,1,p.z,
-                           0,0,0,1),
-                new Mat4x4(1,0,0,-p.x,
-                           0,1,0,-p.y,
-                           0,0,1,-p.z,
-                           0,0,0,1));
+                new Mat4x4( 1, 0, 0, p.x,
+                            0, 1, 0, p.y,
+                            0, 0, 1, p.z,
+                            0, 0, 0, 1),
+
+                new Mat4x4( 1, 0, 0, -p.x,
+                            0, 1, 0, -p.y,
+                            0, 0, 1, -p.z,
+                            0, 0, 0, 1));
 
         return new Transform(m.mul(trans.m), i.mul(trans.i));
     }
 
     /**
      * This method rotates the x with a given angle.
-     * @param angle
+     * @param angle The rotation angle.
      * @return The transform object.
      */
-    public Transform rotX(final double angle){
+    public Transform rotX (final double angle) {
 
         Transform trans = new Transform(
+
                 new Mat4x4(
-                        1,0,0,0,
-                        0,Math.cos(angle),-Math.sin(angle),0,
-                        0,Math.sin(angle), Math.cos(angle),0,
-                        0,0,0,1),
+                        1, 0, 0, 0,
+                        0, Math.cos(angle), -Math.sin(angle), 0,
+                        0, Math.sin(angle),  Math.cos(angle), 0,
+                        0, 0, 0, 1),
                 new Mat4x4(
-                        1,0,0,0,
-                        0,Math.cos(angle),Math.sin(angle),0,
-                        0,-Math.sin(angle),Math.cos(angle),0,
-                        0,0,0,1));
+                        1, 0, 0, 0,
+                        0,  Math.cos(angle), Math.sin(angle), 0,
+                        0, -Math.sin(angle), Math.cos(angle), 0,
+                        0, 0, 0, 1));
 
         return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
      * This method rotates the y with a given angle.
-     * @param angle
+     * @param angle The rotation angle.
      * @return The transform object.
      */
-    public Transform rotY(final double angle){
+    public Transform rotY (final double angle) {
 
         Transform trans = new Transform(
+
                 new Mat4x4(
-                        Math.cos(angle),0,Math.sin(angle),0,
-                        0,1,0,0,
-                        -Math.sin(angle),0,Math.cos(angle),0,
-                        0,0,0,1),
+                        Math.cos(angle), 0, Math.sin(angle), 0,
+                        0, 1, 0, 0,
+                        -Math.sin(angle), 0, Math.cos(angle), 0,
+                        0, 0, 0, 1),
                 new Mat4x4(
-                        Math.cos(angle),0,-Math.sin(angle),0,
-                        0,1,0,0,
-                        Math.sin(angle),0,Math.cos(angle),0,
-                        0,0,0,1));
+                        Math.cos(angle),0, -Math.sin(angle), 0,
+                        0, 1, 0, 0,
+                        Math.sin(angle), 0, Math.cos(angle), 0,
+                        0, 0, 0, 1));
+
         return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
      * This method rotates the z with a given angle.
-     * @param angle
+     * @param angle The rotation angle.
      * @return The transform object.
      */
     public Transform rotZ(final double angle){
 
         Transform trans = new Transform(
+
                 new Mat4x4(
                         Math.cos(angle),-Math.sin(angle), 0, 0,
                         Math.sin(angle), Math.cos(angle), 0, 0,
@@ -140,25 +146,25 @@ public class Transform {
 
     /**
      * This method transforms the scale.
-     * @param x
-     * @param y
-     * @param z
+     * @param x the value of the x scale.
+     * @param y the value of the y scale.
+     * @param z the value of the z scale.
      * @return the transform object.
      */
-    public Transform scale(final double x, final double y, final double z){
+    public Transform scale (final double x, final double y, final double z) {
 
         final Transform trans = new Transform(
 
                 new Mat4x4(
-                        x,0,0,0,
-                        0,y,0,0,
-                        0,0,z,0,
-                        0,0,0,1),
+                        x, 0, 0, 0,
+                        0, y, 0, 0,
+                        0, 0, z, 0,
+                        0, 0, 0, 1),
                 new Mat4x4(
-                        1.0/x,0,0,0,
-                        0,1.0/y,0,0,
-                        0,0,1.0/z,0,
-                        0,0,0,1));
+                        1.0/x, 0, 0, 0,
+                        0, 1.0/y, 0, 0,
+                        0, 0, 1.0/z, 0,
+                        0, 0, 0, 1));
 
         return new Transform(m.mul(trans.m),trans.i.mul(i));
     }
@@ -166,21 +172,27 @@ public class Transform {
 
     /**
      * This method transforms a given ray.
-     * @param r
+     * @param r The ray for the transformation.
      * @return the transformed ray.
      */
-    public Ray mul(final Ray r){
-        if(r==null)throw new IllegalArgumentException("r have to be not null");
+    public Ray mul (final Ray r) {
+
+        if(r==null)throw new IllegalArgumentException("r can not be null");
+
         return new Ray(i.mul(r.o),i.mul(r.d));
     }
 
     /**
      * This method transforms a given normal.
-     * @param n
+     * @param n The normal for the transformation.
      * @return The transformed normal.
      */
-    public Normal3 mul(Normal3 n){
+    public Normal3 mul(final Normal3 n){
+
+        if(n==null)throw new IllegalArgumentException("n can not be null");
+
         return i.transposed().mul(new Vector3(n.x,n.y,n.z)).normalized().asNormal();
+
     }
 
     @Override

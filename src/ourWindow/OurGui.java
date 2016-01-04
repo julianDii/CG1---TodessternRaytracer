@@ -38,6 +38,7 @@ import raytracer.matVecLib.Point3;
 import raytracer.matVecLib.Vector3;
 import sampling.SamplingPattern;
 import texture.ImageTexture;
+import texture.TextureCoord2D;
 
 /**
  * OurGui Class opens a window thanks to the implemented JavaFX
@@ -164,7 +165,7 @@ public class OurGui extends Application {
 		//SCENE SHADOW
 		public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(2,2,2),true);
 		//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(6,6,6),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(3,3,3),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 		public final Camera orthoS = new OrthographicCamera(new Point3(1.8,1.8,1.8), new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(20),4);
 		//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -226,8 +227,8 @@ public class OurGui extends Application {
 
 		//Obj Loader
 		public final ShapeFromFile ren = new ShapeFromFile(
-				"cube-v-blocks-weird-indices.obj",
-				new SingleColorMaterial(new raytracer.Color(1,0,0)));
+				"teddy.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
+				new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 		//ABBLIDUNG 5 Beleuchtung 2
 
@@ -239,7 +240,7 @@ public class OurGui extends Application {
 		public final DirectionalLight directionalLight = new DirectionalLight(new raytracer.Color(0.3,0.3,0.3),new Vector3(1,-1,0).normalized(),true);
 
 		public final PerspectiveCamera camRef = new PerspectiveCamera(new Point3(8,8,8),
-				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
 
 
 
@@ -292,13 +293,16 @@ public class OurGui extends Application {
 
 	    public final AxisAlignedBox boxT = new AxisAlignedBox(new TransparentMaterial(1.33));
 
-	    public final Node nboxT = new Node(new Transform().translate(new Point3(0.5,0,3.5)).scale(1,3,1),new ArrayList<>());
+	    public final Node nboxT = new Node(new Transform().translate(new Point3(0.5,0,3.5)).scale(1,2,1),new ArrayList<>());
 
-	   // public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4),
-	   // new PhongMaterial(new raytracer.Color(0,1,0),new raytracer.Color(0,1,0),24));
+	    public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4),
+				new PhongMaterial(new raytracer.Color(0,1,0),
+				new raytracer.Color(0,1,0),24));
+
+		public final Node trino = new Node(new Transform().translate(new Point3(1,0.5,0.4)),new ArrayList<>());
 
 	    // IMAGE TEXTURE Test
-		public final Node no = new Node(new Transform().rotX(-0.2).rotZ(0).scale(4, 4, 4),new ArrayList<>());
+		public final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
 		public  Sphere sphereTex = new Sphere(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
 		public Plane plan = new Plane(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
 		public AxisAlignedBox ax = new AxisAlignedBox(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
@@ -379,7 +383,7 @@ public class OurGui extends Application {
 			//Schtten scene2
 			 //use cam10
 	//
-	//		welt.lightList.add(pointLight101);
+		//	welt.lightList.add(pointLight101);
 	//		abb3Plane.g.add(blackPlane);
 	//		abb3sphere1.g.add(sRed);
 	//		abb3sphere2.g.add(sGreen);
@@ -409,11 +413,13 @@ public class OurGui extends Application {
 
 			//OBJ loader
 
-//	        Node testnode= ren.OBJLoader();
+//			Node testnode= ren.OBJLoader();
 //			welt.list.add(testnode);
 
 			//imageTexture
-//		    no.g.add(plan);
+
+//
+//		    no.g.add(sphereTex);
 //			welt.list.add(no);
 
 			// BELEUCHTUNG 2 ABBILDUNG 5
@@ -445,6 +451,8 @@ public class OurGui extends Application {
 			welt.list.add(ns3T);
 			nboxT.g.add(boxT);
 			welt.list.add(nboxT);
+			trino.g.add(tri);
+			welt.list.add(trino);
 
 
 
@@ -545,8 +553,25 @@ public class OurGui extends Application {
 
 			//divide color with pixels of grid
 			addFarbe=addFarbe.mul(1f/rays.size());
-
-			//System.out.println(addFarbe);
+			if (addFarbe.r < 0) {
+				addFarbe.r = 0;
+			}
+			if (addFarbe.r > 1) {
+				addFarbe.r = 1;
+			}
+			if (addFarbe.g < 0) {
+				addFarbe.g = 0;
+			}
+			if (addFarbe.g > 1) {
+				addFarbe.g = 1;
+			}
+			if (addFarbe.b < 0) {
+				addFarbe.b = 0;
+			}
+			if (addFarbe.b > 1) {
+				addFarbe.b = 1;
+			}
+			System.out.println(addFarbe);
 			return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 		}
 

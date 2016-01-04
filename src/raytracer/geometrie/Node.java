@@ -7,19 +7,27 @@ import raytracer.Ray;
 import java.util.List;
 
 /**
- * This class represents a node object
+ * This class represents a node object.
+ * A Node can have multiple transformations for a list of geometries.
  * Created by Juliand on 15.12.15.
  */
 public class Node extends Geometry {
 
+    /**
+     * The transform component of the node.
+     */
     public final Transform transT;
+
+    /**
+     * The geometry list of the node.
+     */
     public final List<Geometry>g;
 
 
     /**
      * This constructor builds a new node.
-     * @param t
-     * @param list
+     * @param t The Transform object of the node.
+     * @param list  list of the Geometries in this node.
      */
     public Node(final Transform transT,final List<Geometry>g ){
 
@@ -31,9 +39,9 @@ public class Node extends Geometry {
     }
 
     /**
-     * The given ray will be transformed.
-     * @param r
-     * @return
+     * This method calculates hit's with a given ray for all geometries.
+     * @param r The given ray.
+     * @return A new hit.
      */
     public Hit hit(final Ray r) {
         if(r==null)throw new IllegalArgumentException("r have to be not null");
@@ -61,4 +69,24 @@ public class Node extends Geometry {
         return "Node{}";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Node node = (Node) o;
+
+        if (!transT.equals(node.transT)) return false;
+        return g.equals(node.g);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + transT.hashCode();
+        result = 31 * result + g.hashCode();
+        return result;
+    }
 }
