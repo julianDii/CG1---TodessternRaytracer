@@ -227,7 +227,7 @@ public class OurGui extends Application {
 
 		//Obj Loader
 		public final ShapeFromFile ren = new ShapeFromFile(
-				"teddy.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
+				"dice.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
 				new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 		//ABBLIDUNG 5 Beleuchtung 2
@@ -240,7 +240,7 @@ public class OurGui extends Application {
 		public final DirectionalLight directionalLight = new DirectionalLight(new raytracer.Color(0.3,0.3,0.3),new Vector3(1,-1,0).normalized(),true);
 
 		public final PerspectiveCamera camRef = new PerspectiveCamera(new Point3(8,8,8),
-				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 
 
 
@@ -383,7 +383,7 @@ public class OurGui extends Application {
 			//Schtten scene2
 			 //use cam10
 	//
-		//	welt.lightList.add(pointLight101);
+//			welt.lightList.add(pointLight101);
 	//		abb3Plane.g.add(blackPlane);
 	//		abb3sphere1.g.add(sRed);
 	//		abb3sphere2.g.add(sGreen);
@@ -571,7 +571,7 @@ public class OurGui extends Application {
 			if (addFarbe.b > 1) {
 				addFarbe.b = 1;
 			}
-			System.out.println(addFarbe);
+			//System.out.println(addFarbe);
 			return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
 		}
 

@@ -96,9 +96,7 @@ public class Hit {
 				return false;
 		} else if (!ray.equals(other.ray))
 			return false;
-		if (Double.doubleToLongBits(t) != Double.doubleToLongBits(other.t))
-			return false;
-		return true;
+		return Double.doubleToLongBits(t) == Double.doubleToLongBits(other.t);
 	}
 
 }

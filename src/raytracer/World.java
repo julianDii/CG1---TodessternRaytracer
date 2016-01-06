@@ -41,6 +41,7 @@ public class World {
 		this.ambient = ambient;
 		this.refractionIndex = refractionIndex;
 	}
+
 	/**
 	 * The method hit tests if ray hits the in "list" saved object. 
 	 * @param r: ray which we want to check
@@ -49,7 +50,7 @@ public class World {
 	 */
 	public Color hit (Ray r){
 		Hit hit0 = null;
-		for (Geometry g: list){
+		for (final Geometry g: list){
 			Hit hit1 = g.hit(r);
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
@@ -57,6 +58,24 @@ public class World {
 
 
 		return hit0.geo.material.colorFor(hit0, this, new Tracer(6,this));
+	}
+
+	/**
+	 * This method tests if the ray hits the in "list" saved object
+	 * @param ray  ray which we want to check.
+	 * @return the minHit with the Geometry.
+	 */
+	public Hit hitt(Ray ray){
+		Hit minHit = null;
+		double min_t = Double.MAX_VALUE;
+		for (final Geometry element : list) {
+			final Hit hit = element.hit(ray);
+			if ((hit != null) && 0.0001 < hit.t && hit.t < min_t){
+				minHit = hit;
+				min_t = hit.t;
+			}
+		}
+		return minHit;
 	}
 	
 }

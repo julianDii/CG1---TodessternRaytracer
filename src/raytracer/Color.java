@@ -119,8 +119,6 @@ public class Color {
 			return false;
 		if (Double.doubleToLongBits(g) != Double.doubleToLongBits(other.g))
 			return false;
-		if (Double.doubleToLongBits(r) != Double.doubleToLongBits(other.r))
-			return false;
-		return true;
+		return Double.doubleToLongBits(r) == Double.doubleToLongBits(other.r);
 	}
 }

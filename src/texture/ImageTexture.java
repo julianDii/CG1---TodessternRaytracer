@@ -79,6 +79,8 @@ public class ImageTexture extends Texture {
 
         return ImageTexture.getPositionColor(this.image,(int) Math.round(x), (int) Math.round(y));
     }
+
+
     public static double getRelCoord(final double in) {
         double out = in % 1.0;
         if (out < 0.0) {
@@ -89,8 +91,6 @@ public class ImageTexture extends Texture {
 
 
     public static Color getPositionColor(final BufferedImage image, final int x, final int y) {
-
-
 
         final java.awt.Color c = new java.awt.Color(image.getRGB(x, y));
         double e = 0.00001;

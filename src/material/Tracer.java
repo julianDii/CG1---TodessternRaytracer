@@ -19,17 +19,19 @@ public class Tracer {
     /**
      * The world component of the Tracer.
      */
-    private final World world;
+    public final World world;
 
 
     /**
      * This contructor builds a new Tracer.
+     *
      * @param depth
      * @param world
      */
     public Tracer(int depth, World world) {
+        super();
 
-        if (world==null)throw new IllegalArgumentException("World has to be not null");
+        if (world == null) throw new IllegalArgumentException("World has to be not null");
 
         this.world = world;
         this.depth = depth;
@@ -39,33 +41,60 @@ public class Tracer {
 
     /**
      * This method calculates the color of a reflection.
+     *
      * @param r
      * @return The reflection color.
      */
 
-    public Color reflectedColor(Ray r) {
+    public Color colorFor(final Ray r) {
 
-        if (r == null) {throw new IllegalArgumentException("The ray can not be null");}
+        if (r == null) {
 
+            throw new IllegalArgumentException("The ray cannot be null!");
+
+        }
         if (depth <= 0) {
-            return world.backgroundcolor;
-        }
 
-        Hit h = null;
-        double untereGrenze= 0.00001;
-        double t2=0;
-        for (Geometry g : world.list) {
-            h = g.hit(r);
+            return this.world.backgroundcolor;
 
-            if(h!=null){
-                t2=h.t;
+        } else {
+
+            Hit hit = world.hitt(r);
+
+            if (hit != null) {
+
+                return hit.geo.material.colorFor(hit, world, new Tracer(depth-1,world));
+
+            } else {
+
+                return this.world.backgroundcolor;
             }
-
-            if (h != null && t2>=untereGrenze){
-                return h.geo.material.colorFor(h, world, new Tracer(depth - 1, world));
-            }
-
         }
-        return world.backgroundcolor;
     }
+
 }
+
+//        if (r == null) {throw new IllegalArgumentException("The ray can not be null");}
+//
+//        if (depth <= 0) {
+//            return world.backgroundcolor;
+//        }
+//
+//        Hit h = null;
+//        double untereGrenze= 0.00001;
+//        double t2=0;
+//        for (Geometry g : world.list) {
+//            h = g.hit(r);
+//
+//            if(h!=null){
+//                t2=h.t;
+//            }
+//
+//            if (h != null && t2>=untereGrenze){
+//                return h.geo.material.colorFor(h, world, new Tracer(depth - 1, world));
+//            }
+//
+//        }
+//        return world.backgroundcolor;
+//    }
+//}

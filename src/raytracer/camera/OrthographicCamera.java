@@ -105,9 +105,7 @@ public class OrthographicCamera extends Camera {
 		if (getClass() != obj.getClass())
 			return false;
 		OrthographicCamera other = (OrthographicCamera) obj;
-		if (Double.doubleToLongBits(s) != Double.doubleToLongBits(other.s))
-			return false;
-		return true;
-	} 
+		return Double.doubleToLongBits(s) == Double.doubleToLongBits(other.s);
+	}
     
 }

@@ -106,9 +106,7 @@ public class PerspectiveCamera extends Camera {
 		if (getClass() != obj.getClass())
 			return false;
 		PerspectiveCamera other = (PerspectiveCamera) obj;
-		if (Double.doubleToLongBits(angle) != Double.doubleToLongBits(other.angle))
-			return false;
-		return true;
+		return Double.doubleToLongBits(angle) == Double.doubleToLongBits(other.angle);
 	}
     
     

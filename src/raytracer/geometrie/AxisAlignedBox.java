@@ -140,49 +140,6 @@ public class AxisAlignedBox extends Geometry {
         return rHit;
     }
 
-//        Hit hit = null;
-//
-//        for(final Node n: geoList){
-//
-//
-//            final double visible = r.o.sub(n).normalized().dot(plane.n);
-//
-//            if(visible > 0) {
-//                final double t = plane.a.sub(r.o).dot(plane.n) / r.d.dot(plane.n);
-//                if(hit==null||t> hit.t){
-//                    hit = new Hit(t,r,this,plane.n);
-//                }
-//            }
-//        }
-//
-//        return compareDis(hit);
-//    }
-//
-//    /**
-//     * This method compares if the hits really on the box .
-//     * @param h
-//     * @return return is a hit when the point is really in the box otherwise the return is null.
-//     */
-//    private Hit compareDis(final Hit h) {
-//
-//
-//        if(h != null) {
-//
-//
-//            final Point3 p = h.ray.at(h.t);
-//            final double e = 0.00000000001;
-//
-//            if (    (lbf.x <= p.x+e && p.x <= run.x+e) &&
-//                    (lbf.y <= p.y+e && p.y <= run.y+e) &&
-//                    (lbf.z <= p.z+e && p.z <= run.z+e)
-//                    )
-//                return h;
-//
-//        }
-
-
-//        return null;
-//    }
 
     @Override
     public boolean equals(Object o) {
