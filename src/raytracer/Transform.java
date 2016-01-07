@@ -22,9 +22,9 @@ public class Transform {
     /**
      * This contructor calculates the transformation with the unit matrix.
      */
-    public Transform() {
+    public Transform () {
 
-        m = new Mat4x4(
+        m = new Mat4x4 (
 
                 1, 0, 0, 0,
                 0, 1, 0, 0,
@@ -41,7 +41,7 @@ public class Transform {
      * @param m The Mat4x4 m.
      * @param i The Mat4x4 i.
      */
-    private Transform(final Mat4x4 m, final Mat4x4 i) {
+    private Transform (final Mat4x4 m, final Mat4x4 i) {
 
         if (m == null) throw new IllegalArgumentException("m have to be not null");
         if (i == null) throw new IllegalArgumentException("i have to be not null");
@@ -72,7 +72,7 @@ public class Transform {
                             0, 0, 1, -p.z,
                             0, 0, 0, 1));
 
-        return new Transform(m.mul(trans.m), i.mul(trans.i));
+        return new Transform (m.mul(trans.m), i.mul(trans.i));
     }
 
     /**
@@ -96,7 +96,7 @@ public class Transform {
                         0, -Math.sin(angle), Math.cos(angle), 0,
                         0, 0, 0, 1));
 
-        return new Transform(m.mul(trans.m),trans.i.mul(i));
+        return new Transform (m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
@@ -119,7 +119,7 @@ public class Transform {
                         Math.sin(angle), 0, Math.cos(angle), 0,
                         0, 0, 0, 1));
 
-        return new Transform(m.mul(trans.m),trans.i.mul(i));
+        return new Transform (m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
@@ -142,7 +142,7 @@ public class Transform {
                         0, 0, 1, 0,
                         0, 0, 0, 1));
 
-        return new Transform(m.mul(trans.m),trans.i.mul(i));
+        return new Transform (m.mul(trans.m),trans.i.mul(i));
     }
 
     /**
@@ -167,7 +167,7 @@ public class Transform {
                         0, 0, 1.0/z, 0,
                         0, 0, 0, 1));
 
-        return new Transform(m.mul(trans.m),trans.i.mul(i));
+        return new Transform (m.mul(trans.m),trans.i.mul(i));
     }
 
 
@@ -180,7 +180,7 @@ public class Transform {
 
         if(r == null) throw new IllegalArgumentException("r can not be null");
 
-        return new Ray(i.mul(r.o),i.mul(r.d));
+        return new Ray (i.mul(r.o),i.mul(r.d));
     }
 
     /**
@@ -188,11 +188,11 @@ public class Transform {
      * @param n The normal for the transformation.
      * @return The transformed normal.
      */
-    public Normal3 mul(final Normal3 n){
+    public Normal3 mul (final Normal3 n) {
 
-        if(n==null)throw new IllegalArgumentException("n can not be null");
+        if(n == null) throw new IllegalArgumentException("n can not be null");
 
-        return i.transposed().mul(new Vector3(n.x,n.y,n.z)).normalized().asNormal();
+        return i.transposed ().mul (new Vector3 (n.x,n.y,n.z)).normalized().asNormal();
 
     }
 

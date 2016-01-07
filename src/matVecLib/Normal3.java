@@ -20,46 +20,53 @@ public class Normal3 {
 
     /**
      * This constructor creates a Normal3 with the x,y,z values
-     * @param x
-     * @param y
-     * @param z
+     * @param x The x component of the normal.
+     * @param y The y component of the normal.
+     * @param z The z component of the normal.
      */
     public Normal3(final double x, final double y, final double z){
 
-        this.x=x;
-        this.y=y;
-        this.z=z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
 
     }
 
     /**
      * This Method  multiplies every component of the normal with an parameter
-     * @param m
+     * @param m The double value to multiply with.
      * @return This Method returns a new Normal3 Object
      */
 
-    public Normal3 mul(final double m){
+    public Normal3 mul (final double m) {
 
-        return new Normal3(
+        return new Normal3 (
+
                 x * m,y * m,z * m
         );
     }
 
     /**
      * This Method adds the given x,y,z components to the components of the parameters of the Object
-     * @param a
-     * @return
+     * @param a The normal to add.
+     * @return A new normal.
      */
 
-    public Normal3 add(Normal3 a){
+    public Normal3 add (final Normal3 a) {
 
-        if(a==null)throw new IllegalArgumentException("'a'have to be not null");
+        if(a == null) throw new IllegalArgumentException("'a'have to be not null");
 
-        return new Normal3(x+a.x,y+a.y,z+a.z);
+        return new Normal3(x + a.x, y + a.y, z + a.z);
 
     }
 
-    public double dot(Vector3 v){
+    /**
+     * This method multiplies the given normal with a vector.
+     * @param v the vector to multiply with.
+     * @return The new normal.
+     */
+
+    public double dot (final Vector3 v) {
 
         if (v == null) throw new IllegalArgumentException("'v' have to be not null." );
 

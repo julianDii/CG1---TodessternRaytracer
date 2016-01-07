@@ -1,8 +1,8 @@
 package matVecLib;
 
 /**
- * This Class creates a new V3 Vector
- * Created by Juliand on 13.10.15.
+ * This class represents a vector in the three dimensional space.
+ * Created by Julian Dobrot on 13.10.15.
  */
 
 public class Vector3 {
@@ -26,52 +26,68 @@ public class Vector3 {
     public final double z;
 
     /**
-     * The length of the Vector
+     * The length of the Vector.
      */
 
     public final double magnitude;
 
     /**
      * This constructor creates a new Vector and calculates its length.
-     * @param x: x coordinate
-     * @param y: y coordinate
-     * @param z: z coordinate
+     * @param x The x coordinate of the vector.
+     * @param y The y coordinate of the vector.
+     * @param z The z coordinate of the vector.
      */
 
-    public Vector3(final double x,final double y, final double z){
+    public Vector3 (final double x, final double y, final double z) {
 
-        this.x=x;
-        this.y=y;
-        this.z=z;
-        this.magnitude= Math.sqrt(x * x + y * y + z * z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.magnitude = Math.sqrt(x * x + y * y + z * z);
 
     }
 
 
-
-    public Vector3 add(Vector3 v){
+    /**
+     * This method adds a vector to the given vector.
+     * @param v The vector which will be added.
+     * @return A new Vector.
+     */
+    public Vector3 add (Vector3 v) {
 
         if (v == null) throw new IllegalArgumentException("v must be not null." );
 
-        return new Vector3(
+        return new Vector3 (
 
                 x + v.x,
                 y + v.y,
                 z + v.z
         );
     }
-    public Vector3 add(Normal3 n){
+
+    /**
+     * This mehod adds a normal to the given vector.
+     * @param n The normal which will be added.
+     * @return A new vector.
+     */
+    public Vector3 add (final Normal3 n) {
 
         if (n == null) throw new IllegalArgumentException("n must be not null." );
 
-        return new Vector3(
+        return new Vector3 (
 
                 x + n.x,
                 y + n.y,
                 z + n.z
         );
     }
-    public Vector3 sub(Normal3 n){
+
+    /**
+     * This class subtracts a normal from the given vector.
+     * @param n The normal which will be subtracted.
+     * @return A new vector.
+     */
+    public Vector3 sub (Normal3 n) {
 
         if (n == null) throw new IllegalArgumentException("n must be not null." );
 
@@ -82,9 +98,15 @@ public class Vector3 {
                 z - n.z
         );
     }
-    public Vector3 mul(double c){
 
-        return new Vector3(
+    /**
+     * This method multiplies the given vector with a double value.
+     * @param c The double value which will be multiplied.
+     * @return A new vector.
+     */
+    public Vector3 mul (double c) {
+
+        return new Vector3 (
                 x * c,
                 y * c,
                 z * c
@@ -93,12 +115,12 @@ public class Vector3 {
 
 
     /**
-     * Given Vector multiplied by another Vector.
-     * @param v
+     * This method multiplies the given vector with another vector.
+     * @param v The vector to multiply with.
      * @return the result of a Vector * vector multiplication = double.
      */
 
-    public double dot(Vector3 v){
+    public double dot (final Vector3 v) {
 
         if (v == null) throw new IllegalArgumentException("v must be not null.");
 
@@ -106,12 +128,12 @@ public class Vector3 {
     }
 
     /**
-     * Given Vector multiplied by a normal.
-     * @param n
+     * this method multiplies the given vector with a normal.
+     * @param n The normal to multiply with.
      * @return the result of the Vector * Normal operation.
      */
 
-    public double dot(Normal3 n){
+    public double dot (final Normal3 n) {
 
         if (n == null) throw new IllegalArgumentException("n must be not null." );
 
@@ -124,9 +146,9 @@ public class Vector3 {
      * @return The normalized Vector.
      */
 
-    public Vector3 normalized(){
+    public Vector3 normalized () {
 
-        return new Vector3(
+        return new Vector3 (
 
                 x/magnitude,
                 y/magnitude,
@@ -135,28 +157,24 @@ public class Vector3 {
     }
 
     /**
-     * The Normal
-     * @return The Normal
+     * The given vector as normal.
+     * @return The Normal.
      */
 
-    public Normal3 asNormal(){
+    public Normal3 asNormal () {
 
         return new Normal3(x,y,z);
 
     }
-    public Point3 asPoint(){
 
-        return new Point3(x,y,z);
-
-    }
 
     /**
      * This Method reflects a Vector on a Normal.
-     * @param n
+     * @param n The normal to reflect on.
      * @return The on the Normal reflected Vector.
      */
 
-    public Vector3 reflectedOn(Normal3 n) {
+    public Vector3 reflectedOn ( final Normal3 n) {
 
         if (n == null) throw new IllegalArgumentException("n must be not null." );
 
@@ -165,15 +183,15 @@ public class Vector3 {
 
     /**
      * The cross product between the given Vector and the Vector from the object.
-     * @param v
+     * @param v The vector to build the cross product.
      * @return The result of the cross product.
      */
 
-    public Vector3 x(Vector3 v){
+    public Vector3 x (final Vector3 v){
 
         if (v == null) throw new IllegalArgumentException("v must be not null." );
 
-        return new Vector3(
+        return new Vector3 (
 
                 y * v.z - z * v.y,
                 z * v.x - x * v.z,

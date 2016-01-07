@@ -1,7 +1,7 @@
 package matVecLib;
 
 /**
- * The Class Point3 creates a new Point3
+ * This class represents a mathematical point object in the three dimensional space.
  * Created by Juliand on 13.10.15.
  */
 public class Point3 {
@@ -26,29 +26,29 @@ public class Point3 {
     /**
      * This Constructor builds a Point3 Object with the given parameters.
      *
-     * @param x
-     * @param y
-     * @param z
+     * @param x The x component of the point.
+     * @param y The y component of the point.
+     * @param z The z component of the point.
      */
 
-    public Point3(final double x, final double y, final double z){
+    public Point3 (final double x, final double y, final double z) {
 
-        this.x=x;
-        this.y=y;
-        this.z=z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
 
     }
 
     /**
-     * This Method substracts the Point3 components from the constructor with the given Point3
-     * @param p
-     * @return a new Vector3
+     * This Method subtract the Point3 components from the constructor with the given Point3
+     * @param p The point which will be subtracted.
+     * @return a new Vector3.
      */
-    public Vector3 sub(Point3 p){
+    public Vector3 sub (final Point3 p) {
 
-        if(p==null)throw new IllegalArgumentException("'p'have to be not null");
+        if(p == null) throw new IllegalArgumentException("'p'have to be not null");
 
-        return new Vector3(
+        return new Vector3 (
 
                 x - p.x,
                 y - p.y,
@@ -58,15 +58,15 @@ public class Point3 {
     }
 
     /**
-     * This Method takes the given Point3 multiplied by Vector3
-     * @param v
-     * @return new Point3
+     * This Method subtracts the given point with a vector.
+     * @param v The vector which will be subtracted.
+     * @return new Point3.
      */
-    public Point3 sub(Vector3 v){
+    public Point3 sub (final Vector3 v) {
 
-        if(v==null)throw new IllegalArgumentException("'v'have to be not null");
+        if(v == null)throw new IllegalArgumentException("'v'have to be not null");
 
-        return new Point3(
+        return new Point3 (
 
                 x - v.x,
                 y - v.y,
@@ -76,15 +76,15 @@ public class Point3 {
 
     /**
      * this Method adds a Verctor3 to the given Point3
-     * @param v
-     * @return a new Point3
+     * @param v The vector which will be added.
+     * @return a new Point3.
      */
 
-    public Point3 add(Vector3 v){
+    public Point3 add ( final Vector3 v) {
 
-        if(v==null)throw new IllegalArgumentException("'v'have to be not null");
+        if(v == null) throw new IllegalArgumentException("'v'have to be not null");
 
-        return new Point3(
+        return new Point3 (
 
                 x + v.x,
                 y + v.y,
