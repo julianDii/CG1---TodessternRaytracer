@@ -15,7 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import raytracer.World;
-import raytracer.camera.Camera;
+import camera.Camera;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

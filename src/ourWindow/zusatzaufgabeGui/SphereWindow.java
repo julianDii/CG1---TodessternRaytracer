@@ -8,12 +8,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import material.LambertMaterial;
-import material.PhongMaterial;
-import material.SingleColorMaterial;
+import materials.LambertMaterial;
+import materials.PhongMaterial;
+import materials.SingleColorMaterial;
 import raytracer.Color;
-import raytracer.geometrie.Sphere;
-import raytracer.matVecLib.Point3;
+import matVecLib.Point3;
 
 /**
  * Created by Juliand on 25.11.15.
@@ -246,15 +245,15 @@ public class SphereWindow extends Stage {
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
 //        if (selectedToggle == togSingle) {
-//            raytracer.geometrie.Sphere sinSphere = new raytracer.geometrie.Sphere(center, radi, sinCol);
+//            geometries.Sphere sinSphere = new geometries.Sphere(center, radi, sinCol);
 //            TodessternGUI.welt.list.add(sinSphere);
 //        }
 //        if (selectedToggle == togLambert) {
-//            raytracer.geometrie.Sphere lamSphere = new raytracer.geometrie.Sphere(center, radi, lamMat);
+//            geometries.Sphere lamSphere = new geometries.Sphere(center, radi, lamMat);
 //            TodessternGUI.welt.list.add(lamSphere);
 //        }
 //        if (selectedToggle == togPhong) {
-//            raytracer.geometrie.Sphere phoSphere = new raytracer.geometrie.Sphere(center, radi, phongMat);
+//            geometries.Sphere phoSphere = new geometries.Sphere(center, radi, phongMat);
 //            TodessternGUI.welt.list.add(phoSphere);
 //        }
 

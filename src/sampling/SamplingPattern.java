@@ -1,12 +1,12 @@
 package sampling;
 
-import raytracer.matVecLib.Point2;
+import matVecLib.Point2;
 
 import java.util.*;
 
 /**
- * This class provides different sampling algorithms. A sample is a set of points in a a 0,1-0,1
- *
+ * This class provides different sampling algorithms.
+ *TODO make all methods void...delete useless returns.
  * Created by Juliand on 22.12.15.
  */
 public class SamplingPattern{
@@ -15,7 +15,7 @@ public class SamplingPattern{
     /**
      * The list of sampling points.
      */
-    public ArrayList<Point2>pointList=new ArrayList<>();
+    public ArrayList<Point2>pointList = new ArrayList<>();
 
     /**
      * The points of the sampling pattern.
@@ -38,30 +38,43 @@ public class SamplingPattern{
      * @param points the sample points.
      */
 
-    public SamplingPattern(int points){
-        if(points<0)throw new IllegalArgumentException("points have to be bigger then over 0");
-        this.points=points;
+    public SamplingPattern (final int points) {
+
+        if(points < 0)throw new IllegalArgumentException("points have to be bigger then over 0");
+
+        this.points = points;
 
     }
 
 
+    /**
+     * This is a regular SamplingPattern.
+     * @return
+     */
 
-    public Set<Point2> regularPattern2(){
+    public Set<Point2> regularPattern2() {
 
         double xStep;
         double xStart;
 
-        if(points> 1){
-            xStep= 1.0/(points-1.0);
-        }else
-            xStep=0.0;
+        if (points > 1) {
 
-        if(points > 1){
-            xStart=-0.5;
-        }else
-            xStart=0.0;
+            xStep = 1.0 / (points - 1.0);
+
+        } else
+
+            xStep = 0.0;
+
+        if (points > 1) {
+
+            xStart = -0.5;
+
+        } else
+
+            xStart = 0.0;
 
         for (int i = 0; i < points ; i++) {
+
             for (int j = 0; j < points ; j++) {
 
                 pointList.add(new Point2(xStart + i * xStep, xStart + j * xStep));
@@ -108,6 +121,7 @@ public class SamplingPattern{
 
             }
         allPoints = new HashSet<>(pointList);
+
         return allPoints;
     }
 
@@ -119,6 +133,7 @@ public class SamplingPattern{
                 pointList.add(new Point2(random.nextFloat(), random.nextFloat()));
             }
         allPoints = new HashSet<>(pointList);
+
         return allPoints;
     }
 
@@ -132,6 +147,7 @@ public class SamplingPattern{
                     pointList.add(new Point2((k + random.nextFloat()) / n, (j + random.nextFloat()) / n));
                 }
         allPoints = new HashSet<>(pointList);
+
         return allPoints;
     }
 

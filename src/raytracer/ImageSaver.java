@@ -18,15 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import material.Material;
-import raytracer.camera.Camera;
-import raytracer.camera.PerspectiveCamera;
-import raytracer.geometrie.Plane;
-import raytracer.matVecLib.Normal3;
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
 import javafx.stage.Stage;
-import material.SingleColorMaterial;
 
 /**
  * The Image Saver Class opens a window thanks to the implemented JavaFX application and
@@ -42,7 +34,7 @@ public class ImageSaver extends Application {
 	 */
 //	public final static World welt = new World(new raytracer.Color(0, 0, 0));
 //	public final Camera camera = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
-//	public final Material material = new SingleColorMaterial(new raytracer.Color(0.5, 0.5, 0.5));
+//	public final Material materials = new SingleColorMaterial(new raytracer.Color(0.5, 0.5, 0.5));
 //	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), new SingleColorMaterial(new raytracer.Color(0,0,0)));
 	
 	

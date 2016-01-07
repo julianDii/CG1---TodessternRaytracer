@@ -8,11 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import raytracer.camera.Camera;
-import raytracer.camera.OrthographicCamera;
-import raytracer.camera.PerspectiveCamera;
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
+import camera.Camera;
+import matVecLib.Point3;
+import matVecLib.Vector3;
 
 
 /**

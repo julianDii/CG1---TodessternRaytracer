@@ -9,11 +9,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import licht.DirectionalLight;
-import licht.PointLight;
+import lights.DirectionalLight;
 import raytracer.Color;
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
+import matVecLib.Vector3;
 
 /**
  * Created by Juliand on 30.11.15.

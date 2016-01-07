@@ -21,21 +21,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-import licht.DirectionalLight;
-import licht.PointLight;
-import licht.SpotLight;
-import material.*;
+import lights.DirectionalLight;
+import lights.PointLight;
+import lights.SpotLight;
+import materials.*;
 import javafx.stage.Stage;
 import raytracer.Ray;
+import raytracer.Transform;
 import raytracer.World;
-import raytracer.camera.Camera;
-import raytracer.camera.OrthographicCamera;
-import raytracer.camera.PerspectiveCamera;
-import raytracer.geometrie.*;
-import raytracer.matVecLib.Mat4x4;
-import raytracer.matVecLib.Normal3;
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
+import camera.Camera;
+import camera.OrthographicCamera;
+import camera.PerspectiveCamera;
+import geometries.*;
+import matVecLib.Normal3;
+import matVecLib.Point3;
+import matVecLib.Vector3;
 import sampling.SamplingPattern;
 import texture.ImageTexture;
 import texture.TextureCoord2D;
@@ -80,32 +80,32 @@ public class OurGui extends Application {
 		public final static Node test = new Node(new Transform().rotX(3).rotZ(4).scale(4, 3, 0.5),new ArrayList<Geometry>());
 		public final static Node test2 = new Node(new Transform().rotX(5).rotZ(3).scale(2,1,3),new ArrayList<Geometry>());
 
-	//	public final Material material = new SingleColorMaterial(new raytracer.Color(0,0,1));
+	//	public final Material materials = new SingleColorMaterial(new raytracer.Color(0,0,1));
 	//
 	//	// Aufgabe Abb.5
-	//	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), material);
+	//	public final Plane plane = new Plane(new Point3(0,-1,0), new Normal3(0,1,0), materials);
 	//	public final Camera abb5Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	//
 	//	// Aufgabe Abb.6
-	//	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5, material);
+	//	public final Sphere sphere0 = new Sphere(new Point3(0,0,-3),0.5, materials);
 	//	public final Camera abb6Cam = new PerspectiveCamera(new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI/4);
 	//
 	//	// Aufgabe Abb.7
-	//	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), material);
+	//	public final AxisAlignedBox box0 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), materials);
 	//	public final Camera abb7Cam = new PerspectiveCamera(new Point3(3,3,3), new Vector3(-3,-3,-3), new Vector3(0,1,0), Math.PI/4);
 	//
 	//	// Aufgabe Abb.8
-	//	public final Triangle triangl0 = new Triangle(new Point3(-0.5,0.5,-3),new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), material);
+	//	public final Triangle triangl0 = new Triangle(new Point3(-0.5,0.5,-3),new Point3(0.5,0.5,-3),new Point3(0.5,-0.5,-3), materials);
 	//	public final Camera abb8Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
 	//
 	//	// Aufgabe Abb.9
-	//	public final Sphere sphere1 = new Sphere(new Point3(-1,0,-3),0.5, material);
-	//	public final Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, material);
+	//	public final Sphere sphere1 = new Sphere(new Point3(-1,0,-3),0.5, materials);
+	//	public final Sphere sphere2 = new Sphere(new Point3(1,0,-6),0.5, materials);
 	//	public final Camera abb9Cam = new PerspectiveCamera(new Point3(0,0,0),new Vector3(0,0,-1), new Vector3(0,1,0),Math.PI/4);
 	//
 	//	// Aufgabe Abb.10
-	//	public final Sphere sphere3 = new Sphere(new Point3(-1,0,-3),0.5, material);
-	//	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5, material);
+	//	public final Sphere sphere3 = new Sphere(new Point3(-1,0,-3),0.5, materials);
+	//	public final Sphere sphere4 = new Sphere(new Point3(1,0,-6),0.5, materials);
 	//	public final Camera abb10Cam = new OrthographicCamera(new Point3(0,0,0), new Vector3(0,0,-1),new Vector3(0,1,0),4);
 
 		// Uebung 3 Beleuchtung
@@ -240,7 +240,7 @@ public class OurGui extends Application {
 		public final DirectionalLight directionalLight = new DirectionalLight(new raytracer.Color(0.3,0.3,0.3),new Vector3(1,-1,0).normalized(),true);
 
 		public final PerspectiveCamera camRef = new PerspectiveCamera(new Point3(8,8,8),
-				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
 
 
 
@@ -291,15 +291,15 @@ public class OurGui extends Application {
 
 	    public final Node ns3T = new Node(new Transform().translate(new Point3(1.5,2,1.5)).scale(0.5,0.5,0.5),new ArrayList<>());
 
-	    public final AxisAlignedBox boxT = new AxisAlignedBox(new TransparentMaterial(1.33));
+	    public final AxisAlignedBox boxT = new AxisAlignedBox(new Point3(-0.5,0,3),new Point3(0.5,1,4),new TransparentMaterial(1.33));
 
-	    public final Node nboxT = new Node(new Transform().translate(new Point3(0.5,0,3.5)).scale(1,2,1),new ArrayList<>());
+	    public final Node nboxT = new Node(new Transform(),new ArrayList<>());
 
-	    public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4),
+	    public final Triangle tri = new Triangle(new Point3(0.7,0.5,3),new Point3(1.3,0.5,3),new Point3(0.7,0.5,4),new Normal3(0,1,0),new Normal3(0,1,0),new Normal3(0,1,0),
 				new PhongMaterial(new raytracer.Color(0,1,0),
-				new raytracer.Color(0,1,0),24));
+				new raytracer.Color(0,1,0),20),new TextureCoord2D(0, 1), new TextureCoord2D(1, 0), new TextureCoord2D(0, 0));
 
-		public final Node trino = new Node(new Transform().translate(new Point3(1,0.5,0.4)),new ArrayList<>());
+		public final Node trino = new Node(new Transform(),new ArrayList<>());
 
 	    // IMAGE TEXTURE Test
 		public final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
@@ -446,13 +446,14 @@ public class OurGui extends Application {
 			ns1T.g.add(s1T);
 			ns2T.g.add(s2T);
 			ns3T.g.add(s3T);
+			welt.list.add(nboxT);
+			trino.g.add(tri);
+			welt.list.add(trino);
 			welt.list.add(ns1T);
 			welt.list.add(ns2T);
 			welt.list.add(ns3T);
 			nboxT.g.add(boxT);
-			welt.list.add(nboxT);
-			trino.g.add(tri);
-			welt.list.add(trino);
+
 
 
 

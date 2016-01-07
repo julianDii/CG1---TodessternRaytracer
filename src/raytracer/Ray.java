@@ -1,7 +1,7 @@
 package raytracer;
 
-import raytracer.matVecLib.Point3;
-import raytracer.matVecLib.Vector3;
+import matVecLib.Point3;
+import matVecLib.Vector3;
 
 /**
  * Created by Charline Waldrich, 3.11.2015
@@ -16,7 +16,7 @@ public class Ray {
 	 * @param o: starting point of the rays origin
 	 * @param d: vector of its direction
 	 */
-	public Ray(final Point3 o, final Vector3 d) {
+	public Ray  (final Point3 o, final Vector3 d) {
 
 		this.o = o;
 		this.d = d;
@@ -30,7 +30,8 @@ public class Ray {
 	 * @param t: is the given double value we need in order to get to the point
 	 * @returns the point and its new coordinates
 	 */
-	public Point3 at(double t) {
+	public Point3 at (double t) {
+
 		return o.add(d.mul(t));
 	}
 
@@ -42,10 +43,12 @@ public class Ray {
 	 * @returns  	a double which is the factor one needs to multiply the direction vector and 
 	 * 				add to the starting point of the ray, in order to get to the given Point p 
 	 */
-	public double tOf(Point3 p) {
-		if (p == null)
-			throw new IllegalArgumentException("The Point for which you search the Faktor t should not be undefined.");
+	public double tOf (Point3 p) {
+
+		if (p == null) throw new IllegalArgumentException("The Point for which you search the Faktor t should not be undefined.");
+
 		return (p.sub(o)).magnitude / d.magnitude;
+
 	}
 
 	@Override

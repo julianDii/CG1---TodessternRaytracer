@@ -3,10 +3,8 @@ package raytracer;
 import java.util.ArrayList;
 import java.util.List;
 
-import licht.Light;
-import material.Tracer;
-import raytracer.geometrie.Geometry;
-import raytracer.geometrie.Hit;
+import lights.Light;
+import geometries.Geometry;
 
 /**
  * The world class is used to create a world with specific background color and the 

@@ -7,13 +7,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import material.LambertMaterial;
-import material.PhongMaterial;
-import material.SingleColorMaterial;
+import materials.LambertMaterial;
+import materials.PhongMaterial;
+import materials.SingleColorMaterial;
 import raytracer.Color;
-import raytracer.geometrie.Plane;
-import raytracer.matVecLib.Normal3;
-import raytracer.matVecLib.Point3;
+import geometries.Plane;
+import matVecLib.Normal3;
+import matVecLib.Point3;
 
 /**
  * This class represents a gui to create a new plane.
@@ -236,7 +236,7 @@ public class PlaneWindow extends Stage{
     }
 
     /**
-     * This method calls the createPlane method with the selected material as parameter.
+     * This method calls the createPlane method with the selected materials as parameter.
      * Also the plane window will be closed by this method.
      */
 
