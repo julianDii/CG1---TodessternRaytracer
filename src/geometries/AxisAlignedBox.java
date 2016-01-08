@@ -2,6 +2,7 @@ package geometries;
 
 import materials.Material;
 import matVecLib.Point3;
+import raytracer.Constants;
 import raytracer.Hit;
 import raytracer.Ray;
 import raytracer.Transform;
@@ -67,8 +68,8 @@ public class AxisAlignedBox extends Geometry {
      * @param material The materials.
      */
     public AxisAlignedBox (final Point3 lbf, final Point3 run, final Material material) {
-
         super(material);
+
         this.lbf = lbf;
         this.run = run;
 
@@ -151,13 +152,12 @@ public class AxisAlignedBox extends Geometry {
         }
 
         double t = Double.MAX_VALUE;
-        final double t2 = 0.000001;
         Hit rHit = null;
 
         for (final Hit h : hitBox) {
 
             if (h == null)continue;
-            if (h.t < t && t > 0 && h.t > t2) {
+            if (h.t < t && t > 0 && h.t > Constants.EPSILON) {
 
                 t = h.t;
                 rHit = h;

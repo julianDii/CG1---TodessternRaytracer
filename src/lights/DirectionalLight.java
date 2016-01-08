@@ -1,10 +1,7 @@
 package lights;
 
-import raytracer.Color;
-import raytracer.Ray;
-import raytracer.World;
+import raytracer.*;
 import geometries.Geometry;
-import raytracer.Hit;
 import matVecLib.Point3;
 import matVecLib.Vector3;
 
@@ -46,9 +43,6 @@ public class DirectionalLight extends Light {
 
 		Ray r = new Ray(point, directionFrom(point));
 
-		double untereGrenze= 0.00001;
-
-
 		if (castShadows == true) {
 			for (Geometry g : world.list) {
 
@@ -58,7 +52,8 @@ public class DirectionalLight extends Light {
 				if(h!=null){
 					t2=h.t;
 				}
-				if (t2>=untereGrenze && h!=null){
+				if (t2 >= Constants.EPSILON && h!=null) {
+
 					return false;
 				}
 

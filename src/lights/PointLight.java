@@ -23,7 +23,7 @@ public class PointLight extends Light {
 	 */
 	final Point3 position;
 
-	public PointLight(final Color color, final Point3 position, boolean castShadows) {
+	public PointLight (final Color color, final Point3 position, boolean castShadows) {
 
 		super(color,castShadows);
 		this.position = position;
@@ -37,7 +37,7 @@ public class PointLight extends Light {
 	 */
 
 
-	public boolean illuminates(final Point3 point, final World world) {
+	public boolean illuminates (final Point3 point, final World world) {
 
 		Ray r = new Ray(point, directionFrom(point));
 

@@ -240,7 +240,7 @@ public class OurGui extends Application {
 		public final DirectionalLight directionalLight = new DirectionalLight(new raytracer.Color(0.3,0.3,0.3),new Vector3(1,-1,0).normalized(),true);
 
 		public final PerspectiveCamera camRef = new PerspectiveCamera(new Point3(8,8,8),
-				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(10),Math.PI/4);
+				new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 
 
 
@@ -299,7 +299,14 @@ public class OurGui extends Application {
 				new PhongMaterial(new raytracer.Color(0,1,0),
 				new raytracer.Color(0,1,0),20),new TextureCoord2D(0, 1), new TextureCoord2D(1, 0), new TextureCoord2D(0, 0));
 
+
+
 		public final Node trino = new Node(new Transform(),new ArrayList<>());
+
+
+	    public final Torus to = new Torus (new TransparentMaterial(1.33));
+
+	    public final Node tono = new Node(new Transform().rotX(45).rotY(25),new ArrayList<>());
 
 	    // IMAGE TEXTURE Test
 		public final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
@@ -424,35 +431,37 @@ public class OurGui extends Application {
 
 			// BELEUCHTUNG 2 ABBILDUNG 5
 
-			welt.lightList.add(spotLight);
+			//welt.lightList.add(spotLight);
 			welt.lightList.add(pointLight);
-			welt.lightList.add(directionalLight);
+			//welt.lightList.add(directionalLight);
 
 			planeNode.g.add(plane);
 			welt.list.add(planeNode);
 
-			n1.g.add(s1);
-			n2.g.add(s2);
-			n3.g.add(s3);
-			n4.g.add(s4);
-			n5.g.add(s5);
-			n6.g.add(s6);
-			welt.list.add(n1);
-			welt.list.add(n2);
-			welt.list.add(n3);
-			welt.list.add(n4);
-			welt.list.add(n5);
-			welt.list.add(n6);
-			ns1T.g.add(s1T);
-			ns2T.g.add(s2T);
-			ns3T.g.add(s3T);
-			welt.list.add(nboxT);
-			trino.g.add(tri);
-			welt.list.add(trino);
-			welt.list.add(ns1T);
-			welt.list.add(ns2T);
-			welt.list.add(ns3T);
-			nboxT.g.add(boxT);
+//			n1.g.add(s1);
+//			n2.g.add(s2);
+//			n3.g.add(s3);
+//			n4.g.add(s4);
+//			n5.g.add(s5);
+//			n6.g.add(s6);
+//			welt.list.add(n1);
+//			welt.list.add(n2);
+//			welt.list.add(n3);
+//			welt.list.add(n4);
+//			welt.list.add(n5);
+//			welt.list.add(n6);
+//			ns1T.g.add(s1T);
+//			ns2T.g.add(s2T);
+//			ns3T.g.add(s3T);
+//			welt.list.add(nboxT);
+//			trino.g.add(tri);
+//			welt.list.add(trino);
+//			welt.list.add(ns1T);
+//			welt.list.add(ns2T);
+//			welt.list.add(ns3T);
+//			nboxT.g.add(boxT);
+			tono.g.add(to);
+			welt.list.add(tono);
 
 
 

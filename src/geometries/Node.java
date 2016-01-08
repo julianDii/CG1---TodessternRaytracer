@@ -1,5 +1,6 @@
 package geometries;
 
+import raytracer.Constants;
 import raytracer.Hit;
 import raytracer.Ray;
 import raytracer.Transform;
@@ -21,21 +22,21 @@ public class Node extends Geometry {
     /**
      * The geometry list of the node.
      */
-    public final List<Geometry>g;
+    public final List<Geometry> g;
 
 
     /**
      * This constructor builds a new node.
-     * @param t The Transform object of the node.
-     * @param list  list of the Geometries in this node.
+     * @param transT The Transform object of the node.
+     * @param g The geometry list the Geometries in this node.
      */
-    public Node(final Transform transT,final List<Geometry>g ){
+    public Node (final Transform transT,final List<Geometry>g ) {
 
-        if(transT==null)throw new IllegalArgumentException("t have to be not null");
-        if(g==null)throw new IllegalArgumentException("list have to be not null");
+        if (transT == null) throw new IllegalArgumentException("t have to be not null");
+        if (g == null) throw new IllegalArgumentException("list have to be not null");
 
-        this.transT=transT;
-        this.g=g;
+        this.transT = transT;
+        this.g = g;
     }
 
     /**
@@ -43,25 +44,28 @@ public class Node extends Geometry {
      * @param r The given ray.
      * @return A new hit.
      */
-    public Hit hit(final Ray r) {
-        if(r==null)throw new IllegalArgumentException("r have to be not null");
+    public Hit hit (final Ray r) {
+        if(r == null) throw new IllegalArgumentException("r have to be not null");
 
         Ray transRay = transT.mul(r);
         double t1 = Double.MAX_VALUE;
-        double t2 = 0.000001;
+
         Hit lhit = null;
 
-        for(Geometry geometry:g ){
-            Hit h= geometry.hit(transRay);
-            if (h==null)continue;
-            if (h.t<t1 && h.t > t2){
-                t1= h.t;
+        for(Geometry geometry : g ){
+
+            Hit h = geometry.hit(transRay);
+
+            if (h == null) continue;
+            if (h.t < t1 && h.t > Constants.EPSILON){
+                t1 = h.t;
                 lhit = h;
             }
         }
 
-        if(lhit==null)return null;
-        return new Hit(lhit.t,r,lhit.geo,transT.mul(lhit.nor),lhit.tex2d);
+        if (lhit == null) return null;
+
+        return new Hit (lhit.t, r, lhit.geo, transT.mul(lhit.nor), lhit.tex2d);
     }
 
     @Override

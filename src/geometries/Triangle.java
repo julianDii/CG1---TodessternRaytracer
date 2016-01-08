@@ -61,8 +61,6 @@ public class Triangle extends Geometry {
 	 */
 	public final TextureCoord2D ct;
 
-
-
 	/**
 	 * This contructor creates a new triangle.
 	 * @param a The first point component of the triangle.
@@ -117,6 +115,12 @@ public class Triangle extends Geometry {
 
 	}
 
+	/**
+	 * This method calculates hit objects for rays with geometries.
+	 * @param r The ray to calculate hits for.
+	 * @return The hit with the geometry.
+	 */
+
     @Override
     public Hit hit (final Ray r) {
 
@@ -141,19 +145,21 @@ public class Triangle extends Geometry {
 
 		}
 
-		final Vector3 sv = new  Vector3(a.x-r.o.x, a.y-r.o.y, a.z-r.o.z);
+		final Vector3 sv = new  Vector3 (a.x - r.o.x, a.y - r.o.y, a.z - r.o.z);
 		final Mat3x3 A1 = A.changeCol1(sv);
 		final Mat3x3 A2 = A.changeCol2(sv);
 		final Mat3x3 A3 = A.changeCol3(sv);
 
-		beta  = A1.determinant/A.determinant;
-		gamma = A2.determinant/A.determinant;
-		t     = A3.determinant/A.determinant;
+		beta  = A1.determinant / A.determinant;
+		gamma = A2.determinant / A.determinant;
+		t     = A3.determinant / A.determinant;
 
-		if((beta > 0 && gamma > 0 ) && beta + gamma <= 1){
+		if ((beta > 0 && gamma > 0 ) && beta + gamma <= 1) {
+
 			final Normal3 nc = an.mul(alpha).add(bn.mul(beta)).add(cn.mul(gamma));
 			final TextureCoord2D tc = at.mul(alpha).add(bt).mul(beta).add(ct).mul(gamma);
-			return new Hit(t, r,this,nc ,tc);
+
+			return new Hit(t, r, this, nc , tc);
 		}
 
 		return null;

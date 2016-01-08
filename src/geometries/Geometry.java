@@ -21,7 +21,7 @@ public abstract class Geometry {
     /**
      * This constructor builds a geometry with a singlecolormaterial.
      */
-    public Geometry(){
+    public Geometry() {
 
         material = new SingleColorMaterial(new Color(0, 0, 0));
     }
@@ -31,9 +31,9 @@ public abstract class Geometry {
      * @param material
      */
 
-    public Geometry( Material material){
+    public Geometry(final Material material) {
 
-        if(material==null)throw new IllegalArgumentException("materials have to be not null");
+        if(material == null) throw new IllegalArgumentException("materials have to be not null");
         this.material = material;
     }
 
@@ -42,7 +42,7 @@ public abstract class Geometry {
      * @param r
      */
 
-    public abstract Hit hit(final Ray r);
+    public abstract Hit hit (final Ray r);
 
 
     @Override

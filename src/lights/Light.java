@@ -28,7 +28,7 @@ public abstract class Light {
 	 * @param castShadows
 	 */
 
-	public Light (final Color color, boolean castShadows){
+	public Light (final Color color, boolean castShadows) {
 
 		if(color == null) throw new IllegalArgumentException("color has to be not null");
 
@@ -50,7 +50,7 @@ public abstract class Light {
 	 * @return The direction from the point.
 	 */
 	
-	public abstract Vector3 directionFrom(final Point3 point);
+	public abstract Vector3 directionFrom (final Point3 point);
 
 	@Override
 	public boolean equals(Object o) {

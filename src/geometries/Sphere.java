@@ -46,8 +46,8 @@ public class Sphere extends Geometry {
     public Sphere (final Material material) {
         super(material);
 
-        this.c=new Point3(0,0,0);
-        this.r=1;
+        this.c = new Point3(0,0,0);
+        this.r = 1;
     }
 
     /**
@@ -76,10 +76,15 @@ public class Sphere extends Geometry {
             t2 = (-b - Math.sqrt(d)) / (2 * a);
 
             if (t1 >= 0 & t2 >= 0) {
+
                 p = r.at(Math.min(t1, t2));
+
                return new Hit(Math.min(t1, t2), r, this,p.sub(c).normalized().asNormal(),texFor(p) );
+
             }else if (t1 >= 0){
+
                 return new Hit(t1,r,this, r.at(t1).sub(c).normalized().asNormal(),texFor(r.at(t1)));
+
             }else if(t2 >= 0) {
 
                 return new Hit(t2, r, this, r.at(t2).sub(c).normalized().asNormal(),texFor(r.at(t2)));
@@ -87,17 +92,23 @@ public class Sphere extends Geometry {
         }else if (d == 0){
 
             final double t3;
-            t3 = -b/(2 * a);
+            t3 = -b / (2 * a);
 
-            if (t3 >=0){
+            if (t3 >= 0){
 
-                return new Hit(t3,r,this,r.at(t3).sub(c).normalized().asNormal(),texFor(r.at(t3)));
+                return new Hit(t3, r, this, r.at(t3).sub(c).normalized().asNormal(), texFor(r.at(t3)));
 
             }
         }
 
         return null;
     }
+
+    /**
+     * This method calculates the texture for a given point.
+     * @param point The point for calculate the texture coordinate.
+     * @return The new texture coordinate.
+     */
 
     public TextureCoord2D texFor (final Point3 point) {
 

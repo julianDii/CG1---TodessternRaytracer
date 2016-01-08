@@ -93,6 +93,7 @@ public class Point3 {
 
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

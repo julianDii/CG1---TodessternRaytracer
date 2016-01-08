@@ -8,6 +8,7 @@ import raytracer.Ray;
 import texture.TextureCoord2D;
 
 /**
+ * This class represents the geometry plane.
  * Created by Julian on 03.11.15. 
  * Developer Charline Waldrich
  */
@@ -17,12 +18,10 @@ public class Plane extends Geometry {
 	final Normal3 n;
 
 	/**
-	 * Initializes a new plane object.
-	 * @param a point lying on the plane. Cannot be null.
-	 * @param n: normal of the plane. Cannot be null.
-	 * @param color of the plane. Cannot be null.
+	 * This constructor creates a new plane.
+	 * @param material The material of the plane.
 	 */
-	public Plane(final Material material) {
+	public Plane (final Material material) {
 		super(material);
 
 		this.a = new Point3 (0,0,0);
@@ -36,7 +35,7 @@ public class Plane extends Geometry {
 	 * If the given ray and the plane do have a point of intersection, it returns a hit object. 
 	 * It contains the factor t which we need to know at which length of the ray it hits the 
 	 * object. It also holds the ray itself (r) and the color of the plane (color).
-	 * @param ray is needed to calculate weather the ray hits the object or not.
+	 * @param r The ray is needed to calculate weather the ray hits the object or not.
 	 */
 	@Override
     public Hit hit (final Ray r) {
@@ -53,6 +52,7 @@ public class Plane extends Geometry {
 
     			return null;
     		}
+
 			Point3 point = r.at(t);
     		return new Hit(t, r, this, n, new TextureCoord2D(point.x, -point.z));
     	}
