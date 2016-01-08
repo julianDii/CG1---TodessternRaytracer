@@ -227,7 +227,7 @@ public class OurGui extends Application {
 
 		//Obj Loader
 		public final ShapeFromFile ren = new ShapeFromFile(
-				"dice.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
+				"teddy.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
 				new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
 
 		//ABBLIDUNG 5 Beleuchtung 2
@@ -374,7 +374,7 @@ public class OurGui extends Application {
 
 			//schatten scene 1
 	//       //use cam10
-	//		welt.lightList.add(pointLight100);
+			welt.lightList.add(pointLight100);
 	//		abb4Plane.g.add(plane1);
 	//		abb4Box.g.add(redBox);
 	//		funnySphere1.g.add(sRed);
@@ -420,8 +420,8 @@ public class OurGui extends Application {
 
 			//OBJ loader
 
-//			Node testnode= ren.OBJLoader();
-//			welt.list.add(testnode);
+			Node testnode= ren.OBJLoader();
+			welt.list.add(testnode);
 
 			//imageTexture
 
@@ -432,11 +432,11 @@ public class OurGui extends Application {
 			// BELEUCHTUNG 2 ABBILDUNG 5
 
 			//welt.lightList.add(spotLight);
-			welt.lightList.add(pointLight);
+//			welt.lightList.add(pointLight);
 			//welt.lightList.add(directionalLight);
 
-			planeNode.g.add(plane);
-			welt.list.add(planeNode);
+//			planeNode.g.add(plane);
+//			welt.list.add(planeNode);
 
 //			n1.g.add(s1);
 //			n2.g.add(s2);
@@ -460,8 +460,8 @@ public class OurGui extends Application {
 //			welt.list.add(ns2T);
 //			welt.list.add(ns3T);
 //			nboxT.g.add(boxT);
-			tono.g.add(to);
-			welt.list.add(tono);
+//			tono.g.add(to);
+//			welt.list.add(tono);
 
 
 
@@ -530,7 +530,7 @@ public class OurGui extends Application {
 			raytracer.Color addFarbe = new raytracer.Color(0,0,0);
 
 
-			Set<Ray> rays = camRef.rayFor(width, height, x, height - 1 - y);
+			Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
 
 			for (Ray r : rays) {
 
