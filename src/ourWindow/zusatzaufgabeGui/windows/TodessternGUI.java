@@ -1,4 +1,4 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
@@ -14,6 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import ourWindow.zusatzaufgabeGui.windows.geometrieWindows.*;
+import ourWindow.zusatzaufgabeGui.windows.lightWindows.DirectionalLightWindow;
+import ourWindow.zusatzaufgabeGui.windows.lightWindows.PointLightWindow;
+import ourWindow.zusatzaufgabeGui.windows.lightWindows.SpotLightWindow;
+import raytracer.Ray;
 import raytracer.World;
 import camera.Camera;
 
@@ -22,6 +27,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 /**
  * The TodessternGUI Class opens a window thanks to the implemented JavaFX
@@ -117,20 +123,65 @@ public class TodessternGUI extends Application {
      * @return Color object either gets the color from the geometry, which was hit
      * or the background color of the world.
      */
-    private Color getColor(int width, int height, int x, int y) throws IllegalArgumentException {
-//
-//        if (y > height || x > width) throw new IllegalArgumentException("Etwas stimmt mit der Höhe und Breite nicht.");
-//        raytracer.Color hitFarbe = welt.hit(cam.rayFor(width, height, x, height - 1 - y));
-//
-//        if (hitFarbe.r<0){hitFarbe.r=0;}
-//        if (hitFarbe.r>1){hitFarbe.r=1;}
-//        if (hitFarbe.g<0){hitFarbe.g=0;}
-//        if (hitFarbe.g>1){hitFarbe.g=1;}
-//        if (hitFarbe.b<0){hitFarbe.b=0;}
-//        if (hitFarbe.b>1){hitFarbe.b=1;}
-//
-//        return new Color(hitFarbe.r, hitFarbe.g, hitFarbe.b, 1);
-        return null;
+    private Color getColor (int width , int height, int x, int y) throws IllegalArgumentException {
+
+        raytracer.Color hitFarbe;
+        raytracer.Color addFarbe = new raytracer.Color(0,0,0);
+
+
+        Set<Ray> rays = cam.rayFor(width, height, x, height - 1 - y);
+
+        for ( Ray r : rays) {
+
+            hitFarbe = welt.hit(r);
+
+
+            if(hitFarbe == null)throw new IllegalArgumentException("color has to be not null");
+
+            if (hitFarbe.r < 0) {
+                hitFarbe.r = 0;
+            }
+            if (hitFarbe.r > 1) {
+                hitFarbe.r = 1;
+            }
+            if (hitFarbe.g < 0) {
+                hitFarbe.g = 0;
+            }
+            if (hitFarbe.g > 1) {
+                hitFarbe.g = 1;
+            }
+            if (hitFarbe.b < 0) {
+                hitFarbe.b = 0;
+            }
+            if (hitFarbe.b > 1) {
+                hitFarbe.b = 1;
+            }
+            addFarbe=addFarbe.add(hitFarbe);
+
+        }
+
+        //divide color with pixels of grid
+        addFarbe=addFarbe.mul(1f/rays.size());
+        if (addFarbe.r < 0) {
+            addFarbe.r = 0;
+        }
+        if (addFarbe.r > 1) {
+            addFarbe.r = 1;
+        }
+        if (addFarbe.g < 0) {
+            addFarbe.g = 0;
+        }
+        if (addFarbe.g > 1) {
+            addFarbe.g = 1;
+        }
+        if (addFarbe.b < 0) {
+            addFarbe.b = 0;
+        }
+        if (addFarbe.b > 1) {
+            addFarbe.b = 1;
+        }
+        //System.out.println(addFarbe);
+        return new Color(addFarbe.r, addFarbe.g, addFarbe.b, 1);
     }
 
     /**

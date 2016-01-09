@@ -34,7 +34,14 @@ public class World {
 	public final double refractionIndex;
 
 
-	public World (final Color color,final Color ambient,final double refractionIndex){
+	/**
+	 * This constructor builds a new world.
+	 * @param color
+	 * @param ambient
+	 * @param refractionIndex
+	 */
+	public World (final Color color, final Color ambient, final double refractionIndex) {
+
 		this.backgroundcolor = color;
 		this.ambient = ambient;
 		this.refractionIndex = refractionIndex;
@@ -46,15 +53,21 @@ public class World {
 	 * @return Color object, background color if ray has no hit on the object. if it does, it
 	 * returns the color of the hit object
 	 */
-	public Color hit (Ray r){
+	public Color hit (final Ray r) {
+
 		Hit hit0 = null;
-		for (final Geometry g: list){
+
+		for (final Geometry g : list) {
+
 			Hit hit1 = g.hit(r);
+
 			if (hit0 == null || (hit1 != null && hit1.t < hit0.t)) hit0 = hit1;
 		}
-		if (hit0 == null) return backgroundcolor;
 
+		if (hit0 == null) {
 
+			return backgroundcolor;
+		}
 		return hit0.geo.material.colorFor(hit0, this, new Tracer(6,this));
 	}
 
@@ -63,14 +76,21 @@ public class World {
 	 * @param ray  ray which we want to check.
 	 * @return the minHit with the Geometry.
 	 */
-	public Hit hitt(Ray ray){
+	public Hit hitt (final Ray ray) {
+
 		Hit minHit = null;
+
 		double min_t = Double.MAX_VALUE;
+
 		for (final Geometry element : list) {
+
 			final Hit hit = element.hit(ray);
-			if ((hit != null) && 0.0001 < hit.t && hit.t < min_t){
+
+			if ((hit != null) && 0.0001 < hit.t && hit.t < min_t) {
+
 				minHit = hit;
 				min_t = hit.t;
+
 			}
 		}
 		return minHit;

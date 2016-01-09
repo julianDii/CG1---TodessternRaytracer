@@ -44,12 +44,14 @@ public class ImageTexture extends Texture {
      * @param color
      * @param imgName
      */
-    public ImageTexture(final Color color, final String imgName){
-        if (color==null)throw new IllegalArgumentException("color has to be not null");
-        if (imgName==null)throw new IllegalArgumentException("imgName has to be not null");
+    public ImageTexture (final Color color, final String imgName) {
+
+        if (color == null) throw new IllegalArgumentException("color has to be not null");
+        if (imgName == null) throw new IllegalArgumentException("imgName has to be not null");
 
         this.color = color;
         this.image = null;
+
         try {
 
             properties.load(new FileInputStream("todesstern.properties"));
@@ -70,7 +72,7 @@ public class ImageTexture extends Texture {
      */
 
     @Override
-    public Color colorFor(double u, double v) {
+    public Color colorFor (double u, double v) {
 
          double coo1 = ImageTexture.getRelCoord(u);
          double coo2 = ImageTexture.getRelCoord(v);
@@ -80,6 +82,11 @@ public class ImageTexture extends Texture {
         return ImageTexture.getPositionColor(this.image,(int) Math.round(x), (int) Math.round(y));
     }
 
+    /**
+     * This method calculates the the relative double value.
+     * @param in
+     * @return the relative double value.
+     */
 
     public static double getRelCoord(final double in) {
         double out = in % 1.0;
@@ -90,6 +97,13 @@ public class ImageTexture extends Texture {
     }
 
 
+    /**
+     * This method calculates the color of the position.
+     * @param image
+     * @param x
+     * @param y
+     * @return The color for the certain image x,y.
+     */
     public static Color getPositionColor(final BufferedImage image, final int x, final int y) {
 
         final java.awt.Color c = new java.awt.Color(image.getRGB(x, y));

@@ -1,23 +1,23 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows.lightWindows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lights.SpotLight;
+import lights.PointLight;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 import raytracer.Color;
 import matVecLib.Point3;
-import matVecLib.Vector3;
 
 /**
  * Created by Juliand on 30.11.15.
  */
-public class SpotLightWindow extends Stage {
+public class PointLightWindow extends Stage{
 
     public final BorderPane border = new BorderPane();
 
@@ -25,8 +25,6 @@ public class SpotLightWindow extends Stage {
     private final Button can = new Button("CANCEL");
     private final GridPane grid = new GridPane();
     private final HBox btnBox = new HBox();
-
-
 
 
     //------------------------------ PointLight --------------------------------//
@@ -37,16 +35,6 @@ public class SpotLightWindow extends Stage {
     private final NumberField positiony = new NumberField("4");
     private final NumberField positionz = new NumberField("4");
 
-    private final Label direction = new Label("Direction");
-
-    private final NumberField directionx = new NumberField("-1");
-    private final NumberField directiony = new NumberField("-1");
-    private final NumberField directionz = new NumberField("-1");
-
-    private final Label halfAngle = new Label("Angle");
-
-    private final NumberField hAngle = new NumberField("14");
-
     private final Label color = new Label("Color");
 
     private final NumberField colorr = new NumberField("1");
@@ -55,23 +43,26 @@ public class SpotLightWindow extends Stage {
 
 
 
-    public SpotLightWindow(){
+    public PointLightWindow(){
 
-        Scene sceneSpotLight = new Scene(border);
+        Scene scenePointLight = new Scene(border);
         initRoot();
 
         this.setWidth(350);
-        this.setHeight(250);
-        this.setTitle("SpotLight Menu");
-        this.setScene(sceneSpotLight);
+        this.setHeight(150);
+        this.setTitle("Box Menu");
+        this.setScene(scenePointLight);
         this.initModality(Modality.APPLICATION_MODAL);
         this.showAndWait();
+
 
     }
 
     private void initRoot() {
 
         btnBox.getChildren().addAll(add,can);
+
+
 
         border.setCenter(grid);
         border.setBottom(btnBox);
@@ -90,46 +81,33 @@ public class SpotLightWindow extends Stage {
         grid.add(positiony,2,3);
         grid.add(positionz,3,3);
 
-        grid.add(direction,0,4);
+        grid.add(color,0,4);
 
-        grid.add(directionx,1,4);
-        grid.add(directiony,2,4);
-        grid.add(directionz,3,4);
-
-        grid.add(halfAngle,0,5);
-
-        grid.add(hAngle,1,5);
-
-        grid.add(color,0,6);
-
-        grid.add(colorr,1,6);
-        grid.add(colorg,2,6);
-        grid.add(colorb,3,6);
+        grid.add(colorr,1,4);
+        grid.add(colorg,2,4);
+        grid.add(colorb,3,4);
 
 
         //--------------------- EVENTS ------------------------------//
-        add.setOnAction(e->addsLight());
+        add.setOnAction(e->addLight());
         can.setOnAction(e->this.close());
     }
 
-    private void addsLight() {
-        addSpotLight();
+    private void addLight() {
+        addpLight();
         this.close();
     }
-    private void addSpotLight() {
 
+    private void addpLight() {
 
-        Point3 pos = new Point3(positionx.getNumber(), positiony.getNumber(),positionz.getNumber());
-
-        Vector3 dir = new Vector3(directionx.getNumber(), directiony.getNumber(),directionz.getNumber());
+        Point3 position = new Point3(positionx.getNumber(), positiony.getNumber(),positionz.getNumber());
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
-        Double ha = new Double(hAngle.getNumber());
+        PointLight pointL = new PointLight(color,position,true);
 
-        SpotLight spot = new SpotLight(color,pos,true,dir,Math.PI/ha);
-
-        TodessternGUI.welt.lightList.add(spot);
+        TodessternGUI.welt.lightList.add(pointL);
 
     }
+
 }

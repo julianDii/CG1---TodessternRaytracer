@@ -1,4 +1,4 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows.geometrieWindows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,13 +11,14 @@ import javafx.stage.Stage;
 import materials.LambertMaterial;
 import materials.PhongMaterial;
 import materials.SingleColorMaterial;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
 import raytracer.Color;
 import matVecLib.Point3;
 
 /**
  * Created by Juliand on 25.11.15.
  */
-public class TriangleWindow extends Stage {
+public class BoxWindow extends Stage {
 
     public final BorderPane border = new BorderPane();
 
@@ -37,25 +38,19 @@ public class TriangleWindow extends Stage {
     private final ToggleGroup tog = new ToggleGroup();
 
 
-    //------------------------------ TRIANGLE --------------------------------//
+    //------------------------------ SPHERE --------------------------------//
 
-    private final Label firstCorner = new Label("firstCorner");
+    private final Label lbf = new Label("lbf");
 
-    private final NumberField firstx = new NumberField("0");
-    private final NumberField firsty = new NumberField("0");
-    private final NumberField firstz = new NumberField("-1");
+    private final NumberField lbfx = new NumberField("-1.5");
+    private final NumberField lbfy = new NumberField("0.5");
+    private final NumberField lbfz = new NumberField("0.5");
 
-    private final Label secondCorner = new Label("run");
+    private final Label run = new Label("run");
 
-    private final NumberField secondx = new NumberField("1");
-    private final NumberField secondy = new NumberField("0");
-    private final NumberField secondz = new NumberField("-1");
-
-    private final Label thirdCorner = new Label("thirdCorner");
-
-    private final NumberField thirdx = new NumberField("1");
-    private final NumberField thirdy = new NumberField("1");
-    private final NumberField thirdz = new NumberField("-1");
+    private final NumberField runx = new NumberField("-0.5");
+    private final NumberField runy = new NumberField("1.5");
+    private final NumberField runz = new NumberField("1.5");
 
 
     //---------------------- SINGLE ----------------------//
@@ -65,14 +60,13 @@ public class TriangleWindow extends Stage {
     private final NumberField singleCg = new NumberField("0");
     private final NumberField singleCb = new NumberField("1");
 
-
     //------------------- PHONG --------------------------//
 
     private final Label diffCol = new Label("Diffuse");
 
-    private final NumberField diffuser = new NumberField("1");
-    private final NumberField diffuseg = new NumberField("1");
-    private final NumberField diffuseb = new NumberField("0");
+    private final NumberField diffuser = new NumberField("0");
+    private final NumberField diffuseg = new NumberField("0");
+    private final NumberField diffuseb = new NumberField("1");
 
     private final Label specCol  = new Label("Specular");
 
@@ -91,15 +85,14 @@ public class TriangleWindow extends Stage {
     private final NumberField lamg = new NumberField("0");
     private final NumberField lamb = new NumberField("0");
 
-    public TriangleWindow(){
-
+    public BoxWindow(){
 
         Scene sceneBox = new Scene(border);
         initRoot();
 
         this.setWidth(350);
         this.setHeight(120);
-        this.setTitle("Triangle Menu");
+        this.setTitle("Box Menu");
         this.setScene(sceneBox);
         this.initModality(Modality.APPLICATION_MODAL);
         this.showAndWait();
@@ -119,6 +112,7 @@ public class TriangleWindow extends Stage {
         togLambert.setToggleGroup(tog);
         togPhong.setToggleGroup(tog);
 
+
         togBox.setSpacing(10);
         btnBox.setSpacing(5);
 
@@ -130,7 +124,7 @@ public class TriangleWindow extends Stage {
         grid.setHgap(5);
 
         //--------------------- EVENTS ------------------------------//
-        add.setOnAction(e->addTri());
+        add.setOnAction(e->addBox());
         can.setOnAction(e->this.close());
 
         tog.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
@@ -143,29 +137,23 @@ public class TriangleWindow extends Stage {
                 btnBox.getChildren().addAll(add,can);
                 btnBox.setPadding(new Insets(3,3,15,115));
 
-                grid.add(firstCorner,0,3);
+                grid.add(lbf,0,3);
 
-                grid.add(firstx,1,3);
-                grid.add(firsty,2,3);
-                grid.add(firstz,3,3);
+                grid.add(lbfx,1,3);
+                grid.add(lbfy,2,3);
+                grid.add(lbfz,3,3);
 
-                grid.add(secondCorner,0,4);
+                grid.add(run,0,4);
 
-                grid.add(secondx,1,4);
-                grid.add(secondy,2,4);
-                grid.add(secondz,3,4);
+                grid.add(runx,1,4);
+                grid.add(runy,2,4);
+                grid.add(runz,3,4);
 
-                grid.add(thirdCorner,0,5);
+                grid.add(single,0,5);
 
-                grid.add(thirdx,1,5);
-                grid.add(thirdy,2,5);
-                grid.add(thirdz,3,5);
-
-                grid.add(single,0,6);
-
-                grid.add(singleCr,1,6);
-                grid.add(singleCg,2,6);
-                grid.add(singleCb,3,6);
+                grid.add(singleCr,1,5);
+                grid.add(singleCg,2,5);
+                grid.add(singleCb,3,5);
             }
 
             if (tog.getSelectedToggle() == togLambert) {
@@ -176,29 +164,23 @@ public class TriangleWindow extends Stage {
                 btnBox.getChildren().addAll(add,can);
                 btnBox.setPadding(new Insets(3,3,15,115));
 
-                grid.add(firstCorner,0,3);
+                grid.add(lbf,0,3);
 
-                grid.add(firstx,1,3);
-                grid.add(firsty,2,3);
-                grid.add(firstz,3,3);
+                grid.add(lbfx,1,3);
+                grid.add(lbfy,2,3);
+                grid.add(lbfz,3,3);
 
-                grid.add(secondCorner,0,4);
+                grid.add(run,0,4);
 
-                grid.add(secondx,1,4);
-                grid.add(secondy,2,4);
-                grid.add(secondz,3,4);
+                grid.add(runx,1,4);
+                grid.add(runy,2,4);
+                grid.add(runz,3,4);
 
-                grid.add(thirdCorner,0,5);
+                grid.add(lamCol,0,5);
 
-                grid.add(thirdx,1,5);
-                grid.add(thirdy,2,5);
-                grid.add(thirdz,3,5);
-
-                grid.add(lamCol,0,6);
-
-                grid.add(lamr,1,6);
-                grid.add(lamg,2,6);
-                grid.add(lamb,3,6);
+                grid.add(lamr,1,5);
+                grid.add(lamg,2,5);
+                grid.add(lamb,3,5);
 
             } else {
                 if (tog.getSelectedToggle() == togPhong) {
@@ -210,38 +192,32 @@ public class TriangleWindow extends Stage {
                     btnBox.getChildren().addAll(add,can);
                     btnBox.setPadding(new Insets(3,3,15,115));
 
-                    grid.add(firstCorner,0,3);
+                    grid.add(lbf,0,3);
 
-                    grid.add(firstx,1,3);
-                    grid.add(firsty,2,3);
-                    grid.add(firstz,3,3);
+                    grid.add(lbfx,1,3);
+                    grid.add(lbfy,2,3);
+                    grid.add(lbfz,3,3);
 
-                    grid.add(secondCorner,0,4);
+                    grid.add(run,0,4);
 
-                    grid.add(secondx,1,4);
-                    grid.add(secondy,2,4);
-                    grid.add(secondz,3,4);
+                    grid.add(runx,1,4);
+                    grid.add(runy,2,4);
+                    grid.add(runz,3,4);
 
-                    grid.add(thirdCorner,0,5);
+                    grid.add(diffCol,0,5);
 
-                    grid.add(thirdx,1,5);
-                    grid.add(thirdy,2,5);
-                    grid.add(thirdz,3,5);
+                    grid.add(diffuser,1,5);
+                    grid.add(diffuseg,2,5);
+                    grid.add(diffuseb,3,5);
 
-                    grid.add(diffCol,0,6);
+                    grid.add(specCol,0,6);
 
-                    grid.add(diffuser,1,6);
-                    grid.add(diffuseg,2,6);
-                    grid.add(diffuseb,3,6);
+                    grid.add(specularr,1,6);
+                    grid.add(specularg,2,6);
+                    grid.add(specularb,3,6);
 
-                    grid.add(specCol,0,7);
-
-                    grid.add(specularr,1,7);
-                    grid.add(specularg,2,7);
-                    grid.add(specularb,3,7);
-
-                    grid.add(exp,0,8);
-                    grid.add(exponennt,1,8);
+                    grid.add(exp,0,7);
+                    grid.add(exponennt,1,7);
 
                 }
             }
@@ -249,17 +225,15 @@ public class TriangleWindow extends Stage {
 
     }
 
-    private void addTri() {
-        addTriangle(tog.getSelectedToggle());
+    private void addBox() {
+        addBox(tog.getSelectedToggle());
         this.close();
     }
 
+    private void addBox(Toggle selectedToggle) {
 
-    private void addTriangle(Toggle selectedToggle) {
-
-        Point3 fPoint = new Point3(firstx.getNumber(), firsty.getNumber(), firstz.getNumber());
-        Point3 sPoint = new Point3(secondx.getNumber(), secondy.getNumber(), secondz.getNumber());
-        Point3 tPoint = new Point3(thirdx.getNumber(), thirdy.getNumber(), thirdz.getNumber());
+        Point3 lb = new Point3(lbfx.getNumber(),lbfy.getNumber(), lbfz.getNumber());
+        Point3 ru = new Point3(runx.getNumber(), runy.getNumber(), runz.getNumber());
 
         //Single
         Color singleCol = new Color(singleCr.getNumber(), singleCg.getNumber(), singleCb.getNumber());
@@ -269,24 +243,23 @@ public class TriangleWindow extends Stage {
         Color diffCol = new Color(diffuser.getNumber(), diffuseg.getNumber(), diffuseb.getNumber());
         Color specCol = new Color(specularr.getNumber(), specularg.getNumber(), specularb.getNumber());
         Integer exp = new Integer((int)exponennt.getNumber());
-
         PhongMaterial phongMat = new PhongMaterial(diffCol, specCol, exp);
 
         //Lambert
-        Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(), lamb.getNumber());
+        Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(),lamb.getNumber());
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
 //        if (selectedToggle == togSingle) {
-//            Triangle sinTri = new Triangle(fPoint,sPoint,tPoint, sinCol);
-//            TodessternGUI.welt.list.add(sinTri);
+//            AxisAlignedBox sinBox = new AxisAlignedBox(lb, ru, sinCol);
+//            TodessternGUI.welt.list.add(sinBox);
 //        }
 //        if (selectedToggle == togLambert) {
-//            Triangle lamTri = new Triangle(fPoint,sPoint,tPoint, lamMat);
-//            TodessternGUI.welt.list.add(lamTri);
+//            AxisAlignedBox lamBox = new AxisAlignedBox(lb, ru, lamMat);
+//            TodessternGUI.welt.list.add(lamBox);
 //        }
 //        if (selectedToggle == togPhong) {
-//            Triangle phongTri = new Triangle(fPoint,sPoint,tPoint, phongMat);
-//            TodessternGUI.welt.list.add(phongTri);
+//            AxisAlignedBox phongBox = new AxisAlignedBox(lb, ru, phongMat);
+//            TodessternGUI.welt.list.add(phongBox);
 //        }
 
     }

@@ -53,7 +53,7 @@ public class OurGui extends Application {
 		/**
 		 * For testing we initialize the needed object in our world.
 		 */
-		public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0.1,0.1,0.1),(1.0));
+		public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0.4,0.4,0.4),(1.0));
 
 
 		//Schatten 1
@@ -63,7 +63,7 @@ public class OurGui extends Application {
 
 		//Schatten 2
 
-		public final static Node abb3Plane = new Node(new Transform().rotX(1).translate(new Point3(0, 0, 0)),new ArrayList<Geometry>());
+		public final static Node abb3Plane = new Node(new Transform().rotX(0).translate(new Point3(0, 0, 0)),new ArrayList<Geometry>());
 		public final static Node abb3sphere1 = new Node(new Transform().translate(new Point3(-3,1,0)),new ArrayList<Geometry>());
 		public final static Node abb3sphere2 = new Node(new Transform().translate(new Point3(0,1,0)),new ArrayList<Geometry>());
 		public final static Node abb3sphere3 = new Node(new Transform().translate(new Point3(3,1,0)),new ArrayList<Geometry>());
@@ -163,9 +163,9 @@ public class OurGui extends Application {
 		PerspectiveCamera cam9 = new PerspectiveCamera(new Point3(4,8,4),new Vector3(-1,-2,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 
 		//SCENE SHADOW
-		public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(2,2,2),true);
+		public final PointLight pointLight100 = new PointLight(new raytracer.Color(1,1,1), new Point3(-5,-5,-5),true);
 		//public final Plane plane10 = new Plane(new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial(new raytracer.Color(0.8,0.8,0.8)));
-		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(3,3,3),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+		public final PerspectiveCamera cam10 = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
 		public final Camera orthoS = new OrthographicCamera(new Point3(1.8,1.8,1.8), new Vector3(-1,-0.8,-1),new Vector3(0,1,0),new SamplingPattern(20),4);
 		//public final AxisAlignedBox box10 = new AxisAlignedBox(new Point3(-0.5,0,-0.5), new Point3(0.5,1,0.5), new LambertMaterial(new raytracer.Color(1,0,0)));
 
@@ -227,10 +227,10 @@ public class OurGui extends Application {
 
 		//Obj Loader
 		public final ShapeFromFile ren = new ShapeFromFile(
-				"teddy.obj",new ReflectiveMaterial(new raytracer.Color(1,0,1),
-				new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+				"teddy.obj", new LambertMaterial(new raytracer.Color(0.4,0.4,0.4)));
 
-		//ABBLIDUNG 5 Beleuchtung 2
+
+	//ABBLIDUNG 5 Beleuchtung 2
 
 		public final SpotLight spotLight = new SpotLight(new raytracer.Color(0.3,0.3,0.3),
 				new Point3(0,5,-10),true,new Vector3(0,-1,0),Math.PI/8);
@@ -313,6 +313,8 @@ public class OurGui extends Application {
 		public  Sphere sphereTex = new Sphere(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
 		public Plane plan = new Plane(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
 		public AxisAlignedBox ax = new AxisAlignedBox(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earth_day.jpg")));
+
+		public Node testn = new Node(new Transform(), new ArrayList<>());
 	/**
 		 * Drawing Surface:
 		 */
@@ -326,118 +328,121 @@ public class OurGui extends Application {
 		 * title is added and its initial size is set.
 		 */
 		public void start(Stage primaryStage) throws Exception {
+
 			primaryStage.setScene(new Scene(root));
-			primaryStage.setTitle("Welcome");
+			primaryStage.setTitle("RaytracerTodesstern");
 			primaryStage.setMinHeight(51);
 			primaryStage.setWidth(640);
 			primaryStage.setHeight(480);
 			initializeMenu(primaryStage);
-
-			// Akzeptanz II
-	//		welt.lightList.add(pointLight91);
-	//		welt.lightList.add(pointLight92);
-	//		welt.lightList.add(spotLight9);
-	//
-	//		welt.list.add(plane9);
-	//		welt.list.add(triangle9);
-	//		welt.list.add(sphere91);
-	//		welt.list.add(box9);
-	//		welt.list.add(sphere92);
-
-	//		// Abb 3
-	//		welt.list.add(plane1);
-	//		welt.list.add(triangl1);
-	//		welt.list.add(sphere5);
-	//		welt.list.add(box1);
-
-			// Abb 4
-	//		welt.lightList.add(pointLight);
-	//		welt.list.add(plane2);
-	//		welt.list.add(triangl2);
-	//		welt.list.add(sphere6);
-	//		welt.list.add(box2);
-
-
-			// Abb 5
-	//		welt.lightList.add(pointLight);
-			// Abb 6
-	//		welt.lightList.add(dirLight);
-			// Abb 7 /
-			// welt.lightList.add(spotLight);
-	//
-	//		welt.list.add(plane3);
-	//		welt.list.add(triangl3);
-	//		welt.list.add(sphere7);
-	//		welt.list.add(box3);
-
-
-
-			//schatten scene 1
-	//       //use cam10
-			welt.lightList.add(pointLight100);
-	//		abb4Plane.g.add(plane1);
-	//		abb4Box.g.add(redBox);
-	//		funnySphere1.g.add(sRed);
-	//		funnySphere2.g.add(sRed);
-	//
-	//		welt.list.add(abb4Plane);
-	//		//welt.list.add(abb4Box);
-	//		welt.list.add(sGreen);
-	//		welt.list.add(funnySphere1);
-	//		welt.list.add(funnySphere2);
-
-
-			//Schtten scene2
-			 //use cam10
-	//
-//			welt.lightList.add(pointLight101);
-	//		abb3Plane.g.add(blackPlane);
-	//		abb3sphere1.g.add(sRed);
-	//		abb3sphere2.g.add(sGreen);
-	//		abb3sphere3.g.add(sBlue);
-	////
-	//		welt.list.add(abb3Plane);
-	//		welt.list.add(abb3sphere1);
-	//		welt.list.add(abb3sphere2);
-	//		welt.list.add(abb3sphere3);
-	////
-	//
-		//	 Transformation abb.1
-	//		abb1.g.add(s);
-	//		welt.list.add(abb1);
-
-			//welt.list.add(p);
-
-		//	 Transformation abb.2
-	//		abb2.g.add(b);
-	//		welt.list.add(abb2);
-
-
-	//		//TEST sampling
-	//   	welt.lightList.add(pointLight100);
-	//		sampleSpehre.g.add(sRed);
-	//		welt.list.add(sampleSpehre);
-
-			//OBJ loader
-
-			Node testnode= ren.OBJLoader();
-			welt.list.add(testnode);
-
-			//imageTexture
-
 //
-//		    no.g.add(sphereTex);
+//			// Akzeptanz II
+//			welt.lightList.add(pointLight91);
+//			welt.lightList.add(pointLight92);
+//			welt.lightList.add(spotLight9);
+//
+//			welt.list.add(plane9);
+//			welt.list.add(triangle9);
+//			welt.list.add(sphere91);
+//   		welt.list.add(box9);
+//			welt.list.add(sphere92);
+//
+//			// Abb 3
+//			welt.list.add(plane1);
+//			welt.list.add(triangl1);
+//			welt.list.add(sphere5);
+//			welt.list.add(box1);
+//
+//			// Abb 4
+//     		welt.lightList.add(pointLight);
+//			welt.list.add(plane2);
+//			welt.list.add(triangl2);
+//			welt.list.add(sphere6);
+//			welt.list.add(box2);
+//
+//
+//			// Abb 5
+//			welt.lightList.add(pointLight);
+//			// Abb 6
+//			welt.lightList.add(dirLight);
+//			// Abb 7 /
+//			// welt.lightList.add(spotLight);
+//
+//			welt.list.add(plane3);
+//			welt.list.add(triangl3);
+//			welt.list.add(sphere7);
+//			welt.list.add(box3);
+//
+//
+//
+			//schatten scene 1
+//	        use cam10
+//			welt.lightList.add(pointLight100);
+//			abb4Plane.g.add(plane1);
+//			abb4Box.g.add(redBox);
+//			funnySphere1.g.add(sRed);
+//			funnySphere2.g.add(sRed);
+//
+//			welt.list.add(abb4Plane);
+//			welt.list.add(abb4Box);
+//			welt.list.add(sGreen);
+//			welt.list.add(funnySphere1);
+//  	    welt.list.add(funnySphere2);
+//
+//
+//			//Schtten scene2
+//			 //use cam10
+//
+			welt.lightList.add(pointLight101);
+// 			abb3Plane.g.add(blackPlane);
+//			abb3sphere1.g.add(sRed);
+//			abb3sphere2.g.add(sGreen);
+//			abb3sphere3.g.add(sBlue);
+//
+//			welt.list.add(abb3Plane);
+//			welt.list.add(abb3sphere1);
+//			welt.list.add(abb3sphere2);
+//			welt.list.add(abb3sphere3);
+//
+//
+//		//	 Transformation abb.1
+//			abb1.g.add(s);
+//			welt.list.add(abb1);
+
+//			//welt.list.add(p);
+//
+//		//	 Transformation abb.2
+//			abb2.g.add(b);
+//			welt.list.add(abb2);
+//
+//
+//			//TEST sampling
+//	    	welt.lightList.add(pointLight100);
+//			sampleSpehre.g.add(sRed);
+//			welt.list.add(sampleSpehre);
+//
+//			//OBJ loader
+//
+			testn.g.add(ren.OBJLoader());
+			welt.list.add(testn);
+
+//			//imageTexture
+
+
+//		    no.g.add(ax);
+//
 //			welt.list.add(no);
+//
 
 			// BELEUCHTUNG 2 ABBILDUNG 5
 
-			//welt.lightList.add(spotLight);
+//			welt.lightList.add(spotLight);
 //			welt.lightList.add(pointLight);
-			//welt.lightList.add(directionalLight);
-
+//			welt.lightList.add(directionalLight);
+//
 //			planeNode.g.add(plane);
 //			welt.list.add(planeNode);
-
+//
 //			n1.g.add(s1);
 //			n2.g.add(s2);
 //			n3.g.add(s3);
@@ -485,7 +490,7 @@ public class OurGui extends Application {
 		 * cannot be bound directly because neither the writableimage nor
 		 * the imageview provides a property binding method.
 		 */
-		private void drawPicture(Stage primaryStage) {
+		private void drawPicture (Stage primaryStage) {
 
 			root.getChildren().remove(imageview);
 
@@ -524,7 +529,7 @@ public class OurGui extends Application {
 
 
 
-		private Color getColor(int width , int height, int x, int y) throws IllegalArgumentException {
+		private Color getColor (int width , int height, int x, int y) throws IllegalArgumentException {
 
 			raytracer.Color hitFarbe;
 			raytracer.Color addFarbe = new raytracer.Color(0,0,0);
@@ -532,12 +537,12 @@ public class OurGui extends Application {
 
 			Set<Ray> rays = cam10.rayFor(width, height, x, height - 1 - y);
 
-			for (Ray r : rays) {
+			for ( Ray r : rays) {
 
 				hitFarbe = welt.hit(r);
 
 
-				if(hitFarbe==null)throw new IllegalArgumentException("color has to be not null");
+				if(hitFarbe == null)throw new IllegalArgumentException("color has to be not null");
 
 				if (hitFarbe.r < 0) {
 					hitFarbe.r = 0;
@@ -589,7 +594,7 @@ public class OurGui extends Application {
 		 * Initializes the menubar.
 		 * @param primaryStage needs to be given in oder to call the saveFile method in the lamda expression
 		 */
-		private void initializeMenu(Stage primaryStage) {
+		private void initializeMenu (Stage primaryStage) {
 
 			final MenuBar menubar = new MenuBar();
 			final Menu fileMenu = new Menu("File");
@@ -616,7 +621,7 @@ public class OurGui extends Application {
 		 * save the drawn picture as jpg or png. Before being able to save it, we
 		 * need to transform the writableimage into a bufferedimage.
 		 */
-		private void saveFile(Stage primaryStage) {
+		private void saveFile (Stage primaryStage) {
 
 			final FileChooser fileChooser = new FileChooser();
 			final ExtensionFilter png = new ExtensionFilter("PNG File", "*.png");
@@ -655,7 +660,7 @@ public class OurGui extends Application {
 			}
 		}
 
-		public static void main(String[] args) {
+		public static void main (String[] args) {
 			launch(args);
 		}
 

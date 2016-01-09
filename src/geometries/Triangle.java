@@ -107,6 +107,7 @@ public class Triangle extends Geometry {
 	public Triangle (final Point3 a, final Point3 b, final Point3 c, final Material material) {
 
 		this(a, b, c,
+				//c.sub(a).x(b.sub(a)).normalized().asNormal();
 				b.sub(a).x(c.sub(a)).normalized().asNormal(),
 				b.sub(a).x(c.sub(a)).normalized().asNormal(),
 				b.sub(a).x(c.sub(a)).normalized().asNormal(),

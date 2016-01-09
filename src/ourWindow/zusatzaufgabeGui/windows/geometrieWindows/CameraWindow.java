@@ -1,4 +1,4 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows.geometrieWindows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import camera.Camera;
 import matVecLib.Point3;
 import matVecLib.Vector3;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
 
 
 /**

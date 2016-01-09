@@ -1,4 +1,4 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,8 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import raytracer.Color;
-import raytracer.World;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
 
 /**
  * This class represents a world window gui.

@@ -1,21 +1,24 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows.lightWindows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lights.PointLight;
+import lights.DirectionalLight;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 import raytracer.Color;
-import matVecLib.Point3;
+import matVecLib.Vector3;
 
 /**
  * Created by Juliand on 30.11.15.
  */
-public class PointLightWindow extends Stage{
+public class DirectionalLightWindow extends Stage {
 
     public final BorderPane border = new BorderPane();
 
@@ -25,13 +28,15 @@ public class PointLightWindow extends Stage{
     private final HBox btnBox = new HBox();
 
 
+
+
     //------------------------------ PointLight --------------------------------//
 
-    private final Label position = new Label("Position");
+    private final Label direction = new Label("Direction");
 
-    private final NumberField positionx = new NumberField("4");
-    private final NumberField positiony = new NumberField("4");
-    private final NumberField positionz = new NumberField("4");
+    private final NumberField directionx = new NumberField("-1");
+    private final NumberField directiony = new NumberField("-1");
+    private final NumberField directionz = new NumberField("-1");
 
     private final Label color = new Label("Color");
 
@@ -41,26 +46,23 @@ public class PointLightWindow extends Stage{
 
 
 
-    public PointLightWindow(){
+    public DirectionalLightWindow(){
 
-        Scene scenePointLight = new Scene(border);
+        Scene sceneDirLight = new Scene(border);
         initRoot();
 
         this.setWidth(350);
         this.setHeight(150);
         this.setTitle("Box Menu");
-        this.setScene(scenePointLight);
+        this.setScene(sceneDirLight);
         this.initModality(Modality.APPLICATION_MODAL);
         this.showAndWait();
-
 
     }
 
     private void initRoot() {
 
         btnBox.getChildren().addAll(add,can);
-
-
 
         border.setCenter(grid);
         border.setBottom(btnBox);
@@ -73,11 +75,11 @@ public class PointLightWindow extends Stage{
         grid.setVgap(5);
         grid.setHgap(5);
 
-        grid.add(position,0,3);
+        grid.add(direction,0,3);
 
-        grid.add(positionx,1,3);
-        grid.add(positiony,2,3);
-        grid.add(positionz,3,3);
+        grid.add(directionx,1,3);
+        grid.add(directiony,2,3);
+        grid.add(directionz,3,3);
 
         grid.add(color,0,4);
 
@@ -92,19 +94,19 @@ public class PointLightWindow extends Stage{
     }
 
     private void addLight() {
-        addpLight();
+        adddirectionalLight();
         this.close();
+
     }
+    private void adddirectionalLight() {
 
-    private void addpLight() {
-
-        Point3 position = new Point3(positionx.getNumber(), positiony.getNumber(),positionz.getNumber());
+        Vector3 dir = new Vector3(directionx.getNumber(), directiony.getNumber(),directionz.getNumber());
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
-        PointLight pointL = new PointLight(color,position,true);
+        DirectionalLight dirL = new DirectionalLight(color,dir,true);
 
-        TodessternGUI.welt.lightList.add(pointL);
+        TodessternGUI.welt.lightList.add(dirL);
 
     }
 

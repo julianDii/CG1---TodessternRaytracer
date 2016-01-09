@@ -1,4 +1,4 @@
-package ourWindow.zusatzaufgabeGui;
+package ourWindow.zusatzaufgabeGui.windows.lightWindows;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -9,14 +9,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lights.DirectionalLight;
+import lights.SpotLight;
+import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 import raytracer.Color;
+import matVecLib.Point3;
 import matVecLib.Vector3;
 
 /**
  * Created by Juliand on 30.11.15.
  */
-public class DirectionalLightWindow extends Stage {
+public class SpotLightWindow extends Stage {
 
     public final BorderPane border = new BorderPane();
 
@@ -30,11 +33,21 @@ public class DirectionalLightWindow extends Stage {
 
     //------------------------------ PointLight --------------------------------//
 
+    private final Label position = new Label("Position");
+
+    private final NumberField positionx = new NumberField("4");
+    private final NumberField positiony = new NumberField("4");
+    private final NumberField positionz = new NumberField("4");
+
     private final Label direction = new Label("Direction");
 
     private final NumberField directionx = new NumberField("-1");
     private final NumberField directiony = new NumberField("-1");
     private final NumberField directionz = new NumberField("-1");
+
+    private final Label halfAngle = new Label("Angle");
+
+    private final NumberField hAngle = new NumberField("14");
 
     private final Label color = new Label("Color");
 
@@ -44,15 +57,15 @@ public class DirectionalLightWindow extends Stage {
 
 
 
-    public DirectionalLightWindow(){
+    public SpotLightWindow(){
 
-        Scene sceneDirLight = new Scene(border);
+        Scene sceneSpotLight = new Scene(border);
         initRoot();
 
         this.setWidth(350);
-        this.setHeight(150);
-        this.setTitle("Box Menu");
-        this.setScene(sceneDirLight);
+        this.setHeight(250);
+        this.setTitle("SpotLight Menu");
+        this.setScene(sceneSpotLight);
         this.initModality(Modality.APPLICATION_MODAL);
         this.showAndWait();
 
@@ -73,39 +86,52 @@ public class DirectionalLightWindow extends Stage {
         grid.setVgap(5);
         grid.setHgap(5);
 
-        grid.add(direction,0,3);
+        grid.add(position,0,3);
 
-        grid.add(directionx,1,3);
-        grid.add(directiony,2,3);
-        grid.add(directionz,3,3);
+        grid.add(positionx,1,3);
+        grid.add(positiony,2,3);
+        grid.add(positionz,3,3);
 
-        grid.add(color,0,4);
+        grid.add(direction,0,4);
 
-        grid.add(colorr,1,4);
-        grid.add(colorg,2,4);
-        grid.add(colorb,3,4);
+        grid.add(directionx,1,4);
+        grid.add(directiony,2,4);
+        grid.add(directionz,3,4);
+
+        grid.add(halfAngle,0,5);
+
+        grid.add(hAngle,1,5);
+
+        grid.add(color,0,6);
+
+        grid.add(colorr,1,6);
+        grid.add(colorg,2,6);
+        grid.add(colorb,3,6);
 
 
         //--------------------- EVENTS ------------------------------//
-        add.setOnAction(e->addLight());
+        add.setOnAction(e->addsLight());
         can.setOnAction(e->this.close());
     }
 
-    private void addLight() {
-        adddirectionalLight();
+    private void addsLight() {
+        addSpotLight();
         this.close();
-
     }
-    private void adddirectionalLight() {
+    private void addSpotLight() {
+
+
+        Point3 pos = new Point3(positionx.getNumber(), positiony.getNumber(),positionz.getNumber());
 
         Vector3 dir = new Vector3(directionx.getNumber(), directiony.getNumber(),directionz.getNumber());
 
         Color color = new Color(colorr.getNumber(),colorg.getNumber(),colorb.getNumber());
 
-        DirectionalLight dirL = new DirectionalLight(color,dir,true);
+        Double ha = new Double(hAngle.getNumber());
 
-        TodessternGUI.welt.lightList.add(dirL);
+        SpotLight spot = new SpotLight(color,pos,true,dir,Math.PI/ha);
+
+        TodessternGUI.welt.lightList.add(spot);
 
     }
-
 }

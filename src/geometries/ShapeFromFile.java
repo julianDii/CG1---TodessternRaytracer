@@ -176,7 +176,8 @@ public class ShapeFromFile extends Geometry {
                 if (this.vnToProcess) {
                     normal = vertexNormalPoints.get(vertexNormalFaces.get(i) - 1).mul(-1);
                 } else {
-                    normal = c.sub(a).x(b.sub(a)).normalized().asNormal();
+                   // normal = c.sub(a).x(b.sub(a)).normalized().asNormal();
+                   normal = b.sub(a).x(c.sub(a)).normalized().asNormal();
                 }
                 triangles.add(new Triangle(a, b, c, normal, normal, normal,material,new TextureCoord2D(0, 0),new TextureCoord2D(0, 0),new TextureCoord2D(0, 0)));
 
