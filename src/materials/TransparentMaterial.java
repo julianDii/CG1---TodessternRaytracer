@@ -65,7 +65,7 @@ public class TransparentMaterial extends Material {
 
                 if ((1 - (Math.pow(rIor, 2.0) * (1 - Math.pow(alpha, 2.0)))) < 0) {
 
-                    return tracer.colorFor(new Ray(hit.ray.at(hit.t - epsi), rd),world);
+                    return tracer.colorFor(new Ray(hit.ray.at(hit.t - epsi), rd));
 
                 } else {
 
@@ -82,8 +82,8 @@ public class TransparentMaterial extends Material {
                     final double t1 = 1 - r;
 
 
-                    return tracer.colorFor(new Ray(hit.ray.at(hit.t - epsi), rd),world).mul(r)
-                            .add(tracer.colorFor(new Ray(hit.ray.at(hit.t + epsi), t),world).mul(t1));
+                    return tracer.colorFor(new Ray(hit.ray.at(hit.t - epsi), rd)).mul(r)
+                            .add(tracer.colorFor(new Ray(hit.ray.at(hit.t + epsi), t)).mul(t1));
 
                 }
 

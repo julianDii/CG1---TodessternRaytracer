@@ -86,7 +86,7 @@ public class ReflectiveMaterial extends Material {
                 returnColor = returnColor.add(specular.mul(lightColor.mul(Math.pow(Math.max(0,reflectedVector.dot(e)),exponent))));
             }
         }
-        final Color reflColor = tracer.colorFor(new Ray(hitPoint,hit.ray.d.add(hit.nor.mul(factor)).normalized()),world);
+        final Color reflColor = tracer.colorFor(new Ray(hitPoint,hit.ray.d.add(hit.nor.mul(factor)).normalized()));
         returnColor = (reflection.mul(reflColor.add(returnColor)));
 
         return returnColor;

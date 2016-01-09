@@ -1,5 +1,7 @@
 package ourWindow.zusatzaufgabeGui.windows.geometrieWindows;
 
+import camera.OrthographicCamera;
+import camera.PerspectiveCamera;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +14,8 @@ import camera.Camera;
 import matVecLib.Point3;
 import matVecLib.Vector3;
 import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
+import sampling.SamplingPattern;
 
 
 /**
@@ -35,6 +39,7 @@ public class CameraWindow extends Stage {
     private final NumberField rotationx = new NumberField("0");
     private final NumberField rotationy = new NumberField("1");
     private final NumberField rotationz = new NumberField("0");
+    private  NumberField sampling = new NumberField("1");
     private final NumberField scaling = new NumberField("4");
     private final GridPane root = new GridPane();
     private final BorderPane border = new BorderPane();
@@ -47,7 +52,7 @@ public class CameraWindow extends Stage {
         Scene sceneCamera = new Scene(border);
         initRoot();
         this.setWidth(300);
-        this.setHeight(100);
+        this.setHeight(120);
         this.setTitle("Cam Menu");
         this.setScene(sceneCamera);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -93,7 +98,7 @@ public class CameraWindow extends Stage {
 
         tog.selectedToggleProperty().addListener((ov, old_toggle, new_toggle) -> {
             if (tog.getSelectedToggle() == togOrto) {
-                this.setHeight(250);
+                this.setHeight(280);
 
                 root.getChildren().clear();
                 btnBox.getChildren().clear();
@@ -121,17 +126,23 @@ public class CameraWindow extends Stage {
                 root.add(rotationy, 2, 5);
                 root.add(rotationz, 3, 5);
 
+                Label sampl = new Label("Sampling");
+
+                root.add(sampl, 0, 6);
+                root.add(sampling, 1, 6);
+
                 Label s = new Label("Scaling");
 
-                root.add(s, 0, 6);
-                root.add(scaling, 1, 6);
+                root.add(s, 0, 7);
+                root.add(scaling, 1, 7);
 
                 border.setBottom(btnBox);
 
             } else {
+
                 if (tog.getSelectedToggle() == togPer) {
 
-                    this.setHeight(250);
+                    this.setHeight(280);
 
                     root.getChildren().clear();
                     btnBox.getChildren().clear();
@@ -159,10 +170,15 @@ public class CameraWindow extends Stage {
                     root.add(rotationy, 2, 5);
                     root.add(rotationz, 3, 5);
 
+                    Label sampl = new Label("Sampling");
+
+                    root.add(sampl, 0, 6);
+                    root.add(sampling, 1, 6);
+
                     Label s = new Label("Angle");
 
-                    root.add(s, 0, 6);
-                    root.add(scaling, 1, 6);
+                    root.add(s, 0, 7);
+                    root.add(scaling, 1, 7);
 
                     border.setBottom(btnBox);
                 }
@@ -173,10 +189,11 @@ public class CameraWindow extends Stage {
     /**
      * This method calls the createCmera method eith the selected toggle.
      */
-    private void addCamera() {
+    private void addCamera () {
 
         createCamera(tog.getSelectedToggle());
         this.close();
+
     }
 
     /**
@@ -184,27 +201,30 @@ public class CameraWindow extends Stage {
      * @param selectedToggle
      * @return The new camera.
      */
-    private Camera createCamera(Toggle selectedToggle) {
+    private Camera createCamera (Toggle selectedToggle) {
 
         Point3 point = new Point3(punktx.getNumber(), punkty.getNumber(), punktz.getNumber());
         Vector3 direction = new Vector3(directionx.getNumber(), directiony.getNumber(), directionz.getNumber());
         Vector3 rotation = new Vector3(rotationx.getNumber(), rotationy.getNumber(), rotationz.getNumber());
 
+        Integer sa = (int)sampling.getNumber();
+        SamplingPattern samplingpattern = new SamplingPattern(sa);
+
         Double sca = new Double(scaling.getNumber());
 
-//        if (selectedToggle == togOrto) {
-//
-//            OrthographicCamera orthoCam = new OrthographicCamera(point, direction, rotation, sca);
-//            TodessternGUI.cam=orthoCam;
-//
-//            return orthoCam;
-//        }
-//
-//        if (selectedToggle == togPer){
-//            PerspectiveCamera perCam = new PerspectiveCamera(point, direction, rotation,Math.PI/sca);
-//            TodessternGUI.cam=perCam;
-//            return perCam;
-//        }
+        if (selectedToggle == togOrto) {
+
+            OrthographicCamera orthoCam = new OrthographicCamera(point, direction, rotation, samplingpattern, sca);
+            TodessternGUI.cam=orthoCam;
+
+            return orthoCam;
+        }
+
+        if (selectedToggle == togPer){
+            PerspectiveCamera perCam = new PerspectiveCamera(point, direction, rotation, samplingpattern, Math.PI/sca);
+            TodessternGUI.cam=perCam;
+            return perCam;
+        }
         return null;
     }
 

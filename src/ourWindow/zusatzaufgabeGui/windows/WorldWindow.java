@@ -9,6 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import raytracer.Color;
+import raytracer.World;
 
 /**
  * This class represents a world window gui.
@@ -23,7 +25,6 @@ public class WorldWindow extends Stage {
     private final GridPane grid = new GridPane();
     private final HBox btnBox = new HBox();
 
-    //---------------- WORLDCOLOR ------------------------//
     private final Label color = new Label("Color");
 
     private final NumberField colorr = new NumberField("0");
@@ -36,6 +37,9 @@ public class WorldWindow extends Stage {
     private final NumberField ambig = new NumberField("0");
     private final NumberField ambib = new NumberField("0");
 
+    private final Label ref = new Label("Refraction Index");
+    private final NumberField refIndex = new NumberField("1");
+
     /**
      * This constructor builds a new world window.
      * @param primarayStage
@@ -45,8 +49,8 @@ public class WorldWindow extends Stage {
         Scene sceneCamera = new Scene(border);
         initRoot();
 
-        this.setWidth(250);
-        this.setHeight(120);
+        this.setWidth(300);
+        this.setHeight(180);
         this.setTitle("World Menu");
         this.setScene(sceneCamera);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -75,6 +79,9 @@ public class WorldWindow extends Stage {
         grid.add(ambig,2,4);
         grid.add(ambib,3,4);
 
+        grid.add(ref,0,5);
+        grid.add(refIndex,1,5);
+
         add.setOnAction(e->addWorld());
         can.setOnAction(e->this.close());
 
@@ -101,13 +108,14 @@ public class WorldWindow extends Stage {
      */
 
     private void createWorld() {
-//
-//        Color worldcol = new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
-//        Color worldAmbient = new raytracer.Color(ambir.getNumber(),ambig.getNumber(), ambib.getNumber());
-//
-//
-//         World newWold = new World(worldcol,worldAmbient);
-//
-//        TodessternGUI.welt=newWold;
+
+        Color worldcol = new raytracer.Color(colorr.getNumber(),colorg.getNumber(), colorb.getNumber());
+        Color worldAmbient = new raytracer.Color(ambir.getNumber(),ambig.getNumber(), ambib.getNumber());
+        Double r = refIndex.getNumber();
+
+
+        World newWold = new World(worldcol,worldAmbient, r);
+
+        TodessternGUI.welt = newWold;
     }
 }

@@ -53,7 +53,7 @@ public class OurGui extends Application {
 		/**
 		 * For testing we initialize the needed object in our world.
 		 */
-		public final static World welt = new World(new raytracer.Color(0,0,0),new raytracer.Color(0.4,0.4,0.4),(1.0));
+		public final static World welt = new World(new raytracer.Color(0.0,0.0,0.0),new raytracer.Color(0.1,0.1,0.1),(1.0));
 
 
 		//Schatten 1
@@ -244,9 +244,9 @@ public class OurGui extends Application {
 
 
 
-		Plane plane = new Plane(new ReflectiveMaterial(new raytracer.Color(1,1,1),
+		public final Plane plane = new Plane(new ReflectiveMaterial(new raytracer.Color(1,1,1),
 				new raytracer.Color(1,1,1),10,new raytracer.Color(1,1,1)));
-		Node planeNode = new Node(new Transform().rotY(1),new ArrayList<>());
+		public final Node planeNode = new Node(new Transform().rotY(1),new ArrayList<>());
 
 		public final Sphere s1 = new Sphere(new ReflectiveMaterial(new raytracer.Color(1,0,0),
 				new raytracer.Color(1,1,1),10,new raytracer.Color(1,0.5,0.5)));
@@ -393,7 +393,7 @@ public class OurGui extends Application {
 //			//Schtten scene2
 //			 //use cam10
 //
-			welt.lightList.add(pointLight101);
+	//		welt.lightList.add(pointLight101);
 // 			abb3Plane.g.add(blackPlane);
 //			abb3sphere1.g.add(sRed);
 //			abb3sphere2.g.add(sGreen);
@@ -423,8 +423,8 @@ public class OurGui extends Application {
 //
 //			//OBJ loader
 //
-			testn.g.add(ren.OBJLoader());
-			welt.list.add(testn);
+//			testn.g.add(ren.OBJLoader());
+//			welt.list.add(testn);
 
 //			//imageTexture
 
@@ -436,40 +436,40 @@ public class OurGui extends Application {
 
 			// BELEUCHTUNG 2 ABBILDUNG 5
 
-//			welt.lightList.add(spotLight);
-//			welt.lightList.add(pointLight);
-//			welt.lightList.add(directionalLight);
-//
-//			planeNode.g.add(plane);
-//			welt.list.add(planeNode);
-//
-//			n1.g.add(s1);
-//			n2.g.add(s2);
-//			n3.g.add(s3);
-//			n4.g.add(s4);
-//			n5.g.add(s5);
-//			n6.g.add(s6);
-//			welt.list.add(n1);
-//			welt.list.add(n2);
-//			welt.list.add(n3);
-//			welt.list.add(n4);
-//			welt.list.add(n5);
-//			welt.list.add(n6);
-//			ns1T.g.add(s1T);
-//			ns2T.g.add(s2T);
-//			ns3T.g.add(s3T);
-//			welt.list.add(nboxT);
-//			trino.g.add(tri);
-//			welt.list.add(trino);
-//			welt.list.add(ns1T);
-//			welt.list.add(ns2T);
-//			welt.list.add(ns3T);
-//			nboxT.g.add(boxT);
+			welt.lightList.add(spotLight);
+			welt.lightList.add(pointLight);
+			welt.lightList.add(directionalLight);
+
+			planeNode.g.add(plane);
+			welt.list.add(planeNode);
+
+			n1.g.add(s1);
+			n2.g.add(s2);
+			n3.g.add(s3);
+			n4.g.add(s4);
+			n5.g.add(s5);
+			n6.g.add(s6);
+			welt.list.add(n1);
+			welt.list.add(n2);
+			welt.list.add(n3);
+			welt.list.add(n4);
+			welt.list.add(n5);
+			welt.list.add(n6);
+			ns1T.g.add(s1T);
+			ns2T.g.add(s2T);
+			ns3T.g.add(s3T);
+			welt.list.add(nboxT);
+			trino.g.add(tri);
+			welt.list.add(trino);
+			welt.list.add(ns1T);
+			welt.list.add(ns2T);
+			welt.list.add(ns3T);
+			nboxT.g.add(boxT);
 //			tono.g.add(to);
 //			welt.list.add(tono);
 
 
-
+			System.out.println(welt.lightList.size());
 
 			drawPicture(primaryStage);
 

@@ -14,8 +14,31 @@ import texture.TextureCoord2D;
  */
 public class Plane extends Geometry {
 
+	/**
+	 * The Point3 component of the plane.
+	 */
 	final Point3 a;
+
+	/**
+	 * The Normal3 component of the plane.
+	 */
 	final Normal3 n;
+
+
+	/**
+	 * This constructor creates a new plane. You have to describe the point, the normal and the material.
+	 * @param a The point of the plane.
+	 * @param n The normal of the plane.
+	 */
+	public Plane (final Point3 a, final Normal3 n, Material material){
+		super(material);
+		if (a == null) throw new IllegalArgumentException("I need a point lying on the plane!");
+		if (n == null) throw new IllegalArgumentException("The normal should not be null.");
+
+		this.a = a;
+		this.n = n;
+
+	}
 
 	/**
 	 * This constructor creates a new plane.

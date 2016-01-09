@@ -82,7 +82,6 @@ public class ShapeFromFile extends Geometry {
 
     private int currentLineNumber;
     private int currentFaceNumber;
-
     private boolean vtToProcess;
     private boolean vnToProcess;
 
@@ -104,13 +103,13 @@ public class ShapeFromFile extends Geometry {
         if (material == null)throw new IllegalArgumentException("materials has to be not null");
 
         this.modelName = modelName;
-        this.triangles = new ArrayList<Geometry>();
-        this.vertexPoints = new ArrayList<Point3>();
-        this.vertexNormalPoints = new ArrayList<Normal3>();
-        this.vertexTexturePoints = new ArrayList<Point3>();
-        this.vertexFaces = new ArrayList<Point3>();
-        this.vertexNormalFaces = new ArrayList<Integer>();
-        this.vertexTextureFaces = new ArrayList<Point3>();
+        this.triangles = new ArrayList<>();
+        this.vertexPoints = new ArrayList<>();
+        this.vertexNormalPoints = new ArrayList<>();
+        this.vertexTexturePoints = new ArrayList<>();
+        this.vertexFaces = new ArrayList<>();
+        this.vertexNormalFaces = new ArrayList<>();
+        this.vertexTextureFaces = new ArrayList<>();
         this.currentLineNumber = 0;
         this.currentFaceNumber = 0;
         this.vtToProcess = false;
@@ -122,7 +121,9 @@ public class ShapeFromFile extends Geometry {
      * @return a new node object with triangles
      */
     public Node OBJLoader() {
+
         try {
+
             properties.load(new FileInputStream("todesstern.properties"));
             BASE_URL_MODELS = properties.get("BASE_URL_MODELS").toString();
             System.out.println(BASE_URL_MODELS);
@@ -139,17 +140,29 @@ public class ShapeFromFile extends Geometry {
                 }
 
                 if (line.startsWith(ShapeFromFile.COMMENT)) {
+
                     continue;
+
                 } else if (line.startsWith(ShapeFromFile.VERTEX_TEXTURE)) {
-                    processVertexTexture(line.substring(ShapeFromFile.VERTEX_TEXTURE.length()).trim());
+
+                    vertexTexture(line.substring(ShapeFromFile.VERTEX_TEXTURE.length()).trim());
+
                 } else if (line.startsWith(ShapeFromFile.VERTEX_NORMAL)) {
-                    processVertexNormal(line.substring(ShapeFromFile.VERTEX_NORMAL.length()).trim());
+
+                    vertexNormal(line.substring(ShapeFromFile.VERTEX_NORMAL.length()).trim());
+
                 } else if (line.startsWith(ShapeFromFile.VERTEX)) {
+
                     processVertex(line.substring(ShapeFromFile.VERTEX.length()).trim());
+
                 } else if (line.startsWith(ShapeFromFile.FACE)) {
+
                     processFace(line.substring(ShapeFromFile.FACE.length()).trim());
+
                 } else {
+
                     System.out.println("line " + currentLineNumber + " is unknown: " + line + "|");
+
                 }
 
                 this.currentLineNumber++;
@@ -164,32 +177,40 @@ public class ShapeFromFile extends Geometry {
                 Point3 c = new Point3(0, 0, 0);
 
                 try {
+
                     a = vertexPoints.get((int) Math.abs(currentVF.x) - 1);
                     b = vertexPoints.get((int) Math.abs(currentVF.y) - 1);
                     c = vertexPoints.get((int) Math.abs(currentVF.z) - 1);
                 }
+
                 catch(ArrayIndexOutOfBoundsException msg) {
                     System.err.println("weird indices");
                 }
 
                 final Normal3 normal;
                 if (this.vnToProcess) {
+
                     normal = vertexNormalPoints.get(vertexNormalFaces.get(i) - 1).mul(-1);
+
                 } else {
-                   // normal = c.sub(a).x(b.sub(a)).normalized().asNormal();
+
                    normal = b.sub(a).x(c.sub(a)).normalized().asNormal();
                 }
                 triangles.add(new Triangle(a, b, c, normal, normal, normal,material,new TextureCoord2D(0, 0),new TextureCoord2D(0, 0),new TextureCoord2D(0, 0)));
 
             }
+
             bufferedReader.close();
+
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
-        return new Node(new Transform(), triangles);
+        return new Node (new Transform(), triangles);
     }
 
-    private void processFace(final String line) {
+    private void processFace (final String line) {
 
         this.currentFaceNumber++;
 
@@ -201,52 +222,77 @@ public class ShapeFromFile extends Geometry {
         int vn[] = new int[count];
 
         for (int i = 0; i < count; i++) {
+
             String[] splitted = st.nextToken().split(ShapeFromFile.SEPERATOR);
             v[i] = Integer.parseInt(splitted[0], 10);
+
             if (splitted.length > 1) {
+
                 if (splitted[1].length() != 0) {
+
                     this.vtToProcess = true;
                     vt[i] = Integer.parseInt(splitted[1], 10);
+
                 }
+
                 if (splitted.length == 3) {
+
                     this.vnToProcess = true;
                     vn[i] = Integer.parseInt(splitted[2], 10);
+
                 }
             }
         }
 
         vertexFaces.add(new Point3(v[0], v[1], v[2]));
+
         if (this.vtToProcess) {
+
             vertexTextureFaces.add(new Point3(vt[0], vt[1], vt[2]));
         }
         if (this.vnToProcess) {
+
             vertexNormalFaces.add(vn[0]);
+
         }
     }
 
-    private void processVertex(final String line) {
+    private void processVertex (final String line) {
+
         final float coords[] = new float[3];
         StringTokenizer st = new StringTokenizer(line, ShapeFromFile.SPLITTER);
+
         for (int i = 0; st.hasMoreTokens(); i++) {
+
             coords[i] = Float.parseFloat(st.nextToken());
+
         }
+
         vertexPoints.add(new Point3(coords[0], coords[1], coords[2]));
     }
 
-    private void processVertexNormal(final String line) {
+    private void vertexNormal (final String line) {
+
         final float coords[] = new float[3];
         StringTokenizer st = new StringTokenizer(line, ShapeFromFile.SPLITTER);
+
         for (int i = 0; st.hasMoreTokens(); i++) {
+
             coords[i] = Float.parseFloat(st.nextToken());
         }
+
         vertexNormalPoints.add(new Normal3(coords[0], coords[1], coords[2]));
     }
 
-    private void processVertexTexture(final String line) {
+    private void vertexTexture (final String line) {
+
         final float coords[] = new float[3];
         StringTokenizer st = new StringTokenizer(line, ShapeFromFile.SPLITTER);
+
         for (int i = 0; st.hasMoreTokens(); i++) {
+
             coords[i] = Float.parseFloat(st.nextToken());
+
         }
         vertexTexturePoints.add(new Point3(coords[0], coords[1], coords[2]));
     }

@@ -197,6 +197,8 @@ public class TodessternGUI extends Application {
         final Menu render = new Menu("Render");
         final Menu light = new Menu("Light");
         final Menu worldMenu = new Menu("World");
+        final Menu demo = new Menu("Demo Scenes");
+        final Menu objLoader = new Menu("ObjLoader");
 
 
         final MenuItem world = new MenuItem("New");
@@ -217,13 +219,28 @@ public class TodessternGUI extends Application {
         final MenuItem spotLight = new MenuItem("Spot Light");
         final MenuItem directionalLight = new MenuItem("directional Light");
 
-        menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light);
+
+        final MenuItem abbildung5_beleuchtung_II = new MenuItem("Abbildung 5 Beleuchtung II - Refraktion");
+        final MenuItem abbildung3_beluechtung_II = new MenuItem("Abbildung 3 Beleuchtung II - Kugeln auf Ebene");
+        final MenuItem abbildung4_beleuchtung_II = new MenuItem("Abbildung 4 Beleuchtung II - Rote Box auf Ebene");
+
+
+        final MenuItem abbildung1_transformationen = new MenuItem("Abbildung 1 Transformationen - Transformierte kugel");
+        final MenuItem abbildung2_transformationen = new MenuItem("Abbildung 2 Transformationen - Transformierte Box");
+
+        final MenuItem shapeFRomFile = new MenuItem("Files");
+
+        menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light,demo,objLoader);
 
         fileMenu.getItems().add(save);
         worldMenu.getItems().add(world);
         geometries.getItems().addAll(plane,sphere,triangle,box);
         camera.getItems().addAll(cameraMenu);
         light.getItems().addAll(pointLight,spotLight,directionalLight);
+        objLoader.getItems().add(shapeFRomFile);
+
+        demo.getItems().addAll(abbildung5_beleuchtung_II, abbildung3_beluechtung_II, abbildung4_beleuchtung_II,
+                abbildung1_transformationen, abbildung2_transformationen);
         render.getItems().add(renBut);
 
         pointLight.setOnAction(e->new PointLightWindow());
@@ -236,6 +253,14 @@ public class TodessternGUI extends Application {
         sphere.setOnAction(e-> new SphereWindow());
         triangle.setOnAction(e -> new TriangleWindow());
         box.setOnAction(e -> new BoxWindow());
+
+        abbildung1_transformationen.setOnAction(e -> new DemoScenes().abbildung1_transformationen());
+        abbildung2_transformationen.setOnAction(e -> new DemoScenes().abbildung2_transformationen());
+        abbildung3_beluechtung_II.setOnAction(e -> new DemoScenes().abbildung3_beleuchtung_II());
+        abbildung4_beleuchtung_II.setOnAction(e -> new DemoScenes().abbildung4_beleuchtung_II());
+        abbildung5_beleuchtung_II.setOnAction(e -> new DemoScenes().abbildung5_beleuchtung_II());
+
+        shapeFRomFile.setOnAction(e -> new ObjWindow());
 
         renBut.setOnAction(e->drawPicture(primaryStage));
         save.setOnAction(e -> saveFile(primaryStage));

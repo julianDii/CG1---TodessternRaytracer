@@ -12,6 +12,7 @@ import materials.LambertMaterial;
 import materials.PhongMaterial;
 import materials.SingleColorMaterial;
 import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 import raytracer.Color;
 import matVecLib.Point3;
 
@@ -245,18 +246,18 @@ public class SphereWindow extends Stage {
 
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-//        if (selectedToggle == togSingle) {
-//            geometries.Sphere sinSphere = new geometries.Sphere(center, radi, sinCol);
-//            TodessternGUI.welt.list.add(sinSphere);
-//        }
-//        if (selectedToggle == togLambert) {
-//            geometries.Sphere lamSphere = new geometries.Sphere(center, radi, lamMat);
-//            TodessternGUI.welt.list.add(lamSphere);
-//        }
-//        if (selectedToggle == togPhong) {
-//            geometries.Sphere phoSphere = new geometries.Sphere(center, radi, phongMat);
-//            TodessternGUI.welt.list.add(phoSphere);
-//        }
+        if (selectedToggle == togSingle) {
+            geometries.Sphere sinSphere = new geometries.Sphere(center, radi, sinCol);
+            TodessternGUI.welt.list.add(sinSphere);
+        }
+        if (selectedToggle == togLambert) {
+            geometries.Sphere lamSphere = new geometries.Sphere(center, radi, lamMat);
+            TodessternGUI.welt.list.add(lamSphere);
+        }
+        if (selectedToggle == togPhong) {
+            geometries.Sphere phoSphere = new geometries.Sphere(center, radi, phongMat);
+            TodessternGUI.welt.list.add(phoSphere);
+        }
 
     }
 }

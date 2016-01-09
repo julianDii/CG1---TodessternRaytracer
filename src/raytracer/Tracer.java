@@ -14,6 +14,7 @@ public class Tracer {
     /**
      * The world component of the Tracer.
      */
+    public final World world;
 
 
 
@@ -30,7 +31,7 @@ public class Tracer {
 
 
         this.depth = depth;
-
+        this.world = world;
 
 
     }
@@ -42,7 +43,7 @@ public class Tracer {
      * @return The reflection color.
      */
 
-    public Color colorFor (final Ray r, final World world) {
+    public Color colorFor (final Ray r) {
 
         if (r == null)throw new IllegalArgumentException("The ray cannot be null!");
         if (depth <= 0) {

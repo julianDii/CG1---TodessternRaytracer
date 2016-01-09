@@ -1,5 +1,6 @@
 package ourWindow.zusatzaufgabeGui.windows.geometrieWindows;
 
+import geometries.AxisAlignedBox;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +13,7 @@ import materials.LambertMaterial;
 import materials.PhongMaterial;
 import materials.SingleColorMaterial;
 import ourWindow.zusatzaufgabeGui.windows.NumberField;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 import raytracer.Color;
 import matVecLib.Point3;
 
@@ -249,19 +251,19 @@ public class BoxWindow extends Stage {
         Color lamColor = new Color(lamr.getNumber(), lamg.getNumber(),lamb.getNumber());
         LambertMaterial lamMat = new LambertMaterial(lamColor);
 
-//        if (selectedToggle == togSingle) {
-//            AxisAlignedBox sinBox = new AxisAlignedBox(lb, ru, sinCol);
-//            TodessternGUI.welt.list.add(sinBox);
-//        }
-//        if (selectedToggle == togLambert) {
-//            AxisAlignedBox lamBox = new AxisAlignedBox(lb, ru, lamMat);
-//            TodessternGUI.welt.list.add(lamBox);
-//        }
-//        if (selectedToggle == togPhong) {
-//            AxisAlignedBox phongBox = new AxisAlignedBox(lb, ru, phongMat);
-//            TodessternGUI.welt.list.add(phongBox);
-//        }
+        if (selectedToggle == togSingle) {
+            AxisAlignedBox sinBox = new AxisAlignedBox(lb, ru, sinCol);
+            TodessternGUI.welt.list.add(sinBox);
+        }
+        if (selectedToggle == togLambert) {
+            AxisAlignedBox lamBox = new AxisAlignedBox(lb, ru, lamMat);
+            TodessternGUI.welt.list.add(lamBox);
+        }
+        if (selectedToggle == togPhong) {
+            AxisAlignedBox phongBox = new AxisAlignedBox(lb, ru, phongMat);
+            TodessternGUI.welt.list.add(phongBox);
+        }
 
-    }
+}
 
 }
