@@ -177,6 +177,8 @@ public class DemoScenes {
         world.lightList.add(pointLight101);
 
     }
+
+
     public void abbildung3_beleuchtung_II () {
 
 
@@ -198,6 +200,8 @@ public class DemoScenes {
         world.list.add(abb3sphere2);
         world.list.add(abb3sphere3);
     }
+
+
     public void abbildung4_beleuchtung_II () {
 
         world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
@@ -211,6 +215,7 @@ public class DemoScenes {
         world.list.add(box10);
 
     }
+
     public void abbildung5_beleuchtung_II () {
 
         world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);

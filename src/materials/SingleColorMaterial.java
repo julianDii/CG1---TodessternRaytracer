@@ -69,12 +69,11 @@ public class SingleColorMaterial extends Material {
 		Color ambient = world.ambient;
 		Normal3 normal = hit.nor;
 
-		Color lowColor = new Color(0.8,0.8,0.8);
-		Color c2 = new Color(0,0,0);
-		Color c = texture.colorFor(hit.tex2d.u, hit.tex2d.v);
-
 
 		if (texture != null ) {
+
+			Color c2 = new Color(0,0,0);
+		Color c = texture.colorFor(hit.tex2d.u, hit.tex2d.v);
 
 			for ( Light li : world.lightList ) {
 
@@ -85,7 +84,6 @@ public class SingleColorMaterial extends Material {
 					c2 = c2.add(c.mul(li.color).mul(Math.max(0, normal.dot(l))));
 
 				}
-
 
 			}
 			return c.mul(ambient).add(c2);

@@ -68,6 +68,7 @@ public class TodessternGUI extends Application {
         primaryStage.setMinHeight(51);
         primaryStage.setWidth(640);
         primaryStage.setHeight(480);
+        primaryStage.setResizable(false);
         initializeMenu(primaryStage);
 
         primaryStage.show();

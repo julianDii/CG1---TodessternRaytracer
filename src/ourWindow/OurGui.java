@@ -469,7 +469,7 @@ public class OurGui extends Application {
 //			welt.list.add(tono);
 
 
-			System.out.println(welt.lightList.size());
+
 
 			drawPicture(primaryStage);
 

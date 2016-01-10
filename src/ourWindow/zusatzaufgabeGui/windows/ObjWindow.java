@@ -1,38 +1,106 @@
 package ourWindow.zusatzaufgabeGui.windows;
 
+import geometries.Node;
+import geometries.ShapeFromFile;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import materials.SingleColorMaterial;
+import raytracer.Color;
+import raytracer.Transform;
+
+import java.util.ArrayList;
+
 
 /**
  * This class represents the window of the OBJLoader menu.
  * You can type a file name in the text field and choose a texture.
  * Created by Juliand on 09.01.16.
  */
-public class ObjWindow extends Window {
-
-    private final Label name = new Label("INSERT FILE NAME");
-
-    private final NumberField fileName = new NumberField();
-
-
-
-
+public class ObjWindow extends Stage {
+    
+    private BorderPane border = new BorderPane();
+    private GridPane grid  = new GridPane();
+    private HBox btnBox = new HBox();
+    private Button add = new Button("LOAD");
+    private Button can = new Button("CANCEL");
+    private Label text = new Label("FILE NAME: ");
+    private TextField fileName = new TextField();
+    
+    
+    
+    
     public ObjWindow(){
 
-
-        this.setTitle("OBJloader");
-
+        Scene sceneCamera = new Scene(border);
         initRoot();
+
+        this.setWidth(300);
+        this.setHeight(180);
+        this.setTitle("OBJLoader");
+        this.setScene(sceneCamera);
+        this.initModality(Modality.APPLICATION_MODAL);
+        this.showAndWait();
+
+
     }
 
-    @Override
+    private void initRoot() {
 
-    public void initRoot() {
-        super.initRoot();
+        fileName.setMinWidth(110);
 
-        bt1.setText("LOAD");
-        bt2.setText("CAN");
-        
 
+        btnBox.getChildren().addAll(add,can);
+
+        border.setCenter(grid);
+        border.setBottom(btnBox);
+
+        grid.add(text,0,3);
+        grid.add(fileName,1,3);
+       
+        add.setOnAction(e->loadScene());
+        can.setOnAction(e->this.close());
+
+        btnBox.setSpacing(5);
+        btnBox.setPadding(new Insets(3,3,15,85));
+        grid.setPadding(new Insets(3,10,10,30));
+
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+    }
+
+    private void loadScene() {
+
+
+        createShape();
+        this.close();
+
+
+    }
+
+    private ShapeFromFile createShape() {
+
+        String getFile = "";
+        getFile  = fileName.getText();
+        System.out.println(fileName);
+
+        ShapeFromFile loadshape = new ShapeFromFile(getFile,new SingleColorMaterial(new Color(1,0,0)));
+
+        Node testn = new Node(new Transform(), new ArrayList<>());
+
+        testn.g.add(loadshape.OBJLoader());
+
+        TodessternGUI.welt.list.add(testn);
+        return loadshape;
     }
 
 

@@ -3,6 +3,7 @@ package ourWindow.zusatzaufgabeGui.windows;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -20,23 +21,30 @@ public class Window extends Stage {
     /**
      * The first button component.
      */
-    public Button bt1 = new Button("XX");
+    public Button add = new Button("XX");
     /**
      * The second button component
      */
-    public Button bt2 = new Button("XX");
+    public Button can = new Button("XX");
 
-    /**
-     * The grid pane to structure the layout of the window.
-     */
-    public GridPane root = new GridPane();
+
+    private final HBox btnBox = new HBox();
+
 
     /**
      * The border pane for layouting the main components on the window.
      */
     public BorderPane border = new BorderPane();
 
+    /**
+     * The grid pane to structure the layout of the window.
+     */
+    public GridPane grid = new GridPane();
 
+
+    Label file = new Label("egsöigjoi");
+
+    NumberField fileName = new NumberField("insert filename");
 
     /**
      * This constructor builds the basic window.
@@ -46,9 +54,10 @@ public class Window extends Stage {
 
         Scene window = new Scene(border);
         initRoot();
+
         this.setWidth(300);
-        this.setHeight(120);
-        this.setTitle("overwrite PLS");
+        this.setHeight(180);
+        this.setTitle("overwrite this");
         this.setScene(window);
         this.initModality(Modality.APPLICATION_MODAL);
         this.showAndWait();
@@ -59,22 +68,27 @@ public class Window extends Stage {
      */
     public void initRoot() {
 
-        border.setCenter(root);
+        btnBox.getChildren().addAll(add,can);
 
-        root.setPadding(new Insets(3,10,10,30));
-        root.setVgap(5);
-        root.setHgap(5);
-
-        bt1.setMaxSize(100, 10);
-        bt2.setMaxSize(100, 10);
-
-        HBox btnBox = new HBox();
-        btnBox.setPadding(new Insets(3,3,15,115));
 
         btnBox.setSpacing(5);
-        btnBox.getChildren().addAll(bt1,bt2);
+        btnBox.setPadding(new Insets(3, 3, 15, 70));
 
+        border.setCenter(grid);
         border.setBottom(btnBox);
+
+
+
+        add.setOnAction(e -> doSmthg());
+        can.setOnAction(e -> this.close());
+
+        grid.add(fileName,0,3);
+        grid.setPadding(new Insets(3, 10, 10, 30));
+        grid.setVgap(5);
+        grid.setHgap(5);
+    }
+
+    private void doSmthg() {
 
     }
 }
