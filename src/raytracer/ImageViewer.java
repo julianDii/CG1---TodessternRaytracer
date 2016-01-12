@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
+import ourWindow.zusatzaufgabeGui.windows.TodessternGUI;
 
 /**
  * The class ImageViewer opens a window thanks to the FX Application and asks
@@ -49,6 +50,7 @@ public class ImageViewer extends Application {
 		Scene scene = new Scene(borderPane, Color.BLACK);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
 	}
 	
 	/**

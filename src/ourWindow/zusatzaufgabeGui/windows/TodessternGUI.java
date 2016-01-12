@@ -18,6 +18,8 @@ import ourWindow.zusatzaufgabeGui.windows.geometrieWindows.*;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.DirectionalLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.PointLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.SpotLightWindow;
+import raytracer.ImageLoader;
+import raytracer.ImageViewer;
 import raytracer.Ray;
 import raytracer.World;
 import camera.Camera;
@@ -50,6 +52,8 @@ public class TodessternGUI extends Application {
      */
     public static Camera cam;
 
+
+
     /**
      * Drawing Surface:
      */
@@ -63,12 +67,13 @@ public class TodessternGUI extends Application {
      */
 
     public void start(Stage primaryStage) throws Exception {
+
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("TodessternRaytracer");
         primaryStage.setMinHeight(51);
         primaryStage.setWidth(640);
         primaryStage.setHeight(480);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         initializeMenu(primaryStage);
 
         primaryStage.show();
@@ -113,6 +118,11 @@ public class TodessternGUI extends Application {
 
         imageview.setImage(writableimage);
         root.getChildren().add(imageview);
+        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
+    }
+
+    private void backToMenu(Stage primaryStage) {
+        this.root.getChildren().remove(imageview);
     }
 
     /**
@@ -213,6 +223,7 @@ public class TodessternGUI extends Application {
         final MenuItem box = new MenuItem("Box");
 
         final MenuItem save = new MenuItem("Save");
+        final MenuItem load = new MenuItem("LOAD");
 
         final MenuItem renBut = new MenuItem("GO");
 
@@ -229,11 +240,19 @@ public class TodessternGUI extends Application {
         final MenuItem abbildung1_transformationen = new MenuItem("Abbildung 1 Transformationen - Transformierte kugel");
         final MenuItem abbildung2_transformationen = new MenuItem("Abbildung 2 Transformationen - Transformierte Box");
 
+        final MenuItem eigeneSzene_zusatzaufgabe_imageTexture = new MenuItem("Eigene Szene - Zusatzaufgabe imageTexture");
+
         final MenuItem shapeFRomFile = new MenuItem("Files");
+
+        final  MenuItem imageTexture_earth = new MenuItem("imageTexture_Earth");
+        final  MenuItem imageTexture_downsampled320 = new MenuItem("imageTextture_downsampled320");
+        final  MenuItem imageTexture_downsampled320_interpolated =
+                new MenuItem("imageTextture_downsampled320_interpolated");
+
 
         menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light,demo,objLoader);
 
-        fileMenu.getItems().add(save);
+        fileMenu.getItems().addAll(save, load);
         worldMenu.getItems().add(world);
         geometries.getItems().addAll(plane,sphere,triangle,box);
         camera.getItems().addAll(cameraMenu);
@@ -241,7 +260,9 @@ public class TodessternGUI extends Application {
         objLoader.getItems().add(shapeFRomFile);
 
         demo.getItems().addAll(abbildung5_beleuchtung_II, abbildung3_beluechtung_II, abbildung4_beleuchtung_II,
-                abbildung1_transformationen, abbildung2_transformationen);
+                abbildung1_transformationen, abbildung2_transformationen,eigeneSzene_zusatzaufgabe_imageTexture,
+                imageTexture_earth,imageTexture_downsampled320,imageTexture_downsampled320_interpolated);
+
         render.getItems().add(renBut);
 
         pointLight.setOnAction(e->new PointLightWindow());
@@ -260,11 +281,18 @@ public class TodessternGUI extends Application {
         abbildung3_beluechtung_II.setOnAction(e -> new DemoScenes().abbildung3_beleuchtung_II());
         abbildung4_beleuchtung_II.setOnAction(e -> new DemoScenes().abbildung4_beleuchtung_II());
         abbildung5_beleuchtung_II.setOnAction(e -> new DemoScenes().abbildung5_beleuchtung_II());
+        eigeneSzene_zusatzaufgabe_imageTexture.setOnAction(e -> new DemoScenes().additional_ImageTextureScene());
+        imageTexture_earth.setOnAction( e -> new DemoScenes().imageTextur_Earth());
+        imageTexture_downsampled320.setOnAction(e -> new DemoScenes().imageTextur_downSapled340());
+        imageTexture_downsampled320_interpolated.setOnAction(e -> new DemoScenes().imageTextur_downSapled340_interpolated());
 
         shapeFRomFile.setOnAction(e -> new ObjWindow());
 
         renBut.setOnAction(e->drawPicture(primaryStage));
         save.setOnAction(e -> saveFile(primaryStage));
+        load.setOnAction(e -> new ImageLoader());
+
+
 
 
         root.getChildren().addAll(menubar);

@@ -15,6 +15,8 @@ import raytracer.Color;
 import raytracer.Transform;
 import raytracer.World;
 import sampling.SamplingPattern;
+import texture.ImageTexture;
+import texture.InterpolatedImageTexture;
 import texture.TextureCoord2D;
 
 import java.util.ArrayList;
@@ -252,6 +254,101 @@ public class DemoScenes {
         world.list.add(ns2T);
         world.list.add(ns3T);
         nboxT.g.add(boxT);
+    }
+
+    public void additional_ImageTextureScene () {
+
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+
+
+        final PointLight spaceLight = new PointLight(new Color(1,1,1),new Point3(70,300,500),false);
+
+
+
+        final PerspectiveCamera hubble = new PerspectiveCamera(new Point3(0,0,350), new Vector3(0,0,-1), new Vector3(1,1,1),new SamplingPattern(4),Math.PI/4);
+
+        Node p = new Node(new Transform().rotX(45).rotZ(5).translate(new Point3(0, 0, -800)),new ArrayList<>());
+        final Plane spaceBackground = new Plane(new SingleColorMaterial(new ImageTexture(new Color(0,0,0),"space5.jpg")));
+
+        Node p1 = new Node(new Transform().rotX(45).translate(new Point3(-50, 0, -800)),new ArrayList<>());
+        //final Plane laser = new Plane(new ReflectiveMaterial());
+
+        final Sphere earth = new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new Color(0,0,0),"earthmap1k.jpg")));
+        final Sphere deathStar = new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new Color(0,0,0),"deathStar.jpg")));
+
+
+        final ShapeFromFile tie = new ShapeFromFile("TieFighter.obj",new SingleColorMaterial(new Color(0.8,0.8,0.8)));
+
+        Node tieNode = new Node(new Transform().translate(new Point3(0,0,0)),new ArrayList<>());
+        Node sEarth = new Node(new Transform().rotY(10).scale(30, 30, 30).translate(new Point3(90, 0, -100)),new ArrayList<>());
+        Node sDeathStar = new Node(new Transform().rotZ(5).scale(50, 50, 50).translate(new Point3(-40, 0,250)),new ArrayList<>());
+
+        TodessternGUI.welt = world;
+        TodessternGUI.cam  = hubble;
+        world.lightList.add(spaceLight);
+
+
+        tieNode.g.add(tie.OBJLoader());
+
+        world.list.add(tieNode);
+        p.g.add(spaceBackground);
+        world.list.add(p);
+
+        sEarth.g.add(earth);
+        world.list.add(sEarth);
+
+        sDeathStar.g.add(deathStar);
+        world.list.add(sDeathStar);
+
+
+    }
+    public void imageTextur_Earth () {
+
+        PointLight point = new PointLight(new Color(1,1,1),new Point3(3,8,19),true);
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+        TodessternGUI.welt = world;
+        TodessternGUI.cam = camUniv;
+
+        final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
+        Sphere sphereTex = new Sphere(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"earthmap1k.jpg")));
+
+        no.g.add(sphereTex);
+        world.list.add(no);
+        world.lightList.add(point);
+
+
+    }
+    public void imageTextur_downSapled340 () {
+
+        PointLight point = new PointLight(new Color(1,1,1),new Point3(3,8,19),true);
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+        TodessternGUI.welt = world;
+        TodessternGUI.cam = camUniv;
+
+        final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
+        Sphere sphereTex = new Sphere(new SingleColorMaterial(new ImageTexture(new raytracer.Color(0,0,0),"jupitermap320.jpg")));
+
+        no.g.add(sphereTex);
+        world.list.add(no);
+        world.lightList.add(point);
+
+
+    }
+    public void imageTextur_downSapled340_interpolated() {
+
+        PointLight point = new PointLight(new Color(1,1,1),new Point3(3,8,19),true);
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+        TodessternGUI.welt = world;
+        TodessternGUI.cam = camUniv;
+
+        final Node no = new Node(new Transform().rotY(-0.8).rotZ(0).scale(4, 4, 4),new ArrayList<>());
+        Sphere sphereTex = new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new raytracer.Color(0,0,0),"jupitermap320.jpg")));
+
+        no.g.add(sphereTex);
+        world.list.add(no);
+        world.lightList.add(point);
+
+
     }
 
 
