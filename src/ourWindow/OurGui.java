@@ -395,7 +395,7 @@ public class OurGui extends Application {
 //			//Schtten scene2
 //			 //use cam10
 //
-			welt.lightList.add(pointLight101);
+		//	welt.lightList.add(pointLight101);
 // 			abb3Plane.g.add(blackPlane);
 //			abb3sphere1.g.add(sRed);
 //			abb3sphere2.g.add(sGreen);
@@ -431,44 +431,44 @@ public class OurGui extends Application {
 //			//imageTexture
 
 
-		    no.g.add(sphereTex);
-
-			welt.list.add(no);
+//		    no.g.add(sphereTex);
 //
+//			welt.list.add(no);
+////
 
 			// BELEUCHTUNG 2 ABBILDUNG 5
 
-//			welt.lightList.add(spotLight);
-//			welt.lightList.add(pointLight);
-//			welt.lightList.add(directionalLight);
-//
-//			planeNode.g.add(plane);
-//			welt.list.add(planeNode);
-//
-//			n1.g.add(s1);
-//			n2.g.add(s2);
-//			n3.g.add(s3);
-//			n4.g.add(s4);
-//			n5.g.add(s5);
-//			n6.g.add(s6);
-//			welt.list.add(n1);
-//			welt.list.add(n2);
-//			welt.list.add(n3);
-//			welt.list.add(n4);
-//			welt.list.add(n5);
-//			welt.list.add(n6);
-//			ns1T.g.add(s1T);
-//			ns2T.g.add(s2T);
-//			ns3T.g.add(s3T);
-//			welt.list.add(nboxT);
-//			trino.g.add(tri);
-//			welt.list.add(trino);
-//			welt.list.add(ns1T);
-//			welt.list.add(ns2T);
-//			welt.list.add(ns3T);
-//			nboxT.g.add(boxT);
-//			tono.g.add(to);
-//			welt.list.add(tono);
+			welt.lightList.add(spotLight);
+			welt.lightList.add(pointLight);
+			welt.lightList.add(directionalLight);
+
+			planeNode.g.add(plane);
+			welt.list.add(planeNode);
+
+			n1.g.add(s1);
+			n2.g.add(s2);
+			n3.g.add(s3);
+			n4.g.add(s4);
+			n5.g.add(s5);
+			n6.g.add(s6);
+			welt.list.add(n1);
+			welt.list.add(n2);
+			welt.list.add(n3);
+			welt.list.add(n4);
+			welt.list.add(n5);
+			welt.list.add(n6);
+			ns1T.g.add(s1T);
+			ns2T.g.add(s2T);
+			ns3T.g.add(s3T);
+			welt.list.add(nboxT);
+			trino.g.add(tri);
+			welt.list.add(trino);
+			welt.list.add(ns1T);
+			welt.list.add(ns2T);
+			welt.list.add(ns3T);
+			nboxT.g.add(boxT);
+			tono.g.add(to);
+			welt.list.add(tono);
 
 
 

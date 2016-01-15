@@ -121,7 +121,7 @@ public class TodessternGUI extends Application {
         primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
     }
 
-    private void backToMenu(Stage primaryStage) {
+    private void backToMenu (Stage primaryStage) {
         this.root.getChildren().remove(imageview);
     }
 
@@ -147,7 +147,7 @@ public class TodessternGUI extends Application {
             hitFarbe = welt.hit(r);
 
 
-            if(hitFarbe == null)throw new IllegalArgumentException("color has to be not null");
+            if (hitFarbe == null) throw new IllegalArgumentException("color has to be not null");
 
             if (hitFarbe.r < 0) {
                 hitFarbe.r = 0;
@@ -167,12 +167,13 @@ public class TodessternGUI extends Application {
             if (hitFarbe.b > 1) {
                 hitFarbe.b = 1;
             }
-            addFarbe=addFarbe.add(hitFarbe);
+            addFarbe = addFarbe.add(hitFarbe);
 
         }
 
         //divide color with pixels of grid
-        addFarbe=addFarbe.mul(1f/rays.size());
+        addFarbe = addFarbe.mul(1f/rays.size());
+
         if (addFarbe.r < 0) {
             addFarbe.r = 0;
         }
@@ -199,7 +200,7 @@ public class TodessternGUI extends Application {
      * Initializes the menubar.
      * @param primaryStage needs to be given in oder to call the saveFile method in the lamda expression
      */
-    private void initializeMenu(Stage primaryStage) {
+    private void initializeMenu (Stage primaryStage) {
 
         final MenuBar menubar = new MenuBar();
         final Menu fileMenu = new Menu("File");
@@ -249,6 +250,8 @@ public class TodessternGUI extends Application {
         final  MenuItem imageTexture_downsampled320_interpolated =
                 new MenuItem("imageTextture_downsampled320_interpolated");
 
+        final MenuItem saturn = new MenuItem("Saturn");
+
 
         menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light,demo,objLoader);
 
@@ -261,7 +264,7 @@ public class TodessternGUI extends Application {
 
         demo.getItems().addAll(abbildung5_beleuchtung_II, abbildung3_beluechtung_II, abbildung4_beleuchtung_II,
                 abbildung1_transformationen, abbildung2_transformationen,eigeneSzene_zusatzaufgabe_imageTexture,
-                imageTexture_earth,imageTexture_downsampled320,imageTexture_downsampled320_interpolated);
+                imageTexture_earth,imageTexture_downsampled320,imageTexture_downsampled320_interpolated,saturn);
 
         render.getItems().add(renBut);
 
@@ -286,11 +289,14 @@ public class TodessternGUI extends Application {
         imageTexture_downsampled320.setOnAction(e -> new DemoScenes().imageTextur_downSapled340());
         imageTexture_downsampled320_interpolated.setOnAction(e -> new DemoScenes().imageTextur_downSapled340_interpolated());
 
+        saturn.setOnAction(e -> new DemoScenes().saturn());
         shapeFRomFile.setOnAction(e -> new ObjWindow());
 
         renBut.setOnAction(e->drawPicture(primaryStage));
         save.setOnAction(e -> saveFile(primaryStage));
         load.setOnAction(e -> new ImageLoader());
+
+
 
 
 

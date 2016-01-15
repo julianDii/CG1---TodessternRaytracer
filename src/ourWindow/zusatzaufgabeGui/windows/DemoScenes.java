@@ -11,6 +11,7 @@ import matVecLib.Normal3;
 import matVecLib.Point3;
 import matVecLib.Vector3;
 import materials.*;
+import raytracer.BoundingBox;
 import raytracer.Color;
 import raytracer.Transform;
 import raytracer.World;
@@ -277,9 +278,9 @@ public class DemoScenes {
         final Sphere deathStar = new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new Color(0,0,0),"deathStar.jpg")));
 
 
-        final ShapeFromFile tie = new ShapeFromFile("TieFighter.obj",new SingleColorMaterial(new Color(0.8,0.8,0.8)));
+        //final ShapeFromFile tie = new ShapeFromFile("TieFighter.obj",new SingleColorMaterial(new Color(0.8,0.8,0.8)));
 
-        Node tieNode = new Node(new Transform().translate(new Point3(0,0,0)),new ArrayList<>());
+        Node tieNode = new Node(new Transform().scale(5,5,5).translate(new Point3(40, 20, -70)),new ArrayList<>());
         Node sEarth = new Node(new Transform().rotY(10).scale(30, 30, 30).translate(new Point3(90, 0, -100)),new ArrayList<>());
         Node sDeathStar = new Node(new Transform().rotZ(5).scale(50, 50, 50).translate(new Point3(-40, 0,250)),new ArrayList<>());
 
@@ -288,7 +289,7 @@ public class DemoScenes {
         world.lightList.add(spaceLight);
 
 
-        tieNode.g.add(tie.OBJLoader());
+        //tieNode.g.add(tie.OBJLoader());
 
         world.list.add(tieNode);
         p.g.add(spaceBackground);
@@ -336,6 +337,8 @@ public class DemoScenes {
     }
     public void imageTextur_downSapled340_interpolated() {
 
+
+
         PointLight point = new PointLight(new Color(1,1,1),new Point3(3,8,19),true);
         world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
         TodessternGUI.welt = world;
@@ -348,6 +351,64 @@ public class DemoScenes {
         world.list.add(no);
         world.lightList.add(point);
 
+
+    }
+    public void saturn () {
+
+
+        PointLight point = new PointLight(new Color(1,1,1),new Point3(0,14,14),true);
+        //PointLight point1 = new PointLight(new Color(1,1,1),new Point3(-9,-4,7),true);
+        //PointLight point2 = new PointLight(new Color(1,1,1),new Point3(5,10,-8),true);
+        world = new World(new Color(0,0,0),new Color(0.25,0.25,0.25),1);
+        TodessternGUI.welt = world;
+        TodessternGUI.cam = camUniv;
+
+        Torus torus1 = new Torus(new ReflectiveMaterial(new raytracer.Color(0.8,0.8,0.8),
+                new raytracer.Color(1,1,1),64,new raytracer.Color(0.5,0.5,0.5)));
+
+        Torus torus2 = new Torus(new TransparentMaterial(1.33));
+
+        Torus torus3 = new Torus(new TransparentMaterial(1.33));
+
+        Torus torus4 = new Torus(new TransparentMaterial(2.33));
+
+        Node torusnode1 = new Node(new Transform().rotY(-0.4).rotX(0).rotZ(-0.2).scale(1, 0.1, 1.0), new ArrayList<>());
+
+        Node torusnode2 = new Node(new Transform().rotY(150).rotX(135).rotZ(60).scale(1.0,0.1,1), new ArrayList<>());
+
+       // Node torusnode4 = new Node(new Transform().rotY(190).rotX(100).rotZ(40).scale(1.5,0.1,1), new ArrayList<>());
+
+        Node torusnode3 = new Node(new Transform().rotY(69).rotX(150).rotZ(200).scale(1.0, 0.1, 1), new ArrayList<>());
+
+
+
+
+
+        Node sNode2 = new Node(new Transform().scale(3.2,3.2,3.2).translate(new Point3(-5,5,0)), new ArrayList<>());
+        Sphere sph2 =  new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new Color(0,0,0),"venus4.jpg")));
+
+        Node sNode = new Node(new Transform().scale(2.2,2.2,2.2), new ArrayList<>());
+        Sphere sph =  new Sphere(new SingleColorMaterial(new InterpolatedImageTexture(new Color(0,0,0),"moonmap4k.jpg")));
+
+        torusnode1.g.add(torus1);
+
+
+        torusnode3.g.add(torus4);
+        torusnode2.g.add(torus3);
+
+
+       // torusnode4.g.add(torus2);
+        sNode.g.add(sph);
+        sNode2.g.add(sph2);
+
+        world.list.add(torusnode1);
+        world.list.add(sNode);
+       // world.list.add(torusnode4);
+        world.list.add(torusnode2);
+        world.list.add(sNode2);
+        world.list.add(torusnode3);
+      //  world.lightList.add(point1);
+        world.lightList.add(point);
 
     }
 
