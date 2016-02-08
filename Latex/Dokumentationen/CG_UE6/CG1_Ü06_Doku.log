@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  30 DEC 2015 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.30)  8 FEB 2016 18:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -435,97 +435,71 @@ e
 \tf@toc=\write3
 \openout3 = `CG1_Ü06_Doku.toc'.
 
+ [2] <images/sample1.png, id=12, 642.4pt x 431.6125pt>
+File: images/sample1.png Graphic file (type png)
 
+<use images/sample1.png>
+Package pdftex.def Info: images/sample1.png used on input line 27.
+(pdftex.def)             Requested size: 426.79855pt x 284.53583pt.
+ <images/sample4x4.png, id=14, 642.4pt x 431.6125pt>
+File: images/sample4x4.png Graphic file (type png)
 
-! LaTeX Error: File `images/tr_abb_1' not found.
+<use images/sample4x4.png>
+Package pdftex.def Info: images/sample4x4.png used on input line 29.
+(pdftex.def)             Requested size: 426.79855pt x 284.53583pt.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.32 ...s[width=10cm,height=10cm]{images/tr_abb_1}
-                                                  \\\\\\\\\\
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-! LaTeX Error: File `images/tr_abb_2' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.34 ...s[width=10cm,height=10cm]{images/tr_abb_2}
-                                                  \\
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--35
-
- []
-
-[2] [3] [4] (./CG1_Ü06_Doku.aux) ) 
+[3] [4 <./images/sample1.png>] [5 <./images/sample4x4.png>]
+(./CG1_Ü06_Doku.aux) ) 
 Here is how much of TeX's memory you used:
- 2556 strings out of 493089
- 35162 string characters out of 6134841
- 98515 words of memory out of 5000000
- 5997 multiletter control sequences out of 15000+600000
+ 2552 strings out of 493089
+ 35306 string characters out of 6134841
+ 97515 words of memory out of 5000000
+ 6005 multiletter control sequences out of 15000+600000
  8798 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,7n,23p,596b,176s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr17.pfb>
-Output written on CG1_Ü06_Doku.pdf (4 pages, 47145 bytes).
+ 37i,6n,23p,597b,176s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr17.pfb>
+Output written on CG1_Ü06_Doku.pdf (5 pages, 98776 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 37 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -151,6 +151,60 @@ public class DemoScenes {
 
 
     }
+    public void verkettete_Rotationen(){
+
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+        TodessternGUI.welt = world;
+        PerspectiveCamera per = new PerspectiveCamera(new Point3(0,0,8), new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+        TodessternGUI.cam=per;
+        PointLight point = new PointLight(new raytracer.Color(1,1,1),new Point3(8,8,8), true);
+
+
+        ShapeFromFile teddy = new ShapeFromFile("teddy.obj", new ReflectiveMaterial(new raytracer.Color(1,1,0),
+                new raytracer.Color(1,1,1),10,new raytracer.Color(1,0.5,0.5)));
+        Node teddyNode = new Node(new Transform().rotZ(Math.PI/2).rotY(Math.PI/2).rotX(0),new ArrayList<>());
+
+        teddyNode.g.add(teddy.OBJLoader());
+        world.lightList.add(point);
+
+        world.list.add(teddyNode);
+
+    }
+
+    public void bestimme_Kameravektoren(){
+
+        world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
+        TodessternGUI.welt = world;
+        //PerspectiveCamera per = new PerspectiveCamera(new Point3(0,6,6), new Vector3(0,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+        PerspectiveCamera per = new PerspectiveCamera(new Point3(-6,6,0), new Vector3(1,-1,0),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+        TodessternGUI.cam=per;
+        PointLight point = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4), true);
+
+        Plane p = new Plane(new Point3(0,0,0),new Normal3(0,1,0),new PhongMaterial(new raytracer.Color(1,1,1),
+                new raytracer.Color(0,1,0),20));
+
+        Sphere s = new Sphere(new Point3(0,1,0),1, new PhongMaterial(new raytracer.Color(0,1,0),
+                new raytracer.Color(0,1,0),20));
+
+        AxisAlignedBox b = new AxisAlignedBox(new Point3(-0.5,-0.5,-0.5), new Point3(0.5,0.5,0.5),new PhongMaterial(new raytracer.Color(0,0,1),
+                new raytracer.Color(0,1,0),20));
+
+
+        Node boxnode = new Node(new Transform().translate(new Point3(2,1,0)),new ArrayList<>());
+        boxnode.g.add(b);
+        world.list.add(p);
+        world.list.add(s);
+        world.list.add(boxnode);
+
+
+
+        world.lightList.add(point);
+
+
+
+    }
+
+
 
 
     /**

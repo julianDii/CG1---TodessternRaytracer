@@ -3,6 +3,7 @@ package geometries;
 import materials.Material;
 import matVecLib.Normal3;
 import matVecLib.Point3;
+import raytracer.BoundingBox;
 import raytracer.Hit;
 import raytracer.Ray;
 import texture.TextureCoord2D;
@@ -62,6 +63,9 @@ public class Plane extends Geometry {
 	 */
 	@Override
     public Hit hit (final Ray r) {
+
+
+
 
     	if (r == null) throw new IllegalArgumentException("The Ray of the Camera is missing!");
     	

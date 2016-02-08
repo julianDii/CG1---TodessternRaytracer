@@ -1,11 +1,16 @@
 package ourWindow.zusatzaufgabeGui.windows;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -25,19 +30,22 @@ import raytracer.World;
 import camera.Camera;
 
 import javax.imageio.ImageIO;
+import javax.xml.ws.Service;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.security.Provider;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
  * The TodessternGUI Class opens a window thanks to the implemented JavaFX
  * application and gives the user the oportunity to
  * create his own world containing objects such as world, camera and geometry.
- * The window size is editable by the user.
  *
- * @author Charline Waldrich,Julian dobrot
+ * @author Julian dobrot
  */
 
 public class TodessternGUI extends Application {
@@ -60,6 +68,7 @@ public class TodessternGUI extends Application {
     private final VBox root = new VBox();
     private ImageView imageview;
     private WritableImage writableimage;
+    private ProgressBar progress=new ProgressBar(0);
 
     /**
      * The start method initializes the window property at initial point. The
@@ -73,10 +82,12 @@ public class TodessternGUI extends Application {
         primaryStage.setMinHeight(51);
         primaryStage.setWidth(640);
         primaryStage.setHeight(480);
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         initializeMenu(primaryStage);
 
         primaryStage.show();
+        progress.setMinWidth(640);
+
 
     }
 
@@ -96,6 +107,8 @@ public class TodessternGUI extends Application {
      */
     public void drawPicture(Stage primaryStage) {
 
+
+
         root.getChildren().remove(imageview);
 
         final int height = (int) primaryStage.getHeight() - 50;
@@ -104,22 +117,83 @@ public class TodessternGUI extends Application {
         this.imageview = new ImageView();
         this.writableimage = new WritableImage(width, height);
 
+
         final PixelWriter writer = writableimage.getPixelWriter();
+//
+//        SimpleIntegerProperty iterations = new SimpleIntegerProperty();
+//        int it = 0;
+//        iterations.setValue(0);
+//        progress.progressProperty().bind(iterations);
 
         try {
             for (int y = 0; y < height; ++y) {
                 for (int x = 0; x < width; ++x) {
+//                    iterations.setValue(it);
+//                    it++;
+//                    System.out.println(it);
+
                     writer.setColor(x, y, getColor(width, height, x, y));
                 }
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
         }
+//        System.out.println(iterations.toString());
+
 
         imageview.setImage(writableimage);
         root.getChildren().add(imageview);
         primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
     }
+
+
+//        Task<Integer> task = new Task<Integer>() {
+//            @Override
+//            protected Integer call() throws Exception {
+//
+//
+//                int iterations=0;
+//
+//                try {
+//                    for (int y = 0; y < height; ++y) {
+//                        for (int x = 0; x < width; ++x) {
+//
+//                            iterations++;
+//                            final int iterations1;
+//                            final int x1;
+//                            final int y1;
+//
+//                            y1=y;
+//                            x1=x;
+//
+//                            iterations1 = iterations;
+//                            Platform.runLater(() -> updateProgress(iterations1, width * height));
+//                            Platform.runLater(() -> writer.setColor(x1, y1, getColor(width, height, x1, y1)));
+//
+//
+//                        }
+//                    }
+//                } catch (IllegalArgumentException e) {
+//                    System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
+//                }
+//
+//                return null;
+//            }
+//        };
+//
+//
+//        progress.progressProperty().bind(task.progressProperty());
+//
+//        Thread t = new Thread(task);
+//        t.setDaemon(true);
+//        t.start();
+
+
+
+//        imageview.setImage(writableimage);
+//        root.getChildren().add(imageview);
+//        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
+//    }
 
     private void backToMenu (Stage primaryStage) {
         this.root.getChildren().remove(imageview);
@@ -251,8 +325,9 @@ public class TodessternGUI extends Application {
                 new MenuItem("imageTextture_downsampled320_interpolated");
 
         final MenuItem saturn = new MenuItem("Saturn");
+        final MenuItem verketteteT = new MenuItem("Verkettete_Transformationen");
 
-
+        final MenuItem kamera_vektoren = new MenuItem("Kamera_Vektoren_bestimmen");
         menubar.getMenus().addAll(fileMenu,worldMenu,geometries,camera,render,light,demo,objLoader);
 
         fileMenu.getItems().addAll(save, load);
@@ -264,7 +339,7 @@ public class TodessternGUI extends Application {
 
         demo.getItems().addAll(abbildung5_beleuchtung_II, abbildung3_beluechtung_II, abbildung4_beleuchtung_II,
                 abbildung1_transformationen, abbildung2_transformationen,eigeneSzene_zusatzaufgabe_imageTexture,
-                imageTexture_earth,imageTexture_downsampled320,imageTexture_downsampled320_interpolated,saturn);
+                imageTexture_earth,imageTexture_downsampled320,imageTexture_downsampled320_interpolated,saturn,verketteteT,kamera_vektoren);
 
         render.getItems().add(renBut);
 
@@ -290,8 +365,10 @@ public class TodessternGUI extends Application {
         imageTexture_downsampled320_interpolated.setOnAction(e -> new DemoScenes().imageTextur_downSapled340_interpolated());
 
         saturn.setOnAction(e -> new DemoScenes().saturn());
+        verketteteT.setOnAction(e -> new DemoScenes().verkettete_Rotationen());
         shapeFRomFile.setOnAction(e -> new ObjWindow());
 
+        kamera_vektoren.setOnAction(e-> new DemoScenes().bestimme_Kameravektoren());
         renBut.setOnAction(e->drawPicture(primaryStage));
         save.setOnAction(e -> saveFile(primaryStage));
         load.setOnAction(e -> new ImageLoader());
@@ -301,7 +378,7 @@ public class TodessternGUI extends Application {
 
 
 
-        root.getChildren().addAll(menubar);
+        root.getChildren().addAll(progress,menubar);
     }
 
     /**
