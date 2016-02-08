@@ -119,74 +119,15 @@ public class TodessternGUI extends Application {
 
 
         final PixelWriter writer = writableimage.getPixelWriter();
-////
-////        SimpleIntegerProperty iterations = new SimpleIntegerProperty();
-////        int it = 0;
-////        iterations.setValue(0);
-////        progress.progressProperty().bind(iterations);
-//
-//        try {
-//            for (int y = 0; y < height; ++y) {
-//                for (int x = 0; x < width; ++x) {
-////                    iterations.setValue(it);
-////                    it++;
-////                    System.out.println(it);
-//                    writer.setColor(x, y, getColor(width, height, x, y));
-//                }
-//            }
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
-//        }
-////        System.out.println(iterations.toString());
-//
-//
-//        imageview.setImage(writableimage);
-//        root.getChildren().add(imageview);
-//        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
-//    }
+
+
+
         try {
             for (int y = 0; y < height; ++y) {
-                final int y1;
-                y1=y;
-
-                Task<Void> task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-
-                       for (int x = 0; x < width; ++x) {
-
-                            iterations++;
-                            final int iterations1;
-                            final int x1;
-
-
-
-                            long elapsedTime = (System.currentTimeMillis() - TodessternGUI.startTime) / 1000;
-                            long estimatedTime = (long)((double)elapsedTime / TodessternGUI.iterations * (width*height));
-
-
-                            x1=x;
-
-                            iterations1 = iterations;
-
-                            Platform.runLater(() -> updateProgress(iterations1, width * height));
-                            Platform.runLater(() -> writer.setColor(x1, y1, getColor(width, height, x1, y1)));
-                            Platform.runLater(() -> updateMessage("elapsed Time: " + elapsedTime + "sec. estimated Time: " + estimatedTime + " sec."));
-                            Thread.sleep(100);
-
-
-                        }
-
-                return null;
-            }
-        };
-                startTime = System.currentTimeMillis();
-                progress.progressProperty().bind(task.progressProperty());
-                lab.textProperty().bind(task.messageProperty());
-
-                Thread t = new Thread(task);
-                t.setDaemon(true);
-                t.start();
+                for (int x = 0; x < width; ++x) {
+                 
+                    writer.setColor(x, y, getColor(width, height, x, y));
+                }
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
@@ -194,12 +135,66 @@ public class TodessternGUI extends Application {
 
 
 
-
-
         imageview.setImage(writableimage);
         root.getChildren().add(imageview);
         primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
     }
+//        try {
+//            for (int y = 0; y < height; ++y) {
+//                final int y1;
+//                y1=y;
+//
+//                Task<Void> task = new Task<Void>() {
+//            @Override
+//            protected Void call() throws Exception {
+//
+//                       for (int x = 0; x < width; ++x) {
+//
+//                            iterations++;
+//                            final int iterations1;
+//                            final int x1;
+//
+//
+//
+//                            long elapsedTime = (System.currentTimeMillis() - TodessternGUI.startTime) / 1000;
+//                            long estimatedTime = (long)((double)elapsedTime / TodessternGUI.iterations * (width*height));
+//
+//
+//                            x1=x;
+//
+//                            iterations1 = iterations;
+//
+//                            Platform.runLater(() -> updateProgress(iterations1, width * height));
+//                            Platform.runLater(() -> writer.setColor(x1, y1, getColor(width, height, x1, y1)));
+//                            Platform.runLater(() -> updateMessage("elapsed Time: " + elapsedTime + "sec. estimated Time: " + estimatedTime + " sec."));
+//                            Thread.sleep(100);
+//
+//
+//                        }
+//
+//                return null;
+//            }
+//        };
+//                startTime = System.currentTimeMillis();
+//                progress.progressProperty().bind(task.progressProperty());
+//                lab.textProperty().bind(task.messageProperty());
+//
+//                Thread t = new Thread(task);
+//                t.setDaemon(true);
+//                t.start();
+//            }
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
+//        }
+//
+//
+//
+//
+//
+//        imageview.setImage(writableimage);
+//        root.getChildren().add(imageview);
+//        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
+//    }
 
 
     private void backToMenu (Stage primaryStage) {
