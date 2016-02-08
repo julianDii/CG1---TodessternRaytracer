@@ -2,15 +2,14 @@ package ourWindow.zusatzaufgabeGui.windows;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
@@ -24,20 +23,17 @@ import ourWindow.zusatzaufgabeGui.windows.lightWindows.DirectionalLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.PointLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.SpotLightWindow;
 import raytracer.ImageLoader;
-import raytracer.ImageViewer;
+import raytracer.ImageSaver;
 import raytracer.Ray;
 import raytracer.World;
 import camera.Camera;
 
 import javax.imageio.ImageIO;
-import javax.xml.ws.Service;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.security.Provider;
-import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -68,7 +64,11 @@ public class TodessternGUI extends Application {
     private final VBox root = new VBox();
     private ImageView imageview;
     private WritableImage writableimage;
-    private ProgressBar progress=new ProgressBar(0);
+    private ProgressBar progress = new ProgressBar(0);
+    private Label lab = new Label();
+    protected static long startTime;
+    private static int iterations=0;
+
 
     /**
      * The start method initializes the window property at initial point. The
@@ -105,7 +105,7 @@ public class TodessternGUI extends Application {
      * cannot be bound directly because neither the writableimage nor
      * the imageview provides a property binding method.
      */
-    public void drawPicture(Stage primaryStage) {
+    public void drawPicture(Stage primaryStage) throws InterruptedException {
 
 
 
@@ -119,26 +119,81 @@ public class TodessternGUI extends Application {
 
 
         final PixelWriter writer = writableimage.getPixelWriter();
+////
+////        SimpleIntegerProperty iterations = new SimpleIntegerProperty();
+////        int it = 0;
+////        iterations.setValue(0);
+////        progress.progressProperty().bind(iterations);
 //
-//        SimpleIntegerProperty iterations = new SimpleIntegerProperty();
-//        int it = 0;
-//        iterations.setValue(0);
-//        progress.progressProperty().bind(iterations);
-
+//        try {
+//            for (int y = 0; y < height; ++y) {
+//                for (int x = 0; x < width; ++x) {
+////                    iterations.setValue(it);
+////                    it++;
+////                    System.out.println(it);
+//                    writer.setColor(x, y, getColor(width, height, x, y));
+//                }
+//            }
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
+//        }
+////        System.out.println(iterations.toString());
+//
+//
+//        imageview.setImage(writableimage);
+//        root.getChildren().add(imageview);
+//        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
+//    }
         try {
             for (int y = 0; y < height; ++y) {
-                for (int x = 0; x < width; ++x) {
-//                    iterations.setValue(it);
-//                    it++;
-//                    System.out.println(it);
+                final int y1;
+                y1=y;
 
-                    writer.setColor(x, y, getColor(width, height, x, y));
-                }
+                Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+
+                       for (int x = 0; x < width; ++x) {
+
+                            iterations++;
+                            final int iterations1;
+                            final int x1;
+
+
+
+                            long elapsedTime = (System.currentTimeMillis() - TodessternGUI.startTime) / 1000;
+                            long estimatedTime = (long)((double)elapsedTime / TodessternGUI.iterations * (width*height));
+
+
+                            x1=x;
+
+                            iterations1 = iterations;
+
+                            Platform.runLater(() -> updateProgress(iterations1, width * height));
+                            Platform.runLater(() -> writer.setColor(x1, y1, getColor(width, height, x1, y1)));
+                            Platform.runLater(() -> updateMessage("elapsed Time: " + elapsedTime + "sec. estimated Time: " + estimatedTime + " sec."));
+                            Thread.sleep(100);
+
+
+                        }
+
+                return null;
+            }
+        };
+                startTime = System.currentTimeMillis();
+                progress.progressProperty().bind(task.progressProperty());
+                lab.textProperty().bind(task.messageProperty());
+
+                Thread t = new Thread(task);
+                t.setDaemon(true);
+                t.start();
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
         }
-//        System.out.println(iterations.toString());
+
+
+
 
 
         imageview.setImage(writableimage);
@@ -146,54 +201,6 @@ public class TodessternGUI extends Application {
         primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
     }
 
-
-//        Task<Integer> task = new Task<Integer>() {
-//            @Override
-//            protected Integer call() throws Exception {
-//
-//
-//                int iterations=0;
-//
-//                try {
-//                    for (int y = 0; y < height; ++y) {
-//                        for (int x = 0; x < width; ++x) {
-//
-//                            iterations++;
-//                            final int iterations1;
-//                            final int x1;
-//                            final int y1;
-//
-//                            y1=y;
-//                            x1=x;
-//
-//                            iterations1 = iterations;
-//                            Platform.runLater(() -> updateProgress(iterations1, width * height));
-//                            Platform.runLater(() -> writer.setColor(x1, y1, getColor(width, height, x1, y1)));
-//
-//
-//                        }
-//                    }
-//                } catch (IllegalArgumentException e) {
-//                    System.out.println("Das Fenster ist zu klein um ein Bild zu Zeichnen." + e.getMessage());
-//                }
-//
-//                return null;
-//            }
-//        };
-//
-//
-//        progress.progressProperty().bind(task.progressProperty());
-//
-//        Thread t = new Thread(task);
-//        t.setDaemon(true);
-//        t.start();
-
-
-
-//        imageview.setImage(writableimage);
-//        root.getChildren().add(imageview);
-//        primaryStage.onCloseRequestProperty().set(e->backToMenu(primaryStage));
-//    }
 
     private void backToMenu (Stage primaryStage) {
         this.root.getChildren().remove(imageview);
@@ -369,7 +376,13 @@ public class TodessternGUI extends Application {
         shapeFRomFile.setOnAction(e -> new ObjWindow());
 
         kamera_vektoren.setOnAction(e-> new DemoScenes().bestimme_Kameravektoren());
-        renBut.setOnAction(e->drawPicture(primaryStage));
+        renBut.setOnAction(e -> {
+            try {
+                drawPicture(primaryStage);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        });
         save.setOnAction(e -> saveFile(primaryStage));
         load.setOnAction(e -> new ImageLoader());
 
@@ -378,7 +391,7 @@ public class TodessternGUI extends Application {
 
 
 
-        root.getChildren().addAll(progress,menubar);
+        root.getChildren().addAll(progress,lab,menubar);
     }
 
     /**
