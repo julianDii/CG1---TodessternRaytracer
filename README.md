@@ -38,3 +38,7 @@ Texture:
 - ImageTexture
 - SingleColorTexture
 - InterpolatedImageTexture
+
+The Ray Tracer also provides different sampling stategies.
+
+
