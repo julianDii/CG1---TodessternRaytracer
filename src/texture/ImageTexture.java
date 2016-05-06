@@ -56,8 +56,9 @@ public class ImageTexture extends Texture {
 
             properties.load(new FileInputStream("todesstern.properties"));
             BASE_URL_IMG = properties.get("BASE_URL_IMG").toString();
-
+            System.out.println(BASE_URL_IMG + imgName);
             this.image = ImageIO.read(new File(BASE_URL_IMG + imgName));
+
 
         } catch (IOException e) {
             e.printStackTrace();

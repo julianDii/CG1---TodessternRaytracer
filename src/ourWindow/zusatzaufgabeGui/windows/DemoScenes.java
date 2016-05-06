@@ -1,7 +1,28 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2016 Julian Dobrot
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package ourWindow.zusatzaufgabeGui.windows;
 
-import camera.Camera;
-import camera.OrthographicCamera;
 import camera.PerspectiveCamera;
 import geometries.*;
 import lights.DirectionalLight;
@@ -11,7 +32,6 @@ import matVecLib.Normal3;
 import matVecLib.Point3;
 import matVecLib.Vector3;
 import materials.*;
-import raytracer.BoundingBox;
 import raytracer.Color;
 import raytracer.Transform;
 import raytracer.World;
@@ -31,9 +51,9 @@ public class DemoScenes {
 
     public final PointLight pointLight101 = new PointLight(new raytracer.Color(1,1,1), new Point3(8,8,8),true);
 
-    public final PerspectiveCamera camTransformation = new PerspectiveCamera(new Point3(0,0,8),new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
+    public final PerspectiveCamera camTransformation = new PerspectiveCamera(new Point3(0,0,8),new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(8),Math.PI/4);
 
-    public final PerspectiveCamera camUniv = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
+    public final PerspectiveCamera camUniv = new PerspectiveCamera(new Point3(8,8,8),new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(8),Math.PI/4);
 
     /**
      * Sphere component for transformation.
@@ -82,7 +102,7 @@ public class DemoScenes {
     public final DirectionalLight directionalLight = new DirectionalLight(new raytracer.Color(0.3,0.3,0.3),new Vector3(1,-1,0).normalized(),true);
 
     public final PerspectiveCamera camRef = new PerspectiveCamera(new Point3(8,8,8),
-            new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+            new Vector3(-1,-1,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
 
 
 
@@ -155,7 +175,7 @@ public class DemoScenes {
 
         world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
         TodessternGUI.welt = world;
-        PerspectiveCamera per = new PerspectiveCamera(new Point3(0,0,8), new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+        PerspectiveCamera per = new PerspectiveCamera(new Point3(0,0,8), new Vector3(0,0,-1),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
         TodessternGUI.cam=per;
         PointLight point = new PointLight(new raytracer.Color(1,1,1),new Point3(8,8,8), true);
 
@@ -176,7 +196,7 @@ public class DemoScenes {
         world = new World(new Color(0,0,0),new Color(0.1,0.1,0.1),1);
         TodessternGUI.welt = world;
         //PerspectiveCamera per = new PerspectiveCamera(new Point3(0,6,6), new Vector3(0,-1,-1),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
-        PerspectiveCamera per = new PerspectiveCamera(new Point3(-6,6,0), new Vector3(1,-1,0),new Vector3(0,1,0),new SamplingPattern(1),Math.PI/4);
+        PerspectiveCamera per = new PerspectiveCamera(new Point3(-6,6,0), new Vector3(1,-1,0),new Vector3(0,1,0),new SamplingPattern(4),Math.PI/4);
         TodessternGUI.cam=per;
         PointLight point = new PointLight(new raytracer.Color(1,1,1),new Point3(4,4,4), true);
 

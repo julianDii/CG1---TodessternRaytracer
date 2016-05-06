@@ -1,8 +1,8 @@
 package ourWindow.zusatzaufgabeGui.windows;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -23,7 +23,6 @@ import ourWindow.zusatzaufgabeGui.windows.lightWindows.DirectionalLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.PointLightWindow;
 import ourWindow.zusatzaufgabeGui.windows.lightWindows.SpotLightWindow;
 import raytracer.ImageLoader;
-import raytracer.ImageSaver;
 import raytracer.Ray;
 import raytracer.World;
 import camera.Camera;
@@ -38,7 +37,7 @@ import java.util.Set;
 
 /**
  * The TodessternGUI Class opens a window thanks to the implemented JavaFX
- * application and gives the user the oportunity to
+ * application and gives the user the opportunity to
  * create his own world containing objects such as world, camera and geometry.
  *
  * @author Julian dobrot
