@@ -13,24 +13,28 @@ Cameras:
 - Orthoraphic 
 - Perspective
           
-Geometries: - AxisAlignedBox
-            - Plane
-            - Torus
-            - Triangle
-            - ShapeFromFile
-            - Sphere
+Geometries: 
+- AxisAlignedBox
+- Plane
+- Torus
+- Triangle
+- ShapeFromFile
+- Sphere
 
-Lights:     - DirectionalLight
-            - PointLight
-            - SpotLight
+Lights:     
+- DirectionalLight           
+- PointLight
+- SpotLight
 
-Materials:  - LambertMaterial
-            - PhongMaterial
-            - OrenNayarMaterial
-            - ReflectiveMaterial
-            - SingleColorMaterial
-            - TransparentMaterial
+Materials:  
+- LambertMaterial
+- PhongMaterial
+- OrenNayarMaterial
+- ReflectiveMaterial
+- SingleColorMaterial
+- TransparentMaterial
   
-Texture:    - ImageTexture
-            - SingleColorTexture
-            - InterpolatedImageTexture
+Texture:    
+- ImageTexture
+- SingleColorTexture
+- InterpolatedImageTexture
